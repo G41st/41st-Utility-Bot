@@ -1,6 +1,7 @@
 # bot.py
 import os
 import random
+import overides
 import discord
 from discord.ext import commands
 from discord.ext.commands import bot
@@ -34,6 +35,9 @@ async def on_message(message):
         return
 
     await message.channel.send("hola")
+
+bot.command(name='overide')
+async def overide(command):
 
 
 bot.run(TOKEN)
