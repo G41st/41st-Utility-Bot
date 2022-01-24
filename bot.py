@@ -38,6 +38,6 @@ async def on_message(message):
 
 bot.command(name='overide')
 async def overide(command):
-
+    pass
 
 bot.run(TOKEN)
