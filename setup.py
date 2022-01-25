@@ -31,7 +31,7 @@ def merit_file_setup():
 
     if content == "file test":
         merit_file.close()
-        print("demerit file created succesfuly")
+        print("merit file created succesfuly")
         merit_file = open("Account.txt", "w")
         merit_file.write("merits:\n")
         merit_file.close()
@@ -86,7 +86,7 @@ def demerit_file_setup():
     if content == "file test":
         demerit_file.close()
         print("demerit file created succesfuly")
-        demerit_file = open("Account.txt", "w")
+        demerit_file = open("demerit.txt", "w")
         demerit_file.write("demerits:\n")
         demerit_file.close()
         demerit_file_complete()
