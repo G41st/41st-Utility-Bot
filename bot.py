@@ -5,11 +5,9 @@ from discord.ext import commands
 import discord.ext.commands
 from dotenv import load_dotenv
 
-
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
-
 
 client = discord.Client()
 
@@ -30,6 +28,6 @@ async def on_message(message):
 
     await message.channel.send("hola")
 
-def main():
 
+def main():
     bot.run(TOKEN)
