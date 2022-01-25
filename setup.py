@@ -32,7 +32,7 @@ def merit_file_setup():
     if content == "file test":
         merit_file.close()
         print("merit file created succesfuly")
-        merit_file = open("Account.txt", "w")
+        merit_file = open("merit.txt", "w")
         merit_file.write("merits:\n")
         merit_file.close()
         demerit_file_complete()
