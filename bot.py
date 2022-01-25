@@ -32,5 +32,6 @@ async def on_message(message):
 
     await message.channel.send("hola")
 
+def main():
 
-bot.run(TOKEN)
+    bot.run(TOKEN)
