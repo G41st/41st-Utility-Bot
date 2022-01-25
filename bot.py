@@ -1,7 +1,5 @@
 # bot.py
 import os
-import random
-import overides
 import discord
 from discord.ext import commands
 import discord.ext.commands
