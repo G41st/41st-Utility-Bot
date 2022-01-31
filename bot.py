@@ -99,10 +99,25 @@ async def role(ctx, role : discord.Role):
     await ctx.send(f"{role} is worth {value} credits")
     await ctx.send("fuck you")
 
-@bot.command(name='kill')
+@bot.command(name='shutdown')
 async def shutdown(ctx):
-    await ctx.send("shutdown in 5")
-    time.sleep(5)
+    await ctx.send("```41st://<utilities> ~ Shutdown in 5```")
+    time.sleep(1)
+    await ctx.send("```41st://<utilities> ~ Shutdown in 4```")
+    time.sleep(1)
+    await ctx.send("```41st://<utilities> ~ Shutdown in 3```")
+    time.sleep(1)
+    await ctx.send("```41st://<utilities> ~ Shutdown in 2```")
+    time.sleep(1)
+    await ctx.send("```41st://<utilities> ~ Shutdown in 1```")
+    time.sleep(1)
+    await ctx.send("o7")
+    sys.exit()
+
+@bot.command(name='hard-shutdown')
+async def shutdown(ctx):
+    await ctx.send("```41st://<utilities> ~ HARD-SHUTDOWN```")
+    time.sleep(1)
     sys.exit()
 
 @bot.command(name='credits')
