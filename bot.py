@@ -8,7 +8,6 @@ import discord.ext.commands
 from discord.ext.commands import MissingPermissions
 from discord.utils import get
 from dotenv import load_dotenv
-import numpy as np
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
