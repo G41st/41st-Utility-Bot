@@ -161,10 +161,21 @@ async def thing_for_roles(ctx):
     await ctx.send(f"you are worth {value} credits")
     await ctx.send("fuck you")
 
+@bot.command(name='store')
+async def store(ctx):
+
+    credit_emoji = '<:credits:937788738950545464>'
+
+    await ctx.send(f"welcome trooper. \n \n "
+                   f"{credit_emoji} `##,###` - 'Name' \n \n"
+                   f"{credit_emoji} `7,500` - 'Helmet Attachments'")
+
 
 @bot.command(name='shutdown')
+@commands.has_role('Dev Team Lead')
 async def shutdown(ctx):
-    await ctx.send("```41st://<utilities> ~ $``` \n `Shutdown in 5`")
+    await ctx.send("```41st://<utilities> ~ $```")
+    await ctx.send("`Shutdown in 5`")
     time.sleep(1)
     await ctx.send("`4`")
     time.sleep(1)
@@ -178,6 +189,7 @@ async def shutdown(ctx):
     sys.exit()
 
 @bot.command(name='hard-shutdown')
+@commands.has_role('Dev Team Lead')
 async def shutdown(ctx):
     await ctx.send("```41st://<utilities> ~ $``` \n `HARD-SHUTDOWN`")
     time.sleep(1)
