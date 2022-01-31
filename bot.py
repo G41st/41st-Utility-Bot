@@ -99,26 +99,6 @@ async def role(ctx, role : discord.Role):
     await ctx.send(f"{role} is worth {value} credits")
     await ctx.send("fuck you")
 
-@bot.command(name='shutdown')
-async def shutdown(ctx):
-    await ctx.send("```41st://<utilities> ~ Shutdown in 5```")
-    time.sleep(1)
-    await ctx.send("```41st://<utilities> ~ Shutdown in 4```")
-    time.sleep(1)
-    await ctx.send("```41st://<utilities> ~ Shutdown in 3```")
-    time.sleep(1)
-    await ctx.send("```41st://<utilities> ~ Shutdown in 2```")
-    time.sleep(1)
-    await ctx.send("```41st://<utilities> ~ Shutdown in 1```")
-    time.sleep(1)
-    await ctx.send("o7")
-    sys.exit()
-
-@bot.command(name='hard-shutdown')
-async def shutdown(ctx):
-    await ctx.send("```41st://<utilities> ~ HARD-SHUTDOWN```")
-    time.sleep(1)
-    sys.exit()
 
 @bot.command(name='credits')
 async def thing_for_roles(ctx):
@@ -180,6 +160,29 @@ async def thing_for_roles(ctx):
 
     await ctx.send(f"you are worth {value} credits")
     await ctx.send("fuck you")
+
+
+@bot.command(name='shutdown')
+async def shutdown(ctx):
+    await ctx.send("```41st://<utilities> ~ $``` \n `Shutdown in 5`")
+    time.sleep(1)
+    await ctx.send("`4`")
+    time.sleep(1)
+    await ctx.send("`3`")
+    time.sleep(1)
+    await ctx.send("`2`")
+    time.sleep(1)
+    await ctx.send("`1`")
+    time.sleep(1)
+    await ctx.send("o7")
+    sys.exit()
+
+@bot.command(name='hard-shutdown')
+async def shutdown(ctx):
+    await ctx.send("```41st://<utilities> ~ $``` \n `HARD-SHUTDOWN`")
+    time.sleep(1)
+    sys.exit()
+
 
 def main():
     bot.run(TOKEN)
