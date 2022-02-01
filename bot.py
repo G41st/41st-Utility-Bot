@@ -2,6 +2,7 @@
 import os
 import time
 import sys
+import assets
 import discord
 from discord.ext import commands
 import discord.ext.commands
@@ -161,65 +162,16 @@ async def thing_for_roles(ctx):
     await ctx.send(f"you are worth {value} credits")
     await ctx.send("fuck you")
 
+
 @bot.command(name='store')
 async def store(ctx):
-
-    credit_emoji = '<:credits:937788738950545464>'
-
-    await ctx.send(f"**41st Elite Corps store:** \n"
-                   f"\n- - - {credit_emoji} `07,500` - - -\n"
-                   f"{credit_emoji} `7,500` - 'Helmet Attachments' \n"
-                   f"{credit_emoji} `7,500` - 'Rangefinder Down' \n"
-                   f"{credit_emoji} `7,500` - 'Helmet Tubes/Pipes' \n"
-                   f"\n- - - {credit_emoji} `10,000` - - -\n"
-                   f"{credit_emoji} `10,000` - '*Build-Your-Own* Attachment' \n"
-                   f"{credit_emoji} `10,000` - 'Specialist Binoculars' \n"
-                   f"{credit_emoji} `10,000` - 'Specialist Binoculars Up' \n"
-                   f"{credit_emoji} `10,000` - 'Phase 2 Arc Trooper' \n"
-                   f"\n- - - {credit_emoji} `12,500` - - -\n"
-                   f"{credit_emoji} `12,500` - 'Phase 1 Clone In-Game Skin' \n"
-                   f"\n- - - {credit_emoji} `15,000` - - -\n"
-                   f"{credit_emoji} `15,000` - 'Clone Gunner Helmet' \n"
-                   f"\n- - - {credit_emoji} `20,000` - - -\n"
-                   f"{credit_emoji} `20,000` - 'Phase 1 Helmet' \n"
-                   f"{credit_emoji} `20,000` - 'BARC Helmet' \n"
-                   f"{credit_emoji} `20,000` - 'Hooded Helmet' \n"
-                   f"{credit_emoji} `20,000` - 'Phase 1 ARF Helmet' \n"
-                   f"\n- - - {credit_emoji} `25,000` - - -\n"
-                   f"{credit_emoji} `25,000` - 'Snowtrooper/Flametrooper Helmet' \n"
-                   f"\n- - - {credit_emoji} `30,000` - - -\n"
-                   f"{credit_emoji} `30,000` - 'Custom Visor' \n"
-                   f"\n- - - {credit_emoji} `40,000` - - -\n"
-                   f"{credit_emoji} `40,000` - '2003 Helmet Varients' \n"
-                   f"\n- - - {credit_emoji} `45,000` - - -\n"
-                   f"{credit_emoji} `45,000` - 'Blaze Trooper Helmet' \n"
-                   f"{credit_emoji} `45,000` - 'Desert Trooper Helmet' \n")
+    await ctx.send(assets.store_command())
 
 
 @bot.command(name='shop')
 async def store(ctx):
+    await ctx.send(assets.shop_command())
 
-    credit_emoji = '<:credits:937788738950545464>'
-
-    await ctx.send(f"**41st Elite Corps store:** \n"
-                   f"{credit_emoji} `7,500` - 'Helmet Attachments' \n"
-                   f"{credit_emoji} `7,500` - 'Rangefinder Down' \n"
-                   f"{credit_emoji} `7,500` - 'Helmet Tubes/Pipes' \n"
-                   f"{credit_emoji} `10,000` - '*Build-Your-Own* Attachment' \n"
-                   f"{credit_emoji} `10,000` - 'Specialist Binoculars' \n"
-                   f"{credit_emoji} `10,000` - 'Specialist Binoculars Up' \n"
-                   f"{credit_emoji} `10,000` - 'Phase 2 Arc Trooper' \n"
-                   f"{credit_emoji} `12,500` - 'Phase 1 Clone In-Game Skin' \n"
-                   f"{credit_emoji} `15,000` - 'Clone Gunner Helmet' \n"
-                   f"{credit_emoji} `20,000` - 'Phase 1 Helmet' \n"
-                   f"{credit_emoji} `20,000` - 'BARC Helmet' \n"
-                   f"{credit_emoji} `20,000` - 'Hooded Helmet' \n"
-                   f"{credit_emoji} `20,000` - 'Phase 1 ARF Helmet' \n"
-                   f"{credit_emoji} `25,000` - 'Snowtrooper/Flametrooper Helmet' \n"
-                   f"{credit_emoji} `30,000` - 'Custom Visor' \n"
-                   f"{credit_emoji} `40,000` - '2003 Helmet Varients' \n"
-                   f"{credit_emoji} `45,000` - 'Blaze Trooper Helmet' \n"
-                   f"{credit_emoji} `45,000` - 'Desert Trooper Helmet' \n")
 
 @bot.command(name='shutdown')
 @commands.has_role('Dev Team Lead')
