@@ -1,7 +1,7 @@
-def store_command():
+def store_command(mention):
     credit_emoji = '<:credits:937788738950545464>'
 
-    store = (f"**41st Elite Corps store:** \n"
+    store = (f"**41st Elite Corps store:** <@!{mention}> \n"
              f"\n- - - {credit_emoji} `07,500` - - -\n"
              f"{credit_emoji} `7,500` - 'Helmet Attachments' \n"
              f"{credit_emoji} `7,500` - 'Rangefinder Down' \n"
@@ -33,10 +33,10 @@ def store_command():
     return store
 
 
-def shop_command():
+def shop_command(mention):
     credit_emoji = '<:credits:937788738950545464>'
 
-    shop = (f"**41st Elite Corps store:** \n"
+    shop = (f"**41st Elite Corps Store:** <@!{mention}> \n"
             f"{credit_emoji} `7,500` - 'Helmet Attachments' \n"
             f"{credit_emoji} `7,500` - 'Rangefinder Down' \n"
             f"{credit_emoji} `7,500` - 'Helmet Tubes/Pipes' \n"

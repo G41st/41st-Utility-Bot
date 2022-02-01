@@ -165,12 +165,12 @@ async def thing_for_roles(ctx):
 
 @bot.command(name='store')
 async def store(ctx):
-    await ctx.send(assets.store_command())
+    await ctx.send(assets.store_command(format(ctx.author.id)))
 
 
 @bot.command(name='shop')
-async def store(ctx):
-    await ctx.send(assets.shop_command())
+async def shop(ctx):
+    await ctx.send(assets.shop_command(format(ctx.author.id)))
 
 
 @bot.command(name='shutdown')
