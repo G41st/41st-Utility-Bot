@@ -48,8 +48,6 @@ async def troll(ctx):
 @commands.has_role('Dev Team Lead')
 async def add(ctx, user: discord.Member, message):
     role_names = [str(r) for r in user.roles]
-    await ctx.send(user.id)
-    await ctx.send(message)
 
     credit_emoji = '<:credits:937788738950545464>'
     role_credit_value = credit_counter.credit_counter(role_names)
@@ -71,8 +69,6 @@ async def add_error(ctx, message):
 @commands.has_role('Dev Team Lead')
 async def remove(ctx, user: discord.Member, message):
     role_names = [str(r) for r in user.roles]
-    await ctx.send(user.id)
-    await ctx.send(message)
 
     credit_emoji = '<:credits:937788738950545464>'
     role_credit_value = credit_counter.credit_counter(role_names)
