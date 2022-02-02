@@ -1,6 +1,6 @@
 
 
-def credit_counter(role_names):
+def credit_counter(role_names, d_id):
 
     global count1
     count1 = 0
@@ -42,6 +42,26 @@ def credit_counter(role_names):
         print(level_250)
         count6 = 1000
 
-    total = count1 + count2 + count3 + count4 + count5 + count6
+    role_total = count1 + count2 + count3 + count4 + count5 + count6
 
-    return total
+    with open("merit.txt", 'r') as f:
+        for number, line in enumerate(f):
+            if d_id in line:
+                line_number = number
+
+    with open("merit.txt", 'r') as f:
+
+        file_read = f.readlines()
+        file_int1_read = int(line_number)
+        file_int2_read = (file_int1_read + 1)
+        file_to_read_1 = file_read[file_int1_read]
+        file_to_read_2 = file_read[file_int2_read]
+
+
+        for i, line in enumerate(get_all):
+            if i == int(item_number):
+                f.writelines(str(new_item_total_sold) + "\n")
+            else:
+                f.writelines(line)
+
+    return role_total

@@ -50,13 +50,14 @@ async def add(ctx, user: discord.Member, message):
     role_names = [str(r) for r in user.roles]
 
     credit_emoji = '<:credits:937788738950545464>'
-    role_credit_value = credit_counter.credit_counter(role_names)
+    role_credit_value = credit_counter.credit_counter(role_names, user.id)
     var_credit_value = message
     credit_value = (int(role_credit_value) + int(var_credit_value))
     mention = format(f"<@!{user.id}>")
 
     await ctx.send(f"Transfered {credit_emoji}`{var_credit_value}` to `user-id: {user.id}`.\n\n"
                    f"{mention} now has {credit_emoji}`{credit_value}`.")
+
 
 @add.error
 async def add_error(ctx, message):
