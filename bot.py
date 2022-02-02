@@ -46,13 +46,48 @@ async def troll(ctx):
 
 @bot.command(name='add')
 @commands.has_role('Dev Team Lead')
-async def role(ctx, user : discord.Member, *, message):
-  await ctx.send(user.roles, user.id, message)
+async def add(ctx, user: discord.Member, message):
+    role_names = [str(r) for r in user.roles]
+    await ctx.send(user.id)
+    await ctx.send(message)
 
-@bot.command(name='test')
-async def role(ctx, message):
-  await ctx.send(message.content)
+    credit_emoji = '<:credits:937788738950545464>'
+    role_credit_value = credit_counter.credit_counter(role_names)
+    var_credit_value = message
+    credit_value = (int(role_credit_value) + int(var_credit_value))
+    mention = format(f"<@!{user.id}>")
 
+    await ctx.send(f"Transfered {credit_emoji}`{var_credit_value}` to `user-id: {user.id}`.\n\n"
+                   f"{mention} now has {credit_emoji}`{credit_value}`.")
+
+@add.error
+async def add_error(ctx, message):
+    mention = format(f"<@!{ctx.author.id}>")
+
+    await ctx.send(f"ERROR: *CODE_1* - {mention} \n\n`You are missing an argument!`")
+
+
+@bot.command(name='remove')
+@commands.has_role('Dev Team Lead')
+async def remove(ctx, user: discord.Member, message):
+    role_names = [str(r) for r in user.roles]
+    await ctx.send(user.id)
+    await ctx.send(message)
+
+    credit_emoji = '<:credits:937788738950545464>'
+    role_credit_value = credit_counter.credit_counter(role_names)
+    var_credit_value = message
+    credit_value = (int(role_credit_value) - int(var_credit_value))
+    mention = format(f"<@!{user.id}>")
+
+    await ctx.send(f"Transfered {credit_emoji}`{var_credit_value}` from `user-id: {user.id}`.\n\n"
+                   f"{mention} now has {credit_emoji}`{credit_value}`.")
+
+@remove.error
+async def remove_error(ctx, message):
+    mention = format(f"<@!{ctx.author.id}>")
+
+    await ctx.send(f"ERROR: *CODE_1* - {mention} \n\n`You are missing an argument!`")
 
 @bot.command(name='credits')
 async def thing_for_roles(ctx):
@@ -65,8 +100,6 @@ async def thing_for_roles(ctx):
     await ctx.send(f"{mention}, You have {credit_emoji}`{credit_value}`.")
 
 
-
-
 @bot.command(name='store')
 async def store(ctx):
     await ctx.send(assets.store_command(format(ctx.author.id)))
@@ -77,7 +110,7 @@ async def shop(ctx):
     await ctx.send(assets.shop_command(format(ctx.author.id)))
 
 
-@bot.command(name='shutdown')
+@bot.command(name='off')
 @commands.has_role('Dev Team Lead')
 async def shutdown(ctx):
     await ctx.send("```41st://<utilities> ~ $```")
@@ -94,7 +127,8 @@ async def shutdown(ctx):
     await ctx.send("o7")
     sys.exit()
 
-@bot.command(name='hard-shutdown')
+
+@bot.command(name='kill')
 @commands.has_role('Dev Team Lead')
 async def shutdown(ctx):
     await ctx.send("```41st://<utilities> ~ $``` \n `HARD-SHUTDOWN`")
