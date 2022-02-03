@@ -1,0 +1,4 @@
+dotenv
+discord.ext.commands
+discord.ext
+discord
