@@ -58,6 +58,7 @@ def shop_command(mention):
 
     return shop
 
+
 def troll_command():
     troll = ("░░░░░▄▄▄▄▀▀▀▀▀▀▀▀▄▄▄▄▄▄░░░░░░░\n░░░░░█░░░░▒▒▒▒▒▒▒▒▒▒▒▒░░▀▀▄░░░░\n░░░░█░░░▒▒▒▒▒▒░░░░░░░░▒▒▒░░█░░░\n░░░█░"
             "░░░░░▄██▀▄▄░░░░░▄▄▄░░░░█░░\n░▄▀▒▄▄▄▒░█▀▀▀▀▄▄█░░░██▄▄█░░░░█░\n█░▒█▒▄░▀▄▄▄▀░░░░░░░░█░░░▒▒▒▒▒░█\n█░▒█░█▀▄▄"
@@ -66,3 +67,22 @@ def troll_command():
             "░░░░░░░░▒░░░█░\n░░░░░░░░░░▀▀▄▄░▒▒▒▒▒▒▒▒▒▒░░░░█░\n░░░░░░░░░░░░░░▀▄▄▄▄▄░░░░░░░░█░░")
 
     return troll
+
+
+def commands_command(mention):
+    commands = (f"COMMANDS: - - - <@!{mention}>\n\n"
+                f"`.register` - Register yourself in the bots systems. You must use .register before you can use the "
+                f"majority of the bots functions. \n"
+                f"`.store` - Displays the current store information with categories and item descriptions. \n"
+                f"`.shop` - Displays a condensed version of the store. \n"
+                f"`.credits` - Calculates your current credit value. \n"
+                f"`.report` - Sends a user-created error report to the bot dev team.")
+
+    return commands
+
+
+def report_command(mention):
+    report_instructions = (f"<@!{mention}>\n"
+                           f"Text goes here")
+
+    return report_instructions

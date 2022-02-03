@@ -12,26 +12,18 @@ from discord.utils import get
 from dotenv import load_dotenv
 import merit_config
 
+
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
 
 client = discord.Client()
 bot = commands.Bot(command_prefix='.')
-
+bot.remove_command('help')
 
 @bot.event
 async def on_ready():
     print(f"{bot.user.name} is connected!\n")
-
-
-@bot.command(name='hello')
-async def on_message(message):
-    if message.author == client.user:
-        return
-
-    await message.channel.send("hola")
-    await message.channel.send(str(message.content))
 
 
 @bot.command(name='troll')
@@ -157,6 +149,16 @@ async def shop(ctx):
 @commands.has_role('Dev Team Lead')
 async def shutdown(ctx):
     await ctx.send("you")
+
+
+@bot.command(name='help')
+async def command_help(ctx):
+    await ctx.send(assets.commands_command(ctx.author.id))
+
+
+@bot.command(name='report')
+async def report(ctx):
+    await ctx.send(assets.report_command(ctx.author.id))
 
 
 @bot.command(name='off')
