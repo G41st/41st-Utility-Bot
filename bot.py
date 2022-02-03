@@ -153,6 +153,12 @@ async def shop(ctx):
     await ctx.send(assets.shop_command(format(ctx.author.id)))
 
 
+@bot.command(name='fuck')
+@commands.has_role('Dev Team Lead')
+async def shutdown(ctx):
+    await ctx.send("you")
+
+
 @bot.command(name='off')
 @commands.has_role('Dev Team Lead')
 async def shutdown(ctx):
