@@ -47,7 +47,6 @@ def credit_counter(role_names, discord_id):
         count6 = 1000
 
     role_total = count1 + count2 + count3 + count4 + count5 + count6
-    print(role_total)
 
     with open("merit.txt", 'r') as f:
 
@@ -64,7 +63,6 @@ def credit_counter(role_names, discord_id):
                     file_to_read = file_read[file_int2_read]
                     file_to_read_stripped = file_to_read.strip()
                     merit_total = int(file_to_read_stripped)
-                    print(merit_total)
 
                     with open("demerit.txt", 'r') as f:
                         for number, line in enumerate(f):
@@ -80,13 +78,9 @@ def credit_counter(role_names, discord_id):
                                     file_to_read = file_read[file_int2_read]
                                     file_to_read_stripped = file_to_read.strip()
                                     demerit_total = int(file_to_read_stripped)
-                                    print(demerit_total)
-                                    print("end specific variables")
 
                                     merit_sum = role_total + merit_total
                                     total = merit_sum - demerit_total
-                                    print(merit_sum)
-                                    print("-----")
-                                    print(role_total, merit_total)
+
 
     return total
