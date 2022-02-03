@@ -49,7 +49,7 @@ async def add(ctx, user: discord.Member, message):
     role_credit_value = credit_counter.credit_counter(role_names, user.id)
     mention = format(f"<@!{user.id}>")
 
-    await ctx.send(f"Transfered {credit_emoji}`{var_credit_value}` to `user-id: {user.id}`.\n\n"
+    await ctx.send(f"Transferred {credit_emoji}`{var_credit_value}` to `user-id: {user.id}`.\n\n"
                    f"{mention} now has {credit_emoji}`{role_credit_value}`.")
 
 
@@ -89,7 +89,7 @@ async def remove(ctx, user: discord.Member, message):
     role_credit_value = credit_counter.credit_counter(role_names, user.id)
     mention = format(f"<@!{user.id}>")
 
-    await ctx.send(f"Transfered {credit_emoji}`{var_credit_value}` from `user-id: {user.id}`.\n\n"
+    await ctx.send(f"Transferred {credit_emoji}`{var_credit_value}` from `user-id: {user.id}`.\n\n"
                    f"{mention} now has {credit_emoji}`{role_credit_value}`.")
 
 
@@ -141,11 +141,6 @@ async def remove(ctx, user: discord.Member):
     credit_value = credit_counter.credit_counter(role_names, user.id)
 
     await ctx.send(f"`{user.display_name}` has {credit_emoji}`{credit_value}`.")
-
-
-@remove.error
-async def remove_error(ctx, message):
-    mention = format(f"<@!{ctx.author.id}>")
 
 
 @bot.command(name='store')
