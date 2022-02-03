@@ -135,6 +135,11 @@ async def remove(ctx, user: discord.Member):
     await ctx.send(f"`{user.display_name}` has {credit_emoji}`{credit_value}`.")
 
 
+@bot.command(name='register')
+async def register(ctx):
+    await ctx.send("ahaha funny")
+
+
 @bot.command(name='store')
 async def store(ctx):
     await ctx.send(assets.store_command(format(ctx.author.id)))
