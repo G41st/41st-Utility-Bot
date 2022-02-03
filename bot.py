@@ -54,7 +54,10 @@ async def add(ctx, user: discord.Member, message):
                    f"{mention} now has {credit_emoji}`{role_credit_value}`.")
 
 
-
+@add.error
+async def add_error(ctx, message):
+    mention = format(f"<@!{ctx.author.id}>")
+    await ctx.send(f"ERROR: *CODE_1* - {mention} \n\n`You are missing an argument!`")
 
 
 @bot.command(name='remove')
