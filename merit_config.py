@@ -27,6 +27,7 @@ def add_credits(discord_id, new_credit_value):
 
         with open("merit.txt", "w") as f:
             f.writelines(content)
+            f.writelines("\n")
 
             return new_credit_value
 
@@ -59,6 +60,7 @@ def remove_credits(discord_id, new_credit_value):
 
         with open("demerit.txt", "w") as f:
             f.writelines(content)
+            f.writelines("\n")
 
             return new_credit_value
 
@@ -91,6 +93,7 @@ def subtract_merits(discord_id, new_credit_value):
 
         with open("merit.txt", "w") as f:
             f.writelines(content)
+            f.writelines("\n")
 
             return new_credit_value
 
@@ -123,5 +126,6 @@ def subtract_demerits(discord_id, new_credit_value):
 
         with open("demerit.txt", "w") as f:
             f.writelines(content)
+            f.writelines("\n")
 
             return new_credit_value
