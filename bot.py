@@ -137,7 +137,7 @@ async def remove(ctx, user: discord.Member):
 
 @bot.command(name='register')
 async def register(ctx):
-    await ctx.send("ahaha funny")
+    await ctx.send("adding")
 
 
 @bot.command(name='store')
