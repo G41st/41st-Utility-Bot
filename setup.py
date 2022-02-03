@@ -140,3 +140,5 @@ def setup():
     setup_file.write("\n Version 0.1")
     print("setup complete! starting full aplication...")
     time.sleep(5)
+
+    return True

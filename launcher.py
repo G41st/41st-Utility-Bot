@@ -70,5 +70,9 @@ for root, dirs, files in os.walk(path):
         break
     else:
         setup.setup()
-        break
-
+        if setup.setup() == True:
+            if name in files:
+                install_checker()
+                break
+        else:
+            break
