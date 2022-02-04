@@ -169,6 +169,27 @@ async def report(ctx):
     await ctx.send(assets.report_command(ctx.author.id))
 
 
+@bot.command(name='report-send')
+async def report_send(ctx, message):
+    now = datetime.datetime.now()
+
+    channel = bot.get_channel(938290721302134855)
+
+    report_message = (f"NEW REPORT - - - <@&937785771673391184> \n\n"
+              f"```{ctx.author.display_name} - {ctx.author.id}\n"
+              f"{now.month}/{now.day}/{now.year} in channel {ctx.message.channel} \n"
+              f"{ctx.author.display_name} said: {message}```")
+
+    report_log = (f"```{ctx.author.display_name} - {ctx.author.id}\n"
+                  f"{now.month}/{now.day}/{now.year} in channel {ctx.message.channel} \n"
+                  f"{ctx.author.display_name} said: {message}```")
+
+    with open("reports.txt", "e") as report_file:
+        report_file.write(f"{report_log}\n---------------\n")
+
+    channel.send(report_message)
+
+
 @bot.command(name='off')
 @commands.has_role('Dev Team Lead')
 async def shutdown(ctx):
