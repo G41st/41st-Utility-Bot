@@ -11,6 +11,7 @@ from discord.ext.commands import MissingPermissions
 from discord.utils import get
 from dotenv import load_dotenv
 import merit_config
+import git_push
 
 
 load_dotenv()
@@ -170,6 +171,12 @@ async def report(ctx):
 @commands.has_role('Dev Team Lead')
 async def shutdown(ctx):
     await ctx.send("```41st://<utilities> ~ $```")
+    await ctx.send("`Pushing to Git`")
+    time.sleep(1)
+
+    git_push.upload("merit.txt", "merit.txt", "main")
+    git_push.upload("demerit.txt", "demerit.txt", "main")
+
     await ctx.send("`Shutdown in 5`")
     time.sleep(1)
     await ctx.send("`4`")

@@ -61,18 +61,19 @@ def buffering():
     time.sleep(0.5)
 
 
-path = os.getcwd()
-name = "setup.txt"
+def launch():
+    path = os.getcwd()
+    name = "setup.txt"
 
-for root, dirs, files in os.walk(path):
-    if name in files:
-        install_checker()
-        break
-    else:
-        setup.setup()
-        if setup.setup() == True:
-            if name in files:
-                install_checker()
-                break
-        else:
+    for root, dirs, files in os.walk(path):
+        if name in files:
+            install_checker()
             break
+        else:
+            setup.setup()
+            if setup.setup() == True:
+                if name in files:
+                    install_checker()
+                    break
+            else:
+                break
