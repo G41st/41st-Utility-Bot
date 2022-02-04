@@ -9,7 +9,7 @@ def download1(filename):
     try:
         shutil.rmtree(f"{cwd}/41st-bot", ignore_errors=False, onerror=None)
 
-        Repo.clone_from("https://github.com/G41st-Bot/41st-utility-bot", f"{cwd}/41st-bot")
+        Repo.clone_from("https://github.com/G41st/41st-utility-bot", f"{cwd}/41st-bot")
 
         os.remove(filename)
 
@@ -20,7 +20,7 @@ def download1(filename):
         time.sleep(10)
 
     except FileNotFoundError:
-        Repo.clone_from("https://github.com/G41st-Bot/41st-utility-bot", f"{cwd}/41st-bot")
+        Repo.clone_from("https://github.com/G41st/41st-utility-bot", f"{cwd}/41st-bot")
 
         os.remove(filename)
 
