@@ -2,7 +2,7 @@ import os
 from github import Github
 import time
 
-g = Github("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")
+g = Github("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")
 
 
 def upload(localfilename, gitfilename, gitbranch):
