@@ -2,6 +2,8 @@
 import os
 import time
 import sys
+import time
+import datetime
 import assets
 import credit_counter
 import discord
@@ -201,3 +203,10 @@ async def shutdown(ctx):
 
 def main():
     bot.run(TOKEN)
+
+    now = datetime.datetime.now()
+
+    while 23 == now.hour:
+        if 59 == now.minute:
+            git_push.upload("merit.txt", "merit.txt", "main")
+            git_push.upload("demerit.txt", "demerit.txt", "main")
