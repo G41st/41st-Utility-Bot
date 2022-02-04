@@ -1,10 +1,13 @@
 import os
 from github import Github
+import time
 
-g = Github("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")
+g = Github("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")
 
 
-def upload(repo, localfilename, gitfilename, gitbranch):
+def upload(localfilename, gitfilename, gitbranch):
+    repo = '41st-utility-bot'
+
     repo = g.get_user().get_repo(str(repo))
     all_files = []
     contents = repo.get_contents("")
@@ -23,10 +26,12 @@ def upload(repo, localfilename, gitfilename, gitbranch):
     git_file = f'{gitfilename}'
     if git_file in all_files:
         contents = repo.get_contents(git_file)
-        repo.update_file(contents.path, "committing files", content, contents.sha, branch=f"{gitbranch}")
+        repo.update_file(contents.path, f"sync {localfilename}", content, contents.sha, branch=f"{gitbranch}")
         print(git_file + ' UPDATED')
+        time.sleep(5)
         return 'Updated'
     else:
-        repo.create_file(git_file, "committing files", content, branch=f"{gitbranch}")
+        repo.create_file(git_file, f"sync {localfilename}", content, branch=f"{gitbranch}")
         print(git_file + ' CREATED')
+        time.sleep(5)
         return 'Created'
