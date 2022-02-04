@@ -177,17 +177,17 @@ async def report_send(ctx, message):
 
     report_message = (f"NEW REPORT - - - <@&937785771673391184> \n\n"
               f"```{ctx.author.display_name} - {ctx.author.id}\n"
-              f"{now.month}/{now.day}/{now.year} in channel {ctx.message.channel} \n"
-              f"{ctx.author.display_name} said: {message}```")
+              f"{now.month}/{now.day}/{now.year} in channel '#{ctx.message.channel}' \n"
+              f"{ctx.author.display_name} said:\n '{ctx.message.content}'```\n")
 
-    report_log = (f"```{ctx.author.display_name} - {ctx.author.id}\n"
-                  f"{now.month}/{now.day}/{now.year} in channel {ctx.message.channel} \n"
-                  f"{ctx.author.display_name} said: {message}```")
+    report_log = (f"{ctx.author.display_name} - {ctx.author.id}\n"
+                  f"{now.month}/{now.day}/{now.year} in channel '#{ctx.message.channel}' \n"
+                  f"     {ctx.author.display_name} said:\n'{ctx.message.content}'")
 
-    with open("reports.txt", "e") as report_file:
+    with open("reports.txt", "a") as report_file:
         report_file.write(f"{report_log}\n---------------\n")
 
-    channel.send(report_message)
+    await channel.send(report_message)
 
 
 @bot.command(name='off')
