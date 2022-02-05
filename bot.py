@@ -1,16 +1,11 @@
-# bot.py
 import os
-import time
 import sys
 import time
 import datetime
 import assets
 import credit_counter
-import discord
 from discord.ext import commands
 import discord.ext.commands
-from discord.ext.commands import MissingPermissions
-from discord.utils import get
 from dotenv import load_dotenv
 import merit_config
 import git_push
@@ -18,6 +13,7 @@ import git_push
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
+TOKEN_TEST = os.getenv('DISCORD_TOKEN_TEST')
 GUILD = os.getenv('DISCORD_GUILD')
 
 client = discord.Client()
@@ -140,7 +136,53 @@ async def remove(ctx, user: discord.Member):
 
 @bot.command(name='register')
 async def register(ctx):
-    await ctx.send("adding")
+
+    user_id = ctx.author.id
+    mention = f"<@!{user_id}>"
+    channel = bot.get_channel(938290721302134855)
+    now = datetime.datetime.now()
+
+    with open("registry.txt", 'r') as f:
+        for number, line in enumerate(f):
+            if user_id not in line:
+                with open("merit.txt", 'r') as f:
+                    for number, line in enumerate(f):
+                        if user_id not in line:
+                            with open("demerit.txt", 'r') as f:
+                                for number, line in enumerate(f):
+                                    if user_id not in line:
+                                        with open("registry.txt", 'e') as f:
+                                            f.write(user_id + '\n')
+                                        with open("merit.txt", "e") as f:
+                                            f.write(f"{user_id}\n0\n")
+                                        with open("demerit.txt", "e") as f:
+                                            f.write(f"{user_id}\n0\n")
+            if user_id in line:
+                with open("merit.txt", 'r') as f:
+                    for number, line in enumerate(f):
+                        if user_id not in line:
+                            with open("demerit.txt", 'r') as f:
+                                for number, line in enumerate(f):
+                                    if user_id not in line:
+                                        await ctx.send(f"`ERROR` - - - {mention}\n"
+                                                 f"Error discovered within registry, alerting Dev Team.\n"
+                                                 f"Please do not use .report, an error report has been automaticly "
+                                                 f"generated.")
+                                        report_log = (f"{ctx.author.display_name} - {ctx.author.id}\n"
+                                                      f"{now.month}/{now.day}/{now.year} in channel "
+                                                      f"'#{ctx.message.channel}' \n{ctx.author.display_name} reported "
+                                                      f"a malfunction in the file: [ MERIT.TXT ], [ DEMERIT.TXT ].\n"
+                                                      f"Specifics: `The user id was detected in registry.txt but was "
+                                                      f"not detected in any of the coresponding files.`")
+                                        await channel.send(report_log)
+                                    if user_id in line:
+                                        pass
+
+
+
+                ctx.send(f"`USER-ID: {user_id}` is already in registry.")
+
+
 
 
 @bot.command(name='store')
@@ -169,7 +211,28 @@ async def report(ctx):
     await ctx.send(assets.report_command(ctx.author.id))
 
 
-@bot.command(name='off')
+@bot.command(name='report-send')
+async def report_send(ctx, message):
+    now = datetime.datetime.now()
+
+    channel = bot.get_channel(938290721302134855)
+
+    report_message = (f"NEW REPORT - - - <@&937785771673391184> \n\n"
+              f"```{ctx.author.display_name} - {ctx.author.id}\n"
+              f"{now.month}/{now.day}/{now.year} in channel '#{ctx.message.channel}' \n"
+              f"{ctx.author.display_name} said:\n '{ctx.message.content}'```\n")
+
+    report_log = (f"{ctx.author.display_name} - {ctx.author.id}\n"
+                  f"{now.month}/{now.day}/{now.year} in channel '#{ctx.message.channel}' \n"
+                  f"     {ctx.author.display_name} said:\n'{ctx.message.content}'")
+
+    with open("reports.txt", "a") as report_file:
+        report_file.write(f"{report_log}\n---------------\n")
+
+    await channel.send(report_message)
+
+
+@bot.command(name='restart')
 @commands.has_role('Dev Team Lead')
 async def shutdown(ctx):
     await ctx.send("```41st://<utilities> ~ $```")
@@ -202,7 +265,7 @@ async def shutdown(ctx):
 
 
 def main():
-    bot.run(TOKEN)
+    bot.run(TOKEN_TEST)
 
     now = datetime.datetime.now()
 

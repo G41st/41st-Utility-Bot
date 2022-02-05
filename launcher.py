@@ -3,6 +3,7 @@ import time
 import os
 import bot
 import setup
+import event_bot
 
 
 t = time.localtime()
@@ -40,7 +41,7 @@ def install_checker():
         for lines in setup_file:
             if readline(lines) == True:
                 print('installed. launching...')
-                bot.main()
+                event_bot.main()
                 break
             elif readline(lines) == False:
                 print('not installed. installing...')

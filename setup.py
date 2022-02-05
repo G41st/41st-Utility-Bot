@@ -129,11 +129,120 @@ def demerit_setup_err():
         pass
 
 
+def report_file_setup():
+    merit_file = open("merit.txt", "w")
+    merit_file.write("file test")
+    merit_file.close()
+
+    merit_file = open("merit.txt")
+    content = merit_file.read()
+
+    if content == "file test":
+        merit_file.close()
+        print("merit file created succesfuly")
+        merit_file = open("merit.txt", "w")
+        merit_file.write("merits:\n")
+        merit_file.close()
+        report_file_complete()
+    else:
+        report_setup_err()
+
+
+def report_file_complete():
+    setup_log = open("setup_log.txt", "a")
+    setup_log.write("merit text file created succesfully at:")
+    setup_log.write(current_time)
+    setup_log.write("\n")
+    setup_log.close()
+
+    time.sleep(1)
+
+
+def report_setup_err():
+    setup_log = open("setup_log.txt", "a")
+    setup_log.write("merit text file failed at:")
+    setup_log.write(current_time)
+    setup_log.write("\n")
+    setup_log.close()
+
+    time.sleep(1)
+
+    attempt_number = +1
+
+    print("setup has failed")
+    print(attempt_number)
+    print("time(s). retrying in 5 seconds")
+    time.sleep(5)
+    merit_file_setup()
+
+    if attempt_number > 3:
+        print("Setup has failed more than 3 times; exiting program")
+        time.sleep(5)
+        sys.exit()
+    else:
+        pass
+
+
+def registry_file_setup():
+    merit_file = open("merit.txt", "w")
+    merit_file.write("file test")
+    merit_file.close()
+
+    merit_file = open("merit.txt")
+    content = merit_file.read()
+
+    if content == "file test":
+        merit_file.close()
+        print("registry file created succesfuly")
+        merit_file = open("merit.txt", "w")
+        merit_file.write("merits:\n")
+        merit_file.close()
+        registry_file_complete()
+    else:
+        registry_setup_err()
+
+
+def registry_file_complete():
+    setup_log = open("setup_log.txt", "a")
+    setup_log.write("registry text file created succesfully at:")
+    setup_log.write(current_time)
+    setup_log.write("\n")
+    setup_log.close()
+
+    time.sleep(1)
+
+
+def registry_setup_err():
+    setup_log = open("setup_log.txt", "a")
+    setup_log.write("registry text file failed at:")
+    setup_log.write(current_time)
+    setup_log.write("\n")
+    setup_log.close()
+
+    time.sleep(1)
+
+    attempt_number = +1
+
+    print("setup has failed")
+    print(attempt_number)
+    print("time(s). retrying in 5 seconds")
+    time.sleep(5)
+    merit_file_setup()
+
+    if attempt_number > 3:
+        print("Setup has failed more than 3 times; exiting program")
+        time.sleep(5)
+        sys.exit()
+    else:
+        pass
+
+
 def setup():
     instalation_check()
     log_creation()
     merit_file_setup()
     demerit_file_setup()
+    report_file_setup()
 
     setup_file = open("setup.txt", "w")
     setup_file.write("setup completion = \n true")

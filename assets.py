@@ -82,7 +82,13 @@ def commands_command(mention):
 
 
 def report_command(mention):
-    report_instructions = (f"<@!{mention}>\n"
-                           f"Text goes here")
+    report_instructions = (f"<@!{mention}>\n\n"
+                           f"To report a bug, please use the `.report-send` command. Please specify anything you think"
+                           f"would be useful to help the Dev Team fix this problem.\n"
+                           f"(Please do not worry about including your name or using a format, as the bot automaticly "
+                           f"collects this data for us.) \nHere is an example report:\n"
+                           f"```.report-send I was using the .store command when the text suddenly printed in one line"
+                           f"with brackets on the end. I do not belive this is how it is supposed to work. Everything "
+                           f"else works fine.```")
 
     return report_instructions
