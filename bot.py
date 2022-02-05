@@ -233,7 +233,7 @@ async def report_send(ctx, message):
     await channel.send(report_message)
 
 
-@bot.command(name='off')
+@bot.command(name='restart')
 @commands.has_role('Dev Team Lead')
 async def shutdown(ctx):
     await ctx.send("```41st://<utilities> ~ $```")
