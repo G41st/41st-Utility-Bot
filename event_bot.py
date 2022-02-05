@@ -56,4 +56,4 @@ async def shutdown(ctx):
 
 
 def main():
-    bot.run(TOKEN_TEST)
+    bot.run(TOKEN)
