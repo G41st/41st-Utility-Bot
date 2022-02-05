@@ -27,7 +27,7 @@ async def on_ready():
 
 
 @bot.command(name='welcome')
-@commands.has_role('Dev Team Lead')
+@commands.has_role('Commodore')
 async def welcome_event_command(ctx):
     kyoda_mention = f"<@!583386313466708035>"
     forceps_mention = f"<@!173202312762884096>"
