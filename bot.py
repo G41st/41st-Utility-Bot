@@ -136,7 +136,6 @@ async def remove(ctx, user: discord.Member):
 
 @bot.command(name='register')
 async def register(ctx):
-    await ctx.send("adding")
 
     user_id = ctx.author.id
     mention = f"<@!{user_id}>"
@@ -165,7 +164,7 @@ async def register(ctx):
                             with open("demerit.txt", 'r') as f:
                                 for number, line in enumerate(f):
                                     if user_id not in line:
-                                        ctx.send(f"`ERROR` - - - {mention}\n"
+                                        await ctx.send(f"`ERROR` - - - {mention}\n"
                                                  f"Error discovered within registry, alerting Dev Team.\n"
                                                  f"Please do not use .report, an error report has been automaticly "
                                                  f"generated.")
@@ -175,7 +174,7 @@ async def register(ctx):
                                                       f"a malfunction in the file: [ MERIT.TXT ], [ DEMERIT.TXT ].\n"
                                                       f"Specifics: `The user id was detected in registry.txt but was "
                                                       f"not detected in any of the coresponding files.`")
-                                        channel.send(report_log)
+                                        await channel.send(report_log)
                                     if user_id in line:
                                         pass
 
