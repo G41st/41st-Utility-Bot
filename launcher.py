@@ -43,7 +43,7 @@ def install_checker():
             if readline(lines):
                 print('installed. launching...')
                 # launch executable
-                event_bot.main()
+                bot.main()
                 # launch executable
                 break
             elif not readline(lines):

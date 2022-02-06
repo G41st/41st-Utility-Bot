@@ -14,6 +14,7 @@ load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 TOKEN_TEST = os.getenv('DISCORD_TOKEN_TEST')
 GUILD = os.getenv('DISCORD_GUILD')
+KYODA_ID = 583386313466708035
 
 client = discord.Client()
 bot = commands.Bot(command_prefix='.')
@@ -51,17 +52,19 @@ async def add_error(ctx, message):
 
 
 @bot.command(name='sub-merits')
-@commands.has_role('Dev Team Lead')
 async def sub_merits(ctx, user: discord.Member, message):
-    role_names = [str(r) for r in user.roles]
+    if ctx.author.id == KYODA_ID:
+        role_names = [str(r) for r in user.roles]
 
-    credit_emoji = '<:credits:937788738950545464>'
-    var_credit_value = merit_config.subtract_merits(user.id, int(message))
-    role_credit_value = credit_counter.credit_counter(role_names, user.id)
-    mention = format(f"<@!{user.id}>")
+        credit_emoji = '<:credits:937788738950545464>'
+        var_credit_value = merit_config.subtract_merits(user.id, int(message))
+        role_credit_value = credit_counter.credit_counter(role_names, user.id)
+        mention = format(f"<@!{user.id}>")
 
-    await ctx.send(f"Removed {credit_emoji}`{var_credit_value}` from [ MERITS.TXT ] for `user-id: {user.id}`.\n\n"
-                   f"{mention} now has {credit_emoji}`{role_credit_value}`.")
+        await ctx.send(f"Removed {credit_emoji}`{var_credit_value}` from [ MERITS.TXT ] for `user-id: {user.id}`.\n\n"
+                       f"{mention} now has {credit_emoji}`{role_credit_value}`.")
+    else:
+        await ctx.send("`Not Authorised`")
 
 
 @sub_merits.error
@@ -92,17 +95,19 @@ async def remove_error(ctx, message):
 
 
 @bot.command(name='sub-demerits')
-@commands.has_role('Dev Team Lead')
 async def sub_demerits(ctx, user: discord.Member, message):
-    role_names = [str(r) for r in user.roles]
+    if ctx.author.id == KYODA_ID:
+        role_names = [str(r) for r in user.roles]
 
-    credit_emoji = '<:credits:937788738950545464>'
-    var_credit_value = merit_config.subtract_demerits(user.id, int(message))
-    role_credit_value = credit_counter.credit_counter(role_names, user.id)
-    mention = format(f"<@!{user.id}>")
+        credit_emoji = '<:credits:937788738950545464>'
+        var_credit_value = merit_config.subtract_demerits(user.id, int(message))
+        role_credit_value = credit_counter.credit_counter(role_names, user.id)
+        mention = format(f"<@!{user.id}>")
 
-    await ctx.send(f"Removed {credit_emoji}`{var_credit_value}` from [ DEMERITS.TXT ] for `user-id: {user.id}`.\n\n"
-                   f"{mention} now has {credit_emoji}`{role_credit_value}`.")
+        await ctx.send(f"Removed {credit_emoji}`{var_credit_value}` from [ DEMERITS.TXT ] for `user-id: {user.id}`.\n\n"
+                       f"{mention} now has {credit_emoji}`{role_credit_value}`.")
+    else:
+        await ctx.send("`Not Authorised`")
 
 
 @sub_merits.error
@@ -118,9 +123,13 @@ async def thing_for_roles(ctx):
 
     credit_emoji = '<:credits:937788738950545464>'
     credit_value = credit_counter.credit_counter(role_names, user_id)
-    mention = format(f"<@!{ctx.author.id}>")
+    if credit_value == False:
+        await ctx.send("You were not detected in the credit logs. Please run `.register` to add yourself to the registry "
+                 "or to check integrity of your user. ")
+    else:
+        mention = format(f"<@!{ctx.author.id}>")
 
-    await ctx.send(f"{mention}, You have {credit_emoji}`{credit_value}`.")
+        await ctx.send(f"{mention}, You have {credit_emoji}`{credit_value}`.")
 
 
 @bot.command(name='check-credits')
@@ -136,180 +145,49 @@ async def remove(ctx, user: discord.Member):
 
 @bot.command(name='register')
 async def register(ctx):
-    user_id = ctx.author.id
+    user_id = str(ctx.author.id)
     mention = f"<@!{user_id}>"
     channel = bot.get_channel(938290721302134855)
     now = datetime.datetime.now()
 
     with open("registry.txt", 'r') as f:
-        for number, line in enumerate(f):
-            if user_id not in line:
-                with open("merit.txt", 'r') as f:
-                    for number, line in enumerate(f):
+        line = f.read()
+        if user_id in line:
+            print(f"{ctx.author.display_name} - {ctx.author.id} \nis in registry.txt")
+            with open("merit.txt", 'r') as f:
+                line = f.read()
+                if user_id in line:
+                    print(f"{ctx.author.display_name} - {ctx.author.id} \nis in merit.txt")
+                    with open("demerit.txt", 'r') as f:
+                        line = f.read()
+                        if user_id in line:
+                            print(f"{ctx.author.display_name} - {ctx.author.id} \nis in demerit.txt")
+                            print(f"{ctx.author.display_name} - {ctx.author.id} \nis registered with 0 errors")
+                            await ctx.send(f"Registry integrity check for {mention} passed with `0` errors. \n"
+                                           f"(You are already in the registry)")
+        if user_id not in line:
+            print(f"{ctx.author.display_name} - {ctx.author.id} \nis not in registry.txt")
+            with open("merit.txt", 'r') as f:
+                line = f.read()
+                if user_id not in line:
+                    print(f"{ctx.author.display_name} - {ctx.author.id} \nis not in merit.txt")
+                    with open("demerit.txt", 'r') as f:
+                        line = f.read()
                         if user_id not in line:
-                            with open("demerit.txt", 'r') as f:
-                                for number, line in enumerate(f):
-                                    if user_id not in line:
-                                        with open("registry.txt", 'e') as f:
-                                            f.write(user_id + '\n')
-                                        with open("merit.txt", "e") as f:
-                                            f.write(f"{user_id}\n0\n")
-                                        with open("demerit.txt", "e") as f:
-                                            f.write(f"{user_id}\n0\n")
-            if user_id in line:
-                with open("merit.txt", 'r') as f:
-                    for number, line in enumerate(f):
-                        if user_id not in line:
-                            with open("demerit.txt", 'r') as f:
-                                for number, line in enumerate(f):
-                                    if user_id not in line:
-                                        # in registry but not anywhere else
-                                        await ctx.send(f"`ERROR` - - - {mention}\n"
-                                                       f"Error discovered within registry, alerting Dev Team.\n"
-                                                       f"Please do not use .report, an error report has been "
-                                                       f"automatically generated.")
+                            print(f"{ctx.author.display_name} - {ctx.author.id} \nis not in demerit.txt")
+                            print(f"{ctx.author.display_name} - {ctx.author.id} \nis not registered")
 
-                                        report_message = (f"`{ctx.author.display_name} - {ctx.author.id}`\n"
-                                                          f"`{now.month}/{now.day}/{now.year}` in channel "
-                                                          f"'#{ctx.message.channel}'\n{ctx.author.display_name} "
-                                                          f"reported a malfunction in the file: [ MERIT.TXT ], "
-                                                          f"[ DEMERIT.TXT ].\n"
-                                                          f"Specifics: `The user id was detected in registry.txt but "
-                                                          f"was not detected in any of the corresponding files.`")
-                                        report_log = (f"{ctx.author.display_name} - {ctx.author.id}\n"
-                                                      f"{now.month}/{now.day}/{now.year} in channel "
-                                                      f"'#{ctx.message.channel}' \n{ctx.author.display_name} "
-                                                      f"reported a malfunction in the file: [ MERIT.TXT ], "
-                                                      f"[ DEMERIT.TXT ].\n"
-                                                      f"Specifics: The user id was detected in registry.txt but "
-                                                      f"was not detected in any of the corresponding files.")
-                                        await channel.send(report_message)
-                                        with open("reports.txt", "a") as report_file:
-                                            report_file.write(f"{report_log}\n---------------\n")
-                                    if user_id in line:
-                                        # in registry and demerit, but not merit
-                                        await ctx.send(f"`ERROR` - - - {mention}\n"
-                                                       f"Error discovered within registry, alerting Dev Team.\n"
-                                                       f"Please do not use .report, an error report has been "
-                                                       f"automatically generated.")
-
-                                        report_message = (f"`{ctx.author.display_name} - {ctx.author.id}`\n"
-                                                          f"`{now.month}/{now.day}/{now.year}` in channel "
-                                                          f"'#{ctx.message.channel}'\n{ctx.author.display_name} "
-                                                          f"reported a malfunction in the file: [ MERIT.TXT ].\n"
-                                                          f"Specifics: `The user id was detected in registry.txt as "
-                                                          f"well as demerit.txt but was not detected in merit.txt.`")
-                                        report_log = (f"{ctx.author.display_name} - {ctx.author.id}\n"
-                                                      f"{now.month}/{now.day}/{now.year} in channel "
-                                                      f"'#{ctx.message.channel}' \n{ctx.author.display_name} "
-                                                      f"reported a malfunction in the file: [ MERIT.TXT ].\n"
-                                                      f"Specifics: The user id was detected in registry.txt as "
-                                                      f"well as demerit.txt but was not detected in merit.txt.")
-                                        await channel.send(report_message)
-                                        with open("reports.txt", "a") as report_file:
-                                            report_file.write(f"{report_log}\n---------------\n")
-                        if user_id in line:
-                            with open("demerit.txt", 'r') as f:
-                                for number, line in enumerate(f):
-                                    if user_id not in line:
-                                        # in registry and merit, but not demerit
-                                        await ctx.send(f"`ERROR` - - - {mention}\n"
-                                                       f"Error discovered within registry, alerting Dev Team.\n"
-                                                       f"Please do not use .report, an error report has been "
-                                                       f"automatically generated.")
-
-                                        report_message = (f"`{ctx.author.display_name} - {ctx.author.id}`\n"
-                                                          f"`{now.month}/{now.day}/{now.year}` in channel "
-                                                          f"'#{ctx.message.channel}'\n{ctx.author.display_name} "
-                                                          f"reported a malfunction in the file: [ DEMERIT.TXT ].\n"
-                                                          f"Specifics: `The user id was detected in registry.txt as "
-                                                          f"well as merit.txt but was not detected in demerit.txt.`")
-                                        report_log = (f"{ctx.author.display_name} - {ctx.author.id}\n"
-                                                      f"{now.month}/{now.day}/{now.year} in channel "
-                                                      f"'#{ctx.message.channel}' \n{ctx.author.display_name} "
-                                                      f"reported a malfunction in the file: [ DEMERIT.TXT ].\n"
-                                                      f"Specifics: The user id was detected in registry.txt as "
-                                                      f"well as merit.txt but was not detected in demerit.txt.")
-                                        await channel.send(report_message)
-                                        with open("reports.txt", "a") as report_file:
-                                            report_file.write(f"{report_log}\n---------------\n")
-            if user_id not in line:
-                with open("merit.txt", 'r') as f:
-                    for number, line in enumerate(f):
-                        if user_id in line:
-                            with open("demerit.txt", 'r') as f:
-                                for number, line in enumerate(f):
-                                    if user_id in line:
-                                        # in merit and demerit but not in registry
-                                        await ctx.send(f"`ERROR` - - - {mention}\n"
-                                                       f"Error discovered within registry, alerting Dev Team.\n"
-                                                       f"Please do not use .report, an error report has been "
-                                                       f"automatically generated.")
-
-                                        report_message = (f"`{ctx.author.display_name} - {ctx.author.id}`\n"
-                                                          f"`{now.month}/{now.day}/{now.year}` in channel "
-                                                          f"'#{ctx.message.channel}'\n{ctx.author.display_name} "
-                                                          f"reported a malfunction in the file: [ MERIT.TXT ], "
-                                                          f"[ DEMERIT.TXT ].\n"
-                                                          f"Specifics: `The user id was not detected in registry.txt "
-                                                          f"but was detected in merit and demerit files.`")
-                                        report_log = (f"{ctx.author.display_name} - {ctx.author.id}\n"
-                                                      f"{now.month}/{now.day}/{now.year} in channel "
-                                                      f"'#{ctx.message.channel}' \n{ctx.author.display_name} "
-                                                      f"reported a malfunction in the file: [ MERIT.TXT ], "
-                                                      f"[ DEMERIT.TXT ].\n"
-                                                      f"Specifics: The user id was not detected in registry.txt "
-                                                      f"but was detected in merit and demerit files.")
-                                        await channel.send(report_message)
-                                        with open("reports.txt", "a") as report_file:
-                                            report_file.write(f"{report_log}\n---------------\n")
-                                    if user_id not in line:
-                                        # not in registry and demerit, but in merit
-                                        await ctx.send(f"`ERROR` - - - {mention}\n"
-                                                       f"Error discovered within registry, alerting Dev Team.\n"
-                                                       f"Please do not use .report, an error report has been "
-                                                       f"automatically generated.")
-
-                                        report_message = (f"`{ctx.author.display_name} - {ctx.author.id}`\n"
-                                                          f"`{now.month}/{now.day}/{now.year}` in channel "
-                                                          f"'#{ctx.message.channel}'\n{ctx.author.display_name} "
-                                                          f"reported a malfunction in the file: [ MERIT.TXT ].\n"
-                                                          f"Specifics: `The user id was not detected in the registry as"
-                                                          f" well as demerit.txt but was detected in merit.txt.`")
-                                        report_log = (f"{ctx.author.display_name} - {ctx.author.id}\n"
-                                                      f"{now.month}/{now.day}/{now.year} in channel "
-                                                      f"'#{ctx.message.channel}' \n{ctx.author.display_name} "
-                                                      f"reported a malfunction in the file: [ MERIT.TXT ].\n"
-                                                      f"Specifics: The user id was not detected in the registry as"
-                                                      f" well as demerit.txt but was detected in merit.txt.")
-                                        await channel.send(report_message)
-                                        with open("reports.txt", "a") as report_file:
-                                            report_file.write(f"{report_log}\n---------------\n")
-                        if user_id in line:
-                            with open("demerit.txt", 'r') as f:
-                                for number, line in enumerate(f):
-                                    if user_id in line:
-                                        # not in registry and demerit, but in merit
-                                        await ctx.send(f"`ERROR` - - - {mention}\n"
-                                                       f"Error discovered within registry, alerting Dev Team.\n"
-                                                       f"Please do not use .report, an error report has been "
-                                                       f"automatically generated.")
-
-                                        report_message = (f"`{ctx.author.display_name} - {ctx.author.id}`\n"
-                                                          f"`{now.month}/{now.day}/{now.year}` in channel "
-                                                          f"'#{ctx.message.channel}'\n{ctx.author.display_name} "
-                                                          f"reported a malfunction in the file: [ DEMERIT.TXT ].\n"
-                                                          f"Specifics: `The user id was not detected in the registry as"
-                                                          f" well as merit.txt but was detected in demerit.txt.`")
-                                        report_log = (f"{ctx.author.display_name} - {ctx.author.id}\n"
-                                                      f"{now.month}/{now.day}/{now.year} in channel "
-                                                      f"'#{ctx.message.channel}' \n{ctx.author.display_name} "
-                                                      f"reported a malfunction in the file: [ DEMERIT.TXT ].\n"
-                                                      f"Specifics: The user id was not detected in the registry as"
-                                                      f" well as merit.txt but was detected in demerit.txt.")
-                                        await channel.send(report_message)
-                                        with open("reports.txt", "a") as report_file:
-                                            report_file.write(f"{report_log}\n---------------\n")
+                            with open("registry.txt", 'a') as f:
+                                f.write(user_id + '\n' + '0\n')
+                                print(f"{ctx.author.display_name} - {ctx.author.id} \nhas been added to registry.txt")
+                            with open("merit.txt", 'a') as f:
+                                f.write(user_id + '\n' + '0\n')
+                                print(f"{ctx.author.display_name} - {ctx.author.id} \nhas been added to merit.txt")
+                            with open("demerit.txt", 'a') as f:
+                                f.write(user_id + '\n' + '0\n')
+                                print(f"{ctx.author.display_name} - {ctx.author.id} has been added to registry.txt")
+                            print(f"{ctx.author.display_name} - {ctx.author.id} \nhas been  registered with 0 errors")
+                            await ctx.send(f"{mention} has been added to the registry with `0` errors.")
 
 
 @bot.command(name='store')
@@ -329,8 +207,7 @@ async def github(ctx):
 
 
 @bot.command(name='fuck')
-@commands.has_role('Dev Team Lead')
-async def shutdown(ctx):
+async def fuck(ctx):
     await ctx.send("you")
 
 
@@ -366,52 +243,60 @@ async def report_send(ctx, message):
 
 
 @bot.command(name='git-push')
-@commands.has_role('Dev Team Lead')
 async def shutdown(ctx):
-    await ctx.send("```41st://<utilities> ~ $```")
-    await ctx.send("`Pushing to Git`")
-    time.sleep(1)
+    if ctx.author.id == KYODA_ID:
+        await ctx.send("```41st://<utilities> ~ $```")
+        await ctx.send("`Pushing to Git`")
+        time.sleep(1)
 
-    git_push.upload("merit.txt", "merit.txt", "main")
-    git_push.upload("demerit.txt", "demerit.txt", "main")
-    git_push.upload("registry.txt", "registry.txt", "main")
+        git_push.upload("merit.txt", "merit.txt", "main")
+        git_push.upload("demerit.txt", "demerit.txt", "main")
+        git_push.upload("registry.txt", "registry.txt", "main")
+        git_push.upload("reports.txt", "reports.txt", "main")
 
-    ctx.send("all databases have been pushed and are backed up.")
+        ctx.send("all databases have been pushed and are backed up.")
+    else:
+        await ctx.send("`Not Authorised`")
 
 
 @bot.command(name='restart')
-@commands.has_role('Dev Team Lead')
 async def shutdown(ctx):
-    await ctx.send("```41st://<utilities> ~ $```")
-    await ctx.send("`Pushing to Git`")
-    time.sleep(1)
+    if ctx.author.id == KYODA_ID:
+        await ctx.send("```41st://<utilities> ~ $```")
+        await ctx.send("`Pushing to Git`")
+        time.sleep(1)
 
-    git_push.upload("merit.txt", "merit.txt", "main")
-    git_push.upload("demerit.txt", "demerit.txt", "main")
-    git_push.upload("registry.txt", "registry.txt", "main")
+        git_push.upload("merit.txt", "merit.txt", "main")
+        git_push.upload("demerit.txt", "demerit.txt", "main")
+        git_push.upload("registry.txt", "registry.txt", "main")
+        git_push.upload("reports.txt", "reports.txt", "main")
 
-    ctx.send("all databases have been pushed and are backed up.")
+        ctx.send("all databases have been pushed and are backed up.")
 
-    await ctx.send("`Shutdown in 5`")
-    time.sleep(1)
-    await ctx.send("`4`")
-    time.sleep(1)
-    await ctx.send("`3`")
-    time.sleep(1)
-    await ctx.send("`2`")
-    time.sleep(1)
-    await ctx.send("`1`")
-    time.sleep(1)
-    await ctx.send("o7")
-    sys.exit()
+        await ctx.send("`Shutdown in 5`")
+        time.sleep(1)
+        await ctx.send("`4`")
+        time.sleep(1)
+        await ctx.send("`3`")
+        time.sleep(1)
+        await ctx.send("`2`")
+        time.sleep(1)
+        await ctx.send("`1`")
+        time.sleep(1)
+        await ctx.send("o7")
+        sys.exit()
+    else:
+        await ctx.send("`Not Authorised`")
 
 
 @bot.command(name='kill')
-@commands.has_role('Dev Team Lead')
 async def shutdown(ctx):
-    await ctx.send("```41st://<utilities> ~ $``` \n `HARD-SHUTDOWN`")
-    time.sleep(1)
-    sys.exit()
+    if ctx.author.id == KYODA_ID:
+        await ctx.send("```41st://<utilities> ~ $``` \n `HARD-SHUTDOWN`")
+        time.sleep(1)
+        sys.exit()
+    else:
+        await ctx.send("`Not Authorised`")
 
 
 def main():
@@ -424,3 +309,4 @@ def main():
             git_push.upload("merit.txt", "merit.txt", "main")
             git_push.upload("demerit.txt", "demerit.txt", "main")
             git_push.upload("registry.txt", "registry.txt", "main")
+            git_push.upload("reports.txt", "reports.txt", "main")
