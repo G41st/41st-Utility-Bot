@@ -365,6 +365,20 @@ async def report_send(ctx, message):
     await channel.send(report_message)
 
 
+@bot.command(name='git-push')
+@commands.has_role('Dev Team Lead')
+async def shutdown(ctx):
+    await ctx.send("```41st://<utilities> ~ $```")
+    await ctx.send("`Pushing to Git`")
+    time.sleep(1)
+
+    git_push.upload("merit.txt", "merit.txt", "main")
+    git_push.upload("demerit.txt", "demerit.txt", "main")
+    git_push.upload("registry.txt", "registry.txt", "main")
+
+    ctx.send("all databases have been pushed and are backed up.")
+
+
 @bot.command(name='restart')
 @commands.has_role('Dev Team Lead')
 async def shutdown(ctx):
@@ -374,6 +388,9 @@ async def shutdown(ctx):
 
     git_push.upload("merit.txt", "merit.txt", "main")
     git_push.upload("demerit.txt", "demerit.txt", "main")
+    git_push.upload("registry.txt", "registry.txt", "main")
+
+    ctx.send("all databases have been pushed and are backed up.")
 
     await ctx.send("`Shutdown in 5`")
     time.sleep(1)
@@ -406,3 +423,4 @@ def main():
         if 59 == now.minute:
             git_push.upload("merit.txt", "merit.txt", "main")
             git_push.upload("demerit.txt", "demerit.txt", "main")
+            git_push.upload("registry.txt", "registry.txt", "main")
