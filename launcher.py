@@ -5,9 +5,9 @@ import bot
 import setup
 import event_bot
 
-
 t = time.localtime()
 current_time = time.strftime("%H:%M:%S", t)
+
 
 def bypass():
     bypass = input("The install verification file failed. do you want to install the program, or do you want to pass? "
@@ -21,6 +21,7 @@ def bypass():
         print("input error. stoping...")
         time.sleep(1)
         sys.exit()
+
 
 def install_checker():
     setup_file = open('setup.txt', 'r')
@@ -39,11 +40,13 @@ def install_checker():
 
     with open('setup.txt', 'r') as setup_file:
         for lines in setup_file:
-            if readline(lines) == True:
+            if readline(lines):
                 print('installed. launching...')
+                # launch executable
                 event_bot.main()
+                # launch executable
                 break
-            elif readline(lines) == False:
+            elif not readline(lines):
                 print('not installed. installing...')
                 setup.setup()
                 break
