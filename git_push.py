@@ -3,7 +3,7 @@ import os
 from github import Github
 from github import InputGitTreeElement
 
-with open("git_key.txt", "r") as f
+with open("git_key.txt", "r") as f:
 	git_key = f.read()
     
     
