@@ -26,7 +26,7 @@ bot.remove_command('help')
 async def on_ready():
     channel = bot.get_channel(939028644175699968)
 
-    channel.send(f"{bot.user.name} is connected!")
+    await channel.send(f"{bot.user.name} is connected!")
 
     print(f"{bot.user.name} is connected!\n")
 
@@ -362,7 +362,7 @@ async def register(ctx):
                                 print(f"{ctx.author.display_name} - {ctx.author.id} \nis not registered")
 
                                 with open("registry.txt", 'a') as f:
-                                    f.write(user_id + '\n' + '0\n')
+                                    f.write(user_id + '\n')
                                     print(f"{ctx.author.display_name} - {ctx.author.id} \nhas been added to registry.txt")
                                 with open("merit.txt", 'a') as f:
                                     f.write(user_id + '\n' + '0\n')
