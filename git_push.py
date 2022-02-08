@@ -1,8 +1,9 @@
 import os
 from github import Github
 import time
+from dotenv import load_dotenv
 
-g = Github("key")
+g = Github(f"{os.getenv('GIT_KEY')}")
 
 
 def upload(localfilename, gitfilename, gitbranch):
