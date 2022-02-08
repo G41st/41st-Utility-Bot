@@ -372,6 +372,7 @@ async def register(ctx):
                                     print(f"{ctx.author.display_name} - {ctx.author.id} has been added to registry.txt")
                                 print(f"{ctx.author.display_name} - {ctx.author.id} \nhas been  registered with 0 errors")
                                 await ctx.send(f"{mention} has been added to the registry with `0` errors.")
+        await bot.process_commands()
 
 
 @bot.command(name='store')
