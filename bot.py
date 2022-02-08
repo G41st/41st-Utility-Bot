@@ -379,7 +379,7 @@ async def shop(ctx):
 @bot.command(name='github')
 async def github(ctx):
     await ctx.send("https://github.com/G41st/41st-utility-bot \nIf you are interested in helping out with the bot,"
-                   "be sure to DM Kyoda!")
+                   "be sure to DM CODR Kyoda!")
 
 
 @bot.command(name='fuck')
@@ -425,10 +425,7 @@ async def shutdown(ctx):
         await ctx.send("`Pushing to Git`")
         time.sleep(1)
 
-        git_push.upload("merit.txt", "merit.txt", "main")
-        git_push.upload("demerit.txt", "demerit.txt", "main")
-        git_push.upload("registry.txt", "registry.txt", "main")
-        git_push.upload("reports.txt", "reports.txt", "main")
+        git_push.upload()
 
         ctx.send("all databases have been pushed and are backed up.")
     else:
@@ -442,10 +439,7 @@ async def shutdown(ctx):
         await ctx.send("`Pushing to Git`")
         time.sleep(1)
 
-        git_push.upload("merit.txt", "merit.txt", "main")
-        git_push.upload("demerit.txt", "demerit.txt", "main")
-        git_push.upload("registry.txt", "registry.txt", "main")
-        git_push.upload("reports.txt", "reports.txt", "main")
+        git_push.upload()
 
         ctx.send("all databases have been pushed and are backed up.")
 
@@ -482,7 +476,5 @@ def main():
 
     while 23 == now.hour:
         if 59 == now.minute:
-            git_push.upload("merit.txt", "merit.txt", "main")
-            git_push.upload("demerit.txt", "demerit.txt", "main")
-            git_push.upload("registry.txt", "registry.txt", "main")
-            git_push.upload("reports.txt", "reports.txt", "main")
+            git_push.upload()
+            
