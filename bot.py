@@ -124,12 +124,16 @@ async def thing_for_roles(ctx):
     credit_emoji = '<:credits:937788738950545464>'
     credit_value = credit_counter.credit_counter(role_names, user_id)
     if credit_value == False:
-        await ctx.send("You were not detected in the credit logs. Please run `.register` to add yourself to the registry "
-                 "or to check integrity of your user. ")
+        await ctx.send("You were not detected in the credit logs. Please run `.register` to add yourself to the "
+                       "registry or to check integrity of your user. ")
     else:
-        mention = format(f"<@!{ctx.author.id}>")
-
-        await ctx.send(f"{mention}, You have {credit_emoji}`{credit_value}`.")
+        if 'Medal of Valor' in role_names:
+            salute_emoji = '<:GreenSalute:906047649982083113>'
+            mention = format(f"<@!{ctx.author.id}>")
+            await ctx.send(f"{mention}, You have {credit_emoji}`{credit_value}`.\n{salute_emoji}")
+        else:
+            mention = format(f"<@!{ctx.author.id}>")
+            await ctx.send(f"{mention}, You have {credit_emoji}`{credit_value}`.")
 
 
 @bot.command(name='check-credits')
@@ -140,7 +144,22 @@ async def remove(ctx, user: discord.Member):
     credit_emoji = '<:credits:937788738950545464>'
     credit_value = credit_counter.credit_counter(role_names, user.id)
 
-    await ctx.send(f"`{user.display_name}` has {credit_emoji}`{credit_value}`.")
+    if credit_value == False:
+        await ctx.send("You were not detected in the credit logs. Please run `.register` to add yourself to the "
+                       "registry or to check integrity of your user. ")
+    else:
+
+        await ctx.send(f"`{user.display_name}` has {credit_emoji}`{credit_value}`.")
+
+# register command order:
+# in all three
+# in registry, in merit, not demerit
+# in registry, not merit, in demerit
+# in registry, not merit, not demerit
+# not registry, in merit, in demerit
+# not registry, not merit, in demerit
+# not registry, in merit, not demerit
+# not all three
 
 
 @bot.command(name='register')
@@ -161,18 +180,175 @@ async def register(ctx):
                     with open("demerit.txt", 'r') as f:
                         line = f.read()
                         if user_id in line:
+                            # in all three
                             print(f"{ctx.author.display_name} - {ctx.author.id} \nis in demerit.txt")
                             print(f"{ctx.author.display_name} - {ctx.author.id} \nis registered with 0 errors")
-                            await ctx.send(f"Registry integrity check for {mention} passed with `0` errors. \n"
+                            await ctx.send(f"Registry integrity check for {mention} passed with `0` errors. \n"                        
                                            f"(You are already in the registry)")
-        if user_id not in line:
-            print(f"{ctx.author.display_name} - {ctx.author.id} \nis not in registry.txt")
-            with open("merit.txt", 'r') as f:
-                line = f.read()
+                        if user_id not in line:
+                            # in registry, in merit, not demerit
+                            print(f"{ctx.author.display_name} - {ctx.author.id} \nis not in demerit.txt")
+                            print(f"{ctx.author.display_name} - {ctx.author.id} \nis registered with 1 error")
+                            await ctx.send(f"`ERROR` - - - {mention}\n"
+                                           f"Registry integrity check for {mention} failed with `1` error. "
+                                           f"[ MERIT.txt ]\nPlease do not use .report, an error report has been "
+                                           f"automatically generated.")
+
+                            report_message = (f"`{ctx.author.display_name} - {ctx.author.id}`\n"
+                                              f"`{now.month}/{now.day}/{now.year}` in channel "
+                                              f"'#{ctx.message.channel}'\n{ctx.author.display_name} "
+                                              f"reported a malfunction in the file: [ MERIT.TXT ].\n"
+                                              f"Specifics: `The user id was detected in registry.txt as "
+                                              f"well as demerit.txt but was not detected in merit.txt.`")
+                            report_log = (f"{ctx.author.display_name} - {ctx.author.id}\n"
+                                          f"{now.month}/{now.day}/{now.year} in channel "
+                                          f"'#{ctx.message.channel}' \n{ctx.author.display_name} "
+                                          f"reported a malfunction in the file: [ MERIT.TXT ].\n"
+                                          f"Specifics: The user id was detected in registry.txt as "
+                                          f"well as demerit.txt but was not detected in merit.txt.")
+                            await channel.send(report_message)
+                            print(report_log)
+                            with open("reports.txt", "a") as report_file:
+                                report_file.write(f"{report_log}\n---------------\n")
                 if user_id not in line:
                     print(f"{ctx.author.display_name} - {ctx.author.id} \nis not in merit.txt")
                     with open("demerit.txt", 'r') as f:
                         line = f.read()
+                        if user_id in line:
+                            # in registry, not merit, in demerit
+                            print(f"{ctx.author.display_name} - {ctx.author.id} \nis in demerit.txt")
+                            print(f"{ctx.author.display_name} - {ctx.author.id} \nis registered with 1 error")
+                            await ctx.send(f"`ERROR` - - - {mention}\n"
+                                           f"Registry integrity check for {mention} failed with `1` error. "
+                                           f"[ DEMERIT.txt ]\nPlease do not use .report, an error report has been "
+                                           f"automatically generated.")
+
+                            report_message = (f"`{ctx.author.display_name} - {ctx.author.id}`\n"
+                                              f"`{now.month}/{now.day}/{now.year}` in channel "
+                                              f"'#{ctx.message.channel}'\n{ctx.author.display_name} "
+                                              f"reported a malfunction in the file: [ DEMERIT.TXT ].\n"
+                                              f"Specifics: `The user id was detected in registry.txt as "
+                                              f"well as demerit.txt but was not detected in merit.txt.`")
+                            report_log = (f"{ctx.author.display_name} - {ctx.author.id}\n"
+                                          f"{now.month}/{now.day}/{now.year} in channel "
+                                          f"'#{ctx.message.channel}' \n{ctx.author.display_name} "
+                                          f"reported a malfunction in the file: [ DEMERIT.TXT ].\n"
+                                          f"Specifics: The user id was detected in registry.txt as "
+                                          f"well as demerit.txt but was not detected in merit.txt.")
+                            await channel.send(report_message)
+                            print(report_log)
+                            with open("reports.txt", "a") as report_file:
+                                report_file.write(f"{report_log}\n---------------\n")
+                        if user_id not in line:
+                            # in registry, not merit, not demerit
+                            print(f"{ctx.author.display_name} - {ctx.author.id} \nis not in demerit.txt")
+                            print(f"{ctx.author.display_name} - {ctx.author.id} \nis registered with 2 errors")
+                            await ctx.send(f"`ERROR` - - - {mention}\n"
+                                           f"Registry integrity check for {mention} failed with `2` errors. "
+                                           f"[ MERIT.txt ], [ DEMERIT.txt ]\nPlease do not use .report, an error report"
+                                           f" has been automatically generated.")
+
+                            report_message = (f"`{ctx.author.display_name} - {ctx.author.id}`\n"
+                                              f"`{now.month}/{now.day}/{now.year}` in channel "
+                                              f"'#{ctx.message.channel}'\n{ctx.author.display_name} "
+                                              f"reported a malfunction in the file: [ MERIT.TXT ], [ DEMERIT.TXT ].\n"
+                                              f"Specifics: `The user id was detected in registry.txt, "
+                                              f"but was not detected in merit.txt. or demerit.txt.`")
+                            report_log = (f"{ctx.author.display_name} - {ctx.author.id}\n"
+                                          f"{now.month}/{now.day}/{now.year} in channel "
+                                          f"'#{ctx.message.channel}' \n{ctx.author.display_name} "
+                                          f"reported a malfunction in the file: [ MERIT.TXT ].\n"
+                                          f"Specifics: The user id was detected in registry.txt, "
+                                          f"but was not detected in merit.txt. or demerit.txt.")
+                            await channel.send(report_message)
+                            print(report_log)
+                            with open("reports.txt", "a") as report_file:
+                                report_file.write(f"{report_log}\n---------------\n")
+        if user_id not in line:
+            print(f"{ctx.author.display_name} - {ctx.author.id} \nis not in registry.txt")
+            with open("merit.txt", 'r') as f:
+                line = f.read()
+                if user_id in line:
+                    print(f"{ctx.author.display_name} - {ctx.author.id} \nis in merit.txt")
+                    with open("demerit.txt", 'r') as f:
+                        line = f.read()
+                        if user_id in line:
+                            # not registry, in merit, in demerit
+                            print(f"{ctx.author.display_name} - {ctx.author.id} \nis in in demerit.txt")
+                            print(f"{ctx.author.display_name} - {ctx.author.id} \nis registered with 2 errors")
+                            await ctx.send(f"`ERROR` - - - {mention}\n"
+                                           f"Registry integrity check for {mention} failed with `2` errors. "
+                                           f"[ MERIT.txt ], [ DEMERIT.txt ]\nPlease do not use .report, an error report"
+                                           f" has been automatically generated.")
+
+                            report_message = (f"`{ctx.author.display_name} - {ctx.author.id}`\n"
+                                              f"`{now.month}/{now.day}/{now.year}` in channel "
+                                              f"'#{ctx.message.channel}'\n{ctx.author.display_name} "
+                                              f"reported a malfunction in the file: [ MERIT.TXT ].\n"
+                                              f"Specifics: `The user id was not detected in registry.txt, "
+                                              f"but was detected in merit.txt. and demerit.txt.`")
+                            report_log = (f"{ctx.author.display_name} - {ctx.author.id}\n"
+                                          f"{now.month}/{now.day}/{now.year} in channel "
+                                          f"'#{ctx.message.channel}' \n{ctx.author.display_name} "
+                                          f"reported a malfunction in the file: [ MERIT.TXT ].\n"
+                                          f"Specifics: The user id was not detected in registry.txt, "
+                                          f"but was detected in merit.txt. and demerit.txt.")
+                            await channel.send(report_message)
+                            print(report_log)
+                            with open("reports.txt", "a") as report_file:
+                                report_file.write(f"{report_log}\n---------------\n")
+                        if user_id not in line:
+                            print(f"{ctx.author.display_name} - {ctx.author.id} \nis not in demerit.txt")
+                            print(f"{ctx.author.display_name} - {ctx.author.id} \nis registered with 1 error")
+                            await ctx.send(f"`ERROR` - - - {mention}\n"
+                                           f"Registry integrity check for {mention} failed with `1` error. "
+                                           f"[ MERIT.txt ]\nPlease do not use .report, an error report has been "
+                                           f"automatically generated.")
+
+                            report_message = (f"`{ctx.author.display_name} - {ctx.author.id}`\n"
+                                              f"`{now.month}/{now.day}/{now.year}` in channel "
+                                              f"'#{ctx.message.channel}'\n{ctx.author.display_name} "
+                                              f"reported a malfunction in the file: [ MERIT.TXT ].\n"
+                                              f"Specifics: `The user id was not detected in registry.txt as "
+                                              f"well as demerit.txt but was detected in merit.txt.`")
+                            report_log = (f"{ctx.author.display_name} - {ctx.author.id}\n"
+                                          f"{now.month}/{now.day}/{now.year} in channel "
+                                          f"'#{ctx.message.channel}' \n{ctx.author.display_name} "
+                                          f"reported a malfunction in the file: [ MERIT.TXT ].\n"
+                                          f"Specifics: The user id was not detected in registry.txt as "
+                                          f"well as demerit.txt but was detected in merit.txt.")
+                            await channel.send(report_message)
+                            print(report_log)
+                            with open("reports.txt", "a") as report_file:
+                                report_file.write(f"{report_log}\n---------------\n")
+                if user_id not in line:
+                    print(f"{ctx.author.display_name} - {ctx.author.id} \nis not in merit.txt")
+                    with open("demerit.txt", 'r') as f:
+                        line = f.read()
+                        if user_id in line:
+                            print(f"{ctx.author.display_name} - {ctx.author.id} \nis in demerit.txt")
+                            print(f"{ctx.author.display_name} - {ctx.author.id} \nis registered with 1 error")
+                            await ctx.send(f"`ERROR` - - - {mention}\n"
+                                           f"Registry integrity check for {mention} failed with `1` error. "
+                                           f"[ DEMERIT.txt ]\nPlease do not use .report, an error report has been "
+                                           f"automatically generated.")
+
+                            report_message = (f"`{ctx.author.display_name} - {ctx.author.id}`\n"
+                                              f"`{now.month}/{now.day}/{now.year}` in channel "
+                                              f"'#{ctx.message.channel}'\n{ctx.author.display_name} "
+                                              f"reported a malfunction in the file: [ DEMERIT.TXT ].\n"
+                                              f"Specifics: `The user id was not detected in registry.txt as "
+                                              f"well as merit.txt but was detected in demerit.txt.`")
+                            report_log = (f"{ctx.author.display_name} - {ctx.author.id}\n"
+                                          f"{now.month}/{now.day}/{now.year} in channel "
+                                          f"'#{ctx.message.channel}' \n{ctx.author.display_name} "
+                                          f"reported a malfunction in the file: [ DEMERIT.TXT ].\n"
+                                          f"Specifics: The user id was not detected in registry.txt as "
+                                          f"well as merit.txt but was detected in demerit.txt.")
+                            await channel.send(report_message)
+                            print(report_log)
+                            with open("reports.txt", "a") as report_file:
+                                report_file.write(f"{report_log}\n---------------\n")
                         if user_id not in line:
                             print(f"{ctx.author.display_name} - {ctx.author.id} \nis not in demerit.txt")
                             print(f"{ctx.author.display_name} - {ctx.author.id} \nis not registered")
@@ -300,7 +476,7 @@ async def shutdown(ctx):
 
 
 def main():
-    bot.run(TOKEN_TEST)
+    bot.run(TOKEN)
 
     now = datetime.datetime.now()
 
