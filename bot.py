@@ -8,7 +8,7 @@ from discord.ext import commands
 import discord.ext.commands
 from dotenv import load_dotenv
 import merit_config
-import git_push_root
+import git_push
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -425,10 +425,10 @@ async def shutdown(ctx):
         await ctx.send("`Pushing to Git`")
         time.sleep(1)
 
-        git_push_root.upload("merit.txt", "merit.txt", "main")
-        git_push_root.upload("demerit.txt", "demerit.txt", "main")
-        git_push_root.upload("registry.txt", "registry.txt", "main")
-        git_push_root.upload("reports.txt", "reports.txt", "main")
+        git_push.upload("merit.txt", "merit.txt", "main")
+        git_push.upload("demerit.txt", "demerit.txt", "main")
+        git_push.upload("registry.txt", "registry.txt", "main")
+        git_push.upload("reports.txt", "reports.txt", "main")
 
         ctx.send("all databases have been pushed and are backed up.")
     else:
@@ -442,10 +442,10 @@ async def shutdown(ctx):
         await ctx.send("`Pushing to Git`")
         time.sleep(1)
 
-        git_push_root.upload("merit.txt", "merit.txt", "main")
-        git_push_root.upload("demerit.txt", "demerit.txt", "main")
-        git_push_root.upload("registry.txt", "registry.txt", "main")
-        git_push_root.upload("reports.txt", "reports.txt", "main")
+        git_push.upload("merit.txt", "merit.txt", "main")
+        git_push.upload("demerit.txt", "demerit.txt", "main")
+        git_push.upload("registry.txt", "registry.txt", "main")
+        git_push.upload("reports.txt", "reports.txt", "main")
 
         ctx.send("all databases have been pushed and are backed up.")
 
@@ -479,22 +479,10 @@ def main():
     bot.run(TOKEN)
 
     now = datetime.datetime.now()
-    
-    usr_imput = imput("Enter a command at any time")
-    
-    if usr_imput == 'stop':
-        git_push_root.upload("merit.txt", "merit.txt", "main")
-        print("pushed to merit.txt")
-        git_push_root.upload("demerit.txt", "demerit.txt", "main")
-        print("pushed to demerit.txt")
-        git_push_root.upload("registry.txt", "registry.txt", "main")
-        print("pushed to registry.txt")
-        git_push_root.upload("reports.txt", "reports.txt", "main")
-        print("pushed to reports.txt")
 
     while 23 == now.hour:
         if 59 == now.minute:
-            git_push_root.upload("merit.txt", "merit.txt", "main")
-            git_push_root.upload("demerit.txt", "demerit.txt", "main")
-            git_push_root.upload("registry.txt", "registry.txt", "main")
-            git_push_root.upload("reports.txt", "reports.txt", "main")
+            git_push.upload("merit.txt", "merit.txt", "main")
+            git_push.upload("demerit.txt", "demerit.txt", "main")
+            git_push.upload("registry.txt", "registry.txt", "main")
+            git_push.upload("reports.txt", "reports.txt", "main")
