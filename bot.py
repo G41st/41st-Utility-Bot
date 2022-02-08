@@ -481,9 +481,4 @@ async def shutdown(ctx):
 def main():
     while True:
         bot.run(TOKEN)
-
-        now = datetime.datetime.now()
-
-        while 23 == now.hour:
-            if 59 == now.minute:
-                git_push.upload()
+        
