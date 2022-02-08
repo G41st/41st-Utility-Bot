@@ -8,6 +8,8 @@ import launcher
 
 git_pull.download1("merit.txt")
 git_pull.download2("demerit.txt")
+git_pull.download3("registry.txt")
+git_pull.download4("reports.txt")
 
 
 def start():

@@ -76,6 +76,7 @@ def commands_command(mention):
                 f"`.store` - Displays the current store information with categories and item descriptions. \n"
                 f"`.shop` - Displays a condensed version of the store. \n"
                 f"`.credits` - Calculates your current credit value. \n"
+                f"`.github` - Sends the link to the bot's git repository. \n"
                 f"`.report` - Sends a user-created error report to the bot dev team.")
 
     return commands

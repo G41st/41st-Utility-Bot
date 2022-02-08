@@ -3,6 +3,7 @@ from git.repo.base import Repo
 import shutil
 import time
 
+
 def download1(filename):
     cwd = os.getcwd()
 
@@ -53,7 +54,51 @@ def download2(filename):
         time.sleep(10)
 
 
-def download2(filename):
+def download3(filename):
+    cwd = os.getcwd()
+
+    try:
+        os.remove(filename)
+
+        shutil.copy(f"{cwd}/41st-bot/{filename}", f"{cwd}")
+
+        os.remove(f"41st-bot/{filename}")
+
+        time.sleep(10)
+
+    except FileNotFoundError:
+        os.remove(filename)
+
+        shutil.copy(f"{cwd}/41st-bot/{filename}", f"{cwd}")
+
+        os.remove(f"41st-bot/{filename}")
+
+        time.sleep(10)
+
+
+def download4(filename):
+    cwd = os.getcwd()
+
+    try:
+        os.remove(filename)
+
+        shutil.copy(f"{cwd}/41st-bot/{filename}", f"{cwd}")
+
+        os.remove(f"41st-bot/{filename}")
+
+        time.sleep(10)
+
+    except FileNotFoundError:
+        os.remove(filename)
+
+        shutil.copy(f"{cwd}/41st-bot/{filename}", f"{cwd}")
+
+        os.remove(f"41st-bot/{filename}")
+
+        time.sleep(10)
+
+
+def download5(filename):
     cwd = os.getcwd()
 
     try:
