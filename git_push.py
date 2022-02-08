@@ -3,7 +3,10 @@ from github import Github
 import time
 from dotenv import load_dotenv
 
-g = Github(f"{os.getenv('GIT_KEY')}")
+
+git_key = os.getenv('GIT_KEY')
+
+g = Github(f"{git_key}")
 
 
 def upload(localfilename, gitfilename, gitbranch):
