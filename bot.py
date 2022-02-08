@@ -26,20 +26,6 @@ bot.remove_command('help')
 async def on_ready():
     print(f"{bot.user.name} is connected!\n")
 
-    usr_input = input("")
-    if usr_input == 'stop':
-        git_push.upload()
-        print("all files synced")
-        print("stoping in 5")
-        time.sleep(5)
-        sys.exit()
-        
-    now = datetime.datetime.now()
-
-    while 23 == now.hour:
-        if 59 == now.minute:
-            git_push.upload()
-
 
 @bot.command(name='troll')
 async def troll(ctx):
