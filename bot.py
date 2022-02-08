@@ -7,8 +7,9 @@ import credit_counter
 from discord.ext import commands
 import discord.ext.commands
 from dotenv import load_dotenv
-import merit_config
+
 import git_push
+import merit_config
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -24,6 +25,14 @@ bot.remove_command('help')
 @bot.event
 async def on_ready():
     print(f"{bot.user.name} is connected!\n")
+
+    usr_input = input("")
+    if usr_input == 'stop':
+        git_push.upload()
+        print("all files synced")
+        print("stoping in 5")
+        time.sleep(5)
+        sys.exit()
 
 
 @bot.command(name='troll')
@@ -441,7 +450,7 @@ async def shutdown(ctx):
 
         git_push.upload()
 
-        ctx.send("all databases have been pushed and are backed up.")
+        await ctx.send("all databases have been pushed and are backed up.")
 
         await ctx.send("`Shutdown in 5`")
         time.sleep(1)
@@ -470,11 +479,11 @@ async def shutdown(ctx):
 
 
 def main():
-    bot.run(TOKEN)
+    while True:
+        bot.run(TOKEN)
 
-    now = datetime.datetime.now()
+        now = datetime.datetime.now()
 
-    while 23 == now.hour:
-        if 59 == now.minute:
-            git_push.upload()
-            
+        while 23 == now.hour:
+            if 59 == now.minute:
+                git_push.upload()

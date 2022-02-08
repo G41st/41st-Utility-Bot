@@ -7,7 +7,6 @@ global merit_sum
 
 def credit_counter(role_names, discord_id):
     d_id = str(discord_id)
-    print(role_names)
 
     global salary1
     salary1 = 0
