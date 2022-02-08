@@ -24,7 +24,7 @@ bot.remove_command('help')
 
 @bot.event
 async def on_ready():
-    channel = bot.get_channel(939028644175699968)
+    channel = bot.get_channel(938290721302134855)
 
     await channel.send(f"{bot.user.name} is connected!")
 
@@ -372,6 +372,7 @@ async def register(ctx):
                                     print(f"{ctx.author.display_name} - {ctx.author.id} has been added to registry.txt")
                                 print(f"{ctx.author.display_name} - {ctx.author.id} \nhas been  registered with 0 errors")
                                 await ctx.send(f"{mention} has been added to the registry with `0` errors.")
+    await bot.process_commands()
 
 
 @bot.command(name='store')
