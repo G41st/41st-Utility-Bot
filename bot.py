@@ -24,12 +24,16 @@ bot.remove_command('help')
 
 @bot.event
 async def on_ready():
+    channel = bot.get_channel(939028644175699968)
+
+    channel.send(f"{bot.user.name} is connected!")
+
     print(f"{bot.user.name} is connected!\n")
 
 
 @bot.command(name='troll')
 async def troll(ctx):
-    if ctx.channel.id == '936902313589764146':
+    if ctx.channel.id == '936902313589764146' or '939028644175699968':
         await ctx.send(f"```{assets.troll_command()}```")
 
 
@@ -120,22 +124,23 @@ async def sub_merits_err(ctx, message):
 
 @bot.command(name='credits')
 async def thing_for_roles(ctx):
-    role_names = [str(r) for r in ctx.author.roles]
-    user_id = str(ctx.author.id)
+    if ctx.channel.id == '936902313589764146' or '939028644175699968':
+        role_names = [str(r) for r in ctx.author.roles]
+        user_id = str(ctx.author.id)
 
-    credit_emoji = '<:credits:937788738950545464>'
-    credit_value = credit_counter.credit_counter(role_names, user_id)
-    if credit_value == False:
-        await ctx.send("You were not detected in the credit logs. Please run `.register` to add yourself to the "
-                       "registry or to check integrity of your user. ")
-    else:
-        if 'Medal of Valor' in role_names:
-            salute_emoji = '<:GreenSalute:906047649982083113>'
-            mention = format(f"<@!{ctx.author.id}>")
-            await ctx.send(f"{mention}, You have {credit_emoji}`{credit_value}`.\n{salute_emoji}")
+        credit_emoji = '<:credits:937788738950545464>'
+        credit_value = credit_counter.credit_counter(role_names, user_id)
+        if credit_value == False:
+            await ctx.send("You were not detected in the credit logs. Please run `.register` to add yourself to the "
+                           "registry or to check integrity of your user. ")
         else:
-            mention = format(f"<@!{ctx.author.id}>")
-            await ctx.send(f"{mention}, You have {credit_emoji}`{credit_value}`.")
+            if 'Medal of Valor' in role_names:
+                salute_emoji = '<:GreenSalute:906047649982083113>'
+                mention = format(f"<@!{ctx.author.id}>")
+                await ctx.send(f"{mention}, You have {credit_emoji}`{credit_value}`.\n{salute_emoji}")
+            else:
+                mention = format(f"<@!{ctx.author.id}>")
+                await ctx.send(f"{mention}, You have {credit_emoji}`{credit_value}`.")
 
 
 @bot.command(name='check-credits')
@@ -166,7 +171,7 @@ async def remove(ctx, user: discord.Member):
 
 @bot.command(name='register')
 async def register(ctx):
-    if ctx.channel.id == '936902313589764146':
+    if ctx.channel.id == '936902313589764146' or '939028644175699968':
         user_id = str(ctx.author.id)
         mention = f"<@!{user_id}>"
         channel = bot.get_channel(938290721302134855)
@@ -371,44 +376,44 @@ async def register(ctx):
 
 @bot.command(name='store')
 async def store(ctx):
-    if ctx.channel.id == '936902313589764146':
+    if ctx.channel.id == '936902313589764146' or '939028644175699968':
         await ctx.send(assets.store_command(format(ctx.author.id)))
 
 
 @bot.command(name='shop')
 async def shop(ctx):
-    if ctx.channel.id == '936902313589764146':
+    if ctx.channel.id == '936902313589764146' or '939028644175699968':
         await ctx.send(assets.shop_command(format(ctx.author.id)))
 
 
 @bot.command(name='github')
 async def github(ctx):
-    if ctx.channel.id == '936902313589764146':
+    if ctx.channel.id == '936902313589764146' or '939028644175699968':
         await ctx.send("https://github.com/G41st/41st-utility-bot \nIf you are interested in helping out with the bot,"
                         "be sure to DM Kyoda!")
 
 
 @bot.command(name='fuck')
 async def fuck(ctx):
-    if ctx.channel.id == '936902313589764146':
+    if ctx.channel.id == '936902313589764146' or '939028644175699968':
         await ctx.send("you")
 
 
 @bot.command(name='help')
 async def command_help(ctx):
-    if ctx.channel.id == '936902313589764146':
+    if ctx.channel.id == '936902313589764146' or '939028644175699968':
         await ctx.send(assets.commands_command(ctx.author.id))
 
 
 @bot.command(name='report')
 async def report(ctx):
-    if ctx.channel.id == '936902313589764146':
+    if ctx.channel.id == '936902313589764146' or '939028644175699968':
         await ctx.send(assets.report_command(ctx.author.id))
 
 
 @bot.command(name='report-send')
 async def report_send(ctx, message):
-    if ctx.channel.id == '936902313589764146':
+    if ctx.channel.id == '936902313589764146' or '939028644175699968':
         now = datetime.datetime.now()
 
         channel = bot.get_channel(938290721302134855)
