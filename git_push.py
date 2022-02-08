@@ -3,10 +3,13 @@ import os
 from github import Github
 from github import InputGitTreeElement
 
-
+with open("git_key.txt", "r") as f
+	git_key = f.read()
+    
+    
 def upload():
     user = "G41st"
-    password = "************"
+    password = f"{git_key}"
     g = Github(user,password)
     repo = g.get_user().get_repo('41st-utility-bot')
     file_list = [
