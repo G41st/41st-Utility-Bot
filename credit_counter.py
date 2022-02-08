@@ -7,6 +7,7 @@ global merit_sum
 
 def credit_counter(role_names, discord_id):
     d_id = str(discord_id)
+    print(role_names)
 
     global salary1
     salary1 = 0
@@ -360,186 +361,190 @@ def credit_counter(role_names, discord_id):
     qual27 = 'Gunslinger'
 
     try:
-        if any(ext in rank1 for ext in role_names):
+        if any(ext == rank1 for ext in role_names):
             salary1 = 50000
-        if any(ext in rank2 for ext in role_names):
+            print(rank1)
+        if any(ext == rank2 for ext in role_names):
             salary2 = 30000
-        if any(ext in rank3 for ext in role_names):
+            print(rank2)
+        if any(ext == rank3 for ext in role_names):
             salary3 = 15000
-        if any(ext in rank4 for ext in role_names):
+            print(rank3)
+        if any(ext == rank4 for ext in role_names):
             salary4 = 15000
-        if any(ext in rank5 for ext in role_names):
+            print(rank4)
+        if any(ext == rank5 for ext in role_names):
             salary5 = 15000
-        if any(ext in rank6 for ext in role_names):
+        if any(ext == rank6 for ext in role_names):
             salary6 = 15000
-        if any(ext in rank7 for ext in role_names):
+        if any(ext == rank7 for ext in role_names):
             salary7 = 10000
-        if any(ext in rank8 for ext in role_names):
+        if any(ext == rank8 for ext in role_names):
             salary6 = 10000
-        if any(ext in rank9 for ext in role_names):
+        if any(ext == rank9 for ext in role_names):
             salary9 = 10000
-        if any(ext in rank10 for ext in role_names):
+        if any(ext == rank10 for ext in role_names):
             salary10 = 8000
-        if any(ext in rank11 for ext in role_names):
+        if any(ext == rank11 for ext in role_names):
             salary11 = 10000
-        if any(ext in rank12 for ext in role_names):
+        if any(ext == rank12 for ext in role_names):
             salary12 = 7000
-        if any(ext in rank13 for ext in role_names):
+        if any(ext == rank13 for ext in role_names):
             salary13 = 5000
-        if any(ext in rank14 for ext in role_names):
+        if any(ext == rank14 for ext in role_names):
             salary14 = 5000
-        if any(ext in rank15 for ext in role_names):
+        if any(ext == rank15 for ext in role_names):
             salary15 = 5000
-        if any(ext in rank16 for ext in role_names):
+        if any(ext == rank16 for ext in role_names):
             salary16 = 7500
-        if any(ext in rank17 for ext in role_names):
+        if any(ext == rank17 for ext in role_names):
             salary17 = 1000
-        if any(ext in rank18 for ext in role_names):
+        if any(ext == rank18 for ext in role_names):
             salary18 = 7500
-        if any(ext in rank19 for ext in role_names):
+        if any(ext == rank19 for ext in role_names):
             salary19 = 5000
-        if any(ext in rank20 for ext in role_names):
+        if any(ext == rank20 for ext in role_names):
             salary20 = 2500
-        if any(ext in rank21 for ext in role_names):
+        if any(ext == rank21 for ext in role_names):
             salary21 = 2000
-        if any(ext in rank22 for ext in role_names):
+        if any(ext == rank22 for ext in role_names):
             salary22 = 2000
-        if any(ext in rank23 for ext in role_names):
+        if any(ext == rank23 for ext in role_names):
             salary23 = 1500
-        if any(ext in rank24 for ext in role_names):
+        if any(ext == rank24 for ext in role_names):
             salary24 = 1500
-        if any(ext in rank25 for ext in role_names):
+        if any(ext == rank25 for ext in role_names):
             salary25 = 1000
-        if any(ext in rank26 for ext in role_names):
+        if any(ext == rank26 for ext in role_names):
             salary26 = 1000
 
         rank_total = (salary1 + salary2 + salary3 + salary4 + salary5 + salary6 + salary7 + salary8 + salary9 +
                       salary10 + salary11 + salary12 + salary13 + salary14 + salary15 + salary16 + salary17 + salary18
                       + salary19 + salary20 + salary21 + salary22 + salary23 + salary24 + salary25 + salary26)
 
-        if any(ext in medal_of_valor for ext in role_names):
+        if any(ext == medal_of_valor for ext in role_names):
             valor = 20000
-        if any(ext in medal1 for ext in role_names):
+        if any(ext == medal1 for ext in role_names):
             count1 = 3000
-        if any(ext in medal2 for ext in role_names):
+        if any(ext == medal2 for ext in role_names):
             count2 = 3000
-        if any(ext in medal3 for ext in role_names):
+        if any(ext == medal3 for ext in role_names):
             count3 = 3000
-        if any(ext in medal4 for ext in role_names):
+        if any(ext == medal4 for ext in role_names):
             count4 = 3000
-        if any(ext in medal5 for ext in role_names):
+        if any(ext == medal5 for ext in role_names):
             count5 = 2500
-        if any(ext in medal6 for ext in role_names):
+        if any(ext == medal6 for ext in role_names):
             count6 = 2000
-        if any(ext in medal7 for ext in role_names):
+        if any(ext == medal7 for ext in role_names):
             count7 = 2000
-        if any(ext in medal8 for ext in role_names):
+        if any(ext == medal8 for ext in role_names):
             count8 = 2000
-        if any(ext in medal9 for ext in role_names):
+        if any(ext == medal9 for ext in role_names):
             count9 = 2000
-        if any(ext in medal10 for ext in role_names):
+        if any(ext == medal10 for ext in role_names):
             count10 = 2000
-        if any(ext in medal11 for ext in role_names):
+        if any(ext == medal11 for ext in role_names):
             count11 = 2000
-        if any(ext in medal12 for ext in role_names):
+        if any(ext == medal12 for ext in role_names):
             count12 = 1500
-        if any(ext in medal13 for ext in role_names):
+        if any(ext == medal13 for ext in role_names):
             count13 = 1500
-        if any(ext in medal14 for ext in role_names):
+        if any(ext == medal14 for ext in role_names):
             count14 = 1500
-        if any(ext in medal15 for ext in role_names):
+        if any(ext == medal15 for ext in role_names):
             count15 = 1500
-        if any(ext in medal16 for ext in role_names):
+        if any(ext == medal16 for ext in role_names):
             count16 = 1000
-        if any(ext in medal17 for ext in role_names):
+        if any(ext == medal17 for ext in role_names):
             count17 = 1000
-        if any(ext in medal18 for ext in role_names):
+        if any(ext == medal18 for ext in role_names):
             count18 = 1000
-        if any(ext in medal19 for ext in role_names):
+        if any(ext == medal19 for ext in role_names):
             count19 = 1000
-        if any(ext in medal20 for ext in role_names):
+        if any(ext == medal20 for ext in role_names):
             count20 = 1000
-        if any(ext in medal21 for ext in role_names):
+        if any(ext == medal21 for ext in role_names):
             count21 = 1000
-        if any(ext in medal22 for ext in role_names):
+        if any(ext == medal22 for ext in role_names):
             count22 = 1000
-        if any(ext in medal23 for ext in role_names):
+        if any(ext == medal23 for ext in role_names):
             count23 = 1000
-        if any(ext in medal24 for ext in role_names):
+        if any(ext == medal24 for ext in role_names):
             count24 = 1000
-        if any(ext in medal25 for ext in role_names):
+        if any(ext == medal25 for ext in role_names):
             count25 = 1000
-        if any(ext in medal26 for ext in role_names):
+        if any(ext == medal26 for ext in role_names):
             count26 = 7500
-        if any(ext in medal27 for ext in role_names):
+        if any(ext == medal27 for ext in role_names):
             count27 = 6000
-        if any(ext in medal28 for ext in role_names):
+        if any(ext == medal28 for ext in role_names):
             count28 = 5000
-        if any(ext in medal29 for ext in role_names):
+        if any(ext == medal29 for ext in role_names):
             count29 = 4500
-        if any(ext in medal30 for ext in role_names):
+        if any(ext == medal30 for ext in role_names):
             count30 = 4000
-        if any(ext in medal31 for ext in role_names):
+        if any(ext == medal31 for ext in role_names):
             count31 = 3000
-        if any(ext in medal32 for ext in role_names):
+        if any(ext == medal32 for ext in role_names):
             count32 = 3000
-        if any(ext in medal33 for ext in role_names):
+        if any(ext == medal33 for ext in role_names):
             count33 = 2500
-        if any(ext in medal34 for ext in role_names):
+        if any(ext == medal34 for ext in role_names):
             count34 = 2500
-        if any(ext in medal35 for ext in role_names):
+        if any(ext == medal35 for ext in role_names):
             count35 = 2500
-        if any(ext in medal36 for ext in role_names):
+        if any(ext == medal36 for ext in role_names):
             count36 = 2500
-        if any(ext in medal37 for ext in role_names):
+        if any(ext == medal37 for ext in role_names):
             count37 = 2500
-        if any(ext in medal38 for ext in role_names):
+        if any(ext == medal38 for ext in role_names):
             count38 = 2500
-        if any(ext in medal39 for ext in role_names):
+        if any(ext == medal39 for ext in role_names):
             count39 = 2500
-        if any(ext in medal40 for ext in role_names):
+        if any(ext == medal40 for ext in role_names):
             count40 = 2000
-        if any(ext in medal41 for ext in role_names):
+        if any(ext == medal41 for ext in role_names):
             count41 = 2000
-        if any(ext in medal42 for ext in role_names):
+        if any(ext == medal42 for ext in role_names):
             count42 = 2000
-        if any(ext in medal43 for ext in role_names):
+        if any(ext == medal43 for ext in role_names):
             count43 = 2000
-        if any(ext in medal44 for ext in role_names):
+        if any(ext == medal44 for ext in role_names):
             count44 = 2000
-        if any(ext in medal45 for ext in role_names):
+        if any(ext == medal45 for ext in role_names):
             count45 = 2000
-        if any(ext in medal46 for ext in role_names):
+        if any(ext == medal46 for ext in role_names):
             count46 = 2000
-        if any(ext in medal47 for ext in role_names):
+        if any(ext == medal47 for ext in role_names):
             count47 = 2000
-        if any(ext in medal48 for ext in role_names):
+        if any(ext == medal48 for ext in role_names):
             count48 = 1500
-        if any(ext in medal49 for ext in role_names):
+        if any(ext == medal49 for ext in role_names):
             count49 = 1500
-        if any(ext in medal50 for ext in role_names):
+        if any(ext == medal50 for ext in role_names):
             count50 = 1500
-        if any(ext in medal51 for ext in role_names):
+        if any(ext == medal51 for ext in role_names):
             count51 = 1500
-        if any(ext in medal52 for ext in role_names):
+        if any(ext == medal52 for ext in role_names):
             count52 = 1500
-        if any(ext in medal53 for ext in role_names):
+        if any(ext == medal53 for ext in role_names):
             count53 = 1500
-        if any(ext in medal54 for ext in role_names):
+        if any(ext == medal54 for ext in role_names):
             count54 = 1500
-        if any(ext in medal55 for ext in role_names):
+        if any(ext == medal55 for ext in role_names):
             count55 = 1000
-        if any(ext in medal56 for ext in role_names):
+        if any(ext == medal56 for ext in role_names):
             count56 = 1000
-        if any(ext in medal57 for ext in role_names):
+        if any(ext == medal57 for ext in role_names):
             count57 = 1000
-        if any(ext in medal58 for ext in role_names):
+        if any(ext == medal58 for ext in role_names):
             count58 = 1000
-        if any(ext in medal59 for ext in role_names):
+        if any(ext == medal59 for ext in role_names):
             count59 = 1000
-        if any(ext in medal60 for ext in role_names):
+        if any(ext == medal60 for ext in role_names):
             count60 = 1000
-        if any(ext in medal61 for ext in role_names):
+        if any(ext == medal61 for ext in role_names):
             count61 = 1000
 
         medal_total = (valor + count1 + count2 + count3 + count4 + count5 + count6 + count7 + count8 + count9 +
@@ -550,59 +555,59 @@ def credit_counter(role_names, discord_id):
                        count46 + count47 + count48 + count49 + count50 + count51 + count52 + count53 + count54 +
                        count55 + count56 + count57 + count58 + count59 + count60 + count61)
 
-        if any(ext in qual1 for ext in role_names):
+        if any(ext == qual1 for ext in role_names):
             reward1 = 3000
-        if any(ext in qual2 for ext in role_names):
+        if any(ext == qual2 for ext in role_names):
             reward2 = 2000
-        if any(ext in qual3 for ext in role_names):
+        if any(ext == qual3 for ext in role_names):
             reward3 = 2500
-        if any(ext in qual4 for ext in role_names):
+        if any(ext == qual4 for ext in role_names):
             reward4 = 5000
-        if any(ext in qual5 for ext in role_names):
+        if any(ext == qual5 for ext in role_names):
             reward5 = 2000
-        if any(ext in qual6 for ext in role_names):
+        if any(ext == qual6 for ext in role_names):
             reward6 = 2000
-        if any(ext in qual7 for ext in role_names):
+        if any(ext == qual7 for ext in role_names):
             reward7 = 2000
-        if any(ext in qual8 for ext in role_names):
+        if any(ext == qual8 for ext in role_names):
             reward8 = 2000
-        if any(ext in qual9 for ext in role_names):
+        if any(ext == qual9 for ext in role_names):
             reward9 = 3000
-        if any(ext in qual10 for ext in role_names):
+        if any(ext == qual10 for ext in role_names):
             reward10 = 3000
-        if any(ext in qual11 for ext in role_names):
+        if any(ext == qual11 for ext in role_names):
             reward11 = 3000
-        if any(ext in qual12 for ext in role_names):
+        if any(ext == qual12 for ext in role_names):
             reward12 = 7500
-        if any(ext in qual13 for ext in role_names):
+        if any(ext == qual13 for ext in role_names):
             reward13 = 2000
-        if any(ext in qual14 for ext in role_names):
+        if any(ext == qual14 for ext in role_names):
             reward14 = 1500
-        if any(ext in qual15 for ext in role_names):
+        if any(ext == qual15 for ext in role_names):
             reward15 = 1000
-        if any(ext in qual16 for ext in role_names):
+        if any(ext == qual16 for ext in role_names):
             reward16 = 1500
-        if any(ext in qual17 for ext in role_names):
+        if any(ext == qual17 for ext in role_names):
             reward17 = 1000
-        if any(ext in qual18 for ext in role_names):
+        if any(ext == qual18 for ext in role_names):
             reward18 = 1500
-        if any(ext in qual19 for ext in role_names):
+        if any(ext == qual19 for ext in role_names):
             reward19 = 2000
-        if any(ext in qual20 for ext in role_names):
+        if any(ext == qual20 for ext in role_names):
             reward20 = 1000
-        if any(ext in qual21 for ext in role_names):
+        if any(ext == qual21 for ext in role_names):
             reward21 = 1500
-        if any(ext in qual22 for ext in role_names):
+        if any(ext == qual22 for ext in role_names):
             reward22 = 2000
-        if any(ext in qual23 for ext in role_names):
+        if any(ext == qual23 for ext in role_names):
             reward23 = 1000
-        if any(ext in qual24 for ext in role_names):
+        if any(ext == qual24 for ext in role_names):
             reward24 = 1500
-        if any(ext in qual25 for ext in role_names):
+        if any(ext == qual25 for ext in role_names):
             reward25 = 1000
-        if any(ext in qual26 for ext in role_names):
+        if any(ext == qual26 for ext in role_names):
             reward26 = 1500
-        if any(ext in qual27 for ext in role_names):
+        if any(ext == qual27 for ext in role_names):
             reward27 = 1000
 
         qual_total = (reward1 + reward2 + reward3 + reward4 + reward5 + reward6 + reward7 + reward8 + reward9 +
