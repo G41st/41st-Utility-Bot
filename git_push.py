@@ -1,41 +1,41 @@
+import base64
 import os
 from github import Github
-import time
-from dotenv import load_dotenv
+from github import InputGitTreeElement
 
 
-git_key = os.getenv('GIT_KEY')
+def upload():
+    user = "G41st"
+    password = "************"
+    g = Github(user,password)
+    repo = g.get_user().get_repo('41st-utility-bot')
+    file_list = [
+        f"/home/container/merit.txt",
+        f"/home/container/demerit.txt"
+        f"/home/container/registry.txt"
+        f"/home/container/reports.txt"
+    ]
+    file_names = [
+        'merit.txt',
+        'demerit.txt'
+        'registry.txt'
+        'reports.txt'
+    ]
+    commit_message = 'syncing files'
+    master_ref = repo.get_git_ref('heads/master')
+    master_sha = master_ref.object.sha
+    base_tree = repo.get_git_tree(master_sha)
 
-g = Github(f"{git_key}")
+    element_list = list()
+    for i, entry in enumerate(file_list):
+        with open(entry) as input_file:
+            data = input_file.read()
+        if entry.endswith('.png'): # images must be encoded
+            data = base64.b64encode(data)
+        element = InputGitTreeElement(file_names[i], '100644', 'blob', data)
+        element_list.append(element)
 
-
-def upload(localfilename, gitfilename, gitbranch):
-    repo = '41st-utility-bot'
-
-    repo = g.get_user().get_repo(str(repo))
-    all_files = []
-    contents = repo.get_contents("")
-    while contents:
-        file_content = contents.pop(0)
-        if file_content.type == "dir":
-            contents.extend(repo.get_contents(file_content.path))
-        else:
-            file = file_content
-            all_files.append(str(file).replace('ContentFile(path="', '').replace('")', ''))
-
-    cwd = os.getcwd()
-    with open(f'{cwd}/{localfilename}', 'r') as file:
-        content = file.read()
-
-    git_file = f'{gitfilename}'
-    if git_file in all_files:
-        contents = repo.get_contents(git_file)
-        repo.update_file(contents.path, f"sync {localfilename}", content, contents.sha, branch=f"{gitbranch}")
-        print(git_file + ' UPDATED')
-        time.sleep(5)
-        return 'Updated'
-    else:
-        repo.create_file(git_file, f"sync {localfilename}", content, branch=f"{gitbranch}")
-        print(git_file + ' CREATED')
-        time.sleep(5)
-        return 'Created'
+    tree = repo.create_git_tree(element_list, base_tree)
+    parent = repo.get_git_commit(master_sha)
+    commit = repo.create_git_commit(commit_message, tree, [parent])
+    master_ref.edit(commit.sha)
