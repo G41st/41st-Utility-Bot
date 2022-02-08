@@ -388,7 +388,7 @@ async def shop(ctx):
 @bot.command(name='github')
 async def github(ctx):
     await ctx.send("https://github.com/G41st/41st-utility-bot \nIf you are interested in helping out with the bot,"
-                   "be sure to DM Kyoda!")
+                   "be sure to DM CODR Kyoda!")
 
 
 @bot.command(name='fuck')
@@ -481,7 +481,6 @@ async def shutdown(ctx):
 def main():
     while True:
         bot.run(TOKEN)
-
 
         now = datetime.datetime.now()
 
