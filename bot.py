@@ -33,6 +33,12 @@ async def on_ready():
         print("stoping in 5")
         time.sleep(5)
         sys.exit()
+        
+    now = datetime.datetime.now()
+
+    while 23 == now.hour:
+        if 59 == now.minute:
+            git_push.upload()
 
 
 @bot.command(name='troll')
