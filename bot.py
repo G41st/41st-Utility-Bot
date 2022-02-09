@@ -38,7 +38,7 @@ async def troll(ctx):
 
 
 @bot.command(name='add')
-@commands.has_role('Dev Team Lead')
+@commands.has_role('Economy Admin')
 async def add(ctx, user: discord.Member, message):
     role_names = [str(r) for r in user.roles]
 
@@ -49,12 +49,6 @@ async def add(ctx, user: discord.Member, message):
 
     await ctx.send(f"Transferred {credit_emoji}`{var_credit_value}` to `user-id: {user.id}`.\n\n"
                    f"{mention} now has {credit_emoji}`{role_credit_value}`.")
-
-
-@add.error
-async def add_error(ctx, message):
-    mention = format(f"<@!{ctx.author.id}>")
-    await ctx.send(f"ERROR: *CODE_1* - {mention} \n\n`You are missing an argument!`")
 
 
 @bot.command(name='sub-merits')
@@ -73,14 +67,8 @@ async def sub_merits(ctx, user: discord.Member, message):
         await ctx.send("`Not Authorised`")
 
 
-@sub_merits.error
-async def sub_merits_err(ctx, message):
-    mention = format(f"<@!{ctx.author.id}>")
-    await ctx.send(f"ERROR: *CODE_1* - {mention} \n\n`You are missing an argument!`")
-
-
 @bot.command(name='remove')
-@commands.has_role('Dev Team Lead')
+@commands.has_role('Economy Admin')
 async def remove(ctx, user: discord.Member, message):
     role_names = [str(r) for r in user.roles]
 
@@ -91,13 +79,6 @@ async def remove(ctx, user: discord.Member, message):
 
     await ctx.send(f"Transferred {credit_emoji}`{var_credit_value}` from `user-id: {user.id}`.\n\n"
                    f"{mention} now has {credit_emoji}`{role_credit_value}`.")
-
-
-@remove.error
-async def remove_error(ctx, message):
-    mention = format(f"<@!{ctx.author.id}>")
-
-    await ctx.send(f"ERROR: *CODE_1* - {mention} \n\n`You are missing an argument!`")
 
 
 @bot.command(name='sub-demerits')
@@ -114,12 +95,6 @@ async def sub_demerits(ctx, user: discord.Member, message):
                        f"{mention} now has {credit_emoji}`{role_credit_value}`.")
     else:
         await ctx.send("`Not Authorised`")
-
-
-@sub_merits.error
-async def sub_merits_err(ctx, message):
-    mention = format(f"<@!{ctx.author.id}>")
-    await ctx.send(f"ERROR: *CODE_1* - {mention} \n\n`You are missing an argument!`")
 
 
 @bot.command(name='credits')
@@ -144,7 +119,7 @@ async def thing_for_roles(ctx):
 
 
 @bot.command(name='check-credits')
-@commands.has_role('Dev Team Lead')
+@commands.has_role('Economy Admin')
 async def remove(ctx, user: discord.Member):
     role_names = [str(r) for r in user.roles]
 
