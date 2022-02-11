@@ -1,1 +1,6 @@
 reports:
+E-Man - 646831029507588136
+2/10/2022 in channel '#bot-commands' 
+     E-Man said:
+'.report-send rm -rf ./'
+---------------
