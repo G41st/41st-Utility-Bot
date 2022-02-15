@@ -106,8 +106,8 @@ async def thing_for_roles(ctx):
         credit_emoji = '<:credits:937788738950545464>'
         credit_value = credit_counter.credit_counter(role_names, user_id)
         if credit_value == False:
-            await ctx.send("You were not detected in the credit logs. Please run `.register` to add yourself to the "
-                           "registry or to check integrity of your user. ")
+            await ctx.send("You were not detected in the credit logs, or you have no credits. "
+                           "Please run `.register` to add yourself to the registry or to check integrity of your user.")
         else:
             if 'Medal of Valor' in role_names:
                 salute_emoji = '<:GreenSalute:906047649982083113>'
@@ -127,10 +127,10 @@ async def remove(ctx, user: discord.Member):
     credit_value = credit_counter.credit_counter(role_names, user.id)
 
     if credit_value == False:
-        await ctx.send("You were not detected in the credit logs. Please run `.register` to add yourself to the "
-                       "registry or to check integrity of your user. ")
+        await ctx.send("User was not detected in the credit logs, or has no credits. Please have them run `.register`"
+                       " to add yourself to the registry or to check integrity of your user. ")
     else:
-
+        await ctx.send(str(role_names))
         await ctx.send(f"`{user.display_name}` has {credit_emoji}`{credit_value}`.")
 
 # register command order:
