@@ -130,7 +130,6 @@ async def remove(ctx, user: discord.Member):
         await ctx.send("User was not detected in the credit logs, or has no credits. Please have them run `.register`"
                        " to add yourself to the registry or to check integrity of your user. ")
     else:
-        await ctx.send(str(role_names))
         await ctx.send(f"`{user.display_name}` has {credit_emoji}`{credit_value}`.")
 
 # register command order:
