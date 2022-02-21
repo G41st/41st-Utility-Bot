@@ -101,6 +101,7 @@ def report_command(mention):
 
 def ggn_store_command(mention):
     credit_emoji = '<:credits:937788738950545464>'
+    store_channel = '<#909593785409896538>'
 
     ggn_store = (f"**Geetsly's Gaming Network Store Conversions:** <@!{mention}> \n"
                  f"{credit_emoji} `7,500` - $`5.00` USD \n"
@@ -116,6 +117,7 @@ def ggn_store_command(mention):
                  f"'Phase-1 In Game' - $`10.00` USD \n"
                  f"'Custom Visor' - $`15.00` USD \n"
                  f"'2003 Helmet' - $`20.00` USD \n"
+                 f"Head to {store_channel} for more information. \n"
                  f"Please remember to DM `'Forceps' CC-3432` for any GGN-Store purchases.")
 
     return ggn_store
