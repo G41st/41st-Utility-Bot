@@ -212,6 +212,12 @@ def credit_counter(role_names, discord_id):
     count60 = 0
     global count61
     count61 = 0
+    global count62
+    count62 = 0
+    global count63
+    count63 = 0
+    global count64
+    count64 = 0
 
     medal_of_valor = 'Medal of Valor'
     medal1 = '41st Service Medal'
@@ -275,6 +281,9 @@ def credit_counter(role_names, discord_id):
     medal59 = 'Veteran Specialist Medal'
     medal60 = 'Veteran Heavy Medal'
     medal61 = 'Veteran Assault Medal'
+    medal62 = 'Lone Survivor'
+    medal63 = 'Exemplar'
+    medal64 = 'Professional Soldier'
 
     global reward1
     reward1 = 0
@@ -330,6 +339,10 @@ def credit_counter(role_names, discord_id):
     reward26 = 0
     global reward27
     reward27 = 0
+    global reward28
+    reward28 = 0
+    global reward29
+    reward29 = 0
 
     qual1 = 'Scout Trooper'
     qual2 = 'Aerial Trooper'
@@ -358,6 +371,8 @@ def credit_counter(role_names, discord_id):
     qual25 = 'Operative'
     qual26 = 'Urban Warrior'
     qual27 = 'Gunslinger'
+    qual28 = 'HERO Pilot - First Class'
+    qual29 = 'HERO Pilot - Second Class'
 
     try:
         if any(ext == rank1 for ext in role_names):
@@ -545,6 +560,12 @@ def credit_counter(role_names, discord_id):
             count60 = 1000
         if any(ext == medal61 for ext in role_names):
             count61 = 1000
+        if any(ext == medal62 for ext in role_names):
+            count62 = 2000
+        if any(ext == medal63 for ext in role_names):
+            count63 = 1000
+        if any(ext == medal64 for ext in role_names):
+            count64 = 5000
 
         medal_total = (valor + count1 + count2 + count3 + count4 + count5 + count6 + count7 + count8 + count9 +
                        count10 + count11 + count12 + count13 + count14 + count15 + count16 + count17 + count18 +
@@ -552,7 +573,8 @@ def credit_counter(role_names, discord_id):
                        count28 + count29 + count30 + count31 + count32 + count33 + count34 + count35 + count36 +
                        count37 + count38 + count39 + count40 + count41 + count42 + count43 + count44 + count45 +
                        count46 + count47 + count48 + count49 + count50 + count51 + count52 + count53 + count54 +
-                       count55 + count56 + count57 + count58 + count59 + count60 + count61)
+                       count55 + count56 + count57 + count58 + count59 + count60 + count61 + count62 + count63 +
+                       count64)
 
         if any(ext == qual1 for ext in role_names):
             reward1 = 3000
@@ -608,11 +630,15 @@ def credit_counter(role_names, discord_id):
             reward26 = 1500
         if any(ext == qual27 for ext in role_names):
             reward27 = 1000
+        if any(ext == qual28 for ext in role_names):
+            reward28 = 15000
+        if any(ext == qual29 for ext in role_names):
+            reward29 = 7500
 
         qual_total = (reward1 + reward2 + reward3 + reward4 + reward5 + reward6 + reward7 + reward8 + reward9 +
                       reward10 + reward11 + reward12 + reward13 + reward14 + reward15 + reward16 + reward17 +
                       reward18 + reward19 + reward20 + reward21 + reward22 + reward23 + reward24 + reward25 +
-                      reward26 + reward27)
+                      reward26 + reward27 + reward28 + reward29)
 
         with open("merit.txt", 'r') as f:
 

@@ -77,7 +77,9 @@ def commands_command(mention):
                 f"majority of the bots functions. \n"
                 f"`.store` - Displays the current store information with categories and item descriptions. \n"
                 f"`.shop` - Displays a condensed version of the store. \n"
+                f"`.ggn-store` - Displays the current GGN store price approximations, as well as specific items. \n"
                 f"`.credits` - Calculates your current credit value. \n"
+                f"`.version` - Displays current bot dev info. \n"
                 f"`.github` - Sends the link to the bot's git repository. \n"
                 f"`.report` - Sends a user-created error report to the bot dev team.")
 
@@ -95,3 +97,25 @@ def report_command(mention):
                            f"else works fine.```")
 
     return report_instructions
+
+
+def ggn_store_command(mention):
+    credit_emoji = '<:credits:937788738950545464>'
+
+    ggn_store = (f"**Geetsly's Gaming Network Store Conversions:** <@!{mention}> \n"
+                 f"{credit_emoji} `7,500` - $`5.00` USD \n"
+                 f"{credit_emoji} `10,000` - $`7.50` USD \n"
+                 f"{credit_emoji} `12,500` - $`10.00` USD \n"
+                 f"{credit_emoji} `15,000` - $`10.00` USD \n"
+                 f"{credit_emoji} `20,000` - $`15.00` USD \n"
+                 f"{credit_emoji} `25,000` - $`20.00` USD \n"
+                 f"{credit_emoji} `30,000` - $`25.00` USD \n"
+                 f"{credit_emoji} `40,000` - $`30.00` USD \n"
+                 f"{credit_emoji} `45,000` - $`30.00` USD \n\n"
+                 f"**EXCEPTIONS/SPECIFICS:**"
+                 f"'Phase-1 In Game' - $`10.00` USD \n"
+                 f"'Custom Visor' - $`15.00` USD \n"
+                 f"'2003 Helmet' - $`20.00` USD \n"
+                 f"Please remember to DM `'Forceps' CC-3432` for any GGN-Store purchases.")
+
+    return ggn_store

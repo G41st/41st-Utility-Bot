@@ -21,10 +21,12 @@ client = discord.Client()
 bot = commands.Bot(command_prefix='.')
 bot.remove_command('help')
 
+bot_version = '1.2'
+bot_version_date = '2/21/2022 (US)'
 
 @bot.event
 async def on_ready():
-    channel = bot.get_channel(938290721302134855)
+    channel = bot.get_channel(939028644175699968)
 
     await channel.send(f"{bot.user.name} is connected!")
 
@@ -35,6 +37,24 @@ async def on_ready():
 async def troll(ctx):
     if ctx.channel.id == '936902313589764146' or '939028644175699968':
         await ctx.send(f"```{assets.troll_command()}```")
+
+
+@bot.command(name='bitches')
+async def bitches(ctx):
+    role_names = [str(r) for r in ctx.author.roles]
+
+    if 'Medal of Valor' in role_names:
+        salute_emoji = '<:GreenSalute:906047649982083113>'
+        mention = format(f"<@!{ctx.author.id}>")
+        await ctx.send(f"congradulations {mention}, you have bitches! {salute_emoji}")
+    else:
+        mention = format(f"<@!{ctx.author.id}>")
+        await ctx.send(f"you have no bitches")
+
+
+@bot.command(name='drugs')
+async def drugs(ctx):
+    await ctx.send("deathsticks?")
 
 
 @bot.command(name='add')
@@ -148,7 +168,7 @@ async def register(ctx):
     if ctx.channel.id == '936902313589764146' or '939028644175699968':
         user_id = str(ctx.author.id)
         mention = f"<@!{user_id}>"
-        channel = bot.get_channel(938290721302134855)
+        channel = bot.get_channel(939028644175699968)
         now = datetime.datetime.now()
 
         with open("registry.txt", 'r') as f:
@@ -361,6 +381,12 @@ async def shop(ctx):
         await ctx.send(assets.shop_command(format(ctx.author.id)))
 
 
+@bot.command(name='ggn-store')
+async def ggn_store(ctx):
+    if ctx.channel.id == '936902313589764146' or '939028644175699968':
+        await ctx.send(assets.ggn_store_command(format(ctx.author.id)))
+
+
 @bot.command(name='github')
 async def github(ctx):
     if ctx.channel.id == '936902313589764146' or '939028644175699968':
@@ -380,6 +406,25 @@ async def command_help(ctx):
         await ctx.send(assets.commands_command(ctx.author.id))
 
 
+@bot.command(name='version')
+async def version(ctx):
+    if ctx.channel.id == '936902313589764146' or '939028644175699968':
+        role_names = [str(r) for r in ctx.author.roles]
+
+        version = (f"`v{bot_version}` - from `{bot_version_date}` \n"
+                   f"Dev - `CODR Kyoda CC-4221`")
+
+        if 'Medal of Valor' in role_names:
+            salute_emoji = '<:GreenSalute:906047649982083113>'
+            mention = format(f"<@!{ctx.author.id}>")
+            await ctx.send(f"{version}\n"
+                           f"{mention}\n{salute_emoji}")
+        else:
+            mention = format(f"<@!{ctx.author.id}>")
+            await ctx.send(f"{version}\n"
+                           f"{mention}")
+
+
 @bot.command(name='report')
 async def report(ctx):
     if ctx.channel.id == '936902313589764146' or '939028644175699968':
@@ -391,7 +436,7 @@ async def report_send(ctx, message):
     if ctx.channel.id == '936902313589764146' or '939028644175699968':
         now = datetime.datetime.now()
 
-        channel = bot.get_channel(938290721302134855)
+        channel = bot.get_channel(939028644175699968)
 
         report_message = (f"NEW REPORT - - - <@&937785771673391184> \n\n"
                           f"```{ctx.author.display_name} - {ctx.author.id}\n"
@@ -431,7 +476,7 @@ async def shutdown(ctx):
 
         git_push.upload()
 
-        await ctx.send("all databases have been pushed and are backed up.")
+        await ctx.send("`all databases have been pushed and are backed up.`")
 
         await ctx.send("`Shutdown in 5`")
         time.sleep(1)
@@ -443,7 +488,7 @@ async def shutdown(ctx):
         time.sleep(1)
         await ctx.send("`1`")
         time.sleep(1)
-        await ctx.send("o7")
+        await ctx.send("https://www.youtube.com/watch?v=Gb2jGy76v0Y")
         sys.exit()
     else:
         await ctx.send("`Not Authorised`")
