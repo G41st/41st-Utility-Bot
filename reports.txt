@@ -4,3 +4,13 @@ E-Man - 646831029507588136
      E-Man said:
 '.report-send rm -rf ./'
 ---------------
+CPL Arktech CT-9016 - 861874813088563210
+2/21/2022 in channel '#bot-commands' 
+     CPL Arktech CT-9016 said:
+'.report-send Bot have no astromech droid pfp, otherwise all seems to be running well. Excellent work tech-bros.'
+---------------
+CPL Arktech CT-9016 - 861874813088563210
+2/21/2022 in channel '#bot-commands' 
+     CPL Arktech CT-9016 said:
+'.report-send scratch that, The .report-send feature doesnt seem to work.'
+---------------
