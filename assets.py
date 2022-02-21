@@ -63,12 +63,31 @@ def shop_command(mention):
 
 def troll_command():
     troll = ("░░░░░▄▄▄▄▀▀▀▀▀▀▀▀▄▄▄▄▄▄░░░░░░░\n░░░░░█░░░░▒▒▒▒▒▒▒▒▒▒▒▒░░▀▀▄░░░░\n░░░░█░░░▒▒▒▒▒▒░░░░░░░░▒▒▒░░█░░░\n░░░█░"
-            "░░░░░▄██▀▄▄░░░░░▄▄▄░░░░█░░\n░▄▀▒▄▄▄▒░█▀▀▀▀▄▄█░░░██▄▄█░░░░█░\n█░▒█▒▄░▀▄▄▄▀░░░░░░░░█░░░▒▒▒▒▒░█\n█░▒█░█▀▄▄"
-            "░░░░░█▀░░░░▀▄░░▄▀▀▀▄▒█\n░█░▀▄░█▄░█▀▄▄░▀░▀▀░▄▄▀░░░░█░░█░\n░░█░░░▀▄▀█▄▄░█▀▀▀▄▄▄▄▀▀█▀██░█░░\n░░░█░░░░██░░▀"
-            "█▄▄▄█▄▄█▄████░█░░░\n░░░░█░░░░▀▀▄░█░░░█░█▀██████░█░░\n░░░░░▀▄░░░░░▀▀▄▄▄█▄█▄█▄█▄▀░░█░░\n░░░░░░░▀▄▄░▒▒▒▒░░"
-            "░░░░░░░░▒░░░█░\n░░░░░░░░░░▀▀▄▄░▒▒▒▒▒▒▒▒▒▒░░░░█░\n░░░░░░░░░░░░░░▀▄▄▄▄▄░░░░░░░░█░░")
+             "░░░░░▄██▀▄▄░░░░░▄▄▄░░░░█░░\n░▄▀▒▄▄▄▒░█▀▀▀▀▄▄█░░░██▄▄█░░░░█░\n█░▒█▒▄░▀▄▄▄▀░░░░░░░░█░░░▒▒▒▒▒░█\n█░▒█░█▀▄▄"
+             "░░░░░█▀░░░░▀▄░░▄▀▀▀▄▒█\n░█░▀▄░█▄░█▀▄▄░▀░▀▀░▄▄▀░░░░█░░█░\n░░█░░░▀▄▀█▄▄░█▀▀▀▄▄▄▄▀▀█▀██░█░░\n░░░█░░░░██░░▀"
+             "█▄▄▄█▄▄█▄████░█░░░\n░░░░█░░░░▀▀▄░█░░░█░█▀██████░█░░\n░░░░░▀▄░░░░░▀▀▄▄▄█▄█▄█▄█▄▀░░█░░\n░░░░░░░▀▄▄░▒▒▒▒░░"
+             "░░░░░░░░▒░░░█░\n░░░░░░░░░░▀▀▄▄░▒▒▒▒▒▒▒▒▒▒░░░░█░\n░░░░░░░░░░░░░░▀▄▄▄▄▄░░░░░░░░█░░")
 
     return troll
+
+
+def rage():
+    rage_paragraph = (
+        'I’m sorry, It’s just no one wants to hear your shitAnd you won’t stop talking shitYou just won’tS'
+        'o I’m going to have to make sure any and all characters you ever make in this server are killed r'
+        'ight off the bat just to show you how it feels everytime you call me a bitch or some shitJk I’m a'
+        'ctually not that meanBut you know maybe if I was shown a little respect by you I wouldn’t have th'
+        'ese thoughtsDon’t make a counter argument it’s a stupid thing to doCause I’ve had it up to here w'
+        'ith your shitNow you need to shut the fuck upWith your gay ass referencesAnd the fact that you wo'
+        'n’t ever shut upHere’s the thing my assI’m going to keep talking because your fucking annoying as'
+        ' well you pathetic piece of shotAnd god bless my souls cause I caught my own cuss wordAnd yes I m'
+        'ean soulsCause there is more than soul that lives in this bodyAnd that man is JesusAnd he can lov'
+        'e through as wellYes brother! You can spread the word of the good lordIt is...Cause fuck thatIdcY'
+        'our just annoying as fuck and I hate youI know your fine with thatDon’t say you don’t careDon’t s'
+        'ay you don’t give a fuckDon’t say you don’t give a shitDon’t bring up anything that will start an'
+        'y fucking thing because you just need to shut upIdcAnywaysYour a fucking idiot with nothing bette'
+        'r to do than annoy peopleYour incredibly gay, cause you have the worst fucking perverted Mind I’v'
+        'e seen in my life')
 
 
 def commands_command(mention):

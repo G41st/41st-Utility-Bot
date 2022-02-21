@@ -57,6 +57,15 @@ async def drugs(ctx):
     await ctx.send("deathsticks?")
 
 
+@bot.command(name='your-mom')
+async def your_mom(ctx):
+    await ctx.send("is my bed. your welcome.")
+
+
+@bot.command(name='no-u')
+async def no_u(ctx):
+    await ctx.send(assets.rage())
+
 @bot.command(name='add')
 @commands.has_role('Economy Admin')
 async def add(ctx, user: discord.Member, message):
