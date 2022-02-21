@@ -21,17 +21,21 @@ client = discord.Client()
 bot = commands.Bot(command_prefix='.')
 bot.remove_command('help')
 
-bot_version = '1.2.3'
+bot_version = '1.2.4'
 bot_version_date = '2/21/2022 (US)'
 
 @bot.event
 async def on_ready():
-    channel = bot.get_channel(939028644175699968)
+    dev_team_channel = bot.get_channel(939028644175699968)
+    bot_command_channel = bot.get_channel(936902313589764146)
 
-    await channel.send(f"{bot.user.name} is connected!")
+    message = (f"{bot.user.name} is live:\n"
+               f"`v{bot_version}` - From `{bot_version_date}` \n"
+               f"Release - `Alpha`")
 
-    print(f"{bot.user.name} is connected!\n")
-
+    print(message)
+    await dev_team_channel.send(message)
+    await bot_command_channel.send(message)
 
 @bot.command(name='troll')
 async def troll(ctx):
@@ -205,7 +209,8 @@ async def register(ctx):
                                                f"[ MERIT.txt ]\nPlease do not use .report, an error report has been "
                                                f"automatically generated.")
 
-                                report_message = (f"`{ctx.author.display_name} - {ctx.author.id}`\n"
+                                report_message = (f"@here \n\n"
+                                                  f"`{ctx.author.display_name} - {ctx.author.id}`\n"
                                                   f"`{now.month}/{now.day}/{now.year}` in channel "
                                                   f"'#{ctx.message.channel}'\n{ctx.author.display_name} "
                                                   f"reported a malfunction in the file: [ MERIT.TXT ].\n"
@@ -234,7 +239,8 @@ async def register(ctx):
                                                f"[ DEMERIT.txt ]\nPlease do not use .report, an error report has been "
                                                f"automatically generated.")
 
-                                report_message = (f"`{ctx.author.display_name} - {ctx.author.id}`\n"
+                                report_message = (f"@here \n\n"
+                                                  f"`{ctx.author.display_name} - {ctx.author.id}`\n"
                                                   f"`{now.month}/{now.day}/{now.year}` in channel "
                                                   f"'#{ctx.message.channel}'\n{ctx.author.display_name} "
                                                   f"reported a malfunction in the file: [ DEMERIT.TXT ].\n"
@@ -259,7 +265,8 @@ async def register(ctx):
                                                f"[ MERIT.txt ], [ DEMERIT.txt ]\nPlease do not use .report, an error "
                                                f"report has been automatically generated.")
 
-                                report_message = (f"`{ctx.author.display_name} - {ctx.author.id}`\n"
+                                report_message = (f"@here \n\n"
+                                                  f"`{ctx.author.display_name} - {ctx.author.id}`\n"
                                                   f"`{now.month}/{now.day}/{now.year}` in channel "
                                                   f"'#{ctx.message.channel}'\n{ctx.author.display_name} "
                                                   f"reported a malfunction in the file: [ MERIT.TXT ], [ DEMERIT.TXT ].\n"
@@ -292,7 +299,8 @@ async def register(ctx):
                                                f"[ MERIT.txt ], [ DEMERIT.txt ]\nPlease do not use .report, an error "
                                                f"report has been automatically generated.")
 
-                                report_message = (f"`{ctx.author.display_name} - {ctx.author.id}`\n"
+                                report_message = (f"@here \n\n"
+                                                  f"`{ctx.author.display_name} - {ctx.author.id}`\n"
                                                   f"`{now.month}/{now.day}/{now.year}` in channel "
                                                   f"'#{ctx.message.channel}'\n{ctx.author.display_name} "
                                                   f"reported a malfunction in the file: [ MERIT.TXT ].\n"
@@ -316,7 +324,8 @@ async def register(ctx):
                                                f"[ MERIT.txt ]\nPlease do not use .report, an error report has been "
                                                f"automatically generated.")
 
-                                report_message = (f"`{ctx.author.display_name} - {ctx.author.id}`\n"
+                                report_message = (f"@here \n\n"
+                                                  f"`{ctx.author.display_name} - {ctx.author.id}`\n"
                                                   f"`{now.month}/{now.day}/{now.year}` in channel "
                                                   f"'#{ctx.message.channel}'\n{ctx.author.display_name} "
                                                   f"reported a malfunction in the file: [ MERIT.TXT ].\n"
@@ -344,7 +353,8 @@ async def register(ctx):
                                                f"[ DEMERIT.txt ]\nPlease do not use .report, an error report has been "
                                                f"automatically generated.")
 
-                                report_message = (f"`{ctx.author.display_name} - {ctx.author.id}`\n"
+                                report_message = (f"@here \n\n"
+                                                  f"`{ctx.author.display_name} - {ctx.author.id}`\n"
                                                   f"`{now.month}/{now.day}/{now.year}` in channel "
                                                   f"'#{ctx.message.channel}'\n{ctx.author.display_name} "
                                                   f"reported a malfunction in the file: [ DEMERIT.TXT ].\n"
@@ -421,16 +431,16 @@ async def version(ctx):
         role_names = [str(r) for r in ctx.author.roles]
 
         version = (f"`v{bot_version}` - From `{bot_version_date}` \n"
-                   f"Dev - `CODR Kyoda CC-4221`")
+                   f"Release - `Alpha`")
 
         if 'Medal of Valor' in role_names:
             salute_emoji = '<:GreenSalute:906047649982083113>'
             mention = format(f"<@!{ctx.author.id}>")
-            await ctx.send(f"{version}\n"
+            await ctx.send(f"{version}\n\n"
                            f"{mention}\n{salute_emoji}")
         else:
             mention = format(f"<@!{ctx.author.id}>")
-            await ctx.send(f"{version}\n"
+            await ctx.send(f"{version}\n\n"
                            f"{mention}")
 
 
@@ -447,7 +457,7 @@ async def report_send(ctx, message):
 
         channel = bot.get_channel(939028644175699968)
 
-        report_message = (f"NEW REPORT - - - <@&937785771673391184> \n\n"
+        report_message = (f"NEW REPORT - - - @here \n\n"
                           f"```{ctx.author.display_name} - {ctx.author.id}\n"
                           f"{now.month}/{now.day}/{now.year} in channel '#{ctx.message.channel}' \n"
                           f"{ctx.author.display_name} said:\n '{ctx.message.content}'```\n")
