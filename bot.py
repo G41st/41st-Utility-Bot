@@ -21,7 +21,7 @@ client = discord.Client()
 bot = commands.Bot(command_prefix='.')
 bot.remove_command('help')
 
-bot_version = '1.2.2'
+bot_version = '1.2.3'
 bot_version_date = '2/21/2022 (US)'
 
 @bot.event
@@ -56,6 +56,15 @@ async def bitches(ctx):
 async def drugs(ctx):
     await ctx.send("deathsticks?")
 
+
+@bot.command(name='your-mom')
+async def your_mom(ctx):
+    await ctx.send("is my bed. your welcome.")
+
+
+@bot.command(name='no-u')
+async def no_u(ctx):
+    await ctx.send(assets.rage())
 
 @bot.command(name='add')
 @commands.has_role('Economy Admin')
