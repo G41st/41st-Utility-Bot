@@ -411,7 +411,7 @@ async def version(ctx):
     if ctx.channel.id == '936902313589764146' or '939028644175699968':
         role_names = [str(r) for r in ctx.author.roles]
 
-        version = (f"`v{bot_version}` - from `{bot_version_date}` \n"
+        version = (f"`v{bot_version}` - From `{bot_version_date}` \n"
                    f"Dev - `CODR Kyoda CC-4221`")
 
         if 'Medal of Valor' in role_names:
