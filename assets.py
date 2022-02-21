@@ -112,7 +112,7 @@ def ggn_store_command(mention):
                  f"{credit_emoji} `30,000` - $`25.00` USD \n"
                  f"{credit_emoji} `40,000` - $`30.00` USD \n"
                  f"{credit_emoji} `45,000` - $`30.00` USD \n\n"
-                 f"**EXCEPTIONS/SPECIFICS:**"
+                 f"**EXCEPTIONS/SPECIFICS:** \n"
                  f"'Phase-1 In Game' - $`10.00` USD \n"
                  f"'Custom Visor' - $`15.00` USD \n"
                  f"'2003 Helmet' - $`20.00` USD \n"
