@@ -21,7 +21,7 @@ client = discord.Client()
 bot = commands.Bot(command_prefix='.')
 bot.remove_command('help')
 
-bot_version = '1.2.4'
+bot_version = '1.2.5'
 bot_version_date = '2/21/2022 (US)'
 
 @bot.event
@@ -33,7 +33,8 @@ async def on_ready():
                f"`v{bot_version}` - From `{bot_version_date}` \n"
                f"Release - `Alpha`")
 
-    print(message)
+    print(f"{bot.user.name} is connected!")
+    print('\n\n' + message)
     await dev_team_channel.send(message)
     await bot_command_channel.send(message)
 
