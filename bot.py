@@ -21,8 +21,8 @@ client = discord.Client()
 bot = commands.Bot(command_prefix='.')
 bot.remove_command('help')
 
-bot_version = '1.2.5'
-bot_version_date = '2/21/2022 (US)'
+bot_version = '1.2.6'
+bot_version_date = '2/22/2022 (US EST)'
 
 @bot.event
 async def on_ready():
@@ -64,7 +64,7 @@ async def drugs(ctx):
 
 @bot.command(name='your-mom')
 async def your_mom(ctx):
-    await ctx.send("is my bed. your welcome.")
+    await ctx.send("is in my bed. your welcome.")
 
 
 @bot.command(name='no-u')
