@@ -72,22 +72,23 @@ def troll_command():
 
 
 def rage():
-    rage_paragraph = (
-        'I’m sorry, It’s just no one wants to hear your shitAnd you won’t stop talking shitYou just won’tS'
-        'o I’m going to have to make sure any and all characters you ever make in this server are killed r'
-        'ight off the bat just to show you how it feels everytime you call me a bitch or some shitJk I’m a'
-        'ctually not that meanBut you know maybe if I was shown a little respect by you I wouldn’t have th'
-        'ese thoughtsDon’t make a counter argument it’s a stupid thing to doCause I’ve had it up to here w'
-        'ith your shitNow you need to shut the fuck upWith your gay ass referencesAnd the fact that you wo'
-        'n’t ever shut upHere’s the thing my assI’m going to keep talking because your fucking annoying as'
-        ' well you pathetic piece of shotAnd god bless my souls cause I caught my own cuss wordAnd yes I m'
-        'ean soulsCause there is more than soul that lives in this bodyAnd that man is JesusAnd he can lov'
-        'e through as wellYes brother! You can spread the word of the good lordIt is...Cause fuck thatIdcY'
-        'our just annoying as fuck and I hate youI know your fine with thatDon’t say you don’t careDon’t s'
-        'ay you don’t give a fuckDon’t say you don’t give a shitDon’t bring up anything that will start an'
-        'y fucking thing because you just need to shut upIdcAnywaysYour a fucking idiot with nothing bette'
-        'r to do than annoy peopleYour incredibly gay, cause you have the worst fucking perverted Mind I’v'
-        'e seen in my life')
+    rage_paragraph = ("What the fuck did you just fucking say about me, you little bitch? I'll have you know I "
+                      "graduated top of my class in the Navy Seals, and I've been involved in numerous secret raids on "
+                      "Al-Quaeda, and I have over 300 confirmed kills. I am trained in gorilla warfare and I'm the top "
+                      "sniper in the entire US armed forces. You are nothing to me but just another target. I will "
+                      "wipe you the fuck out with precision the likes of which has never been seen before on this "
+                      "Earth, mark my fucking words. You think you can get away with saying that shit to me over the "
+                      "Internet? Think again, fucker. As we speak I am contacting my secret network of spies across "
+                      "the USA and your IP is being traced right now so you better prepare for the storm, maggot. The "
+                      "storm that wipes out the pathetic little thing you call your life. You're fucking dead, kid. I "
+                      "can be anywhere, anytime, and I can kill you in over seven hundred ways, and that's just with "
+                      "my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the "
+                      "entire arsenal of the United States Marine Corps and I will use it to its full extent to wipe "
+                      "your miserable ass off the face of the continent, you little shit. If only you could have known "
+                      "what unholy retribution your little 'clever' comment was about to bring down upon you, maybe "
+                      "you would have held your fucking tongue. But you couldn't, you didn't, and now you're paying "
+                      "the price, you goddamn idiot. I will shit fury all over you and you will drown in it. You're "
+                      "fucking dead, kiddo.")
 
     return rage_paragraph
 

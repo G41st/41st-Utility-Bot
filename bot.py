@@ -22,7 +22,7 @@ client = discord.Client()
 bot = commands.Bot(command_prefix='.')
 bot.remove_command('help')
 
-bot_version = '1.2.7'
+bot_version = '1.2.8'
 bot_version_date = '2/23/2022 (US EST)'
 
 @bot.event
