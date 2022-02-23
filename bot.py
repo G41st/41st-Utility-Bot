@@ -497,7 +497,7 @@ async def shutdown(ctx):
 
         git_push.upload()
 
-        await ctx.send("`all databases have been pushed and are backed up.`")
+        await ctx.send("`All databases have been pushed and are backed up.`")
 
         await ctx.send("`Shutdown in 5`")
         time.sleep(1)
