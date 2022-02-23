@@ -16,13 +16,14 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 TOKEN_TEST = os.getenv('DISCORD_TOKEN_TEST')
 GUILD = os.getenv('DISCORD_GUILD')
 KYODA_ID = 583386313466708035
+FORCEPS_ID = 173202312762884096
 
 client = discord.Client()
 bot = commands.Bot(command_prefix='.')
 bot.remove_command('help')
 
-bot_version = '1.2.5'
-bot_version_date = '2/21/2022 (US)'
+bot_version = '1.2.7'
+bot_version_date = '2/22/2022 (US EST)'
 
 @bot.event
 async def on_ready():
@@ -64,7 +65,7 @@ async def drugs(ctx):
 
 @bot.command(name='your-mom')
 async def your_mom(ctx):
-    await ctx.send("is my bed. your welcome.")
+    await ctx.send("is in my bed. your welcome.")
 
 
 @bot.command(name='no-u')
@@ -87,7 +88,7 @@ async def add(ctx, user: discord.Member, message):
 
 @bot.command(name='sub-merits')
 async def sub_merits(ctx, user: discord.Member, message):
-    if ctx.author.id == KYODA_ID:
+    if ctx.author.id == KYODA_ID or FORCEPS_ID:
         role_names = [str(r) for r in user.roles]
 
         credit_emoji = '<:credits:937788738950545464>'
@@ -117,7 +118,7 @@ async def remove(ctx, user: discord.Member, message):
 
 @bot.command(name='sub-demerits')
 async def sub_demerits(ctx, user: discord.Member, message):
-    if ctx.author.id == KYODA_ID:
+    if ctx.author.id == KYODA_ID or FORCEPS_ID:
         role_names = [str(r) for r in user.roles]
 
         credit_emoji = '<:credits:937788738950545464>'
@@ -475,7 +476,7 @@ async def report_send(ctx, message):
 
 @bot.command(name='git-push')
 async def shutdown(ctx):
-    if ctx.author.id == KYODA_ID:
+    if ctx.author.id == KYODA_ID or FORCEPS_ID:
         await ctx.send("```41st://<utilities> ~ $```")
         await ctx.send("`Pushing to Git`")
         time.sleep(1)
@@ -489,14 +490,14 @@ async def shutdown(ctx):
 
 @bot.command(name='restart')
 async def shutdown(ctx):
-    if ctx.author.id == KYODA_ID:
+    if ctx.author.id == KYODA_ID or FORCEPS_ID:
         await ctx.send("```41st://<utilities> ~ $```")
         await ctx.send("`Pushing to Git`")
         time.sleep(1)
 
         git_push.upload()
 
-        await ctx.send("`all databases have been pushed and are backed up.`")
+        await ctx.send("`All databases have been pushed and are backed up.`")
 
         await ctx.send("`Shutdown in 5`")
         time.sleep(1)
@@ -516,7 +517,7 @@ async def shutdown(ctx):
 
 @bot.command(name='kill')
 async def shutdown(ctx):
-    if ctx.author.id == KYODA_ID:
+    if ctx.author.id == KYODA_ID or FORCEPS_ID:
         await ctx.send("```41st://<utilities> ~ $``` \n `HARD-SHUTDOWN`")
         time.sleep(1)
         sys.exit()

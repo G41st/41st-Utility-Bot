@@ -89,6 +89,8 @@ def rage():
         'r to do than annoy peopleYour incredibly gay, cause you have the worst fucking perverted Mind I’v'
         'e seen in my life')
 
+    return rage_paragraph
+
 
 def commands_command(mention):
     commands = (f"COMMANDS: - - - <@!{mention}>\n\n"
