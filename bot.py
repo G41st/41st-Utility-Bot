@@ -23,7 +23,7 @@ bot = commands.Bot(command_prefix='.')
 bot.remove_command('help')
 
 bot_version = '1.2.7'
-bot_version_date = '2/22/2022 (US EST)'
+bot_version_date = '2/23/2022 (US EST)'
 
 @bot.event
 async def on_ready():
