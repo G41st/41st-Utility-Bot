@@ -145,17 +145,17 @@ def ggn_store_command(mention):
     return ggn_store
 
 def commands_directory(mention):
-    directory = (f"DIRECTORY: - - - <@!{mention}>\n\n"
-                 f"Owner: `CMDR Forceps CC-3432` \n"
-                 f"Head of Army: `CMDR Forceps CC-3432` \n"
-                 f"Head of Navy: `CODR Kyoda CC-4221` \n"
-                 f"SOF Leads: `RSGT Bored RC-7690`, `RCPT Florence RC-6424` \n"
-                 f"Regiment CO's: `MJR Adko CC-1258 - Diamond`, `MJR Rancor CC-2599 - Krayt`, "
-                 f"`CPT AlphaDog CC-4676 - Titan` \n"
-                 f"Heads of Training: `CMDR Forceps CC-3432 - Army`, `FCDR Thor CT-3312 - Navy` \n"
-                 f"Art Team Lead(s): `QTR Marr CT-4154`, `QTR Idaho CT-2289`, `RLT Numbers RC-1903` \n"
-                 f"Logistics Lead(s): `MJR Adko CC-1258`, `CPT AlphaDog CC-4676` \n"
-                 f"Media Team Lead(s): `CPT AlphaDog CC-4676` \n"
+    directory = (f"DIRECTORY: - - - <@!{mention}>\n\n\n"
+                 f"Owner: `CMDR Forceps CC-3432` \n\n"
+                 f"Head of Army: `CMDR Forceps CC-3432` \n\n"
+                 f"Head of Navy: `CODR Kyoda CC-4221` \n\n"
+                 f"SOF Lead(s): [\n`RSGT Bored RC-7690`, \n`RCPT Florence RC-6424` \n]\n\n"
+                 f"Regiment CO's: [\n`MJR Adko CC-1258 - Diamond`, \n`MJR Rancor CC-2599 - Krayt`, \n"
+                 f"`CPT AlphaDog CC-4676 - Titan` \n]\n\n"
+                 f"Heads of Training: [\n`CMDR Forceps CC-3432 - Army`, \n`FCDR Thor CT-3312 - Navy` \n]\n\n"
+                 f"Art Team Lead(s): [\n`QTR Marr CT-4154`, \n`QTR Idaho CT-2289`, \n`RLT Numbers RC-1903` \n]\n\n"
+                 f"Logistics Lead(s): [\n`MJR Adko CC-1258`, `CPT AlphaDog CC-4676` \n]\n\n"
+                 f"Media Team Lead(s): `CPT AlphaDog CC-4676` \n\n"
                  f"Development Team Lead(s): `CODR Kyoda CC-4221` \n\n"
                  f"For any remaining questions, please notify `CMDR Forceps CC-3432` or `CODR Kyoda CC-4221`.")
 
