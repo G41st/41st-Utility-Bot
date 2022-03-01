@@ -22,8 +22,9 @@ client = discord.Client()
 bot = commands.Bot(command_prefix='.')
 bot.remove_command('help')
 
-bot_version = '1.2.8'
+bot_version = '1.3.0'
 bot_version_date = '2/23/2022 (US EST)'
+
 
 @bot.event
 async def on_ready():
@@ -38,6 +39,7 @@ async def on_ready():
     print('\n\n' + message)
     await dev_team_channel.send(message)
     await bot_command_channel.send(message)
+
 
 @bot.command(name='troll')
 async def troll(ctx):
@@ -71,6 +73,7 @@ async def your_mom(ctx):
 @bot.command(name='no-u')
 async def no_u(ctx):
     await ctx.send(assets.rage())
+
 
 @bot.command(name='add')
 @commands.has_role('Economy Admin')
@@ -167,6 +170,7 @@ async def remove(ctx, user: discord.Member):
     else:
         await ctx.send(f"`{user.display_name}` has {credit_emoji}`{credit_value}`.")
 
+
 # register command order:
 # in all three
 # in registry, in merit, not demerit
@@ -200,7 +204,7 @@ async def register(ctx):
                                 # in all three
                                 print(f"{ctx.author.display_name} - {ctx.author.id} \nis in demerit.txt")
                                 print(f"{ctx.author.display_name} - {ctx.author.id} \nis registered with 0 errors")
-                                await ctx.send(f"Registry integrity check for {mention} passed with `0` errors. \n"                        
+                                await ctx.send(f"Registry integrity check for {mention} passed with `0` errors. \n"
                                                f"(You are already in the registry)")
                             if user_id not in line:
                                 # in registry, in merit, not demerit
@@ -378,14 +382,16 @@ async def register(ctx):
 
                                 with open("registry.txt", 'a') as f:
                                     f.write(user_id + '\n')
-                                    print(f"{ctx.author.display_name} - {ctx.author.id} \nhas been added to registry.txt")
+                                    print(
+                                        f"{ctx.author.display_name} - {ctx.author.id} \nhas been added to registry.txt")
                                 with open("merit.txt", 'a') as f:
                                     f.write(user_id + '\n' + '0\n')
                                     print(f"{ctx.author.display_name} - {ctx.author.id} \nhas been added to merit.txt")
                                 with open("demerit.txt", 'a') as f:
                                     f.write(user_id + '\n' + '0\n')
                                     print(f"{ctx.author.display_name} - {ctx.author.id} has been added to registry.txt")
-                                print(f"{ctx.author.display_name} - {ctx.author.id} \nhas been  registered with 0 errors")
+                                print(
+                                    f"{ctx.author.display_name} - {ctx.author.id} \nhas been  registered with 0 errors")
                                 await ctx.send(f"{mention} has been added to the registry with `0` errors.")
     await bot.process_commands()
 
@@ -411,8 +417,8 @@ async def ggn_store(ctx):
 @bot.command(name='github')
 async def github(ctx):
     if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        await ctx.send("https://github.com/G41st/41st-utility-bot \nIf you are interested in helping out with the bot,"
-                        "be sure to DM Kyoda!")
+        await ctx.send("https://github.com/G41st/41st-utility-bot \n"
+                       "If you are interested in helping out with the bot, be sure to DM Kyoda!")
 
 
 @bot.command(name='fuck')
@@ -425,6 +431,18 @@ async def fuck(ctx):
 async def command_help(ctx):
     if ctx.channel.id == '936902313589764146' or '939028644175699968':
         await ctx.send(assets.commands_command(ctx.author.id))
+
+
+@bot.command(name='commands')
+async def command_commands(ctx):
+    if ctx.channel.id == '936902313589764146' or '939028644175699968':
+        await ctx.send(assets.commands_command(ctx.author.id))
+
+
+@bot.command(name='directory')
+async def command_help(ctx):
+    if ctx.channel.id == '936902313589764146' or '939028644175699968':
+        await ctx.send(assets.commands_directory(ctx.author.id))
 
 
 @bot.command(name='version')
