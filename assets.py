@@ -101,6 +101,7 @@ def commands_command(mention):
                 f"`.shop` - Displays a condensed version of the store. \n"
                 f"`.ggn-store` - Displays the current GGN store price approximations, as well as specific items. \n"
                 f"`.credits` - Calculates your current credit value. \n"
+                f"`.directory` - DM's the user a list of names for various important divisions of the 41st. \n"
                 f"`.version` - Displays current bot dev info. \n"
                 f"`.github` - Sends the link to the bot's git repository. \n"
                 f"`.report` - Sends a user-created error report to the bot dev team.")
@@ -154,7 +155,7 @@ def commands_directory(mention):
                  f"`CPT AlphaDog CC-4676 - Titan` \n]\n\n"
                  f"Heads of Training: [\n`CMDR Forceps CC-3432 - Army`, \n`FCDR Thor CT-3312 - Navy` \n]\n\n"
                  f"Art Team Lead(s): [\n`QTR Marr CT-4154`, \n`QTR Idaho CT-2289`, \n`RLT Numbers RC-1903` \n]\n\n"
-                 f"Logistics Lead(s): [\n`MJR Adko CC-1258`, `CPT AlphaDog CC-4676` \n]\n\n"
+                 f"Logistics Lead(s): [\n`MJR Adko CC-1258`, \n`CPT AlphaDog CC-4676` \n]\n\n"
                  f"Media Team Lead(s): `CPT AlphaDog CC-4676` \n\n"
                  f"Development Team Lead(s): `CODR Kyoda CC-4221` \n\n"
                  f"For any remaining questions, please notify `CMDR Forceps CC-3432` or `CODR Kyoda CC-4221`.")
