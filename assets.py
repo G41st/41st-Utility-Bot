@@ -19,7 +19,7 @@ def store_command(mention):
              f"\n- - - {credit_emoji} `20,000` - - -\n"
              f"{credit_emoji} `20,000` - 'Phase 1 Helmet' \n"
              f"{credit_emoji} `20,000` - 'BARC Helmet' \n"
-             f"{credit_emoji} `20,000` - 'Hooded Helmet' \n"
+             f"{credit_emoji} `20,000` - ~~'Hooded Helmet'~~ \n"
              f"{credit_emoji} `20,000` - 'Phase 1 ARF Helmet' \n"
              f"\n- - - {credit_emoji} `25,000` - - -\n"
              f"{credit_emoji} `25,000` - 'Snowtrooper/Flametrooper Helmet' \n"
@@ -50,7 +50,7 @@ def shop_command(mention):
             f"{credit_emoji} `15,000` - 'Flight Computer/Targeting Visor' \n"
             f"{credit_emoji} `20,000` - 'Phase 1 Helmet' \n"
             f"{credit_emoji} `20,000` - 'BARC Helmet' \n"
-            f"{credit_emoji} `20,000` - 'Hooded Helmet' \n"
+            f"{credit_emoji} `20,000` - ~~'Hooded Helmet'~~ \n"
             f"{credit_emoji} `20,000` - 'Phase 1 ARF Helmet' \n"
             f"{credit_emoji} `25,000` - 'Snowtrooper/Flametrooper Helmet' \n"
             f"{credit_emoji} `30,000` - 'Custom Visor' \n"
@@ -143,3 +143,20 @@ def ggn_store_command(mention):
                  f"Please remember to DM `'Forceps' CC-3432` for any GGN-Store purchases.")
 
     return ggn_store
+
+def commands_directory(mention):
+    directory = (f"DIRECTORY: - - - <@!{mention}>\n\n"
+                 f"Owner: `CMDR Forceps CC-3432` \n"
+                 f"Head of Army: `CMDR Forceps CC-3432` \n"
+                 f"Head of Navy: `CODR Kyoda CC-4221` \n"
+                 f"SOF Leads: `RSGT Bored RC-7690`, `RCPT Florence RC-6424` \n"
+                 f"Regiment CO's: `MJR Adko CC-1258 - Diamond`, `MJR Rancor CC-2599 - Krayt`, "
+                 f"`CPT AlphaDog CC-4676 - Titan` \n"
+                 f"Heads of Training: `CMDR Forceps CC-3432 - Army`, `FCDR Thor CT-3312 - Navy` \n"
+                 f"Art Team Lead(s): `QTR Marr CT-4154`, `QTR Idaho CT-2289`, `RLT Numbers RC-1903` \n"
+                 f"Logistics Lead(s): `MJR Adko CC-1258`, `CPT AlphaDog CC-4676` \n"
+                 f"Media Team Lead(s): `CPT AlphaDog CC-4676` \n"
+                 f"Development Team Lead(s): `CODR Kyoda CC-4221` \n\n"
+                 f"For any remaining questions, please notify `CMDR Forceps CC-3432` or `CODR Kyoda CC-4221`.")
+
+    return directory
