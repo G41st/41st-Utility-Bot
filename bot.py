@@ -2,6 +2,9 @@ import os
 import sys
 import time
 import datetime
+
+import discord
+
 import assets
 import credit_counter
 from discord.ext import commands
@@ -22,7 +25,7 @@ client = discord.Client()
 bot = commands.Bot(command_prefix='.')
 bot.remove_command('help')
 
-bot_version = '1.3.2'
+bot_version = '1.3.3'
 bot_version_date = '3/1/2022 (US EST)'
 
 
@@ -440,9 +443,10 @@ async def command_commands(ctx):
 
 
 @bot.command(name='directory')
-async def command_help(ctx):
-    if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        await ctx.send(assets.commands_directory(ctx.author.id))
+async def command_help(ctx, member: discord.Member):
+    channel = await member.create_dm()
+    await channel.send(assets.commands_directory(ctx.author.id))
+    await ctx.send(f"<@!{ctx.author.id}> - Directory sent in DM's.")
 
 
 @bot.command(name='version')
