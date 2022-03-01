@@ -25,7 +25,7 @@ client = discord.Client()
 bot = commands.Bot(command_prefix='.')
 bot.remove_command('help')
 
-bot_version = '1.3.3'
+bot_version = '1.3.4'
 bot_version_date = '3/1/2022 (US EST)'
 
 
@@ -443,8 +443,8 @@ async def command_commands(ctx):
 
 
 @bot.command(name='directory')
-async def command_help(ctx, member: discord.Member):
-    channel = await member.create_dm()
+async def command_help(ctx):
+    channel = await ctx.author.create_dm()
     await channel.send(assets.commands_directory(ctx.author.id))
     await ctx.send(f"<@!{ctx.author.id}> - Directory sent in DM's.")
 
