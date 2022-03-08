@@ -244,7 +244,7 @@ def credit_counter(role_names, discord_id):
     medal22 = 'True Trooper'
     medal23 = 'Siegebreaker'
     medal24 = 'Top Gun'
-    medal25 = '41st Representaion Medal'
+    medal25 = '41st Representation Medal'
     medal26 = 'Mythical ARF Medal'
     medal27 = 'Legendary ARF Medal'
     medal28 = 'Mythical Engineer Medal'
