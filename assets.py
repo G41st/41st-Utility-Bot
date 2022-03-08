@@ -128,7 +128,7 @@ def ggn_store_command(mention):
 
     ggn_store = (f"**Geetsly's Gaming Network Store Conversions:** <@!{mention}> \n"
                  f"(Please note that these are not prices for credit values. These are credit value conversions, "
-                 f"meaning that a store item which is 15,000 credits is purchicable with $10.00 USD.) \n"
+                 f"meaning that a store item which is 15,000 credits is purchicable with $10.00 USD.) \n\n"
                  f"{credit_emoji} `7,500` - $`5.00` USD \n"
                  f"{credit_emoji} `10,000` - $`7.50` USD \n"
                  f"{credit_emoji} `12,500` - $`10.00` USD \n"
