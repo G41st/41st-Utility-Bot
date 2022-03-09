@@ -1,52 +1,92 @@
-def store_command(mention):
-    credit_emoji = '<:credits:937788738950545464>'
+def store_command(mention, credit_emoji,  str_n):
+    description = (f"<@!{mention}>\n\n"
+                   f"Please use the extended command `.store-#` to view all the items in each price category. "
+                   f"Here is a key:\n"
+                   f"{credit_emoji} `7,500` - `.store-1` \n"
+                   f"{credit_emoji} `10,000` - `.store-2` \n"
+                   f"{credit_emoji} `12,500` - `.store3` \n"
+                   f"{credit_emoji} `15,000` - `.store4` \n"
+                   f"{credit_emoji} `20,000` - `.store5` \n"
+                   f"{credit_emoji} `25,000` - `.store6` \n"
+                   f"{credit_emoji} `30,000` - `.store7` \n"
+                   f"{credit_emoji} `40,000` - `.store8` \n"
+                   f"{credit_emoji} `45,000` - `.store9` \n"
+                   f"{credit_emoji} `ALL` - `.store-all`")
 
-    store = (f"**41st Elite Corps store:** <@!{mention}> \n"
-             f"\n- - - {credit_emoji} `07,500` - - -\n"
-             f"{credit_emoji} `7,500` - 'Helmet Attachments' \n- Choose from one of our pre-existing helmet attachment"
-             f" options. These options currently include: Flashlights, Antennas, Communicators, and the Heavy "
-             f"Sunvisor.\n"
-             f"{credit_emoji} `7,500` - 'Rangefinder Down' \n- A Rangefinder lowered over the eyes. (For SGT+ only.)\n"
-             f"{credit_emoji} `7,500` - 'Helmet Tubes/Pipes' \n- A tube for the base class pilot helmets. "
-             f"(Naval helmets only.)\n"
-             f"\n- - - {credit_emoji} `10,000` - - -\n"
-             f"{credit_emoji} `10,000` - '*Build-Your-Own* Attachment' \n- A custom attachment brainstormed by you, "
-             f"built by the Art Team Leads. NOTE: Your attachment can not resemble other attachments, "
-             f"such as a rangefinder.\n"
-             f"{credit_emoji} `10,000` - 'Specialist Binoculars' \n- Allows for binoculars to be added to your helmet."
-             f"NOTE: Not all helmets are compatible.\n"
-             f"{credit_emoji} `10,000` - 'Specialist Binoculars Up' \n- Allows for raised binoculars. "
-             f"NOTE: You must already have access to the binoculars.\n"
-             f"{credit_emoji} `10,000` - 'Phase 2 Arc Trooper' \n- Access to a Phase 2 ARC helmet. (For ARC only.)\n"
-             f"\n- - - {credit_emoji} `12,500` - - -\n"
-             f"{credit_emoji} `12,500` - 'Phase 1 Clone In-Game Skin' \n- Allows for a trooper to use Phase 1 variants "
-             f"of the 41st skins. (Not applicable to ARC's)"
-             f"\n- - - {credit_emoji} `15,000` - - -\n"
-             f"{credit_emoji} `15,000` - 'Clone Gunner Helmet' \n- A new helmet template. Google 'Clone Heavy Gunner' "
-             f"for reference.\n"
-             f"{credit_emoji} `15,000` - 'Flight Computer/Targeting Visor' \n- An external holographic visor. "
-             f"(The Flight Computer is only available to ACE pilots of SGT+. The Targeting visor is only "
-             f"available to Spec Ops helmets (Strike Cadre Helmet).)\n"
-             f"\n- - - {credit_emoji} `20,000` - - -\n"
-             f"{credit_emoji} `20,000` - 'Phase 1 Helmet' \n- A Phase 1 helmet.\n"
-             f"{credit_emoji} `20,000` - 'BARC Helmet' \n- For the mysterious types.\n"
-             f"{credit_emoji} `20,000` - 'Hooded Helmet' \n- Stylish and Sneaky. (Only for Shadow Cadre and SOF.)\n"
-             f"{credit_emoji} `20,000` - 'Phase 1 ARF Helmet' \n- The ARF Helmet from 'Star Wars The Clone Wars'.\n"
-             f"\n- - - {credit_emoji} `25,000` - - -\n"
-             f"{credit_emoji} `25,000` - 'Snowtrooper/Flametrooper Helmet' \n- BRING IN THE FLAMETHROWERS!\n"
-             f"\n- - - {credit_emoji} `30,000` - - -\n"
-             f"{credit_emoji} `30,000` - 'Custom Visor' \n- Clearence to a one color visor. NOTE: Troopers may get a "
-             f"refund apon reaching the rank of 2LT or higher, or RC.\n"
-             f"\n- - - {credit_emoji} `40,000` - - -\n"
-             f"{credit_emoji} `40,000` - '2003 Helmet Varients' \n- The classic style. Avalible for all helmet "
-             f"templates.\n"
-             f"\n- - - {credit_emoji} `45,000` - - -\n"
-             f"{credit_emoji} `45,000` - 'Blaze Trooper Helmet' \n- 'Need a light?' NOTE: Google Clone Blaze Trooper "
-             f"for a reference.\n"
-             f"{credit_emoji} `45,000` - 'Desert Trooper Helmet' \n- 'I hate sand.' NOTE: Google Clone Desert Trooper "
-             f"for a reference.\n")
+    store = f"**41st Elite Corps store:** <@!{mention}> \n"
 
-    return store
+    store1 = (f"\n- - - {credit_emoji} `7,500` - - -\n"
+              f"{credit_emoji} `7,500` - 'Helmet Attachments' \n- Choose from one of our pre-existing helmet attachment"
+              f" options. These options currently include: Flashlights, Antennas, Communicators, and the Heavy "
+              f"Sunvisor.\n"
+              f"{credit_emoji} `7,500` - 'Rangefinder Down' \n- A Rangefinder lowered over the eyes. (For SGT+ only.)\n"
+              f"{credit_emoji} `7,500` - 'Helmet Tubes/Pipes' \n- A tube for the base class pilot helmets. "
+              f"(Naval helmets only.)\n")
+
+    store2 = (f"\n- - - {credit_emoji} `10,000` - - -\n"
+              f"{credit_emoji} `10,000` - '*Build-Your-Own* Attachment' \n- A custom attachment brainstormed by you, "
+              f"built by the Art Team Leads. NOTE: Your attachment can not resemble other attachments, "
+              f"such as a rangefinder.\n"
+              f"{credit_emoji} `10,000` - 'Specialist Binoculars' \n- Allows for binoculars to be added to your helmet."
+              f"NOTE: Not all helmets are compatible.\n"
+              f"{credit_emoji} `10,000` - 'Specialist Binoculars Up' \n- Allows for raised binoculars. "
+              f"NOTE: You must already have access to the binoculars.\n"
+              f"{credit_emoji} `10,000` - 'Phase 2 Arc Trooper' \n- Access to a Phase 2 ARC helmet. (For ARC only.)\n")
+
+    store3 =  (f"\n- - - {credit_emoji} `12,500` - - -\n"
+              f"{credit_emoji} `12,500` - 'Phase 1 Clone In-Game Skin' \n- Allows for a trooper to use Phase 1 variants "
+              f"of the 41st skins. (Not applicable to ARC's)")
+
+    store3 = (f"\n- - - {credit_emoji} `15,000` - - -\n"
+              f"{credit_emoji} `15,000` - 'Clone Gunner Helmet' \n- A new helmet template. Google 'Clone Heavy Gunner' "
+              f"for reference.\n"
+              f"{credit_emoji} `15,000` - 'Flight Computer/Targeting Visor' \n- An external holographic visor. "
+              f"(The Flight Computer is only available to ACE pilots of SGT+. The Targeting visor is only "
+              f"available to Spec Ops helmets (Strike Cadre Helmet).)\n")
+
+    store4 = (f"\n- - - {credit_emoji} `20,000` - - -\n"
+              f"{credit_emoji} `20,000` - 'Phase 1 Helmet' \n- A Phase 1 helmet.\n"
+              f"{credit_emoji} `20,000` - 'BARC Helmet' \n- For the mysterious types.\n"
+              f"{credit_emoji} `20,000` - 'Hooded Helmet' \n- Stylish and Sneaky. (Only for Shadow Cadre and SOF.)\n"
+              f"{credit_emoji} `20,000` - 'Phase 1 ARF Helmet' \n- The ARF Helmet from 'Star Wars The Clone Wars'.\n")
+
+    store5 = (f"\n- - - {credit_emoji} `25,000` - - -\n"
+              f"{credit_emoji} `25,000` - 'Snowtrooper/Flametrooper Helmet' \n- BRING IN THE FLAMETHROWERS!\n")
+
+    store6 = (f"\n- - - {credit_emoji} `30,000` - - -\n"
+              f"{credit_emoji} `30,000` - 'Custom Visor' \n- Clearence to a one color visor. NOTE: Troopers may get a "
+              f"refund apon reaching the rank of 2LT or higher, or RC.\n")
+
+    store7 = (f"\n- - - {credit_emoji} `40,000` - - -\n"
+              f"{credit_emoji} `40,000` - '2003 Helmet Varients' \n- The classic style. Avalible for all helmet "
+              f"templates.\n")
+
+    store8 = (f"\n- - - {credit_emoji} `45,000` - - -\n"
+              f"{credit_emoji} `45,000` - 'Blaze Trooper Helmet' \n- 'Need a light?' NOTE: Google Clone Blaze Trooper "
+              f"for a reference.\n"
+              f"{credit_emoji} `45,000` - 'Desert Trooper Helmet' \n- 'I hate sand.' NOTE: Google Clone Desert Trooper "
+              f"for a reference.\n")
+
+    if str_n == 0:
+        return store
+    elif str_n == 1:
+        return store1
+    elif str_n == 2:
+        return store2
+    elif str_n == 3:
+        return store3
+    elif str_n == 4:
+        return store4
+    elif str_n == 5:
+        return store5
+    elif str_n == 6:
+        return store6
+    elif str_n == 7:
+        return store7
+    elif str_n == 8:
+        return store8
+    elif str_n == 69:
+        return description
 
 
 def shop_command(mention):
@@ -161,6 +201,7 @@ def ggn_store_command(mention):
                  f"Please remember to DM `'Forceps' CC-3432` for any GGN-Store purchases.")
 
     return ggn_store
+
 
 def commands_directory(mention):
     directory = (f"DIRECTORY: - - - <@!{mention}>\n\n\n"
