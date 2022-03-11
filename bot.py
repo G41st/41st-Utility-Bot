@@ -25,8 +25,8 @@ client = discord.Client()
 bot = commands.Bot(command_prefix='.')
 bot.remove_command('help')
 
-bot_version = '1.5.1'
-bot_version_date = '3/9/2022 (US EST)'
+bot_version = '1.5.2'
+bot_version_date = '3/11/2022 (US EST)'
 
 
 @bot.event
@@ -484,7 +484,7 @@ async def store(ctx):
         credit_emoji = '["7]'
 
         channel = await ctx.author.create_dm()
-        await ctx.send(f"<@!{ctx.author.id}> - Directory sent in DM's.")
+        await ctx.send(f"<@!{ctx.author.id}> - Store sent in DM's.")
 
         await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 0))
         await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 1))
