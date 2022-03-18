@@ -5,3 +5,4 @@ test.py
 .env
 pc_start.py
 git_key.txt
+.DS_Store
