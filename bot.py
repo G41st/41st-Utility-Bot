@@ -25,7 +25,7 @@ client = discord.Client()
 bot = commands.Bot(command_prefix='.')
 bot.remove_command('help')
 
-bot_version = '1.6.0'
+bot_version = '1.6.2'
 bot_version_date = '3/20/2022 (US EST)'
 
 
@@ -109,7 +109,7 @@ async def adko(ctx):
 async def adko(ctx):
     salute_emoji = '<:GreenSalute:906047649982083113>'
 
-    await ctx.send(f"`MJR Adko CC-1258`\n"
+    await ctx.send(f"`CPT Blue CC-1591`\n"
                    f"Trained on: `08/20/2021 (US EAST)`\n"
                    f"Stepped down on: `03/20/2022 (US EAST)`\n"
                    f"- 'A loving, caring, human being. Always there for you if you need him. Like the brother you "
