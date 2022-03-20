@@ -25,7 +25,7 @@ client = discord.Client()
 bot = commands.Bot(command_prefix='.')
 bot.remove_command('help')
 
-bot_version = '1.5.4'
+bot_version = '1.6.0'
 bot_version_date = '3/20/2022 (US EST)'
 
 
@@ -91,6 +91,29 @@ async def not_scared(ctx):
 @bot.command(name='no-u')
 async def no_u(ctx):
     await ctx.send(assets.rage())
+
+
+@bot.command(name='adko')
+async def adko(ctx):
+    salute_emoji = '<:GreenSalute:906047649982083113>'
+
+    await ctx.send(f"`MJR Adko CC-1258`\n"
+                   f"Trained on: `07/12/2021 (US EAST)`\n"
+                   f"Stepped down on: `03/20/2022 (US EAST)`\n"
+                   f"- \"The road to freedom is paved with blood\" \n"
+                   f"Godspeed brother, may Floppa bless you on your journey.\n"
+                   f"{salute_emoji}")
+
+
+@bot.command(name='blue')
+async def adko(ctx):
+    salute_emoji = '<:GreenSalute:906047649982083113>'
+
+    await ctx.send(f"`MJR Adko CC-1258`\n"
+                   f"Trained on: `08/20/2021 (US EAST)`\n"
+                   f"Stepped down on: `03/20/2022 (US EAST)`\n"
+                   f"Godspeed brother, may Floppa bless you on your journey.\n"
+                   f"{salute_emoji}")
 
 
 @bot.command(name='add')
@@ -627,6 +650,18 @@ async def shutdown(ctx):
         await ctx.send("`Not Authorised`")
 
 
+@bot.command(name='announcement')
+async def shutdown(ctx, message):
+    if ctx.author.id == KYODA_ID or FORCEPS_ID:
+        channel = bot.get_channel(851284148915404831)
+
+        pings = assets.pings()
+
+        await channel.send(pings + "\n\n" + message)
+    else:
+        await ctx.send("`Not Authorised`")
+
+
 @bot.command(name='restart')
 async def shutdown(ctx):
     if ctx.author.id == KYODA_ID or FORCEPS_ID:
@@ -666,4 +701,4 @@ async def shutdown(ctx):
 
 def main():
     while True:
-        bot.run(TOKEN)
+        bot.run(TOKEN_TEST)

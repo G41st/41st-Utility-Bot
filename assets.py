@@ -221,3 +221,9 @@ def commands_directory(mention):
                  f"For any remaining questions, please notify `CMDR Forceps CC-3432` or `CODR Kyoda CC-4221`.")
 
     return directory
+
+
+def pings():
+    pings = "<@&954526344971157544> <@&922002555192631356> <@&851041781978365962> <@&850843079417659402>"
+
+    return pings
