@@ -100,7 +100,7 @@ async def adko(ctx):
     await ctx.send(f"`MJR Adko CC-1258`\n"
                    f"Trained on: `07/12/2021 (US EAST)`\n"
                    f"Stepped down on: `03/20/2022 (US EAST)`\n"
-                   f"- \"The road to freedom is paved with blood\" \n"
+                   f"- 'The road to freedom is paved with blood. (Unknown)' \n"
                    f"Godspeed brother, may Floppa bless you on your journey.\n"
                    f"{salute_emoji}")
 
@@ -112,7 +112,9 @@ async def adko(ctx):
     await ctx.send(f"`MJR Adko CC-1258`\n"
                    f"Trained on: `08/20/2021 (US EAST)`\n"
                    f"Stepped down on: `03/20/2022 (US EAST)`\n"
-                   f"Godspeed brother, may Floppa bless you on your journey.\n"
+                   f"- 'A loving, caring, human being. Always there for you if you need him. Like the brother you "
+                   f"never got. (2LT Raven)' \n"
+                   f"Godspeed brother.\n"
                    f"{salute_emoji}")
 
 
@@ -701,4 +703,4 @@ async def shutdown(ctx):
 
 def main():
     while True:
-        bot.run(TOKEN_TEST)
+        bot.run(TOKEN)
