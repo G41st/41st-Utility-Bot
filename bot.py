@@ -25,7 +25,7 @@ client = discord.Client()
 bot = commands.Bot(command_prefix='.')
 bot.remove_command('help')
 
-bot_version = '1.5.3'
+bot_version = '1.5.4'
 bot_version_date = '3/20/2022 (US EST)'
 
 
@@ -77,9 +77,15 @@ async def shitterbawx(ctx):
 async def chatterbox(ctx):
     await ctx.send("you mean shitterbawx?")
 
+
 @bot.command(name='your-mom')
 async def your_mom(ctx):
     await ctx.send("is in my bed. your welcome.")
+
+
+@bot.command(name='not-scared')
+async def not_scared(ctx):
+    await ctx.send("<@!391974737745805322>")
 
 
 @bot.command(name='no-u')
