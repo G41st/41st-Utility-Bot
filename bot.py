@@ -25,8 +25,8 @@ client = discord.Client()
 bot = commands.Bot(command_prefix='.')
 bot.remove_command('help')
 
-bot_version = '1.5.2'
-bot_version_date = '3/11/2022 (US EST)'
+bot_version = '1.5.3'
+bot_version_date = '3/20/2022 (US EST)'
 
 
 @bot.event
@@ -67,6 +67,15 @@ async def bitches(ctx):
 async def drugs(ctx):
     await ctx.send("deathsticks?")
 
+
+@bot.command(name='shitterbawx')
+async def shitterbawx(ctx):
+    await ctx.send("pretorien is the better ginger")
+
+
+@bot.command(name='chatterbox')
+async def chatterbox(ctx):
+    await ctx.send("you mean shitterbawx?")
 
 @bot.command(name='your-mom')
 async def your_mom(ctx):
@@ -477,6 +486,16 @@ async def store(ctx):
 
         await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 0))
         await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 8))
+
+
+@bot.command(name='store-9')
+async def store(ctx):
+    if ctx.channel.id == '936902313589764146' or '939028644175699968':
+        credit_emoji = '<:credits:937788738950545464>'
+
+        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 0))
+        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 9))
+
 
 @bot.command(name='store-all')
 async def store(ctx):

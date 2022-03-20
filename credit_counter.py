@@ -583,7 +583,7 @@ def credit_counter(role_names, discord_id):
         if any(ext == qual3 for ext in role_names):
             reward3 = 2500
         if any(ext == qual4 for ext in role_names):
-            reward4 = 5000
+            reward4 = 3000
         if any(ext == qual5 for ext in role_names):
             reward5 = 2000
         if any(ext == qual6 for ext in role_names):
@@ -631,9 +631,9 @@ def credit_counter(role_names, discord_id):
         if any(ext == qual27 for ext in role_names):
             reward27 = 1000
         if any(ext == qual28 for ext in role_names):
-            reward28 = 15000
+            reward28 = 8000
         if any(ext == qual29 for ext in role_names):
-            reward29 = 7500
+            reward29 = 4000
 
         qual_total = (reward1 + reward2 + reward3 + reward4 + reward5 + reward6 + reward7 + reward8 + reward9 +
                       reward10 + reward11 + reward12 + reward13 + reward14 + reward15 + reward16 + reward17 +
