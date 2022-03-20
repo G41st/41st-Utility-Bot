@@ -37,31 +37,31 @@ def store_command(mention, credit_emoji,  str_n):
               f"{credit_emoji} `12,500` - 'Phase 1 Clone In-Game Skin' \n- Allows for a trooper to use Phase 1 variants "
               f"of the 41st skins. (Not applicable to ARC's)")
 
-    store3 = (f"\n- - - {credit_emoji} `15,000` - - -\n"
+    store4 = (f"\n- - - {credit_emoji} `15,000` - - -\n"
               f"{credit_emoji} `15,000` - 'Clone Gunner Helmet' \n- A new helmet template. Google 'Clone Heavy Gunner' "
               f"for reference.\n"
               f"{credit_emoji} `15,000` - 'Flight Computer/Targeting Visor' \n- An external holographic visor. "
               f"(The Flight Computer is only available to ACE pilots of SGT+. The Targeting visor is only "
               f"available to Spec Ops helmets (Strike Cadre Helmet).)\n")
 
-    store4 = (f"\n- - - {credit_emoji} `20,000` - - -\n"
+    store5 = (f"\n- - - {credit_emoji} `20,000` - - -\n"
               f"{credit_emoji} `20,000` - 'Phase 1 Helmet' \n- A Phase 1 helmet.\n"
               f"{credit_emoji} `20,000` - 'BARC Helmet' \n- For the mysterious types.\n"
               f"{credit_emoji} `20,000` - 'Hooded Helmet' \n- Stylish and Sneaky. (Only for Shadow Cadre and SOF.)\n"
               f"{credit_emoji} `20,000` - 'Phase 1 ARF Helmet' \n- The ARF Helmet from 'Star Wars The Clone Wars'.\n")
 
-    store5 = (f"\n- - - {credit_emoji} `25,000` - - -\n"
+    store6 = (f"\n- - - {credit_emoji} `25,000` - - -\n"
               f"{credit_emoji} `25,000` - 'Snowtrooper/Flametrooper Helmet' \n- BRING IN THE FLAMETHROWERS!\n")
 
-    store6 = (f"\n- - - {credit_emoji} `30,000` - - -\n"
+    store7 = (f"\n- - - {credit_emoji} `30,000` - - -\n"
               f"{credit_emoji} `30,000` - 'Custom Visor' \n- Clearence to a one color visor. NOTE: Troopers may get a "
               f"refund apon reaching the rank of 2LT or higher, or RC.\n")
 
-    store7 = (f"\n- - - {credit_emoji} `40,000` - - -\n"
+    store8 = (f"\n- - - {credit_emoji} `40,000` - - -\n"
               f"{credit_emoji} `40,000` - '2003 Helmet Varients' \n- The classic style. Avalible for all helmet "
               f"templates.\n")
 
-    store8 = (f"\n- - - {credit_emoji} `45,000` - - -\n"
+    store9 = (f"\n- - - {credit_emoji} `45,000` - - -\n"
               f"{credit_emoji} `45,000` - 'Blaze Trooper Helmet' \n- 'Need a light?' NOTE: Google Clone Blaze Trooper "
               f"for a reference.\n"
               f"{credit_emoji} `45,000` - 'Desert Trooper Helmet' \n- 'I hate sand.' NOTE: Google Clone Desert Trooper "
@@ -85,6 +85,8 @@ def store_command(mention, credit_emoji,  str_n):
         return store7
     elif str_n == 8:
         return store8
+    elif str_n == 9:
+        return store9
     elif str_n == 69:
         return description
 
@@ -183,7 +185,7 @@ def ggn_store_command(mention):
 
     ggn_store = (f"**Geetsly's Gaming Network Store Conversions:** <@!{mention}> \n"
                  f"(Please note that these are not prices for credit values. These are credit value conversions, "
-                 f"meaning that a store item which is 15,000 credits is purchicable with $10.00 USD.) \n\n"
+                 f"meaning that a store item which is 15,000 credits is purchasable with $10.00 USD.) \n\n"
                  f"{credit_emoji} `7,500` - $`5.00` USD \n"
                  f"{credit_emoji} `10,000` - $`7.50` USD \n"
                  f"{credit_emoji} `12,500` - $`10.00` USD \n"
