@@ -46,7 +46,6 @@ def store_command(mention, credit_emoji,  str_n):
 
     store5 = (f"\n- - - {credit_emoji} `20,000` - - -\n"
               f"{credit_emoji} `20,000` - 'Phase 1 Helmet' \n- A Phase 1 helmet.\n"
-              f"{credit_emoji} `20,000` - 'BARC Helmet' \n- For the mysterious types.\n"
               f"{credit_emoji} `20,000` - 'Hooded Helmet' \n- Stylish and Sneaky. (Only for Shadow Cadre and SOF.)\n"
               f"{credit_emoji} `20,000` - 'Phase 1 ARF Helmet' \n- The ARF Helmet from 'Star Wars The Clone Wars'.\n")
 
@@ -56,6 +55,8 @@ def store_command(mention, credit_emoji,  str_n):
     store7 = (f"\n- - - {credit_emoji} `30,000` - - -\n"
               f"{credit_emoji} `30,000` - 'Custom Visor' \n- Clearance to a one color visor. NOTE: Troopers may get a "
               f"refund apon reaching the rank of 2LT or higher, or RC.\n"
+              f"{credit_emoji} `30,000` - 'BARC Helmet and Skin' \n- 'For the mysterious types.' Recive access to the "
+              f"41st BARC Helmet as well as permition to use the 91st Recon Corps in game.\n"
               f"{credit_emoji} `30,000` - 'Rendered Helmet' \n- Receive a 3D rendered helmet from our Dev Team.\n")
 
     store8 = (f"\n- - - {credit_emoji} `40,000` - - -\n"
@@ -65,8 +66,9 @@ def store_command(mention, credit_emoji,  str_n):
     store9 = (f"\n- - - {credit_emoji} `45,000` - - -\n"
               f"{credit_emoji} `45,000` - 'Blaze Trooper Helmet' \n- 'Need a light?' NOTE: Google Clone Blaze Trooper "
               f"for a reference.\n"
-              f"{credit_emoji} `45,000` - 'Desert Trooper Helmet' \n- 'I hate sand.' NOTE: Google Clone Desert Trooper "
-              f"for a reference.\n"
+              f"{credit_emoji} `45,000` - 'Desert Trooper Helmet (And Skin for PC Only.)' \n- 'I hate sand.' Recive "
+              f"the 41st Desert Trooper helmet as well as acces to the 501st Legion in game, if you are on PC. "
+              f"NOTE: Google Clone Desert Trooper for a reference.\n"
               f"{credit_emoji} `45,000` - 'Rendered Body PFP' \n- Recive a 3D rendered body pfp from our Dev Team.\n")
 
     if str_n == 0:
@@ -108,15 +110,15 @@ def shop_command(mention):
             f"{credit_emoji} `15,000` - 'Clone Gunner Helmet' \n"
             f"{credit_emoji} `15,000` - 'Flight Computer/Targeting Visor' \n"
             f"{credit_emoji} `20,000` - 'Phase 1 Helmet' \n"
-            f"{credit_emoji} `20,000` - 'BARC Helmet' \n"
             f"{credit_emoji} `20,000` - 'Hooded Helmet' \n"
             f"{credit_emoji} `20,000` - 'Phase 1 ARF Helmet' \n"
             f"{credit_emoji} `25,000` - 'Snowtrooper/Flametrooper Helmet' \n"
             f"{credit_emoji} `30,000` - 'Custom Visor' \n"
+            f"{credit_emoji} `30,000` - 'BARC Helmet and Skin' \n"
             f"{credit_emoji} `30,000` - 'Rendered Helmet' \n"
             f"{credit_emoji} `40,000` - '2003 Helmet Varients' \n"
             f"{credit_emoji} `45,000` - 'Blaze Trooper Helmet' \n"
-            f"{credit_emoji} `45,000` - 'Desert Trooper Helmet' \n"
+            f"{credit_emoji} `45,000` - 'Desert Trooper Helmet (and Skin for PC)' \n"
             f"{credit_emoji} `45,000` - 'Rendered Body PFP' \n")
 
     return shop
