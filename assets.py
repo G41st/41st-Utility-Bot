@@ -54,18 +54,20 @@ def store_command(mention, credit_emoji,  str_n):
               f"{credit_emoji} `25,000` - 'Snowtrooper/Flametrooper Helmet' \n- BRING IN THE FLAMETHROWERS!\n")
 
     store7 = (f"\n- - - {credit_emoji} `30,000` - - -\n"
-              f"{credit_emoji} `30,000` - 'Custom Visor' \n- Clearence to a one color visor. NOTE: Troopers may get a "
-              f"refund apon reaching the rank of 2LT or higher, or RC.\n")
+              f"{credit_emoji} `30,000` - 'Custom Visor' \n- Clearance to a one color visor. NOTE: Troopers may get a "
+              f"refund apon reaching the rank of 2LT or higher, or RC.\n"
+              f"{credit_emoji} `30,000` - 'Rendered Helmet' \n- Receive a 3D rendered helmet from our Dev Team.\n")
 
     store8 = (f"\n- - - {credit_emoji} `40,000` - - -\n"
-              f"{credit_emoji} `40,000` - '2003 Helmet Varients' \n- The classic style. Avalible for all helmet "
+              f"{credit_emoji} `40,000` - '2003 Helmet Variants' \n- The classic style. Available for all helmet "
               f"templates.\n")
 
     store9 = (f"\n- - - {credit_emoji} `45,000` - - -\n"
               f"{credit_emoji} `45,000` - 'Blaze Trooper Helmet' \n- 'Need a light?' NOTE: Google Clone Blaze Trooper "
               f"for a reference.\n"
               f"{credit_emoji} `45,000` - 'Desert Trooper Helmet' \n- 'I hate sand.' NOTE: Google Clone Desert Trooper "
-              f"for a reference.\n")
+              f"for a reference.\n"
+              f"{credit_emoji} `45,000` - 'Rendered Body PFP' \n- Recive a 3D rendered body pfp from our Dev Team.\n")
 
     if str_n == 0:
         return store
@@ -111,9 +113,11 @@ def shop_command(mention):
             f"{credit_emoji} `20,000` - 'Phase 1 ARF Helmet' \n"
             f"{credit_emoji} `25,000` - 'Snowtrooper/Flametrooper Helmet' \n"
             f"{credit_emoji} `30,000` - 'Custom Visor' \n"
+            f"{credit_emoji} `30,000` - 'Rendered Helmet' \n"
             f"{credit_emoji} `40,000` - '2003 Helmet Varients' \n"
             f"{credit_emoji} `45,000` - 'Blaze Trooper Helmet' \n"
-            f"{credit_emoji} `45,000` - 'Desert Trooper Helmet' \n")
+            f"{credit_emoji} `45,000` - 'Desert Trooper Helmet' \n"
+            f"{credit_emoji} `45,000` - 'Rendered Body PFP' \n")
 
     return shop
 
@@ -224,6 +228,6 @@ def commands_directory(mention):
 
 
 def pings():
-    pings = "<@&954526344971157544> <@&922002555192631356> <@&851041781978365962> <@&850843079417659402>"
+    role_mentions = "<@&954526344971157544> <@&922002555192631356> <@&851041781978365962> <@&850843079417659402>"
 
-    return pings
+    return role_mentions
