@@ -641,7 +641,6 @@ def credit_counter(role_names, discord_id):
                       reward26 + reward27 + reward28 + reward29)
 
         with open("merit.txt", 'r') as f:
-
             for number, line in enumerate(f):
                 if d_id not in line:
                     merit_total = 0

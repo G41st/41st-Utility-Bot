@@ -25,8 +25,8 @@ client = discord.Client()
 bot = commands.Bot(command_prefix='.')
 bot.remove_command('help')
 
-bot_version = '1.6.4'
-bot_version_date = '3/27/2022 (US EST)'
+bot_version = '1.7.0'
+bot_version_date = '3/30/2022 (US EST)'
 
 
 @bot.event
@@ -212,6 +212,86 @@ async def remove(ctx, user: discord.Member):
                        " to add yourself to the registry or to check integrity of your user. ")
     else:
         await ctx.send(f"`{user.display_name}` has {credit_emoji}`{credit_value}`.")
+
+
+@bot.command(name='id')
+@commands.has_role('Economy Admin')
+async def identify(ctx, user: discord.Member):
+    role_names = [str(r) for r in user.roles]
+
+    credit_emoji = '<:credits:937788738950545464>'
+    credit_value = credit_counter.credit_counter(role_names, user.id)
+
+    def merit_checker():
+        with open("merit.txt", 'r') as f:
+            for number, line in enumerate(f):
+                if str(user.id) not in line:
+                    merit_total = 0
+                if str(user.id) in line:
+                    line_number = number
+
+                    with open("merit.txt", 'r') as f:
+                        file_read = f.readlines()
+                        file_int1_read = int(line_number)
+                        file_int2_read = (file_int1_read + 1)
+                        file_to_read = file_read[file_int2_read]
+                        file_to_read_stripped = file_to_read.strip()
+                        merit_total = int(file_to_read_stripped)
+                        return merit_total
+
+    def demerit_checker():
+        with open("demerit.txt", 'r') as f:
+            for number, line in enumerate(f):
+                if str(user.id) not in line:
+                    demerit_total = 0
+                if str(user.id) in line:
+                    line_number = number
+
+                    with open("demerit.txt", 'r') as f:
+                        file_read = f.readlines()
+                        file_int1_read = int(line_number)
+                        file_int2_read = (file_int1_read + 1)
+                        file_to_read = file_read[file_int2_read]
+                        file_to_read_stripped = file_to_read.strip()
+                        demerit_total = int(file_to_read_stripped)
+                        return demerit_total
+
+    def cert(tag):
+        global string
+        string = ""
+
+        if tag == "trooper":
+            if any(ext == 'Clone Trooper' for ext in role_names):
+                string = "Trooper"
+        if tag == "pilot":
+            if any(ext == 'Clone Pilot' for ext in role_names):
+                string = "Pilot"
+        if tag == "veteran":
+            if any(ext == 'Clone Veteran' for ext in role_names):
+                string = "Veteran"
+        if tag == "valor":
+            if any(ext == 'Medal of Valor' for ext in role_names):
+                string = "Medal of Valor Recipient"
+
+        return string
+
+    shadow_mention = discord.AllowedMentions(users=False)
+
+    if credit_value == False:
+        await ctx.send("User was not detected in the credit logs, or has no credits. Please have them run `.register`"
+                       " to add yourself to the registry or to check integrity of your user. ")
+    else:
+        await ctx.send(f"Name: `{user.display_name}`\n"
+                       f"ID:`{user.id}`\n"
+                       f"Credits: {credit_emoji}`{credit_value}`\n"
+                       f"Merits: `{merit_checker()}`\n"
+                       f"Demerits: `{demerit_checker()}`\n"
+                       f"Certifications: \n```\n"
+                       f"{cert('trooper')}\n"
+                       f"{cert('pilot')}\n"
+                       f"{cert('veteran')}"
+                       f"{cert('valor')}```\n"
+                       f"Shadow Mention: <@!{user.id}>", allowed_mentions=shadow_mention)
 
 
 # register command order:
@@ -703,4 +783,4 @@ async def shutdown(ctx):
 
 def main():
     while True:
-        bot.run(TOKEN)
+        bot.run(TOKEN_TEST)
