@@ -15,7 +15,7 @@ import git_push
 import merit_config
 
 load_dotenv()
-TOKEN = os.getenv('DISCORD_TOKEN_TEST')
+TOKEN = os.getenv('DISCORD_TOKEN')
 TOKEN_TEST = os.getenv('DISCORD_TOKEN_TEST')
 GUILD = os.getenv('DISCORD_GUILD')
 KYODA_ID = 583386313466708035
@@ -38,7 +38,7 @@ def startup(START):
 
 
 startup(TOKEN)
-bot_version = '1.8.0'
+bot_version = '1.8.1'
 bot_version_date = '3/30/2022 (US EST)'
 
 
