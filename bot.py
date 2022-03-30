@@ -15,17 +15,30 @@ import git_push
 import merit_config
 
 load_dotenv()
-TOKEN = os.getenv('DISCORD_TOKEN')
+TOKEN = os.getenv('DISCORD_TOKEN_TEST')
 TOKEN_TEST = os.getenv('DISCORD_TOKEN_TEST')
 GUILD = os.getenv('DISCORD_GUILD')
 KYODA_ID = 583386313466708035
 FORCEPS_ID = 173202312762884096
 
-client = discord.Client()
-bot = commands.Bot(command_prefix='.')
-bot.remove_command('help')
 
-bot_version = '1.7.1'
+def startup(START):
+    global LAUNCH
+    global bot
+
+    if START == TOKEN:
+        bot = commands.Bot(command_prefix='.')
+        bot.remove_command('help')
+        LAUNCH = TOKEN
+
+    if START == TOKEN_TEST:
+        bot = commands.Bot(command_prefix='..')
+        bot.remove_command('help')
+        LAUNCH = TOKEN_TEST
+
+
+startup(TOKEN)
+bot_version = '1.8.0'
 bot_version_date = '3/30/2022 (US EST)'
 
 
@@ -736,4 +749,4 @@ async def shutdown(ctx):
 
 def main():
     while True:
-        bot.run(TOKEN_TEST)
+        bot.run(LAUNCH)
