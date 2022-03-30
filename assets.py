@@ -233,3 +233,65 @@ def pings():
     role_mentions = "<@&954526344971157544> <@&922002555192631356> <@&851041781978365962> <@&850843079417659402>"
 
     return role_mentions
+
+def merit_checker(user_id):
+    with open("merit.txt", 'r') as f:
+        for number, line in enumerate(f):
+            if str(user_id) not in line:
+                merit_total = 0
+            if str(user_id) in line:
+                line_number = number
+
+                with open("merit.txt", 'r') as f:
+                    file_read = f.readlines()
+                    file_int1_read = int(line_number)
+                    file_int2_read = (file_int1_read + 1)
+                    file_to_read = file_read[file_int2_read]
+                    file_to_read_stripped = file_to_read.strip()
+                    merit_total = int(file_to_read_stripped)
+
+                    return merit_total
+
+
+def demerit_checker(user_id):
+    with open("demerit.txt", 'r') as f:
+        for number, line in enumerate(f):
+            if str(user_id) not in line:
+                demerit_total = 0
+            if str(user_id) in line:
+                line_number = number
+
+                with open("demerit.txt", 'r') as f:
+                    file_read = f.readlines()
+                    file_int1_read = int(line_number)
+                    file_int2_read = (file_int1_read + 1)
+                    file_to_read = file_read[file_int2_read]
+                    file_to_read_stripped = file_to_read.strip()
+                    demerit_total = int(file_to_read_stripped)
+
+                    return demerit_total
+
+def cert(tag, role_names):
+    global string
+    string = ""
+
+    if tag == "command":
+        if any(ext == 'High Command' for ext in role_names):
+            string = "High Command"
+    if tag == "sof":
+        if any(ext == 'ARC Trooper' or 'Republic Commando' for ext in role_names):
+            string = "SOF"
+    if tag == "trooper":
+        if any(ext == 'Clone Trooper' for ext in role_names):
+            string = "Trooper"
+    if tag == "pilot":
+        if any(ext == 'Clone Pilot' for ext in role_names):
+            string = "Pilot"
+    if tag == "veteran":
+        if any(ext == 'Clone Veteran' for ext in role_names):
+            string = "Veteran"
+    if tag == "valor":
+        if any(ext == 'Medal of Valor' for ext in role_names):
+            string = "Medal of Valor Recipient"
+
+    return string

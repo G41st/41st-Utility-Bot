@@ -25,7 +25,7 @@ client = discord.Client()
 bot = commands.Bot(command_prefix='.')
 bot.remove_command('help')
 
-bot_version = '1.7.0'
+bot_version = '1.7.1'
 bot_version_date = '3/30/2022 (US EST)'
 
 
@@ -59,7 +59,6 @@ async def bitches(ctx):
         mention = format(f"<@!{ctx.author.id}>")
         await ctx.send(f"congradulations {mention}, you have bitches! {salute_emoji}")
     else:
-        mention = format(f"<@!{ctx.author.id}>")
         await ctx.send(f"you have no bitches")
 
 
@@ -222,58 +221,9 @@ async def identify(ctx, user: discord.Member):
     credit_emoji = '<:credits:937788738950545464>'
     credit_value = credit_counter.credit_counter(role_names, user.id)
 
-    def merit_checker():
-        with open("merit.txt", 'r') as f:
-            for number, line in enumerate(f):
-                if str(user.id) not in line:
-                    merit_total = 0
-                if str(user.id) in line:
-                    line_number = number
-
-                    with open("merit.txt", 'r') as f:
-                        file_read = f.readlines()
-                        file_int1_read = int(line_number)
-                        file_int2_read = (file_int1_read + 1)
-                        file_to_read = file_read[file_int2_read]
-                        file_to_read_stripped = file_to_read.strip()
-                        merit_total = int(file_to_read_stripped)
-                        return merit_total
-
-    def demerit_checker():
-        with open("demerit.txt", 'r') as f:
-            for number, line in enumerate(f):
-                if str(user.id) not in line:
-                    demerit_total = 0
-                if str(user.id) in line:
-                    line_number = number
-
-                    with open("demerit.txt", 'r') as f:
-                        file_read = f.readlines()
-                        file_int1_read = int(line_number)
-                        file_int2_read = (file_int1_read + 1)
-                        file_to_read = file_read[file_int2_read]
-                        file_to_read_stripped = file_to_read.strip()
-                        demerit_total = int(file_to_read_stripped)
-                        return demerit_total
-
-    def cert(tag):
-        global string
-        string = ""
-
-        if tag == "trooper":
-            if any(ext == 'Clone Trooper' for ext in role_names):
-                string = "Trooper"
-        if tag == "pilot":
-            if any(ext == 'Clone Pilot' for ext in role_names):
-                string = "Pilot"
-        if tag == "veteran":
-            if any(ext == 'Clone Veteran' for ext in role_names):
-                string = "Veteran"
-        if tag == "valor":
-            if any(ext == 'Medal of Valor' for ext in role_names):
-                string = "Medal of Valor Recipient"
-
-        return string
+    merit_checker = assets.merit_checker(user.id)
+    demerit_checker = assets.demerit_checker(user.id)
+    join_date = user.created_at.strftime("%b %d, %Y")
 
     shadow_mention = discord.AllowedMentions(users=False)
 
@@ -283,14 +233,17 @@ async def identify(ctx, user: discord.Member):
     else:
         await ctx.send(f"Name: `{user.display_name}`\n"
                        f"ID:`{user.id}`\n"
+                       f"Join Date: `{join_date}`\n"
                        f"Credits: {credit_emoji}`{credit_value}`\n"
-                       f"Merits: `{merit_checker()}`\n"
-                       f"Demerits: `{demerit_checker()}`\n"
+                       f"Merits: `{merit_checker}`\n"
+                       f"Demerits: `{demerit_checker}`\n"
                        f"Certifications: \n```\n"
-                       f"{cert('trooper')}\n"
-                       f"{cert('pilot')}\n"
-                       f"{cert('veteran')}"
-                       f"{cert('valor')}```\n"
+                       f"{assets.cert('command', role_names)}\n"
+                       f"{assets.cert('sof', role_names)}\n"
+                       f"{assets.cert('trooper', role_names)}\n"
+                       f"{assets.cert('pilot', role_names)}\n"
+                       f"{assets.cert('veteran', role_names)}"
+                       f"{assets.cert('valor', role_names)}```\n"
                        f"Shadow Mention: <@!{user.id}>", allowed_mentions=shadow_mention)
 
 
