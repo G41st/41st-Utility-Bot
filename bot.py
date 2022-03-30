@@ -25,8 +25,8 @@ client = discord.Client()
 bot = commands.Bot(command_prefix='.')
 bot.remove_command('help')
 
-bot_version = '1.6.4'
-bot_version_date = '3/27/2022 (US EST)'
+bot_version = '1.7.1'
+bot_version_date = '3/30/2022 (US EST)'
 
 
 @bot.event
@@ -59,7 +59,6 @@ async def bitches(ctx):
         mention = format(f"<@!{ctx.author.id}>")
         await ctx.send(f"congradulations {mention}, you have bitches! {salute_emoji}")
     else:
-        mention = format(f"<@!{ctx.author.id}>")
         await ctx.send(f"you have no bitches")
 
 
@@ -212,6 +211,40 @@ async def remove(ctx, user: discord.Member):
                        " to add yourself to the registry or to check integrity of your user. ")
     else:
         await ctx.send(f"`{user.display_name}` has {credit_emoji}`{credit_value}`.")
+
+
+@bot.command(name='id')
+@commands.has_role('Economy Admin')
+async def identify(ctx, user: discord.Member):
+    role_names = [str(r) for r in user.roles]
+
+    credit_emoji = '<:credits:937788738950545464>'
+    credit_value = credit_counter.credit_counter(role_names, user.id)
+
+    merit_checker = assets.merit_checker(user.id)
+    demerit_checker = assets.demerit_checker(user.id)
+    join_date = user.created_at.strftime("%b %d, %Y")
+
+    shadow_mention = discord.AllowedMentions(users=False)
+
+    if credit_value == False:
+        await ctx.send("User was not detected in the credit logs, or has no credits. Please have them run `.register`"
+                       " to add yourself to the registry or to check integrity of your user. ")
+    else:
+        await ctx.send(f"Name: `{user.display_name}`\n"
+                       f"ID:`{user.id}`\n"
+                       f"Join Date: `{join_date}`\n"
+                       f"Credits: {credit_emoji}`{credit_value}`\n"
+                       f"Merits: `{merit_checker}`\n"
+                       f"Demerits: `{demerit_checker}`\n"
+                       f"Certifications: \n```\n"
+                       f"{assets.cert('command', role_names)}\n"
+                       f"{assets.cert('sof', role_names)}\n"
+                       f"{assets.cert('trooper', role_names)}\n"
+                       f"{assets.cert('pilot', role_names)}\n"
+                       f"{assets.cert('veteran', role_names)}"
+                       f"{assets.cert('valor', role_names)}```\n"
+                       f"Shadow Mention: <@!{user.id}>", allowed_mentions=shadow_mention)
 
 
 # register command order:
@@ -703,4 +736,4 @@ async def shutdown(ctx):
 
 def main():
     while True:
-        bot.run(TOKEN)
+        bot.run(TOKEN_TEST)
