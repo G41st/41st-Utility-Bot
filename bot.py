@@ -38,7 +38,7 @@ def startup(START):
 
 
 startup(TOKEN)
-bot_version = '1.8.2'
+bot_version = '1.8.3'
 bot_version_date = '4/04/2022 (US EST)'
 
 
@@ -741,7 +741,7 @@ async def shutdown(ctx):
     if ctx.author.id == KYODA_ID or FORCEPS_ID:
         channel = bot.get_channel(851284148915404831)
 
-        with open("Announcement.txt", "r") as annoucement:
+        with open("announcement.txt", "r") as annoucement:
             message = annoucement.read()
 
         pings = assets.pings()
