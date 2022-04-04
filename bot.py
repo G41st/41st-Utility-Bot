@@ -38,7 +38,7 @@ def startup(START):
 
 
 startup(TOKEN)
-bot_version = '1.8.6'
+bot_version = '1.8.7'
 bot_version_date = '4/04/2022 (US EST)'
 
 
@@ -264,7 +264,7 @@ async def identify(ctx, user: discord.Member):
 
 
 @bot.command(name='whoami')
-async def identify(ctx):
+async def who_am_i(ctx):
     if ctx.channel.id == '936902313589764146' or '939028644175699968':
         credit_emoji = '["7]'
 
@@ -281,6 +281,7 @@ async def identify(ctx):
             await ctx.send("User was not detected in the credit logs, or has no credits. Please have them run "
                            "`.register` to add yourself to the registry or to check integrity of your user. ")
         else:
+            await ctx.send(f"<@!{ctx.author.id}> - User Info sent in DM's.")
             await channel.send(f"Name: `{ctx.author.display_name}`\n"
                            f"ID:`{ctx.author.id}`\n"
                            f"Join Date: `{join_date}`\n"
@@ -289,11 +290,11 @@ async def identify(ctx):
                            f"Merits: `{merit_checker}`\n"
                            f"Demerits: `{demerit_checker}`\n"
                            f"Certifications: \n```\n"
-                           f"{assets.cert('command', role_names)}\n"
-                           f"{assets.cert('sof1', role_names)}\n"
-                           f"{assets.cert('sof2', role_names)}\n"
-                           f"{assets.cert('trooper', role_names)}\n"
-                           f"{assets.cert('pilot', role_names)}\n"
+                           f"{assets.cert('command', role_names)}"
+                           f"{assets.cert('sof1', role_names)}"
+                           f"{assets.cert('sof2', role_names)}"
+                           f"{assets.cert('trooper', role_names)}"
+                           f"{assets.cert('pilot', role_names)}"
                            f"{assets.cert('veteran', role_names)}"
                            f"{assets.cert('valor', role_names)}```\n")
 
