@@ -14,6 +14,8 @@ git_pull.download3("registry.txt")
 print("downloaded registry.txt")
 git_pull.download4("reports.txt")
 print("downloaded reports.txt")
+git_pull.download5("announcement.txt")
+print("downloaded reports.txt")
 
 os.remove(f"41st-bot/git_pull.py")
 os.remove(f"41st-bot/git_push.py")

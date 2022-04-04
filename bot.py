@@ -38,8 +38,8 @@ def startup(START):
 
 
 startup(TOKEN)
-bot_version = '1.8.1'
-bot_version_date = '3/30/2022 (US EST)'
+bot_version = '1.8.2'
+bot_version_date = '4/04/2022 (US EST)'
 
 
 @bot.event
@@ -233,6 +233,7 @@ async def identify(ctx, user: discord.Member):
 
     credit_emoji = '<:credits:937788738950545464>'
     credit_value = credit_counter.credit_counter(role_names, user.id)
+    credit_value_raw = credit_counter.credit_counter_raw(role_names)
 
     merit_checker = assets.merit_checker(user.id)
     demerit_checker = assets.demerit_checker(user.id)
@@ -248,16 +249,53 @@ async def identify(ctx, user: discord.Member):
                        f"ID:`{user.id}`\n"
                        f"Join Date: `{join_date}`\n"
                        f"Credits: {credit_emoji}`{credit_value}`\n"
+                       f"Raw Credits: `{credit_value_raw}`\n"
                        f"Merits: `{merit_checker}`\n"
                        f"Demerits: `{demerit_checker}`\n"
                        f"Certifications: \n```\n"
                        f"{assets.cert('command', role_names)}\n"
-                       f"{assets.cert('sof', role_names)}\n"
+                       f"{assets.cert('sof1', role_names)}\n"
+                       f"{assets.cert('sof2', role_names)}\n"
                        f"{assets.cert('trooper', role_names)}\n"
                        f"{assets.cert('pilot', role_names)}\n"
                        f"{assets.cert('veteran', role_names)}"
                        f"{assets.cert('valor', role_names)}```\n"
                        f"Shadow Mention: <@!{user.id}>", allowed_mentions=shadow_mention)
+
+
+@bot.command(name='whoami')
+async def identify(ctx, user: discord.Member):
+    if ctx.channel.id == '936902313589764146' or '939028644175699968':
+        credit_emoji = '["7]'
+
+        channel = await ctx.author.create_dm()
+        role_names = [str(r) for r in user.roles]
+        credit_value = credit_counter.credit_counter(role_names, user.id)
+        credit_value_raw = credit_counter.credit_counter_raw(role_names)
+
+        merit_checker = assets.merit_checker(user.id)
+        demerit_checker = assets.demerit_checker(user.id)
+        join_date = user.created_at.strftime("%b %d, %Y")
+
+        if credit_value == False:
+            await ctx.send("User was not detected in the credit logs, or has no credits. Please have them run "
+                           "`.register` to add yourself to the registry or to check integrity of your user. ")
+        else:
+            await channel.send(f"Name: `{user.display_name}`\n"
+                           f"ID:`{user.id}`\n"
+                           f"Join Date: `{join_date}`\n"
+                           f"Credits: {credit_emoji}`{credit_value}`\n"
+                           f"Raw Credits: `{credit_value_raw}`\n"
+                           f"Merits: `{merit_checker}`\n"
+                           f"Demerits: `{demerit_checker}`\n"
+                           f"Certifications: \n```\n"
+                           f"{assets.cert('command', role_names)}\n"
+                           f"{assets.cert('sof1', role_names)}\n"
+                           f"{assets.cert('sof2', role_names)}\n"
+                           f"{assets.cert('trooper', role_names)}\n"
+                           f"{assets.cert('pilot', role_names)}\n"
+                           f"{assets.cert('veteran', role_names)}"
+                           f"{assets.cert('valor', role_names)}```\n")
 
 
 # register command order:
@@ -699,9 +737,12 @@ async def shutdown(ctx):
 
 
 @bot.command(name='announcement')
-async def shutdown(ctx, message):
+async def shutdown(ctx):
     if ctx.author.id == KYODA_ID or FORCEPS_ID:
         channel = bot.get_channel(851284148915404831)
+
+        with open("Announcement.txt", "r") as annoucement:
+            message = annoucement.read()
 
         pings = assets.pings()
 
