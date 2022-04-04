@@ -38,7 +38,7 @@ def startup(START):
 
 
 startup(TOKEN)
-bot_version = '1.8.4'
+bot_version = '1.8.6'
 bot_version_date = '4/04/2022 (US EST)'
 
 
@@ -264,25 +264,25 @@ async def identify(ctx, user: discord.Member):
 
 
 @bot.command(name='whoami')
-async def identify(ctx, user: discord.Member):
+async def identify(ctx):
     if ctx.channel.id == '936902313589764146' or '939028644175699968':
         credit_emoji = '["7]'
 
         channel = await ctx.author.create_dm()
-        role_names = [str(r) for r in user.roles]
-        credit_value = credit_counter.credit_counter(role_names, user.id)
+        role_names = [str(r) for r in ctx.author.roles]
+        credit_value = credit_counter.credit_counter(role_names, ctx.author.id)
         credit_value_raw = credit_counter.credit_counter_raw(role_names)
 
-        merit_checker = assets.merit_checker(user.id)
-        demerit_checker = assets.demerit_checker(user.id)
-        join_date = user.created_at.strftime("%b %d, %Y")
+        merit_checker = assets.merit_checker(ctx.author.id)
+        demerit_checker = assets.demerit_checker(ctx.author.id)
+        join_date = ctx.author.created_at.strftime("%b %d, %Y")
 
         if credit_value == False:
             await ctx.send("User was not detected in the credit logs, or has no credits. Please have them run "
                            "`.register` to add yourself to the registry or to check integrity of your user. ")
         else:
-            await channel.send(f"Name: `{user.display_name}`\n"
-                           f"ID:`{user.id}`\n"
+            await channel.send(f"Name: `{ctx.author.display_name}`\n"
+                           f"ID:`{ctx.author.id}`\n"
                            f"Join Date: `{join_date}`\n"
                            f"Credits: {credit_emoji}`{credit_value}`\n"
                            f"Raw Credits: `{credit_value_raw}`\n"
