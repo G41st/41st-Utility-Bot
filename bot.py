@@ -38,7 +38,7 @@ def startup(START):
 
 
 startup(TOKEN)
-bot_version = '1.8.9'
+bot_version = '1.8.10'
 bot_version_date = '4/04/2022 (US EST)'
 
 
@@ -237,7 +237,7 @@ async def identify(ctx, user: discord.Member):
 
     merit_checker = assets.merit_checker(user.id)
     demerit_checker = assets.demerit_checker(user.id)
-    join_date = user.created_at.strftime("%b %d, %Y")
+    join_date = user.joined_at.strftime("%b %d, %Y")
 
     shadow_mention = discord.AllowedMentions(users=False)
 
@@ -275,7 +275,7 @@ async def who_am_i(ctx):
 
         merit_checker = assets.merit_checker(ctx.author.id)
         demerit_checker = assets.demerit_checker(ctx.author.id)
-        join_date = ctx.author.created_at.strftime("%b %d, %Y")
+        join_date = ctx.author.joined_at.strftime("%b %d, %Y")
 
         if credit_value == False:
             await ctx.send("User was not detected in the credit logs, or has no credits. Please have them run "
