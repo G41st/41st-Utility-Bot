@@ -264,7 +264,7 @@ async def identify(ctx, user: discord.Member):
 
 
 @bot.command(name='whoami')
-async def identify(ctx):
+async def who_am_i(ctx):
     if ctx.channel.id == '936902313589764146' or '939028644175699968':
         credit_emoji = '["7]'
 
@@ -281,6 +281,7 @@ async def identify(ctx):
             await ctx.send("User was not detected in the credit logs, or has no credits. Please have them run "
                            "`.register` to add yourself to the registry or to check integrity of your user. ")
         else:
+            await ctx.send(f"<@!{ctx.author.id}> - User Info sent in DM's.")
             await channel.send(f"Name: `{ctx.author.display_name}`\n"
                            f"ID:`{ctx.author.id}`\n"
                            f"Join Date: `{join_date}`\n"
