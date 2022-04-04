@@ -38,7 +38,7 @@ def startup(START):
 
 
 startup(TOKEN)
-bot_version = '1.8.6'
+bot_version = '1.8.7'
 bot_version_date = '4/04/2022 (US EST)'
 
 
@@ -289,11 +289,11 @@ async def identify(ctx):
                            f"Merits: `{merit_checker}`\n"
                            f"Demerits: `{demerit_checker}`\n"
                            f"Certifications: \n```\n"
-                           f"{assets.cert('command', role_names)}\n"
-                           f"{assets.cert('sof1', role_names)}\n"
-                           f"{assets.cert('sof2', role_names)}\n"
-                           f"{assets.cert('trooper', role_names)}\n"
-                           f"{assets.cert('pilot', role_names)}\n"
+                           f"{assets.cert('command', role_names)}"
+                           f"{assets.cert('sof1', role_names)}"
+                           f"{assets.cert('sof2', role_names)}"
+                           f"{assets.cert('trooper', role_names)}"
+                           f"{assets.cert('pilot', role_names)}"
                            f"{assets.cert('veteran', role_names)}"
                            f"{assets.cert('valor', role_names)}```\n")
 

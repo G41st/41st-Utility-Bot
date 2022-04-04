@@ -230,7 +230,7 @@ def commands_directory(mention):
 
 
 def pings():
-    role_mentions = "<@&954526344971157544> <@&922002555192631356> <@&851041781978365962> <@&850843079417659402>"
+    role_mentions = "<@&960610324963291166> <@&922002555192631356> <@&851041781978365962> <@&850843079417659402>"
 
     return role_mentions
 
@@ -277,22 +277,22 @@ def cert(tag, role_names):
 
     if tag == "command":
         if any(ext == 'High Command' for ext in role_names):
-            string = "High Command"
+            string = "High Command\n"
     if tag == "sof1":
         if any(ext == 'ARC Trooper' for ext in role_names):
-            string = "SOF"
+            string = "SOF\n"
     if tag == "sof2":
         if any(ext == 'Republic Commando' for ext in role_names):
-            string = "SOF"
+            string = "SOF\n"
     if tag == "trooper":
         if any(ext == 'Clone Trooper' for ext in role_names):
-            string = "Trooper"
+            string = "Trooper\n"
     if tag == "pilot":
         if any(ext == 'Clone Pilot' for ext in role_names):
-            string = "Pilot"
+            string = "Pilot\n"
     if tag == "veteran":
         if any(ext == 'Clone Veteran' for ext in role_names):
-            string = "Veteran"
+            string = "Veteran\n"
     if tag == "valor":
         if any(ext == 'Medal of Valor' for ext in role_names):
             string = "Medal of Valor Recipient"
