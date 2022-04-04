@@ -278,8 +278,11 @@ def cert(tag, role_names):
     if tag == "command":
         if any(ext == 'High Command' for ext in role_names):
             string = "High Command"
-    if tag == "sof":
-        if any(ext == 'ARC Trooper' or 'Republic Commando' for ext in role_names):
+    if tag == "sof1":
+        if any(ext == 'ARC Trooper' for ext in role_names):
+            string = "SOF"
+    if tag == "sof2":
+        if any(ext == 'Republic Commando' for ext in role_names):
             string = "SOF"
     if tag == "trooper":
         if any(ext == 'Clone Trooper' for ext in role_names):
