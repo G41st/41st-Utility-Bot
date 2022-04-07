@@ -4,13 +4,12 @@ def store_command(mention, credit_emoji,  str_n):
                    f"Here is a key:\n"
                    f"{credit_emoji} `7,500` - `.store-1` \n"
                    f"{credit_emoji} `10,000` - `.store-2` \n"
-                   f"{credit_emoji} `12,500` - `.store3` \n"
-                   f"{credit_emoji} `15,000` - `.store4` \n"
-                   f"{credit_emoji} `20,000` - `.store5` \n"
-                   f"{credit_emoji} `25,000` - `.store6` \n"
-                   f"{credit_emoji} `30,000` - `.store7` \n"
-                   f"{credit_emoji} `40,000` - `.store8` \n"
-                   f"{credit_emoji} `45,000` - `.store9` \n"
+                   f"{credit_emoji} `15,000` - `.store-3` \n"
+                   f"{credit_emoji} `20,000` - `.store-4` \n"
+                   f"{credit_emoji} `25,000` - `.store-5` \n"
+                   f"{credit_emoji} `30,000` - `.store-6` \n"
+                   f"{credit_emoji} `40,000` - `.store-7` \n"
+                   f"{credit_emoji} `45,000` - `.store-8` \n"
                    f"{credit_emoji} `ALL` - `.store-all`")
 
     store = f"**41st Elite Corps store:** <@!{mention}> \n"
@@ -33,37 +32,34 @@ def store_command(mention, credit_emoji,  str_n):
               f"NOTE: You must already have access to the binoculars.\n"
               f"{credit_emoji} `10,000` - 'Phase 2 Arc Trooper' \n- Access to a Phase 2 ARC helmet. (For ARC only.)\n")
 
-    store3 =  (f"\n- - - {credit_emoji} `12,500` - - -\n"
-              f"{credit_emoji} `12,500` - 'Phase 1 Clone In-Game Skin' \n- Allows for a trooper to use Phase 1 variants "
-              f"of the 41st skins. (Not applicable to ARC's)")
-
-    store4 = (f"\n- - - {credit_emoji} `15,000` - - -\n"
+    store3 = (f"\n- - - {credit_emoji} `15,000` - - -\n"
               f"{credit_emoji} `15,000` - 'Clone Gunner Helmet' \n- A new helmet template. Google 'Clone Heavy Gunner' "
               f"for reference.\n"
               f"{credit_emoji} `15,000` - 'Flight Computer/Targeting Visor' \n- An external holographic visor. "
               f"(The Flight Computer is only available to ACE pilots of SGT+. The Targeting visor is only "
               f"available to Spec Ops helmets (Strike Cadre Helmet).)\n")
 
-    store5 = (f"\n- - - {credit_emoji} `20,000` - - -\n"
-              f"{credit_emoji} `20,000` - 'Phase 1 Helmet' \n- A Phase 1 helmet.\n"
+    store4 = (f"\n- - - {credit_emoji} `20,000` - - -\n"
               f"{credit_emoji} `20,000` - 'Hooded Helmet' \n- Stylish and Sneaky. (Only for Shadow Cadre and SOF.)\n"
               f"{credit_emoji} `20,000` - 'Phase 1 ARF Helmet' \n- The ARF Helmet from 'Star Wars The Clone Wars'.\n")
 
-    store6 = (f"\n- - - {credit_emoji} `25,000` - - -\n"
+    store5 = (f"\n- - - {credit_emoji} `25,000` - - -\n"
               f"{credit_emoji} `25,000` - 'Snowtrooper/Flametrooper Helmet' \n- BRING IN THE FLAMETHROWERS!\n")
 
-    store7 = (f"\n- - - {credit_emoji} `30,000` - - -\n"
+    store6 = (f"\n- - - {credit_emoji} `30,000` - - -\n"
               f"{credit_emoji} `30,000` - 'Custom Visor' \n- Clearance to a one color visor. NOTE: Troopers may get a "
               f"refund apon reaching the rank of 2LT or higher, or RC.\n"
               f"{credit_emoji} `30,000` - 'BARC Helmet and Skin' \n- 'For the mysterious types.' Recive access to the "
               f"41st BARC Helmet as well as permition to use the 91st Recon Corps in game.\n"
+              f"{credit_emoji} `30,000` - 'Phase 1 Helmet and Skin' \n- A Phase 1 helmet, along with clearence to wear "
+              f"the corresponding skin in game.\n"
               f"{credit_emoji} `30,000` - 'Rendered Helmet' \n- Receive a 3D rendered helmet from our Dev Team.\n")
 
-    store8 = (f"\n- - - {credit_emoji} `40,000` - - -\n"
+    store7 = (f"\n- - - {credit_emoji} `40,000` - - -\n"
               f"{credit_emoji} `40,000` - '2003 Helmet Variants' \n- The classic style. Available for all helmet "
               f"templates.\n")
 
-    store9 = (f"\n- - - {credit_emoji} `45,000` - - -\n"
+    store8 = (f"\n- - - {credit_emoji} `45,000` - - -\n"
               f"{credit_emoji} `45,000` - 'Blaze Trooper Helmet' \n- 'Need a light?' NOTE: Google Clone Blaze Trooper "
               f"for a reference.\n"
               f"{credit_emoji} `45,000` - 'Desert Trooper Helmet (And Skin for PC Only.)' \n- 'I hate sand.' Recive "
@@ -89,8 +85,6 @@ def store_command(mention, credit_emoji,  str_n):
         return store7
     elif str_n == 8:
         return store8
-    elif str_n == 9:
-        return store9
     elif str_n == 69:
         return description
 
@@ -106,15 +100,14 @@ def shop_command(mention):
             f"{credit_emoji} `10,000` - 'Specialist Binoculars' \n"
             f"{credit_emoji} `10,000` - 'Specialist Binoculars Up' \n"
             f"{credit_emoji} `10,000` - 'Phase 2 Arc Trooper' \n"
-            f"{credit_emoji} `12,500` - 'Phase 1 Clone In-Game Skin' \n"
             f"{credit_emoji} `15,000` - 'Clone Gunner Helmet' \n"
             f"{credit_emoji} `15,000` - 'Flight Computer/Targeting Visor' \n"
-            f"{credit_emoji} `20,000` - 'Phase 1 Helmet' \n"
             f"{credit_emoji} `20,000` - 'Hooded Helmet' \n"
             f"{credit_emoji} `20,000` - 'Phase 1 ARF Helmet' \n"
             f"{credit_emoji} `25,000` - 'Snowtrooper/Flametrooper Helmet' \n"
             f"{credit_emoji} `30,000` - 'Custom Visor' \n"
             f"{credit_emoji} `30,000` - 'BARC Helmet and Skin' \n"
+            f"{credit_emoji} `30,000` - 'Phase 1 Helmet and Skin' \n"
             f"{credit_emoji} `30,000` - 'Rendered Helmet' \n"
             f"{credit_emoji} `40,000` - '2003 Helmet Varients' \n"
             f"{credit_emoji} `45,000` - 'Blaze Trooper Helmet' \n"

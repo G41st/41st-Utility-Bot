@@ -45,7 +45,7 @@ def credit_counter(role_names, discord_id):
     global salary18
     salary18 = 0
     global salary19
-    salary19= 0
+    salary19 = 0
     global salary20
     salary20 = 0
     global salary21
@@ -218,6 +218,18 @@ def credit_counter(role_names, discord_id):
     count63 = 0
     global count64
     count64 = 0
+    global count65
+    count65 = 0
+    global count66
+    count66 = 0
+    global count67
+    count67 = 0
+    global count68
+    count68 = 0
+    global count69
+    count69 = 0
+    global count70
+    count70 = 0
 
     medal_of_valor = 'Medal of Valor'
     medal1 = '41st Service Medal'
@@ -284,6 +296,12 @@ def credit_counter(role_names, discord_id):
     medal62 = 'Lone Survivor'
     medal63 = 'Exemplar'
     medal64 = 'Professional Soldier'
+    medal65 = 'One Man Army'
+    medal66 = 'The Good Batch'
+    medal67 = 'Bred for War'
+    medal68 = 'Outstanding Dedication'
+    medal69 = 'Fireteam on Fire'
+    medal70 = 'First Try'
 
     global reward1
     reward1 = 0
@@ -343,6 +361,8 @@ def credit_counter(role_names, discord_id):
     reward28 = 0
     global reward29
     reward29 = 0
+    global reward30
+    reward30 = 0
 
     qual1 = 'Scout Trooper'
     qual2 = 'Aerial Trooper'
@@ -373,6 +393,7 @@ def credit_counter(role_names, discord_id):
     qual27 = 'Gunslinger'
     qual28 = 'HERO Pilot - First Class'
     qual29 = 'HERO Pilot - Second Class'
+    qual30 = 'Galactic Marine'
 
     try:
         if any(ext == rank1 for ext in role_names):
@@ -566,6 +587,18 @@ def credit_counter(role_names, discord_id):
             count63 = 1000
         if any(ext == medal64 for ext in role_names):
             count64 = 5000
+        if any(ext == medal65 for ext in role_names):
+            count65 = 1500
+        if any(ext == medal66 for ext in role_names):
+            count66 = 4000
+        if any(ext == medal67 for ext in role_names):
+            count67 = 1500
+        if any(ext == medal68 for ext in role_names):
+            count68 = 4000
+        if any(ext == medal69 for ext in role_names):
+            count69 = 3000
+        if any(ext == medal70 for ext in role_names):
+            count70 = 3000
 
         medal_total = (valor + count1 + count2 + count3 + count4 + count5 + count6 + count7 + count8 + count9 +
                        count10 + count11 + count12 + count13 + count14 + count15 + count16 + count17 + count18 +
@@ -574,7 +607,7 @@ def credit_counter(role_names, discord_id):
                        count37 + count38 + count39 + count40 + count41 + count42 + count43 + count44 + count45 +
                        count46 + count47 + count48 + count49 + count50 + count51 + count52 + count53 + count54 +
                        count55 + count56 + count57 + count58 + count59 + count60 + count61 + count62 + count63 +
-                       count64)
+                       count64 + count65 + count66 + count67 + count68 + count69 + count70)
 
         if any(ext == qual1 for ext in role_names):
             reward1 = 3000
@@ -634,11 +667,13 @@ def credit_counter(role_names, discord_id):
             reward28 = 8000
         if any(ext == qual29 for ext in role_names):
             reward29 = 4000
+        if any(ext == qual30 for ext in role_names):
+            reward30 = 3000
 
         qual_total = (reward1 + reward2 + reward3 + reward4 + reward5 + reward6 + reward7 + reward8 + reward9 +
                       reward10 + reward11 + reward12 + reward13 + reward14 + reward15 + reward16 + reward17 +
                       reward18 + reward19 + reward20 + reward21 + reward22 + reward23 + reward24 + reward25 +
-                      reward26 + reward27 + reward28 + reward29)
+                      reward26 + reward27 + reward28 + reward29 + reward30)
 
         with open("merit.txt", 'r') as f:
             for number, line in enumerate(f):
@@ -892,6 +927,18 @@ def credit_counter_raw(role_names):
     count63 = 0
     global count64
     count64 = 0
+    global count65
+    count65 = 0
+    global count66
+    count66 = 0
+    global count67
+    count67 = 0
+    global count68
+    count68 = 0
+    global count69
+    count69 = 0
+    global count70
+    count70 = 0
 
     medal_of_valor = 'Medal of Valor'
     medal1 = '41st Service Medal'
@@ -958,6 +1005,12 @@ def credit_counter_raw(role_names):
     medal62 = 'Lone Survivor'
     medal63 = 'Exemplar'
     medal64 = 'Professional Soldier'
+    medal65 = 'One Man Army'
+    medal66 = 'The Good Batch'
+    medal67 = 'Bred for War'
+    medal68 = 'Outstanding Dedication'
+    medal69 = 'Fireteam on Fire'
+    medal70 = 'First Try'
 
     global reward1
     reward1 = 0
@@ -1017,6 +1070,8 @@ def credit_counter_raw(role_names):
     reward28 = 0
     global reward29
     reward29 = 0
+    global reward30
+    reward30 = 0
 
     qual1 = 'Scout Trooper'
     qual2 = 'Aerial Trooper'
@@ -1047,6 +1102,7 @@ def credit_counter_raw(role_names):
     qual27 = 'Gunslinger'
     qual28 = 'HERO Pilot - First Class'
     qual29 = 'HERO Pilot - Second Class'
+    qual30 = 'Galactic Marine'
 
     try:
         if any(ext == rank1 for ext in role_names):
@@ -1240,6 +1296,18 @@ def credit_counter_raw(role_names):
             count63 = 1000
         if any(ext == medal64 for ext in role_names):
             count64 = 5000
+        if any(ext == medal65 for ext in role_names):
+            count65 = 1500
+        if any(ext == medal66 for ext in role_names):
+            count66 = 4000
+        if any(ext == medal67 for ext in role_names):
+            count67 = 1500
+        if any(ext == medal68 for ext in role_names):
+            count68 = 4000
+        if any(ext == medal69 for ext in role_names):
+            count69 = 3000
+        if any(ext == medal70 for ext in role_names):
+            count70 = 3000
 
         medal_total = (valor + count1 + count2 + count3 + count4 + count5 + count6 + count7 + count8 + count9 +
                        count10 + count11 + count12 + count13 + count14 + count15 + count16 + count17 + count18 +
@@ -1248,7 +1316,7 @@ def credit_counter_raw(role_names):
                        count37 + count38 + count39 + count40 + count41 + count42 + count43 + count44 + count45 +
                        count46 + count47 + count48 + count49 + count50 + count51 + count52 + count53 + count54 +
                        count55 + count56 + count57 + count58 + count59 + count60 + count61 + count62 + count63 +
-                       count64)
+                       count64 + count65 + count66 + count67 + count68 + count69 + count70)
 
         if any(ext == qual1 for ext in role_names):
             reward1 = 3000
@@ -1308,11 +1376,13 @@ def credit_counter_raw(role_names):
             reward28 = 8000
         if any(ext == qual29 for ext in role_names):
             reward29 = 4000
+        if any(ext == qual30 for ext in role_names):
+            reward30 = 3000
 
         qual_total = (reward1 + reward2 + reward3 + reward4 + reward5 + reward6 + reward7 + reward8 + reward9 +
                       reward10 + reward11 + reward12 + reward13 + reward14 + reward15 + reward16 + reward17 +
                       reward18 + reward19 + reward20 + reward21 + reward22 + reward23 + reward24 + reward25 +
-                      reward26 + reward27 + reward28 + reward29)
+                      reward26 + reward27 + reward28 + reward29 + reward30)
 
 
         trooper_sum = rank_total + qual_total
