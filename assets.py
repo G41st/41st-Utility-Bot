@@ -157,6 +157,7 @@ def commands_command(mention):
                 f"`.shop` - Displays a condensed version of the store. \n"
                 f"`.ggn-store` - Displays the current GGN store price approximations, as well as specific items. \n"
                 f"`.credits` - Calculates your current credit value. \n"
+                f"`.whoami` - Sends a list of information about your user to your DM's. \n"
                 f"`.directory` - DM's the user a list of names for various important divisions of the 41st. \n"
                 f"`.version` - Displays current bot dev info. \n"
                 f"`.github` - Sends the link to the bot's git repository. \n"

@@ -1,8 +1,7 @@
 Hello all!
 
-Minor changes today. We have 2 things:
-This fixed announcement command
-and a new command called `.whoami.` it is a first person varient of the recent `.id` command for econ admins and it basicly just gives you a rundown of what the bot sees you as.
+More minor changes today. We have 2 things:
+i fixed the `.help` command to display updated info and updated the shop commands with the updated phase 1 trooper info.
 
 any questions, as always just ask.
 
