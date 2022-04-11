@@ -38,8 +38,8 @@ def startup(START):
 
 
 startup(TOKEN)
-bot_version = '1.8.10'
-bot_version_date = '4/04/2022 (US EST)'
+bot_version = '1.8.12'
+bot_version_date = '4/07/2022 (US EST)'
 
 
 @bot.event
@@ -602,15 +602,6 @@ async def store(ctx):
 
         await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 0))
         await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 8))
-
-
-@bot.command(name='store-9')
-async def store(ctx):
-    if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        credit_emoji = '<:credits:937788738950545464>'
-
-        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 0))
-        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 9))
 
 
 @bot.command(name='store-all')
