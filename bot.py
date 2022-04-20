@@ -38,8 +38,8 @@ def startup(START):
 
 
 startup(TOKEN)
-bot_version = '1.8.12'
-bot_version_date = '4/07/2022 (US EST)'
+bot_version = '1.8.13'
+bot_version_date = '4/20/2022 (US EST)'
 
 
 @bot.event
@@ -97,7 +97,7 @@ async def your_mom(ctx):
 
 @bot.command(name='not-scared')
 async def not_scared(ctx):
-    await ctx.send("<@!391974737745805322>")
+    await ctx.send("`<@!391974737745805322>`")
 
 
 @bot.command(name='no-u')
