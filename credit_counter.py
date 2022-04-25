@@ -433,9 +433,9 @@ def credit_counter(role_names, discord_id):
         if any(ext == rank16 for ext in role_names):
             salary16 = 7500
         if any(ext == rank17 for ext in role_names):
-            salary17 = 1000
+            salary17 = 23000
         if any(ext == rank18 for ext in role_names):
-            salary18 = 7500
+            salary18 = 20000
         if any(ext == rank19 for ext in role_names):
             salary19 = 5000
         if any(ext == rank20 for ext in role_names):
@@ -1142,9 +1142,9 @@ def credit_counter_raw(role_names):
         if any(ext == rank16 for ext in role_names):
             salary16 = 7500
         if any(ext == rank17 for ext in role_names):
-            salary17 = 1000
+            salary17 = 23000
         if any(ext == rank18 for ext in role_names):
-            salary18 = 7500
+            salary18 = 20000
         if any(ext == rank19 for ext in role_names):
             salary19 = 5000
         if any(ext == rank20 for ext in role_names):
