@@ -39,7 +39,7 @@ def startup(START):
 
 
 startup(TOKEN)
-bot_version = '1.8.14'
+bot_version = '1.8.15'
 bot_version_date = '4/24/2022 (US EST)'
 
 

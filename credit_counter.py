@@ -60,6 +60,8 @@ def credit_counter(role_names, discord_id):
     salary25 = 0
     global salary26
     salary26 = 0
+    global salary27
+    salary27 = 0
 
     rank1 = 'Marshal Commander'
     rank2 = 'Commander'
@@ -87,6 +89,7 @@ def credit_counter(role_names, discord_id):
     rank24 = 'Flight Officer'
     rank25 = 'Clone Trooper'
     rank26 = 'Clone Pilot'
+    rank27 = 'Technical Commander'
 
     global valor
     valor = 0
@@ -452,10 +455,13 @@ def credit_counter(role_names, discord_id):
             salary25 = 1000
         if any(ext == rank26 for ext in role_names):
             salary26 = 1000
+        if any(ext == rank27 for ext in role_names):
+            salary27 = 20000
 
         rank_total = (salary1 + salary2 + salary3 + salary4 + salary5 + salary6 + salary7 + salary8 + salary9 +
                       salary10 + salary11 + salary12 + salary13 + salary14 + salary15 + salary16 + salary17 + salary18
-                      + salary19 + salary20 + salary21 + salary22 + salary23 + salary24 + salary25 + salary26)
+                      + salary19 + salary20 + salary21 + salary22 + salary23 + salary24 + salary25 + salary26 +
+                      salary27)
 
         if any(ext == medal_of_valor for ext in role_names):
             valor = 20000
@@ -769,6 +775,8 @@ def credit_counter_raw(role_names):
     salary25 = 0
     global salary26
     salary26 = 0
+    global salary27
+    salary27 = 0
 
     rank1 = 'Marshal Commander'
     rank2 = 'Commander'
@@ -796,6 +804,7 @@ def credit_counter_raw(role_names):
     rank24 = 'Flight Officer'
     rank25 = 'Clone Trooper'
     rank26 = 'Clone Pilot'
+    rank27 = 'Technical Commander'
 
     global valor
     valor = 0
@@ -1161,10 +1170,13 @@ def credit_counter_raw(role_names):
             salary25 = 1000
         if any(ext == rank26 for ext in role_names):
             salary26 = 1000
+        if any(ext == rank27 for ext in role_names):
+            salary26 = 20000
 
         rank_total = (salary1 + salary2 + salary3 + salary4 + salary5 + salary6 + salary7 + salary8 + salary9 +
                       salary10 + salary11 + salary12 + salary13 + salary14 + salary15 + salary16 + salary17 + salary18
-                      + salary19 + salary20 + salary21 + salary22 + salary23 + salary24 + salary25 + salary26)
+                      + salary19 + salary20 + salary21 + salary22 + salary23 + salary24 + salary25 + salary26 +
+                      salary27)
 
         if any(ext == medal_of_valor for ext in role_names):
             valor = 20000
