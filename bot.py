@@ -20,6 +20,7 @@ TOKEN_TEST = os.getenv('DISCORD_TOKEN_TEST')
 GUILD = os.getenv('DISCORD_GUILD')
 KYODA_ID = 583386313466708035
 FORCEPS_ID = 173202312762884096
+BOT_OPERATOR_ROLE = "Technical Commander"
 
 
 def startup(START):
@@ -38,8 +39,8 @@ def startup(START):
 
 
 startup(TOKEN)
-bot_version = '1.8.13'
-bot_version_date = '4/20/2022 (US EST)'
+bot_version = '1.8.14'
+bot_version_date = '4/24/2022 (US EST)'
 
 
 @bot.event
