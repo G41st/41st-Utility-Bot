@@ -17,7 +17,8 @@ TOKEN_TEST = os.getenv('DISCORD_TOKEN_TEST')
 GUILD = os.getenv('DISCORD_GUILD')
 
 client = discord.Client()
-bot = commands.Bot(command_prefix='.')
+
+bot = commands.Bot(command_prefix='.', intents=intents)
 bot.remove_command('help')
 
 
