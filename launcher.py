@@ -3,7 +3,6 @@ import time
 import os
 import bot
 import setup
-import event_bot
 
 t = time.localtime()
 current_time = time.strftime("%H:%M:%S", t)
