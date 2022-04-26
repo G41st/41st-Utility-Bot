@@ -28,12 +28,14 @@ def startup(START):
     global bot
 
     if START == TOKEN:
-        bot = commands.Bot(command_prefix='.')
+        intents = discord.Intents.default()
+        bot = commands.Bot(command_prefix='.', intents=intents)
         bot.remove_command('help')
         LAUNCH = TOKEN
 
     if START == TOKEN_TEST:
-        bot = commands.Bot(command_prefix='..')
+        intents = discord.Intents.default()
+        bot = commands.Bot(command_prefix='..', intents=intents)
         bot.remove_command('help')
         LAUNCH = TOKEN_TEST
 
