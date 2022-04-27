@@ -4,7 +4,8 @@ import time
 import datetime
 
 import discord
-
+from discord.ext.commands import Bot
+from discord import Intents
 import assets
 import credit_counter
 from discord.ext import commands
@@ -28,21 +29,21 @@ def startup(START):
     global bot
 
     if START == TOKEN:
-        intents = discord.Intents.default()
-        bot = commands.Bot(command_prefix='.', intents=intents)
+        intents = Intents.all()
+        bot = Bot(intents=intents, command_prefix='.')
         bot.remove_command('help')
         LAUNCH = TOKEN
 
     if START == TOKEN_TEST:
-        intents = discord.Intents.default()
-        bot = commands.Bot(command_prefix='..', intents=intents)
+        intents = Intents.all()
+        bot = Bot(intents=intents, command_prefix='..')
         bot.remove_command('help')
         LAUNCH = TOKEN_TEST
 
 
 startup(TOKEN)
-bot_version = '1.8.15'
-bot_version_date = '4/24/2022 (US EST)'
+bot_version = '1.9.0'
+bot_version_date = '4/27/2022 (US EST)'
 
 
 @bot.event
