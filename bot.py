@@ -14,6 +14,7 @@ from dotenv import load_dotenv
 
 import git_push
 import merit_config
+import trolls
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -22,6 +23,7 @@ GUILD = os.getenv('DISCORD_GUILD')
 KYODA_ID = 583386313466708035
 FORCEPS_ID = 173202312762884096
 BOT_OPERATOR_ROLE = "Technical Commander"
+COGS = ['cogs.trolls']
 
 
 def startup(START):
@@ -61,6 +63,7 @@ async def on_ready():
     await bot_command_channel.send(message)
 
 
+
 def credit_counter(role_names, discord_id):
     role_total = role_counter.credit_counter(role_names)
     merit_total = merit_config.merit_reader(discord_id)
@@ -75,10 +78,7 @@ def credit_counter(role_names, discord_id):
         return total
 
 
-@bot.command(name='troll')
-async def troll(ctx):
-    if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        await ctx.send(f"```{assets.troll_command()}```")
+
 
 
 @bot.command(name='bitches')
@@ -271,13 +271,13 @@ async def identify(ctx, user: discord.Member):
                        f"Merits: `{merit_checker}`\n"
                        f"Demerits: `{demerit_checker}`\n"
                        f"Certifications: \n```\n"
-                       f"{assets.cert('command', role_names)}\n"
-                       f"{assets.cert('sof1', role_names)}\n"
-                       f"{assets.cert('sof2', role_names)}\n"
-                       f"{assets.cert('trooper', role_names)}\n"
-                       f"{assets.cert('pilot', role_names)}\n"
-                       f"{assets.cert('veteran', role_names)}"
-                       f"{assets.cert('valor', role_names)}```\n"
+                       f"{assets.certifications('command', role_names)}\n"
+                       f"{assets.certifications('sof1', role_names)}\n"
+                       f"{assets.certifications('sof2', role_names)}\n"
+                       f"{assets.certifications('trooper', role_names)}\n"
+                       f"{assets.certifications('pilot', role_names)}\n"
+                       f"{assets.certifications('veteran', role_names)}"
+                       f"{assets.certifications('valor', role_names)}```\n"
                        f"Shadow Mention: <@!{user.id}>", allowed_mentions=shadow_mention)
 
 
@@ -308,13 +308,13 @@ async def who_am_i(ctx):
                            f"Merits: `{merit_checker}`\n"
                            f"Demerits: `{demerit_checker}`\n"
                            f"Certifications: \n```\n"
-                           f"{assets.cert('command', role_names)}"
-                           f"{assets.cert('sof1', role_names)}"
-                           f"{assets.cert('sof2', role_names)}"
-                           f"{assets.cert('trooper', role_names)}"
-                           f"{assets.cert('pilot', role_names)}"
-                           f"{assets.cert('veteran', role_names)}"
-                           f"{assets.cert('valor', role_names)}```\n")
+                           f"{assets.certifications('command', role_names)}"
+                           f"{assets.certifications('sof1', role_names)}"
+                           f"{assets.certifications('sof2', role_names)}"
+                           f"{assets.certifications('trooper', role_names)}"
+                           f"{assets.certifications('pilot', role_names)}"
+                           f"{assets.certifications('veteran', role_names)}"
+                           f"{assets.certifications('valor', role_names)}```\n")
 
 
 # register command order:
@@ -798,6 +798,12 @@ async def shutdown(ctx):
         await ctx.send("`Not Authorised`")
 
 
+if __name__ == '__main__':
+    for extension in COGS:
+        bot.load_extension(extension)
+
+
 def main():
     while True:
         bot.run(LAUNCH)
+        trolls.setup(bot)
