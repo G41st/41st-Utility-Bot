@@ -3,7 +3,7 @@ import sys
 import time
 import datetime
 import assets
-import credit_counter
+import role_counter
 from discord.ext import commands
 import discord.ext.commands
 from dotenv import load_dotenv

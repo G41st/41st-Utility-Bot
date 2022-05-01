@@ -4,15 +4,17 @@ import time
 import datetime
 
 import discord
-
+from discord.ext.commands import Bot
+from discord import Intents
 import assets
-import credit_counter
+import role_counter
 from discord.ext import commands
 import discord.ext.commands
 from dotenv import load_dotenv
 
 import git_push
 import merit_config
+import trolls
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -21,6 +23,7 @@ GUILD = os.getenv('DISCORD_GUILD')
 KYODA_ID = 583386313466708035
 FORCEPS_ID = 173202312762884096
 BOT_OPERATOR_ROLE = "Technical Commander"
+COGS = ['cogs.trolls']
 
 
 def startup(START):
@@ -28,19 +31,19 @@ def startup(START):
     global bot
 
     if START == TOKEN:
-        intents = discord.Intents.default()
-        bot = commands.Bot(command_prefix='.', intents=intents)
+        intents = Intents.all()
+        bot = Bot(intents=intents, command_prefix='.')
         bot.remove_command('help')
         LAUNCH = TOKEN
 
     if START == TOKEN_TEST:
-        intents = discord.Intents.default()
-        bot = commands.Bot(command_prefix='..', intents=intents)
+        intents = Intents.all()
+        bot = Bot(intents=intents, command_prefix='..')
         bot.remove_command('help')
         LAUNCH = TOKEN_TEST
 
 
-startup(TOKEN)
+startup(TOKEN_TEST)
 bot_version = '2.0.0'
 bot_version_date = '4/24/2022 (US EST)'
 
@@ -60,10 +63,22 @@ async def on_ready():
     await bot_command_channel.send(message)
 
 
-@bot.command(name='troll')
-async def troll(ctx):
-    if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        await ctx.send(f"```{assets.troll_command()}```")
+
+def credit_counter(role_names, discord_id):
+    role_total = role_counter.credit_counter(role_names)
+    merit_total = merit_config.merit_reader(discord_id)
+    demerit_total = merit_config.demerit_reader(discord_id)
+
+    merit_sum = role_total + merit_total
+    total = merit_sum - demerit_total
+
+    if role_total == False:
+        return False
+    else:
+        return total
+
+
+
 
 
 @bot.command(name='bitches')
@@ -140,7 +155,7 @@ async def add(ctx, user: discord.Member, message):
 
     credit_emoji = '<:credits:937788738950545464>'
     var_credit_value = merit_config.add_credits(user.id, int(message))
-    role_credit_value = credit_counter.credit_counter(role_names, user.id)
+    role_credit_value = credit_counter(role_names, user.id)
     mention = format(f"<@!{user.id}>")
 
     await ctx.send(f"Transferred {credit_emoji}`{var_credit_value}` to `user-id: {user.id}`.\n\n"
@@ -154,7 +169,7 @@ async def sub_merits(ctx, user: discord.Member, message):
 
         credit_emoji = '<:credits:937788738950545464>'
         var_credit_value = merit_config.subtract_merits(user.id, int(message))
-        role_credit_value = credit_counter.credit_counter(role_names, user.id)
+        role_credit_value = credit_counter(role_names, user.id)
         mention = format(f"<@!{user.id}>")
 
         await ctx.send(f"Removed {credit_emoji}`{var_credit_value}` from [ MERITS.TXT ] for `user-id: {user.id}`.\n\n"
@@ -170,7 +185,7 @@ async def remove(ctx, user: discord.Member, message):
 
     credit_emoji = '<:credits:937788738950545464>'
     var_credit_value = merit_config.remove_credits(user.id, int(message))
-    role_credit_value = credit_counter.credit_counter(role_names, user.id)
+    role_credit_value = credit_counter(role_names, user.id)
     mention = format(f"<@!{user.id}>")
 
     await ctx.send(f"Transferred {credit_emoji}`{var_credit_value}` from `user-id: {user.id}`.\n\n"
@@ -184,7 +199,7 @@ async def sub_demerits(ctx, user: discord.Member, message):
 
         credit_emoji = '<:credits:937788738950545464>'
         var_credit_value = merit_config.subtract_demerits(user.id, int(message))
-        role_credit_value = credit_counter.credit_counter(role_names, user.id)
+        role_credit_value = credit_counter(role_names, user.id)
         mention = format(f"<@!{user.id}>")
 
         await ctx.send(f"Removed {credit_emoji}`{var_credit_value}` from [ DEMERITS.TXT ] for `user-id: {user.id}`.\n\n"
@@ -200,7 +215,7 @@ async def thing_for_roles(ctx):
         user_id = str(ctx.author.id)
 
         credit_emoji = '<:credits:937788738950545464>'
-        credit_value = credit_counter.credit_counter(role_names, user_id)
+        credit_value = credit_counter(role_names, user_id)
         if credit_value == False:
             await ctx.send("You were not detected in the credit logs, or you have no credits. "
                            "Please run `.register` to add yourself to the registry or to check integrity of your user.")
@@ -220,7 +235,7 @@ async def remove(ctx, user: discord.Member):
     role_names = [str(r) for r in user.roles]
 
     credit_emoji = '<:credits:937788738950545464>'
-    credit_value = credit_counter.credit_counter(role_names, user.id)
+    credit_value = credit_counter(role_names, user.id)
 
     if credit_value == False:
         await ctx.send("User was not detected in the credit logs, or has no credits. Please have them run `.register`"
@@ -235,11 +250,11 @@ async def identify(ctx, user: discord.Member):
     role_names = [str(r) for r in user.roles]
 
     credit_emoji = '<:credits:937788738950545464>'
-    credit_value = credit_counter.credit_counter(role_names, user.id)
-    credit_value_raw = credit_counter.credit_counter_raw(role_names)
+    credit_value = credit_counter(role_names, user.id)
+    credit_value_raw = role_counter.credit_counter(role_names)
 
-    merit_checker = assets.merit_checker(user.id)
-    demerit_checker = assets.demerit_checker(user.id)
+    merit_checker = merit_config.merit_reader(user.id)
+    demerit_checker = merit_config.demerit_reader(user.id)
     join_date = user.joined_at.strftime("%b %d, %Y")
 
     shadow_mention = discord.AllowedMentions(users=False)
@@ -256,13 +271,13 @@ async def identify(ctx, user: discord.Member):
                        f"Merits: `{merit_checker}`\n"
                        f"Demerits: `{demerit_checker}`\n"
                        f"Certifications: \n```\n"
-                       f"{assets.cert('command', role_names)}\n"
-                       f"{assets.cert('sof1', role_names)}\n"
-                       f"{assets.cert('sof2', role_names)}\n"
-                       f"{assets.cert('trooper', role_names)}\n"
-                       f"{assets.cert('pilot', role_names)}\n"
-                       f"{assets.cert('veteran', role_names)}"
-                       f"{assets.cert('valor', role_names)}```\n"
+                       f"{assets.certifications('command', role_names)}\n"
+                       f"{assets.certifications('sof1', role_names)}\n"
+                       f"{assets.certifications('sof2', role_names)}\n"
+                       f"{assets.certifications('trooper', role_names)}\n"
+                       f"{assets.certifications('pilot', role_names)}\n"
+                       f"{assets.certifications('veteran', role_names)}"
+                       f"{assets.certifications('valor', role_names)}```\n"
                        f"Shadow Mention: <@!{user.id}>", allowed_mentions=shadow_mention)
 
 
@@ -273,11 +288,11 @@ async def who_am_i(ctx):
 
         channel = await ctx.author.create_dm()
         role_names = [str(r) for r in ctx.author.roles]
-        credit_value = credit_counter.credit_counter(role_names, ctx.author.id)
-        credit_value_raw = credit_counter.credit_counter_raw(role_names)
+        credit_value = credit_counter(role_names, ctx.author.id)
+        credit_value_raw = role_counter.credit_counter(role_names)
 
-        merit_checker = assets.merit_checker(ctx.author.id)
-        demerit_checker = assets.demerit_checker(ctx.author.id)
+        merit_checker = merit_config.merit_reader(ctx.author.id)
+        demerit_checker = merit_config.demerit_reader(ctx.author.id)
         join_date = ctx.author.joined_at.strftime("%b %d, %Y")
 
         if credit_value == False:
@@ -293,13 +308,13 @@ async def who_am_i(ctx):
                            f"Merits: `{merit_checker}`\n"
                            f"Demerits: `{demerit_checker}`\n"
                            f"Certifications: \n```\n"
-                           f"{assets.cert('command', role_names)}"
-                           f"{assets.cert('sof1', role_names)}"
-                           f"{assets.cert('sof2', role_names)}"
-                           f"{assets.cert('trooper', role_names)}"
-                           f"{assets.cert('pilot', role_names)}"
-                           f"{assets.cert('veteran', role_names)}"
-                           f"{assets.cert('valor', role_names)}```\n")
+                           f"{assets.certifications('command', role_names)}"
+                           f"{assets.certifications('sof1', role_names)}"
+                           f"{assets.certifications('sof2', role_names)}"
+                           f"{assets.certifications('trooper', role_names)}"
+                           f"{assets.certifications('pilot', role_names)}"
+                           f"{assets.certifications('veteran', role_names)}"
+                           f"{assets.certifications('valor', role_names)}```\n")
 
 
 # register command order:
@@ -783,6 +798,12 @@ async def shutdown(ctx):
         await ctx.send("`Not Authorised`")
 
 
+if __name__ == '__main__':
+    for extension in COGS:
+        bot.load_extension(extension)
+
+
 def main():
     while True:
         bot.run(LAUNCH)
+        trolls.setup(bot)
