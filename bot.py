@@ -14,7 +14,6 @@ from dotenv import load_dotenv
 
 import git_push
 import merit_config
-import trolls
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -78,7 +77,10 @@ def credit_counter(role_names, discord_id):
         return total
 
 
-
+@bot.command(name='troll')
+async def troll(ctx):
+    if ctx.channel.id == '936902313589764146' or '939028644175699968':
+        await ctx.send(f"```{assets.troll_command()}```")
 
 
 @bot.command(name='bitches')
