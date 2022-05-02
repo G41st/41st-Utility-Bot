@@ -3,7 +3,7 @@ import datetime
 now = datetime.datetime.now()
 
 
-def register(user_id, author_display_name, mention):
+def register(user_id, author_display_name):
     with open("registry.txt", 'r') as f:
         line = f.read()
         if user_id in line:
@@ -183,6 +183,19 @@ def report_message(str_n, user_id, author_display_name, message_channel):
                   f"Specifics: `The user id was not detected in registry.txt as "
                   f"well as merit.txt but was detected in demerit.txt.`")
 
+    if str_n == "01":
+        return message_01
+    if str_n == "02":
+        return message_02
+    if str_n == "03":
+        return message_03
+    if str_n == "04":
+        return message_04
+    if str_n == "05":
+        return message_05
+    if str_n == "06":
+        return message_06
+
 
 def report_log(str_n, user_id, author_display_name, message_channel):
     log_01 = (f"{author_display_name} - {user_id}\n"
@@ -221,3 +234,16 @@ def report_log(str_n, user_id, author_display_name, message_channel):
               f"reported a malfunction in the file: [ DEMERIT.TXT ].\n"
               f"Specifics: The user id was not detected in registry.txt as "
               f"well as merit.txt but was detected in demerit.txt.")
+
+    if str_n == "01":
+        return log_01
+    if str_n == "02":
+        return log_02
+    if str_n == "03":
+        return log_03
+    if str_n == "04":
+        return log_04
+    if str_n == "05":
+        return log_05
+    if str_n == "06":
+        return log_06

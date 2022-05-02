@@ -7,6 +7,7 @@ import discord
 from discord.ext.commands import Bot
 from discord import Intents
 import assets
+import register_command
 import role_counter
 from discord.ext import commands
 import discord.ext.commands
@@ -258,17 +259,23 @@ async def who_am_i(ctx):
 @bot.command(name='register')
 async def register(ctx):
     if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        user_id = str(ctx.author.id)
-        mention = f"<@!{user_id}>"
+        mention = f"<@!{ctx.user.id}>"
         channel = bot.get_channel(939028644175699968)
-        now = datetime.datetime.now()
 
-    await channel.send(report_message)
-    print(report_log)
-    with open("reports.txt", "a") as report_file:
-        report_file.write(f"{report_log}\n---------------\n")
+        database_check = register_command.register(ctx.author.id, ctx.author.display_name)
 
-    await bot.process_commands()
+        if database_check == "00" or "07":
+            await ctx.send(register_command.channel_reply(database_check, mention))
+        else:
+            report_message = \
+                register_command.report_message(database_check, ctx.author.id, ctx.author.display_name, ctx.channel.id)
+            report_log = \
+                register_command.report_log(database_check, ctx.author.id, ctx.author.display_name, ctx.channel.id)
+
+            await ctx.send(register_command.channel_reply(database_check, mention))
+            await channel.send(report_message)
+            with open("reports.txt", "a") as report_file:
+                report_file.write(f"{report_log}\n---------------\n")
 
 
 @bot.command(name='store')
@@ -487,6 +494,7 @@ async def adko(ctx):
                    f"never got. (2LT Raven)' \n"
                    f"Godspeed brother.\n"
                    f"{salute_emoji}")
+
 
 # end troll commands
 
