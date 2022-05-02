@@ -286,6 +286,8 @@ async def store(ctx, message):
         store_key_list = ["1", "2", "3", "4", "5", "6", "7", "8"]
         store_key_list_all = ["all", "ALL"]
         credit_emoji = '<:credits:937788738950545464>'
+        credit_emoji_all = '["7]'
+
         if message in store_key_list or store_key_list_all:
             if message in store_key_list:
                 await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 0))
@@ -294,15 +296,15 @@ async def store(ctx, message):
                 channel = await ctx.author.create_dm()
                 await ctx.send(f"<@!{ctx.author.id}> - Store sent in DM's.")
 
-                await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 0))
-                await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 1))
-                await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 2))
-                await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 3))
-                await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 4))
-                await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 5))
-                await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 6))
-                await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 7))
-                await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 8))
+                await channel.send(assets.store_command(format(ctx.author.id), credit_emoji_all, 0))
+                await channel.send(assets.store_command(format(ctx.author.id), credit_emoji_all, 1))
+                await channel.send(assets.store_command(format(ctx.author.id), credit_emoji_all, 2))
+                await channel.send(assets.store_command(format(ctx.author.id), credit_emoji_all, 3))
+                await channel.send(assets.store_command(format(ctx.author.id), credit_emoji_all, 4))
+                await channel.send(assets.store_command(format(ctx.author.id), credit_emoji_all, 5))
+                await channel.send(assets.store_command(format(ctx.author.id), credit_emoji_all, 6))
+                await channel.send(assets.store_command(format(ctx.author.id), credit_emoji_all, 7))
+                await channel.send(assets.store_command(format(ctx.author.id), credit_emoji_all, 8))
 
 
 @store.error
@@ -522,19 +524,9 @@ async def shutdown(ctx):
         await ctx.send("`All databases have been pushed and are backed up.`")
 
         await ctx.send("`Shutdown in 5`")
-        time.sleep(1)
-        await ctx.send("`4`")
-        time.sleep(1)
-        await ctx.send("`3`")
-        time.sleep(1)
-        await ctx.send("`2`")
-        time.sleep(1)
-        await ctx.send("`1`")
-        time.sleep(1)
+        time.sleep(5)
         await ctx.send("https://www.youtube.com/watch?v=Gb2jGy76v0Y")
         sys.exit()
-    else:
-        await ctx.send("`Not Authorised`")
 
 
 @bot.command(name='kill')
@@ -543,8 +535,6 @@ async def shutdown(ctx):
         await ctx.send("```41st://<utilities> ~ $``` \n `HARD-SHUTDOWN`")
         time.sleep(1)
         sys.exit()
-    else:
-        await ctx.send("`Not Authorised`")
 
 
 def main():
