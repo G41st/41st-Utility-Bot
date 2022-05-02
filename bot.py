@@ -281,10 +281,36 @@ async def register(ctx):
 
 
 @bot.command(name='store')
-async def store(ctx):
+async def store(ctx, message):
     if ctx.channel.id == '936902313589764146' or '939028644175699968':
+        store_key_list = ["1", "2", "3", "4", "5", "6", "7", "8"]
         credit_emoji = '<:credits:937788738950545464>'
 
+        if message == "all" or "ALL":
+            channel = await ctx.author.create_dm()
+            await ctx.send(f"<@!{ctx.author.id}> - Store sent in DM's.")
+
+            await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 0))
+            await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 1))
+            await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 2))
+            await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 3))
+            await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 4))
+            await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 5))
+            await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 6))
+            await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 7))
+            await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 8))
+
+        elif message not in store_key_list:
+            ctx.send("ERROR - list not found. Please try again.")
+
+
+@store.error
+async def store_error(ctx, error):
+    credit_emoji = '<:credits:937788738950545464>'
+
+    if isinstance(error, discord.ext.commands.errors.MissingRequiredArgument):
+        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 69))
+    else:
         await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 69))
 
 

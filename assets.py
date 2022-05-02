@@ -1,16 +1,16 @@
 def store_command(mention, credit_emoji,  str_n):
     description = (f"<@!{mention}>\n\n"
-                   f"Please use the extended command `.store-#` to view all the items in each price category. "
+                   f"Please use the extended command `.store #` to view all the items in each price category. "
                    f"Here is a key:\n"
-                   f"{credit_emoji} `7,500` - `.store-1` \n"
-                   f"{credit_emoji} `10,000` - `.store-2` \n"
-                   f"{credit_emoji} `15,000` - `.store-3` \n"
-                   f"{credit_emoji} `20,000` - `.store-4` \n"
-                   f"{credit_emoji} `25,000` - `.store-5` \n"
-                   f"{credit_emoji} `30,000` - `.store-6` \n"
-                   f"{credit_emoji} `40,000` - `.store-7` \n"
-                   f"{credit_emoji} `45,000` - `.store-8` \n"
-                   f"{credit_emoji} `ALL` - `.store-all`")
+                   f"{credit_emoji} `07,500` - `.store 1` \n"
+                   f"{credit_emoji} `10,000` - `.store 2` \n"
+                   f"{credit_emoji} `15,000` - `.store 3` \n"
+                   f"{credit_emoji} `20,000` - `.store 4` \n"
+                   f"{credit_emoji} `25,000` - `.store 5` \n"
+                   f"{credit_emoji} `30,000` - `.store 6` \n"
+                   f"{credit_emoji} `40,000` - `.store 7` \n"
+                   f"{credit_emoji} `45,000` - `.store 8` \n"
+                   f"{credit_emoji} `ALL` - `.store all`")
 
     store = f"**41st Elite Corps store:** <@!{mention}> \n"
 
