@@ -332,12 +332,6 @@ async def github(ctx):
                        "If you are interested in helping out with the bot, be sure to DM Kyoda!")
 
 
-@bot.command(name='fuck')
-async def fuck(ctx):
-    if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        await ctx.send("you")
-
-
 @bot.command(name='help')
 async def command_help(ctx):
     if ctx.channel.id == '936902313589764146' or '939028644175699968':
@@ -358,6 +352,12 @@ async def command_help(ctx):
 
 
 # start troll commands
+
+@bot.command(name='fuck')
+async def fuck(ctx):
+    if ctx.channel.id == '936902313589764146' or '939028644175699968':
+        await ctx.send("you")
+
 
 @bot.command(name='bitches')
 async def bitches(ctx):
