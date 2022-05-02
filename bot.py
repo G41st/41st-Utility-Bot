@@ -284,24 +284,25 @@ async def register(ctx):
 async def store(ctx, message):
     if ctx.channel.id == '936902313589764146' or '939028644175699968':
         store_key_list = ["1", "2", "3", "4", "5", "6", "7", "8"]
+        store_key_list_all = ["all", "ALL"]
         credit_emoji = '<:credits:937788738950545464>'
+        if message in store_key_list or store_key_list_all:
+            if message in store_key_list:
+                await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 0))
+                await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, int(message)))
+            if message in store_key_list_all:
+                channel = await ctx.author.create_dm()
+                await ctx.send(f"<@!{ctx.author.id}> - Store sent in DM's.")
 
-        if message == "all" or "ALL":
-            channel = await ctx.author.create_dm()
-            await ctx.send(f"<@!{ctx.author.id}> - Store sent in DM's.")
-
-            await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 0))
-            await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 1))
-            await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 2))
-            await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 3))
-            await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 4))
-            await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 5))
-            await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 6))
-            await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 7))
-            await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 8))
-
-        elif message not in store_key_list:
-            ctx.send("ERROR - list not found. Please try again.")
+                await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 0))
+                await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 1))
+                await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 2))
+                await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 3))
+                await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 4))
+                await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 5))
+                await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 6))
+                await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 7))
+                await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 8))
 
 
 @store.error
@@ -310,99 +311,6 @@ async def store_error(ctx, error):
 
     if isinstance(error, discord.ext.commands.errors.MissingRequiredArgument):
         await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 69))
-    else:
-        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 69))
-
-
-@bot.command(name='store-1')
-async def store(ctx):
-    if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        credit_emoji = '<:credits:937788738950545464>'
-
-        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 0))
-        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 1))
-
-
-@bot.command(name='store-2')
-async def store(ctx):
-    if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        credit_emoji = '<:credits:937788738950545464>'
-
-        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 0))
-        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 2))
-
-
-@bot.command(name='store-3')
-async def store(ctx):
-    if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        credit_emoji = '<:credits:937788738950545464>'
-
-        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 0))
-        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 3))
-
-
-@bot.command(name='store-4')
-async def store(ctx):
-    if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        credit_emoji = '<:credits:937788738950545464>'
-
-        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 0))
-        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 4))
-
-
-@bot.command(name='store-5')
-async def store(ctx):
-    if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        credit_emoji = '<:credits:937788738950545464>'
-
-        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 0))
-        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 5))
-
-
-@bot.command(name='store-6')
-async def store(ctx):
-    if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        credit_emoji = '<:credits:937788738950545464>'
-
-        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 0))
-        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 6))
-
-
-@bot.command(name='store-7')
-async def store(ctx):
-    if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        credit_emoji = '<:credits:937788738950545464>'
-
-        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 0))
-        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 7))
-
-
-@bot.command(name='store-8')
-async def store(ctx):
-    if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        credit_emoji = '<:credits:937788738950545464>'
-
-        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 0))
-        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 8))
-
-
-@bot.command(name='store-all')
-async def store(ctx):
-    if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        credit_emoji = '["7]'
-
-        channel = await ctx.author.create_dm()
-        await ctx.send(f"<@!{ctx.author.id}> - Store sent in DM's.")
-
-        await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 0))
-        await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 1))
-        await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 2))
-        await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 3))
-        await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 4))
-        await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 5))
-        await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 6))
-        await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 7))
-        await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 8))
 
 
 @bot.command(name='shop')
