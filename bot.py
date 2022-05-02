@@ -259,18 +259,20 @@ async def who_am_i(ctx):
 @bot.command(name='register')
 async def register(ctx):
     if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        mention = f"<@!{ctx.user.id}>"
+        mention = f"<@!{ctx.author.id}>"
         channel = bot.get_channel(939028644175699968)
 
-        database_check = register_command.register(ctx.author.id, ctx.author.display_name)
+        database_check = register_command.register(str(ctx.author.id), ctx.author.display_name)
 
         if database_check == "00" or "07":
             await ctx.send(register_command.channel_reply(database_check, mention))
         else:
             report_message = \
-                register_command.report_message(database_check, ctx.author.id, ctx.author.display_name, ctx.channel.id)
+                register_command.report_message(database_check, str(ctx.author.id),
+                                                ctx.author.display_name, ctx.channel.id)
             report_log = \
-                register_command.report_log(database_check, ctx.author.id, ctx.author.display_name, ctx.channel.id)
+                register_command.report_log(database_check, str(ctx.author.id),
+                                            ctx.author.display_name, ctx.channel.id)
 
             await ctx.send(register_command.channel_reply(database_check, mention))
             await channel.send(report_message)

@@ -86,9 +86,9 @@ def register(user_id, author_display_name):
                                 print(f"{author_display_name} - {user_id} \nhas been added to merit.txt")
                             with open("demerit.txt", 'a') as f:
                                 f.write(user_id + '\n' + '0\n')
-                                print(f"{author_display_name} - {user_id} has been added to registry.txt")
+                                print(f"{author_display_name} - {user_id} \nhas been added to registry.txt")
                             print(
-                                f"{author_display_name} - {user_id} \nhas been  registered with 0 errors")
+                                f"{author_display_name} - {user_id} \nhas been registered with 0 errors")
                             return "07"
 
 
