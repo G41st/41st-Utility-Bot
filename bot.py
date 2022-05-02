@@ -23,7 +23,6 @@ GUILD = os.getenv('DISCORD_GUILD')
 KYODA_ID = 583386313466708035
 FORCEPS_ID = 173202312762884096
 BOT_OPERATOR_ROLE = "Technical Commander"
-COGS = ['cogs.trolls']
 
 
 def startup(START):
@@ -32,13 +31,13 @@ def startup(START):
 
     if START == TOKEN:
         intents = Intents.all()
-        bot = Bot(intents=intents, command_prefix='.')
+        bot = commands.Bot(intents=intents, command_prefix='.')
         bot.remove_command('help')
         LAUNCH = TOKEN
 
     if START == TOKEN_TEST:
         intents = Intents.all()
-        bot = Bot(intents=intents, command_prefix='..')
+        bot = commands.Bot(intents=intents, command_prefix='..')
         bot.remove_command('help')
         LAUNCH = TOKEN_TEST
 
@@ -63,7 +62,6 @@ async def on_ready():
     await bot_command_channel.send(message)
 
 
-
 def credit_counter(role_names, discord_id):
     role_total = role_counter.credit_counter(role_names)
     merit_total = merit_config.merit_reader(discord_id)
@@ -78,9 +76,6 @@ def credit_counter(role_names, discord_id):
         return total
 
 
-
-
-
 @bot.command(name='bitches')
 async def bitches(ctx):
     role_names = [str(r) for r in ctx.author.roles]
@@ -91,6 +86,12 @@ async def bitches(ctx):
         await ctx.send(f"congradulations {mention}, you have bitches! {salute_emoji}")
     else:
         await ctx.send(f"you have no bitches")
+
+
+@bot.command()
+async def troll(ctx):
+    if ctx.channel.id == '936902313589764146' or '939028644175699968':
+        await ctx.send(f"```{assets.troll_command()}```")
 
 
 @bot.command(name='drugs')
@@ -301,20 +302,20 @@ async def who_am_i(ctx):
         else:
             await ctx.send(f"<@!{ctx.author.id}> - User Info sent in DM's.")
             await channel.send(f"Name: `{ctx.author.display_name}`\n"
-                           f"ID:`{ctx.author.id}`\n"
-                           f"Join Date: `{join_date}`\n"
-                           f"Credits: {credit_emoji}`{credit_value}`\n"
-                           f"Raw Credits: `{credit_value_raw}`\n"
-                           f"Merits: `{merit_checker}`\n"
-                           f"Demerits: `{demerit_checker}`\n"
-                           f"Certifications: \n```\n"
-                           f"{assets.certifications('command', role_names)}"
-                           f"{assets.certifications('sof1', role_names)}"
-                           f"{assets.certifications('sof2', role_names)}"
-                           f"{assets.certifications('trooper', role_names)}"
-                           f"{assets.certifications('pilot', role_names)}"
-                           f"{assets.certifications('veteran', role_names)}"
-                           f"{assets.certifications('valor', role_names)}```\n")
+                               f"ID:`{ctx.author.id}`\n"
+                               f"Join Date: `{join_date}`\n"
+                               f"Credits: {credit_emoji}`{credit_value}`\n"
+                               f"Raw Credits: `{credit_value_raw}`\n"
+                               f"Merits: `{merit_checker}`\n"
+                               f"Demerits: `{demerit_checker}`\n"
+                               f"Certifications: \n```\n"
+                               f"{assets.certifications('command', role_names)}"
+                               f"{assets.certifications('sof1', role_names)}"
+                               f"{assets.certifications('sof2', role_names)}"
+                               f"{assets.certifications('trooper', role_names)}"
+                               f"{assets.certifications('pilot', role_names)}"
+                               f"{assets.certifications('veteran', role_names)}"
+                               f"{assets.certifications('valor', role_names)}```\n")
 
 
 # register command order:
@@ -798,12 +799,6 @@ async def shutdown(ctx):
         await ctx.send("`Not Authorised`")
 
 
-if __name__ == '__main__':
-    for extension in COGS:
-        bot.load_extension(extension)
-
-
 def main():
     while True:
         bot.run(LAUNCH)
-        trolls.setup(bot)
