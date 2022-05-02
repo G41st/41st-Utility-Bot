@@ -22,7 +22,6 @@ GUILD = os.getenv('DISCORD_GUILD')
 KYODA_ID = 583386313466708035
 FORCEPS_ID = 173202312762884096
 BOT_OPERATOR_ROLE = "Technical Commander"
-COGS = ['cogs.trolls']
 
 
 def startup(START):
@@ -62,7 +61,6 @@ async def on_ready():
     await bot_command_channel.send(message)
 
 
-
 def credit_counter(role_names, discord_id):
     role_total = role_counter.credit_counter(role_names)
     merit_total = merit_config.merit_reader(discord_id)
@@ -75,79 +73,6 @@ def credit_counter(role_names, discord_id):
         return False
     else:
         return total
-
-
-@bot.command(name='troll')
-async def troll(ctx):
-    if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        await ctx.send(f"```{assets.troll_command()}```")
-
-
-@bot.command(name='bitches')
-async def bitches(ctx):
-    role_names = [str(r) for r in ctx.author.roles]
-
-    if 'Medal of Valor' in role_names:
-        salute_emoji = '<:GreenSalute:906047649982083113>'
-        mention = format(f"<@!{ctx.author.id}>")
-        await ctx.send(f"congradulations {mention}, you have bitches! {salute_emoji}")
-    else:
-        await ctx.send(f"you have no bitches")
-
-
-@bot.command(name='drugs')
-async def drugs(ctx):
-    await ctx.send("deathsticks?")
-
-
-@bot.command(name='shitterbawx')
-async def shitterbawx(ctx):
-    await ctx.send("pretorien is the better ginger")
-
-
-@bot.command(name='chatterbox')
-async def chatterbox(ctx):
-    await ctx.send("you mean shitterbawx?")
-
-
-@bot.command(name='your-mom')
-async def your_mom(ctx):
-    await ctx.send("is in my bed. your welcome.")
-
-
-@bot.command(name='not-scared')
-async def not_scared(ctx):
-    await ctx.send("`<@!391974737745805322>`")
-
-
-@bot.command(name='no-u')
-async def no_u(ctx):
-    await ctx.send(assets.rage())
-
-
-@bot.command(name='adko')
-async def adko(ctx):
-    salute_emoji = '<:GreenSalute:906047649982083113>'
-
-    await ctx.send(f"`MJR Adko CC-1258`\n"
-                   f"Trained on: `07/12/2021 (US EAST)`\n"
-                   f"Stepped down on: `03/20/2022 (US EAST)`\n"
-                   f"- 'The road to freedom is paved with blood. (Unknown)' \n"
-                   f"Godspeed brother, may Floppa bless you on your journey.\n"
-                   f"{salute_emoji}")
-
-
-@bot.command(name='blue')
-async def adko(ctx):
-    salute_emoji = '<:GreenSalute:906047649982083113>'
-
-    await ctx.send(f"`CPT Blue CC-1591`\n"
-                   f"Trained on: `08/20/2021 (US EAST)`\n"
-                   f"Stepped down on: `03/20/2022 (US EAST)`\n"
-                   f"- 'A loving, caring, human being. Always there for you if you need him. Like the brother you "
-                   f"never got. (2LT Raven)' \n"
-                   f"Godspeed brother.\n"
-                   f"{salute_emoji}")
 
 
 @bot.command(name='add')
@@ -303,20 +228,20 @@ async def who_am_i(ctx):
         else:
             await ctx.send(f"<@!{ctx.author.id}> - User Info sent in DM's.")
             await channel.send(f"Name: `{ctx.author.display_name}`\n"
-                           f"ID:`{ctx.author.id}`\n"
-                           f"Join Date: `{join_date}`\n"
-                           f"Credits: {credit_emoji}`{credit_value}`\n"
-                           f"Raw Credits: `{credit_value_raw}`\n"
-                           f"Merits: `{merit_checker}`\n"
-                           f"Demerits: `{demerit_checker}`\n"
-                           f"Certifications: \n```\n"
-                           f"{assets.certifications('command', role_names)}"
-                           f"{assets.certifications('sof1', role_names)}"
-                           f"{assets.certifications('sof2', role_names)}"
-                           f"{assets.certifications('trooper', role_names)}"
-                           f"{assets.certifications('pilot', role_names)}"
-                           f"{assets.certifications('veteran', role_names)}"
-                           f"{assets.certifications('valor', role_names)}```\n")
+                               f"ID:`{ctx.author.id}`\n"
+                               f"Join Date: `{join_date}`\n"
+                               f"Credits: {credit_emoji}`{credit_value}`\n"
+                               f"Raw Credits: `{credit_value_raw}`\n"
+                               f"Merits: `{merit_checker}`\n"
+                               f"Demerits: `{demerit_checker}`\n"
+                               f"Certifications: \n```\n"
+                               f"{assets.certifications('command', role_names)}"
+                               f"{assets.certifications('sof1', role_names)}"
+                               f"{assets.certifications('sof2', role_names)}"
+                               f"{assets.certifications('trooper', role_names)}"
+                               f"{assets.certifications('pilot', role_names)}"
+                               f"{assets.certifications('veteran', role_names)}"
+                               f"{assets.certifications('valor', role_names)}```\n")
 
 
 # register command order:
@@ -687,6 +612,82 @@ async def command_help(ctx):
     await ctx.send(f"<@!{ctx.author.id}> - Directory sent in DM's.")
 
 
+# start troll commands
+
+@bot.command(name='bitches')
+async def bitches(ctx):
+    role_names = [str(r) for r in ctx.author.roles]
+
+    if 'Medal of Valor' in role_names:
+        salute_emoji = '<:GreenSalute:906047649982083113>'
+        mention = format(f"<@!{ctx.author.id}>")
+        await ctx.send(f"congradulations {mention}, you have bitches! {salute_emoji}")
+    else:
+        await ctx.send(f"you have no bitches")
+
+
+@bot.command(name='drugs')
+async def drugs(ctx):
+    await ctx.send("deathsticks?")
+
+
+@bot.command(name='shitterbawx')
+async def shitterbawx(ctx):
+    await ctx.send("pretorien is the better ginger")
+
+
+@bot.command(name='chatterbox')
+async def chatterbox(ctx):
+    await ctx.send("you mean shitterbawx?")
+
+
+@bot.command(name='your-mom')
+async def your_mom(ctx):
+    await ctx.send("is in my bed. your welcome.")
+
+
+@bot.command(name='not-scared')
+async def not_scared(ctx):
+    await ctx.send("`<@!391974737745805322>`")
+
+
+@bot.command(name='no-u')
+async def no_u(ctx):
+    await ctx.send(assets.rage())
+
+
+@bot.command(name='troll')
+async def troll(ctx):
+    if ctx.channel.id == '936902313589764146' or '939028644175699968':
+        await ctx.send(f"```{assets.troll_command()}```")
+
+
+@bot.command(name='adko')
+async def adko(ctx):
+    salute_emoji = '<:GreenSalute:906047649982083113>'
+
+    await ctx.send(f"`MJR Adko CC-1258`\n"
+                   f"Trained on: `07/12/2021 (US EAST)`\n"
+                   f"Stepped down on: `03/20/2022 (US EAST)`\n"
+                   f"- 'The road to freedom is paved with blood. (Unknown)' \n"
+                   f"Godspeed brother, may Floppa bless you on your journey.\n"
+                   f"{salute_emoji}")
+
+
+@bot.command(name='blue')
+async def adko(ctx):
+    salute_emoji = '<:GreenSalute:906047649982083113>'
+
+    await ctx.send(f"`CPT Blue CC-1591`\n"
+                   f"Trained on: `08/20/2021 (US EAST)`\n"
+                   f"Stepped down on: `03/20/2022 (US EAST)`\n"
+                   f"- 'A loving, caring, human being. Always there for you if you need him. Like the brother you "
+                   f"never got. (2LT Raven)' \n"
+                   f"Godspeed brother.\n"
+                   f"{salute_emoji}")
+
+# end troll commands
+
 @bot.command(name='version')
 async def version(ctx):
     if ctx.channel.id == '936902313589764146' or '939028644175699968':
@@ -800,12 +801,6 @@ async def shutdown(ctx):
         await ctx.send("`Not Authorised`")
 
 
-if __name__ == '__main__':
-    for extension in COGS:
-        bot.load_extension(extension)
-
-
 def main():
     while True:
         bot.run(LAUNCH)
-        trolls.setup(bot)
