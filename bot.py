@@ -132,8 +132,6 @@ async def sub_demerits(ctx, user: discord.Member, message):
 
         await ctx.send(f"Removed {credit_emoji}`{var_credit_value}` from [ DEMERITS.TXT ] for `user-id: {user.id}`.\n\n"
                        f"{mention} now has {credit_emoji}`{role_credit_value}`.")
-    else:
-        await ctx.send("`Not Authorised`")
 
 
 @bot.command(name='credits')
@@ -338,19 +336,6 @@ async def github(ctx):
 async def command_help(ctx):
     if ctx.channel.id == '936902313589764146' or '939028644175699968':
         await ctx.send(assets.commands_command(ctx.author.id))
-
-
-@bot.command(name='commands')
-async def command_commands(ctx):
-    if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        await ctx.send(assets.commands_command(ctx.author.id))
-
-
-@bot.command(name='directory')
-async def command_help(ctx):
-    channel = await ctx.author.create_dm()
-    await channel.send(assets.commands_directory(ctx.author.id))
-    await ctx.send(f"<@!{ctx.author.id}> - Directory sent in DM's.")
 
 
 # start troll commands
