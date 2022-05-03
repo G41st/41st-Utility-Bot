@@ -42,7 +42,7 @@ def startup(START):
 
 
 startup(TOKEN)
-bot_version = '1.9.0'
+bot_version = '1.10.0'
 bot_version_date = '4/27/2022 (US EST)'
 
 
@@ -730,6 +730,14 @@ async def shutdown(ctx):
         ctx.send("all databases have been pushed and are backed up.")
     else:
         await ctx.send("`Not Authorised`")
+
+
+@bot.command(name='ban')
+async def ban(ctx, user: discord.Member, *, reason=None):
+    if ctx.author.id == KYODA_ID or FORCEPS_ID:
+        await ctx.send("```41st://<utilities> ~ $```")
+        await ctx.send(f"<@!{user.id}> has been reduced to atoms.")
+        await user.ban(reason=reason)
 
 
 @bot.command(name='announcement')
