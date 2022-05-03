@@ -469,6 +469,7 @@ async def report_send(ctx, message):
 
 
 @bot.command(name='git-push')
+@commands.has_role('Technical Commander')
 async def shutdown(ctx):
     if ctx.author.id == KYODA_ID or FORCEPS_ID:
         await ctx.send("```41st://<utilities> ~ $```")
@@ -482,7 +483,17 @@ async def shutdown(ctx):
         await ctx.send("`Not Authorised`")
 
 
+@bot.command(name='ban')
+@commands.has_role('Technical Commander')
+async def ban(ctx, user: discord.Member, *, reason=None):
+    if ctx.author.id == KYODA_ID or FORCEPS_ID:
+        await ctx.send("```41st://<utilities> ~ $```")
+        await ctx.send(f"<@!{user.id}> has been reduced to atoms.")
+        await user.ban(reason=reason)
+
+
 @bot.command(name='announcement')
+@commands.has_role('Technical Commander')
 async def shutdown(ctx):
     if ctx.author.id == KYODA_ID or FORCEPS_ID:
         channel = bot.get_channel(851284148915404831)
@@ -498,6 +509,7 @@ async def shutdown(ctx):
 
 
 @bot.command(name='restart')
+@commands.has_role('Technical Commander')
 async def shutdown(ctx):
     if ctx.author.id == KYODA_ID or FORCEPS_ID:
         await ctx.send("```41st://<utilities> ~ $```")
@@ -515,6 +527,7 @@ async def shutdown(ctx):
 
 
 @bot.command(name='kill')
+@commands.has_role('Technical Commander')
 async def shutdown(ctx):
     if ctx.author.id == KYODA_ID or FORCEPS_ID:
         await ctx.send("```41st://<utilities> ~ $``` \n `HARD-SHUTDOWN`")
