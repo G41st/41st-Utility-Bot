@@ -350,8 +350,8 @@ async def store(ctx, message):
         if message in store_key_list or store_key_list_all:
             if message in store_key_list:
                 embed = discord.Embed(
-                    description=(assets.store_command(format(ctx.author.id), credit_emoji, 0) +
-                                 assets.store_command(format(ctx.author.id), credit_emoji, int(message))),
+                    title=assets.store_command(format(ctx.author.id), credit_emoji, 0),
+                    description=assets.store_command(format(ctx.author.id), credit_emoji, int(message)),
                     color=embed_color)
                 embed.set_author(
                     name=ctx.author.display_name, icon_url=ctx.author.avatar.url)

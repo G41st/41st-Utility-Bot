@@ -12,7 +12,7 @@ def store_command(mention, credit_emoji,  str_n):
                    f"{credit_emoji} `45,000` - `.store 8` \n"
                    f"{credit_emoji} `ALL` - `.store all`")
 
-    store = f"**41st Elite Corps store:** <@!{mention}> \n"
+    store = f"**41st Elite Corps store:**\n"
 
     store1 = (f"\n- - - {credit_emoji} `7,500` - - -\n"
               f"{credit_emoji} `7,500` - 'Helmet Attachments' \n- Choose from one of our pre-existing helmet attachment"
