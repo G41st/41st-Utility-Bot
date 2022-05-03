@@ -106,8 +106,6 @@ async def sub_merits(ctx, user: discord.Member, message):
         role_credit_value = credit_counter(role_names, user.id)
         mention = format(f"<@!{user.id}>")
 
-        await ctx.send()
-
         embed = discord.Embed(
             description=f"Removed {credit_emoji}`{var_credit_value}` from [ MERITS.TXT ] for `user-id: {user.id}`.\n\n"
                        f"{mention} now has {credit_emoji}`{role_credit_value}`.", color=embed_color)
