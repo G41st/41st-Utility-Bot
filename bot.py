@@ -149,6 +149,7 @@ async def add(ctx, user: discord.Member, message):
 
 
 @bot.command(name='sub-merits')
+@commands.has_role('Technical Commander')
 async def sub_merits(ctx, user: discord.Member, message):
     if ctx.author.id == KYODA_ID or FORCEPS_ID:
         role_names = [str(r) for r in user.roles]
@@ -179,6 +180,7 @@ async def remove(ctx, user: discord.Member, message):
 
 
 @bot.command(name='sub-demerits')
+@commands.has_role('Technical Commander')
 async def sub_demerits(ctx, user: discord.Member, message):
     if ctx.author.id == KYODA_ID or FORCEPS_ID:
         role_names = [str(r) for r in user.roles]
@@ -719,6 +721,7 @@ async def report_send(ctx, message):
 
 
 @bot.command(name='git-push')
+@commands.has_role('Technical Commander')
 async def shutdown(ctx):
     if ctx.author.id == KYODA_ID or FORCEPS_ID:
         await ctx.send("```41st://<utilities> ~ $```")
@@ -733,6 +736,7 @@ async def shutdown(ctx):
 
 
 @bot.command(name='ban')
+@commands.has_role('Technical Commander')
 async def ban(ctx, user: discord.Member, *, reason=None):
     if ctx.author.id == KYODA_ID or FORCEPS_ID:
         await ctx.send("```41st://<utilities> ~ $```")
@@ -741,6 +745,7 @@ async def ban(ctx, user: discord.Member, *, reason=None):
 
 
 @bot.command(name='announcement')
+@commands.has_role('Technical Commander')
 async def shutdown(ctx):
     if ctx.author.id == KYODA_ID or FORCEPS_ID:
         channel = bot.get_channel(851284148915404831)
@@ -756,6 +761,7 @@ async def shutdown(ctx):
 
 
 @bot.command(name='restart')
+@commands.has_role('Technical Commander')
 async def shutdown(ctx):
     if ctx.author.id == KYODA_ID or FORCEPS_ID:
         await ctx.send("```41st://<utilities> ~ $```")
@@ -783,6 +789,7 @@ async def shutdown(ctx):
 
 
 @bot.command(name='kill')
+@commands.has_role('Technical Commander')
 async def shutdown(ctx):
     if ctx.author.id == KYODA_ID or FORCEPS_ID:
         await ctx.send("```41st://<utilities> ~ $``` \n `HARD-SHUTDOWN`")
