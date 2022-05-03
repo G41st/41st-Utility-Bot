@@ -23,6 +23,7 @@ GUILD = os.getenv('DISCORD_GUILD')
 KYODA_ID = 583386313466708035
 FORCEPS_ID = 173202312762884096
 BOT_OPERATOR_ROLE = "Technical Commander"
+embed_color = 0x144202
 
 
 def startup(START):
@@ -88,7 +89,7 @@ async def add(ctx, user: discord.Member, message):
 
     embed = discord.Embed(
         description=f"Transferred {credit_emoji}`{var_credit_value}` to `user-id: {user.id}`.\n\n"
-                    f"{mention} now has {credit_emoji}`{role_credit_value}`.", color=0x144202)
+                    f"{mention} now has {credit_emoji}`{role_credit_value}`.", color=embed_color)
     embed.set_author(
         name=user.display_name, icon_url=user.avatar.url)
     await ctx.send(embed=embed)
@@ -109,7 +110,7 @@ async def sub_merits(ctx, user: discord.Member, message):
 
         embed = discord.Embed(
             description=f"Removed {credit_emoji}`{var_credit_value}` from [ MERITS.TXT ] for `user-id: {user.id}`.\n\n"
-                       f"{mention} now has {credit_emoji}`{role_credit_value}`.", color=0x144202)
+                       f"{mention} now has {credit_emoji}`{role_credit_value}`.", color=embed_color)
         embed.set_author(
             name=user.display_name, icon_url=user.avatar.url)
         await ctx.send(embed=embed)
@@ -125,8 +126,12 @@ async def remove(ctx, user: discord.Member, message):
     role_credit_value = credit_counter(role_names, user.id)
     mention = format(f"<@!{user.id}>")
 
-    await ctx.send(f"Transferred {credit_emoji}`{var_credit_value}` from `user-id: {user.id}`.\n\n"
-                   f"{mention} now has {credit_emoji}`{role_credit_value}`.")
+    embed = discord.Embed(
+        description=f"Transferred {credit_emoji}`{var_credit_value}` from `user-id: {user.id}`.\n\n"
+                    f"{mention} now has {credit_emoji}`{role_credit_value}`.", color=embed_color)
+    embed.set_author(
+        name=user.display_name, icon_url=user.avatar.url)
+    await ctx.send(embed=embed)
 
 
 @bot.command(name='sub-demerits')
@@ -140,8 +145,12 @@ async def sub_demerits(ctx, user: discord.Member, message):
         role_credit_value = credit_counter(role_names, user.id)
         mention = format(f"<@!{user.id}>")
 
-        await ctx.send(f"Removed {credit_emoji}`{var_credit_value}` from [ DEMERITS.TXT ] for `user-id: {user.id}`.\n\n"
-                       f"{mention} now has {credit_emoji}`{role_credit_value}`.")
+        embed = discord.Embed(
+            description=f"Removed {credit_emoji}`{var_credit_value}` from [ DEMERITS.TXT ] for `user-id: {user.id}`.\n\n"
+                        f"{mention} now has {credit_emoji}`{role_credit_value}`.", color=embed_color)
+        embed.set_author(
+            name=user.display_name, icon_url=user.avatar.url)
+        await ctx.send(embed=embed)
 
 
 @bot.command(name='credits')
@@ -157,20 +166,20 @@ async def thing_for_roles(ctx):
         if credit_value == False:
             embed = discord.Embed(
                 description=f"You were not detected in the credit logs, or you have no credits. Please run `.register` "
-                            f"to add yourself to the registry or to check integrity of your user.", color=0x144202)
+                            f"to add yourself to the registry or to check integrity of your user.", color=embed_color)
             embed.set_author(
                 name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
             await ctx.send(embed=embed)
         else:
             if 'Medal of Valor' in role_names:
                 embed = discord.Embed(
-                    description=f"{mention}, You have {credit_emoji}`{credit_value}`.", color=0x144202)
+                    description=f"{mention}, You have {credit_emoji}`{credit_value}`.", color=embed_color)
                 embed.set_author(
                     name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
                 await ctx.send(embed=embed)
             else:
                 embed = discord.Embed(
-                    description=f"{mention}, You have {credit_emoji}`{credit_value}`.", color=0x144202)
+                    description=f"{mention}, You have {credit_emoji}`{credit_value}`.", color=embed_color)
                 embed.set_author(
                     name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
                 await ctx.send(embed=embed)
@@ -188,13 +197,13 @@ async def remove(ctx, user: discord.Member):
     if credit_value == False:
         embed = discord.Embed(
             description=f"User was not detected in the credit logs, or has no credits. Please have them run `.register`"
-                        f" to add yourself to the registry or to check integrity of your user. ", color=0x144202)
+                        f" to add yourself to the registry or to check integrity of your user. ", color=embed_color)
         embed.set_author(
             name=user.display_name, icon_url=user.avatar.url)
         await ctx.send(embed=embed)
     else:
         embed = discord.Embed(
-            description=f"{mention} has {credit_emoji}`{credit_value}`.", color=0x144202)
+            description=f"{mention} has {credit_emoji}`{credit_value}`.", color=embed_color)
         embed.set_author(
             name=user.display_name, icon_url=user.avatar.url)
         await ctx.send(embed=embed)
@@ -233,13 +242,13 @@ async def identify(ctx, user: discord.Member):
     if credit_value == False:
         embed = discord.Embed(
             description=f"User was not detected in the credit logs, or has no credits. Please have them run `.register`"
-                        f" to add yourself to the registry or to check integrity of your user. ", color=0x144202)
+                        f" to add yourself to the registry or to check integrity of your user. ", color=embed_color)
         embed.set_author(
             name=user.display_name, icon_url=user.avatar.url)
         await ctx.send(embed=embed)
     else:
         embed = discord.Embed(
-            description=text, color=0x144202)
+            description=text, color=embed_color)
         embed.set_author(
             name=user.display_name, icon_url=user.avatar.url)
         await ctx.send(embed=embed)
@@ -278,13 +287,13 @@ async def who_am_i(ctx):
             embed = discord.Embed(
                 description=f"User was not detected in the credit logs, or has no credits. Please have them run "
                             f"`.register` to add yourself to the registry or to check integrity of your user. ",
-                color=0x144202)
+                color=embed_color)
             embed.set_author(
                 name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
             await ctx.send(embed=embed)
         else:
             embed = discord.Embed(
-                description=text, color=0x144202)
+                description=text, color=embed_color)
             embed.set_author(
                 name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
             await channel.send(embed=embed)
@@ -319,7 +328,12 @@ async def register(ctx):
                 register_command.report_log(database_check, str(ctx.author.id),
                                             ctx.author.display_name, ctx.channel.id)
 
-            await ctx.send(register_command.channel_reply(database_check, mention))
+            embed = discord.Embed(
+                description=register_command.channel_reply(database_check, mention), color=embed_color)
+            embed.set_author(
+                name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
+            await ctx.send(embed=embed)
+
             await channel.send(report_message)
             with open("reports.txt", "a") as report_file:
                 report_file.write(f"{report_log}\n---------------\n")
@@ -335,8 +349,16 @@ async def store(ctx, message):
 
         if message in store_key_list or store_key_list_all:
             if message in store_key_list:
-                await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 0))
-                await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, int(message)))
+                embed = discord.Embed(
+                    description=(assets.store_command(format(ctx.author.id), credit_emoji, 0) +
+                                 assets.store_command(format(ctx.author.id), credit_emoji, int(message))),
+                    color=embed_color)
+                embed.set_author(
+                    name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
+                await ctx.send(embed=embed)
+
+                await ctx.send()
+                await ctx.send()
             if message in store_key_list_all:
                 channel = await ctx.author.create_dm()
                 await ctx.send(f"<@!{ctx.author.id}> - Store sent in DM's.")
@@ -357,7 +379,11 @@ async def store_error(ctx, error):
     credit_emoji = '<:credits:937788738950545464>'
 
     if isinstance(error, discord.ext.commands.errors.MissingRequiredArgument):
-        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 69))
+        embed = discord.Embed(
+            description=assets.store_command(format(ctx.author.id), credit_emoji, 69), color=embed_color)
+        embed.set_author(
+            name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
+        await ctx.send(embed=embed)
 
 
 @bot.command(name='shop')
