@@ -1,7 +1,6 @@
-def store_command(mention, credit_emoji,  str_n):
-    description = (f"<@!{mention}>\n\n"
-                   f"Please use the extended command `.store #` to view all the items in each price category. "
-                   f"Here is a key:\n"
+def store_command(mention, credit_emoji, str_n):
+    description = (f"Please use the extended command `.store #` to view all the items in each price category. "
+                   f"Here is a key:\n\n"
                    f"{credit_emoji} `07,500` - `.store 1` \n"
                    f"{credit_emoji} `10,000` - `.store 2` \n"
                    f"{credit_emoji} `15,000` - `.store 3` \n"
@@ -238,3 +237,13 @@ def certifications(tag, role_names):
             string = "Medal of Valor Recipient"
 
     return string
+
+def credit_diag_command():
+    description = (f"Please use the extended command `.credit-info #` to view your credit details. "
+                   f"Here is a key:\n\n"
+                   f"`.credit-info 1` - Rank Salaries\n"
+                   f"`.credit-info 2` - Medal Rewards\n"
+                   f"`.credit-info 3` - Qualification Rewards\n"
+                   f"`.credit-info all` - All")
+
+    return description

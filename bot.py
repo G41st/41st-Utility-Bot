@@ -8,6 +8,7 @@ from discord.ext.commands import Bot
 from discord import Intents
 import assets
 import register_command
+import role_analyze
 import role_counter
 from discord.ext import commands
 import discord.ext.commands
@@ -399,6 +400,35 @@ async def ggn_store(ctx):
     if ctx.channel.id == '936902313589764146' or '939028644175699968':
         embed = discord.Embed(
             description=assets.ggn_store_command(format(ctx.author.id)), color=embed_color)
+        embed.set_author(
+            name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
+        await ctx.send(embed=embed)
+
+
+@bot.command(name='credit-info')
+async def credit_diag(ctx, message):
+    if ctx.channel.id == '936902313589764146' or '939028644175699968':
+        role_names = [str(r) for r in ctx.author.roles]
+        store_key_list = ["rank", "RANK", "1"]
+        rank_key_list = ["rank", "RANK", "1"]
+        credit_emoji = '<:credits:937788738950545464>'
+
+        if message in store_key_list:
+            if message in rank_key_list:
+                embed = discord.Embed(
+                    title="Credit Details:",
+                    description=role_analyze.rank_diag(role_names, credit_emoji),
+                    color=embed_color)
+                embed.set_author(
+                    name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
+                await ctx.send(embed=embed)
+
+
+@credit_diag.error
+async def credit_diag_error(ctx, error):
+    if isinstance(error, discord.ext.commands.errors.MissingRequiredArgument):
+        embed = discord.Embed(
+            description=assets.credit_diag_command(), color=embed_color)
         embed.set_author(
             name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
         await ctx.send(embed=embed)
