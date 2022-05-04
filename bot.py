@@ -441,7 +441,7 @@ async def github(ctx):
     if ctx.channel.id == '936902313589764146' or '939028644175699968':
         embed = discord.Embed(
             description="https://github.com/G41st/41st-utility-bot \n"
-                       "If you are interested in helping out with the bot, be sure to DM Kyoda!", color=embed_color)
+                        "If you are interested in helping out with the bot, be sure to DM Kyoda!", color=embed_color)
         embed.set_author(
             name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
         await ctx.send(embed=embed)
