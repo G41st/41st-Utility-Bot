@@ -413,7 +413,6 @@ async def github(ctx):
         embed.set_author(
             name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
         await ctx.send(embed=embed)
-        await ctx.send()
 
 
 @bot.command(name='help')
