@@ -387,26 +387,43 @@ async def store_error(ctx, error):
 @bot.command(name='shop')
 async def shop(ctx):
     if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        await ctx.send(assets.shop_command(format(ctx.author.id)))
+        embed = discord.Embed(
+            description=assets.shop_command(format(ctx.author.id)), color=embed_color)
+        embed.set_author(
+            name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
+        await ctx.send(embed=embed)
 
 
 @bot.command(name='ggn-store')
 async def ggn_store(ctx):
     if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        await ctx.send(assets.ggn_store_command(format(ctx.author.id)))
+        embed = discord.Embed(
+            description=assets.ggn_store_command(format(ctx.author.id)), color=embed_color)
+        embed.set_author(
+            name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
+        await ctx.send(embed=embed)
 
 
 @bot.command(name='github')
 async def github(ctx):
     if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        await ctx.send("https://github.com/G41st/41st-utility-bot \n"
-                       "If you are interested in helping out with the bot, be sure to DM Kyoda!")
+        embed = discord.Embed(
+            description="https://github.com/G41st/41st-utility-bot \n"
+                       "If you are interested in helping out with the bot, be sure to DM Kyoda!", color=embed_color)
+        embed.set_author(
+            name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
+        await ctx.send(embed=embed)
+        await ctx.send()
 
 
 @bot.command(name='help')
 async def command_help(ctx):
     if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        await ctx.send(assets.commands_command(ctx.author.id))
+        embed = discord.Embed(
+            description=assets.commands_command(ctx.author.id), color=embed_color)
+        embed.set_author(
+            name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
+        await ctx.send(embed=embed)
 
 
 # start troll commands
@@ -501,20 +518,27 @@ async def version(ctx):
                    f"Release - `Alpha`")
 
         if 'Medal of Valor' in role_names:
-            salute_emoji = '<:GreenSalute:906047649982083113>'
-            mention = format(f"<@!{ctx.author.id}>")
-            await ctx.send(f"{version}\n\n"
-                           f"{mention}\n{salute_emoji}")
+            embed = discord.Embed(
+                description=f"{version}", color=embed_color)
+            embed.set_author(
+                name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
+            await ctx.send(embed=embed)
         else:
-            mention = format(f"<@!{ctx.author.id}>")
-            await ctx.send(f"{version}\n\n"
-                           f"{mention}")
+            embed = discord.Embed(
+                description=f"{version}", color=embed_color)
+            embed.set_author(
+                name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
+            await ctx.send(embed=embed)
 
 
 @bot.command(name='report')
 async def report(ctx):
     if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        await ctx.send(assets.report_command(ctx.author.id))
+        embed = discord.Embed(
+            description=assets.report_command(ctx.author.id), color=embed_color)
+        embed.set_author(
+            name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
+        await ctx.send(embed=embed)
 
 
 @bot.command(name='report-send')
