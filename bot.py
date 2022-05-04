@@ -409,12 +409,12 @@ async def ggn_store(ctx):
 async def credit_diag(ctx, message):
     if ctx.channel.id == '936902313589764146' or '939028644175699968':
         role_names = [str(r) for r in ctx.author.roles]
-        store_key_list = ["rank", "RANK", "1"]
-        rank_key_list = ["rank", "RANK", "1"]
+        credit_diag_key_list = ["1", "2", "3"]
+        credit_diag_key_list_all = ["all", "ALL"]
         credit_emoji = '<:credits:937788738950545464>'
 
-        if message in store_key_list:
-            if message in rank_key_list:
+        if message in credit_diag_key_list or credit_diag_key_list_all:
+            if message in credit_diag_key_list:
                 embed = discord.Embed(
                     title="Credit Details:",
                     description=role_analyze.rank_diag(role_names, credit_emoji),
@@ -422,6 +422,8 @@ async def credit_diag(ctx, message):
                 embed.set_author(
                     name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
                 await ctx.send(embed=embed)
+            if message in credit_diag_key_list_all:
+                pass
 
 
 @credit_diag.error
