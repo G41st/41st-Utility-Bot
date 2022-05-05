@@ -372,7 +372,7 @@ async def store_error(ctx, error):
 
     if isinstance(error, discord.ext.commands.errors.MissingRequiredArgument):
         embed = discord.Embed(
-            description=assets.store_command(format(ctx.author.id), credit_emoji, 69), color=embed_color)
+            description=assets.store_command(credit_emoji, 69), color=embed_color)
         embed.set_author(
             name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
         await ctx.send(embed=embed)
