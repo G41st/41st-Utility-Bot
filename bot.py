@@ -443,7 +443,6 @@ async def credit_diag(ctx, message):
             if message == "0":
                 channel = await ctx.author.create_dm()
                 await ctx.send(f"<@!{ctx.author.id}> - Credit details sent in DM's.")
-
                 await channel.send(f"**Rank Credit Details**\n\n"
                                    f"{role_analyze.rank_diag(role_names, credit_emoji_all)}")
                 await channel.send(f"**Medal Credit Details:**\n\n"
@@ -473,6 +472,14 @@ async def github(ctx):
         embed.set_author(
             name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
         await ctx.send(embed=embed)
+
+
+@bot.command(name='dev-server')
+async def dev_server_inv(ctx):
+    if ctx.channel.id == '936902313589764146' or '939028644175699968':
+        channel = await ctx.author.create_dm()
+        await ctx.send(f"<@!{ctx.author.id}> - Dev Team Server invite sent in DM's.")
+        await channel.send("https://discord.gg/H2KArTCj5a")
 
 
 @bot.command(name='help')
