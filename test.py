@@ -114,6 +114,62 @@ async def suggestion_command(ctx):
     await ctx.send("hello", view=view1)
 
 
+@bot.command(name='create-suggestion')
+async def create_suggestion(ctx):
+    channel = await ctx.author.create_dm()
+    await ctx.send("dms lmao")
+
+    await channel.send("Hello! here you can create a suggestion.")
+
+    async def select_callback(interaction):
+        await interaction.response.send_message("enter your suggestion:")
+        suggestion_body_raw = await bot.wait_for('message')
+        suggestion_body = suggestion_body_raw.content
+        await channel.send(suggestion_body)
+
+
+    select = Select(
+        placeholder="Tags",
+        options=[
+            discord.SelectOption(
+                label="Army", description="Anything relating to Regiments, or ground game modes."),
+            discord.SelectOption(
+                label="Navy", description="Anything relating to Wings or Ship game modes."),
+            discord.SelectOption(
+                label="Logistics", description="Anything relating to raid logs, attendance, etc."),
+            discord.SelectOption(
+                label="High Command Improvement", description="Any suggestions/recomendations/ideas for members of "
+                                                              "high command that you wish to be public."),
+
+        ],
+        row=2
+    )
+
+    view1 = View()
+    view1.add_item(select)
+
+    select.callback = select_callback
+
+    parent_folder = os.getcwd()
+    subfolder = 'suggestions'
+
+    await channel.send("What is the title of your suggestion?")
+    suggestion_title_raw = await bot.wait_for('message')
+    suggestion_title = suggestion_title_raw.content
+    await channel.send(view=view1)
+
+    await channel.send(suggestion_title)
+    print(suggestion_title)
+
+    with open(f"{parent_folder}/{subfolder}/suggestion_number.txt", "r") as suggestion_number_file:
+        old_ticket_number = int(suggestion_number_file.read())
+        new_ticket_number = old_ticket_number + 1
+        print(new_ticket_number)
+
+#    with open(f"{parent_folder}/{subfolder}/{new_ticket_number}.txt", "w") as new_ticket_file:
+ #       pass
+
+
 
 def main():
     while True:
