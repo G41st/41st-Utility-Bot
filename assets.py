@@ -88,7 +88,7 @@ def store_command(credit_emoji, str_n):
         return description
 
 
-def shop_command(mention):
+def shop_command():
     credit_emoji = '<:credits:937788738950545464>'
 
     shop = (f"{credit_emoji} `7,500` - 'Helmet Attachments' \n"

@@ -266,7 +266,8 @@ async def who_am_i(ctx):
         demerit_checker = merit_config.demerit_reader(ctx.author.id)
         join_date = ctx.author.joined_at.strftime("%b %d, %Y")
 
-        text = (f"Name: `{ctx.author.display_name}`\n"
+        text = (f"**USER INFO:**\n\n"
+                f"Name: `{ctx.author.display_name}`\n"
                 f"ID:`{ctx.author.id}`\n"
                 f"Join Date: `{join_date}`\n"
                 f"Credits: {credit_emoji}`{credit_value}`\n"
@@ -274,28 +275,20 @@ async def who_am_i(ctx):
                 f"Merits: `{merit_checker}`\n"
                 f"Demerits: `{demerit_checker}`\n"
                 f"Certifications: \n```\n"
-                f"{assets.certifications('command', role_names)}\n"
-                f"{assets.certifications('sof1', role_names)}\n"
-                f"{assets.certifications('sof2', role_names)}\n"
-                f"{assets.certifications('trooper', role_names)}\n"
-                f"{assets.certifications('pilot', role_names)}\n"
+                f"{assets.certifications('command', role_names)}"
+                f"{assets.certifications('sof1', role_names)}"
+                f"{assets.certifications('sof2', role_names)}"
+                f"{assets.certifications('trooper', role_names)}"
+                f"{assets.certifications('pilot', role_names)}"
                 f"{assets.certifications('veteran', role_names)}"
-                f"{assets.certifications('valor', role_names)}```\n")
+                f"{assets.certifications('valor', role_names)}```")
 
         if credit_value == False:
-            embed = discord.Embed(
-                description=f"User was not detected in the credit logs, or has no credits. Please have them run "
-                            f"`.register` to add yourself to the registry or to check integrity of your user. ",
-                color=embed_color)
-            embed.set_author(
-                name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
-            await ctx.send(embed=embed)
+            await ctx.send(f"User was not detected in the credit logs, or has no credits. Please have them run "
+                           f"`.register` to add yourself to the registry or to check integrity of your user. ")
         else:
-            embed = discord.Embed(
-                description=text, color=embed_color)
-            embed.set_author(
-                name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
-            await channel.send(embed=embed)
+            await ctx.send(f"<@!{ctx.author.id}> - User Diagnostic sent in DM's.")
+            await channel.send(text)
 
 
 # register command order:
@@ -390,7 +383,7 @@ async def shop(ctx):
     if ctx.channel.id == '936902313589764146' or '939028644175699968':
         embed = discord.Embed(
             title="41st Elite Corps Store:",
-            description=assets.shop_command(format(ctx.author.id)), color=embed_color)
+            description=assets.shop_command(), color=embed_color)
         embed.set_author(
             name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
         await ctx.send(embed=embed)
