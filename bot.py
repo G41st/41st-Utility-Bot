@@ -443,11 +443,11 @@ async def credit_diag(ctx, message):
                 channel = await ctx.author.create_dm()
                 await ctx.send(f"<@!{ctx.author.id}> - Credit details sent in DM's.")
 
-                await channel.send(f"**Rank Credit Details:\n\n"
+                await channel.send(f"**Rank Credit Details**\n\n"
                                    f"{role_analyze.rank_diag(role_names, credit_emoji_all)}")
-                await channel.send(f"**Medal Credit Details:\n\n"
+                await channel.send(f"**Medal Credit Details:**\n\n"
                                    f"{role_analyze.medal_diag(role_names, credit_emoji_all)}")
-                await channel.send(f"**Qual Credit Details:\n\n"
+                await channel.send(f"**Qual Credit Details:**\n\n"
                                    f"{role_analyze.qual_diag(role_names, credit_emoji_all)}")
 
 

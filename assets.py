@@ -244,6 +244,6 @@ def credit_diag_command():
                    f"`.credit-info 1` - Rank Salaries\n"
                    f"`.credit-info 2` - Medal Rewards\n"
                    f"`.credit-info 3` - Qualification Rewards\n"
-                   f"`.credit-info 0` - All 3")
+                   f"`.credit-info 0` - All")
 
     return description
