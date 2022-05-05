@@ -109,7 +109,7 @@ async def sub_merits(ctx, user: discord.Member, message):
 
         embed = discord.Embed(
             description=f"Removed {credit_emoji}`{var_credit_value}` from [ MERITS.TXT ] for `user-id: {user.id}`.\n\n"
-                       f"{mention} now has {credit_emoji}`{role_credit_value}`.", color=embed_color)
+                        f"{mention} now has {credit_emoji}`{role_credit_value}`.", color=embed_color)
         embed.set_author(
             name=user.display_name, icon_url=user.avatar.url)
         await ctx.send(embed=embed)
@@ -222,21 +222,21 @@ async def identify(ctx, user: discord.Member):
     demerit_checker = merit_config.demerit_reader(user.id)
     join_date = user.joined_at.strftime("%b %d, %Y")
 
-    text = (f"Name: {mention}\n"
-            f"ID:`{user.id}`\n"
+    text = (f"Name: `{ctx.author.display_name}`\n"
+            f"ID:`{ctx.author.id}`\n"
             f"Join Date: `{join_date}`\n"
             f"Credits: {credit_emoji}`{credit_value}`\n"
             f"Raw Credits: `{credit_value_raw}`\n"
             f"Merits: `{merit_checker}`\n"
             f"Demerits: `{demerit_checker}`\n"
             f"Certifications: \n```\n"
-            f"{assets.certifications('command', role_names)}\n"
-            f"{assets.certifications('sof1', role_names)}\n"
-            f"{assets.certifications('sof2', role_names)}\n"
-            f"{assets.certifications('trooper', role_names)}\n"
-            f"{assets.certifications('pilot', role_names)}\n"
+            f"{assets.certifications('command', role_names)}"
+            f"{assets.certifications('sof1', role_names)}"
+            f"{assets.certifications('sof2', role_names)}"
+            f"{assets.certifications('trooper', role_names)}"
+            f"{assets.certifications('pilot', role_names)}"
             f"{assets.certifications('veteran', role_names)}"
-            f"{assets.certifications('valor', role_names)}```\n")
+            f"{assets.certifications('valor', role_names)}```")
 
     if credit_value == False:
         embed = discord.Embed(
@@ -413,7 +413,9 @@ async def credit_diag(ctx, message):
             if message == "1":
                 embed = discord.Embed(
                     title="Rank Credit Details:",
-                    description=role_analyze.rank_diag(role_names, credit_emoji),
+                    description=(role_analyze.rank_diag(role_names, credit_emoji) + f"\n\n"
+                                 f"Total Role Credits: {credit_emoji} `{role_counter.credit_counter(role_names)}`\n"
+                                 f"Total Credits: {credit_emoji} `{credit_counter(role_names, ctx.author.id)}`"),
                     color=embed_color)
                 embed.set_author(
                     name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
@@ -421,7 +423,9 @@ async def credit_diag(ctx, message):
             if message == "2":
                 embed = discord.Embed(
                     title="Medal Credit Details:",
-                    description=role_analyze.medal_diag(role_names, credit_emoji),
+                    description=(role_analyze.medal_diag(role_names, credit_emoji) + f"\n\n"
+                                 f"Total Role Credits: {credit_emoji} `{role_counter.credit_counter(role_names)}`\n"
+                                 f"Total Credits: {credit_emoji} `{credit_counter(role_names, ctx.author.id)}`"),
                     color=embed_color)
                 embed.set_author(
                     name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
@@ -429,7 +433,9 @@ async def credit_diag(ctx, message):
             if message == "3":
                 embed = discord.Embed(
                     title="Qual Credit Details:",
-                    description=role_analyze.qual_diag(role_names, credit_emoji),
+                    description=(role_analyze.qual_diag(role_names, credit_emoji) + f"\n\n"
+                                 f"Total Role Credits: {credit_emoji} `{role_counter.credit_counter(role_names)}`\n"
+                                 f"Total Credits: {credit_emoji} `{credit_counter(role_names, ctx.author.id)}`"),
                     color=embed_color)
                 embed.set_author(
                     name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
@@ -444,7 +450,8 @@ async def credit_diag(ctx, message):
                                    f"{role_analyze.medal_diag(role_names, credit_emoji_all)}")
                 await channel.send(f"**Qual Credit Details:**\n\n"
                                    f"{role_analyze.qual_diag(role_names, credit_emoji_all)}")
-
+                await channel.send(f"Total Role Credits: {credit_emoji} `{role_counter.credit_counter(role_names)}`\n"
+                                   f"Total Credits: {credit_emoji} `{credit_counter(role_names, ctx.author.id)}`")
 
 
 @credit_diag.error

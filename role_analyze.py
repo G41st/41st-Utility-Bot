@@ -1,3 +1,4 @@
+import role_counter
 global rank_total
 global qual_total
 global merit_sum
