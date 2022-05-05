@@ -91,8 +91,7 @@ def store_command(credit_emoji, str_n):
 def shop_command(mention):
     credit_emoji = '<:credits:937788738950545464>'
 
-    shop = (f"**41st Elite Corps Store:** <@!{mention}> \n"
-            f"{credit_emoji} `7,500` - 'Helmet Attachments' \n"
+    shop = (f"{credit_emoji} `7,500` - 'Helmet Attachments' \n"
             f"{credit_emoji} `7,500` - 'Rangefinder Down' \n"
             f"{credit_emoji} `7,500` - 'Helmet Tubes/Pipes' \n"
             f"{credit_emoji} `10,000` - '*Build-Your-Own* Attachment' \n"
@@ -148,16 +147,15 @@ def rage():
     return rage_paragraph
 
 
-def commands_command(mention):
-    commands = (f"COMMANDS: - - - <@!{mention}>\n\n"
-                f"`.register` - Register yourself in the bots systems. You must use .register before you can use the "
+def commands_command():
+    commands = (f"`.register` - Register yourself in the bots systems. You must use .register before you can use the "
                 f"majority of the bots functions. \n"
                 f"`.store` - Displays the current store information with categories and item descriptions. \n"
                 f"`.shop` - Displays a condensed version of the store. \n"
                 f"`.ggn-store` - Displays the current GGN store price approximations, as well as specific items. \n"
                 f"`.credits` - Calculates your current credit value. \n"
                 f"`.whoami` - Sends a list of information about your user to your DM's. \n"
-                f"`.directory` - DM's the user a list of names for various important divisions of the 41st. \n"
+                f"`.credit-info` - Sends a list of your roles and how much credits each one awards you with. \n"
                 f"`.version` - Displays current bot dev info. \n"
                 f"`.github` - Sends the link to the bot's git repository. \n"
                 f"`.report` - Sends a user-created error report to the bot dev team.")
@@ -166,8 +164,7 @@ def commands_command(mention):
 
 
 def report_command(mention):
-    report_instructions = (f"<@!{mention}>\n\n"
-                           f"To report a bug, please use the `.report-send` command. Please specify anything you think"
+    report_instructions = (f"To report a bug, please use the `.report-send` command. Please specify anything you think"
                            f"would be useful to help the Dev Team fix this problem.\n"
                            f"(Please do not worry about including your name or using a format, as the bot automaticly "
                            f"collects this data for us.) \nHere is an example report:\n"

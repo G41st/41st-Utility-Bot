@@ -389,6 +389,7 @@ async def store_error(ctx, error):
 async def shop(ctx):
     if ctx.channel.id == '936902313589764146' or '939028644175699968':
         embed = discord.Embed(
+            title="41st Elite Corps Store:",
             description=assets.shop_command(format(ctx.author.id)), color=embed_color)
         embed.set_author(
             name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
@@ -478,7 +479,8 @@ async def github(ctx):
 async def command_help(ctx):
     if ctx.channel.id == '936902313589764146' or '939028644175699968':
         embed = discord.Embed(
-            description=assets.commands_command(ctx.author.id), color=embed_color)
+            title="Commands:",
+            description=assets.commands_command(), color=embed_color)
         embed.set_author(
             name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
         await ctx.send(embed=embed)
@@ -575,24 +577,19 @@ async def version(ctx):
         version = (f"`v{bot_version}` - From `{bot_version_date}` \n"
                    f"Release - `Alpha`")
 
-        if 'Medal of Valor' in role_names:
-            embed = discord.Embed(
-                description=f"{version}", color=embed_color)
-            embed.set_author(
-                name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
-            await ctx.send(embed=embed)
-        else:
-            embed = discord.Embed(
-                description=f"{version}", color=embed_color)
-            embed.set_author(
-                name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
-            await ctx.send(embed=embed)
+        embed = discord.Embed(
+            title="41st Utilities Version:",
+            description=f"{version}", color=embed_color)
+        embed.set_author(
+            name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
+        await ctx.send(embed=embed)
 
 
 @bot.command(name='report')
 async def report(ctx):
     if ctx.channel.id == '936902313589764146' or '939028644175699968':
         embed = discord.Embed(
+            title="Reporting Instructions:",
             description=assets.report_command(ctx.author.id), color=embed_color)
         embed.set_author(
             name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
