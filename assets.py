@@ -9,7 +9,7 @@ def store_command(mention, credit_emoji, str_n):
                    f"{credit_emoji} `30,000` - `.store 6` \n"
                    f"{credit_emoji} `40,000` - `.store 7` \n"
                    f"{credit_emoji} `45,000` - `.store 8` \n"
-                   f"{credit_emoji} `ALL` - `.store all`")
+                   f"{credit_emoji} `ALL` - `.store 0`")
 
     store = f"**41st Elite Corps store:**\n"
 
@@ -244,6 +244,6 @@ def credit_diag_command():
                    f"`.credit-info 1` - Rank Salaries\n"
                    f"`.credit-info 2` - Medal Rewards\n"
                    f"`.credit-info 3` - Qualification Rewards\n"
-                   f"`.credit-info all` - All")
+                   f"`.credit-info 0` - All 3")
 
     return description

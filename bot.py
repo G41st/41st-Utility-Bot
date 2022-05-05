@@ -342,7 +342,7 @@ async def register(ctx):
 async def store(ctx, message):
     if ctx.channel.id == '936902313589764146' or '939028644175699968':
         store_key_list = ["1", "2", "3", "4", "5", "6", "7", "8"]
-        store_key_list_all = ["all", "ALL"]
+        store_key_list_all = ["0"]
         credit_emoji = '<:credits:937788738950545464>'
         credit_emoji_all = '["7]'
 
@@ -410,20 +410,46 @@ async def credit_diag(ctx, message):
     if ctx.channel.id == '936902313589764146' or '939028644175699968':
         role_names = [str(r) for r in ctx.author.roles]
         credit_diag_key_list = ["1", "2", "3"]
-        credit_diag_key_list_all = ["all", "ALL"]
+        credit_diag_key_list_all = ["0"]
         credit_emoji = '<:credits:937788738950545464>'
+        credit_emoji_all = '["7]'
 
         if message in credit_diag_key_list or credit_diag_key_list_all:
-            if message in credit_diag_key_list:
+            if message == "1":
                 embed = discord.Embed(
-                    title="Credit Details:",
+                    title="Rank Credit Details:",
                     description=role_analyze.rank_diag(role_names, credit_emoji),
                     color=embed_color)
                 embed.set_author(
                     name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
                 await ctx.send(embed=embed)
-            if message in credit_diag_key_list_all:
-                pass
+            if message == "2":
+                embed = discord.Embed(
+                    title="Medal Credit Details:",
+                    description=role_analyze.medal_diag(role_names, credit_emoji),
+                    color=embed_color)
+                embed.set_author(
+                    name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
+                await ctx.send(embed=embed)
+            if message == "3":
+                embed = discord.Embed(
+                    title="Qual Credit Details:",
+                    description=role_analyze.qual_diag(role_names, credit_emoji),
+                    color=embed_color)
+                embed.set_author(
+                    name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
+                await ctx.send(embed=embed)
+            if message == "0":
+                channel = await ctx.author.create_dm()
+                await ctx.send(f"<@!{ctx.author.id}> - Credit details sent in DM's.")
+
+                await channel.send(f"**Rank Credit Details:\n\n"
+                                   f"{role_analyze.rank_diag(role_names, credit_emoji_all)}")
+                await channel.send(f"**Medal Credit Details:\n\n"
+                                   f"{role_analyze.medal_diag(role_names, credit_emoji_all)}")
+                await channel.send(f"**Qual Credit Details:\n\n"
+                                   f"{role_analyze.qual_diag(role_names, credit_emoji_all)}")
+
 
 
 @credit_diag.error
