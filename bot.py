@@ -399,6 +399,7 @@ async def shop(ctx):
 async def ggn_store(ctx):
     if ctx.channel.id == '936902313589764146' or '939028644175699968':
         embed = discord.Embed(
+            title="Geetsly's Gaming Network Store Conversions:",
             description=assets.ggn_store_command(format(ctx.author.id)), color=embed_color)
         embed.set_author(
             name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
