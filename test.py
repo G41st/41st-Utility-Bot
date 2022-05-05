@@ -6,7 +6,7 @@ import datetime
 import discord
 from discord.ext.commands import Bot
 from discord import Intents
-from discord.ui import Select, View
+import discord.ui
 import assets
 import register_command
 import role_analyze
@@ -70,7 +70,7 @@ async def suggestion_command(ctx):
     button1 = discord.ui.Button(label="hello", style=discord.ButtonStyle.green)
     button2 = discord.ui.Button(label="goodbye", style=discord.ButtonStyle.danger)
 
-    select = Select(
+    select = discord.ui.Select(
         min_values=2,
         max_values=3,
         placeholder="Enter Tags",
@@ -100,8 +100,8 @@ async def suggestion_command(ctx):
     async def button2_callback(interaction):
         await interaction.response.send_message(f"You chose: {select.values}, {button2.label}")
 
-    view1 = View()
-    view2 = View()
+    view1 = discord.ui.View()
+    view2 = discord.ui.View()
 
     view1.add_item(select)
     view2.add_item(button1)
@@ -119,16 +119,29 @@ async def create_suggestion(ctx):
     channel = await ctx.author.create_dm()
     await ctx.send("dms lmao")
 
-    await channel.send("Hello! here you can create a suggestion.")
+
+    async def button1_callback(interaction):
+        await interaction.response.send_message("Ok. Thank you for your suggestion.")
+
+    async def button2_callback(interaction):
+        await interaction.response.send_message("Ok. Canceled. Please rerun the command to try again.")
 
     async def select_callback(interaction):
         await interaction.response.send_message("enter your suggestion:")
         suggestion_body_raw = await bot.wait_for('message')
         suggestion_body = suggestion_body_raw.content
         await channel.send(suggestion_body)
+        await channel.send("here is a summary of your suggestion:")
+        await channel.send(f"Title: **{suggestion_title}**\n"
+                           f"Tags: {select.values}\n"
+                           f"Description: \n```\n{suggestion_body}```")
+        await channel.send("are you sure you want to post it?", view=view2)
 
+    button1 = discord.ui.Button(label="Upload", style=discord.ButtonStyle.green)
+    button2 = discord.ui.Button(label="Cancel", style=discord.ButtonStyle.danger)
 
-    select = Select(
+    select = discord.ui.Select(
+        max_values=4,
         placeholder="Tags",
         options=[
             discord.SelectOption(
@@ -138,25 +151,32 @@ async def create_suggestion(ctx):
             discord.SelectOption(
                 label="Logistics", description="Anything relating to raid logs, attendance, etc."),
             discord.SelectOption(
-                label="High Command Improvement", description="Any suggestions/recomendations/ideas for members of "
-                                                              "high command that you wish to be public."),
-
-        ],
-        row=2
+                label="High Command Improvement", description="Any suggestions/recommendations/ideas for members of "
+                                                              "high command that you wish to be public.")
+        ]
     )
 
-    view1 = View()
+    view1 = discord.ui.View()
+    view2 = discord.ui.View()
     view1.add_item(select)
-
-    select.callback = select_callback
-
-    parent_folder = os.getcwd()
-    subfolder = 'suggestions'
+    view2.add_item(button1)
+    view2.add_item(button2)
 
     await channel.send("What is the title of your suggestion?")
     suggestion_title_raw = await bot.wait_for('message')
     suggestion_title = suggestion_title_raw.content
     await channel.send(view=view1)
+
+    select.callback = select_callback
+    button1.callback = button1_callback
+    button2.callback = button2_callback
+
+
+
+    parent_folder = os.getcwd()
+    subfolder = 'suggestions'
+
+
 
     await channel.send(suggestion_title)
     print(suggestion_title)
