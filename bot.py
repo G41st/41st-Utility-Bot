@@ -236,7 +236,8 @@ async def identify(ctx, user: discord.Member):
             f"{assets.certifications('trooper', role_names)}"
             f"{assets.certifications('pilot', role_names)}"
             f"{assets.certifications('veteran', role_names)}"
-            f"{assets.certifications('valor', role_names)}```")
+            f"{assets.certifications('valor', role_names)}```\n"
+            f"<@!{user.id}>")
 
     if credit_value == False:
         embed = discord.Embed(
