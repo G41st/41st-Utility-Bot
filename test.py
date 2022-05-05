@@ -114,6 +114,7 @@ async def suggestion_command(ctx):
     await ctx.send("hello", view=view1)
 
 
+
 def main():
     while True:
         bot.run(LAUNCH)
