@@ -121,21 +121,24 @@ async def create_suggestion(ctx):
 
 
     async def button1_callback(interaction):
+        await button_message.delete()
         await interaction.response.send_message("Ok. Thank you for your suggestion.")
 
     async def button2_callback(interaction):
+        await ctx.message.delete()
         await interaction.response.send_message("Ok. Canceled. Please rerun the command to try again.")
 
     async def select_callback(interaction):
+        select.disabled = True
         await interaction.response.send_message("enter your suggestion:")
         suggestion_body_raw = await bot.wait_for('message')
         suggestion_body = suggestion_body_raw.content
-        await channel.send(suggestion_body)
-        await channel.send("here is a summary of your suggestion:")
-        await channel.send(f"Title: **{suggestion_title}**\n"
+        await channel.send("here is a summary of your suggestion:\n\n"
+                           "Title: **{suggestion_title}**\n"
                            f"Tags: {select.values}\n"
-                           f"Description: \n```\n{suggestion_body}```")
-        await channel.send("are you sure you want to post it?", view=view2)
+                           f"Description: \n```\n{suggestion_body}```\n"
+                           f"are you sure you want to post it?")
+        button_message = await channel.send(view=view2)
 
     button1 = discord.ui.Button(label="Upload", style=discord.ButtonStyle.green)
     button2 = discord.ui.Button(label="Cancel", style=discord.ButtonStyle.danger)
@@ -162,21 +165,18 @@ async def create_suggestion(ctx):
     view2.add_item(button1)
     view2.add_item(button2)
 
-    await channel.send("What is the title of your suggestion?")
+    await channel.send("Enter the Title for your suggestion.")
     suggestion_title_raw = await bot.wait_for('message')
     suggestion_title = suggestion_title_raw.content
+    await channel.send("Please enter the tags for this suggestion")
     await channel.send(view=view1)
 
     select.callback = select_callback
     button1.callback = button1_callback
     button2.callback = button2_callback
 
-
-
     parent_folder = os.getcwd()
     subfolder = 'suggestions'
-
-
 
     await channel.send(suggestion_title)
     print(suggestion_title)
