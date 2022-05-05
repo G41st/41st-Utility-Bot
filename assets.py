@@ -1,4 +1,4 @@
-def store_command(mention, credit_emoji, str_n):
+def store_command(credit_emoji, str_n):
     description = (f"Please use the extended command `.store #` to view all the items in each price category. "
                    f"Here is a key:\n\n"
                    f"{credit_emoji} `07,500` - `.store 1` \n"

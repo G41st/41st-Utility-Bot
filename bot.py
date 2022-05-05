@@ -349,8 +349,8 @@ async def store(ctx, message):
         if message in store_key_list or store_key_list_all:
             if message in store_key_list:
                 embed = discord.Embed(
-                    title=assets.store_command(format(ctx.author.id), credit_emoji, 0),
-                    description=assets.store_command(format(ctx.author.id), credit_emoji, int(message)),
+                    title=assets.store_command(credit_emoji, 0),
+                    description=assets.store_command(credit_emoji, int(message)),
                     color=embed_color)
                 embed.set_author(
                     name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
@@ -362,15 +362,15 @@ async def store(ctx, message):
                 channel = await ctx.author.create_dm()
                 await ctx.send(f"<@!{ctx.author.id}> - Store sent in DM's.")
 
-                await channel.send(assets.store_command(format(ctx.author.id), credit_emoji_all, 0))
-                await channel.send(assets.store_command(format(ctx.author.id), credit_emoji_all, 1))
-                await channel.send(assets.store_command(format(ctx.author.id), credit_emoji_all, 2))
-                await channel.send(assets.store_command(format(ctx.author.id), credit_emoji_all, 3))
-                await channel.send(assets.store_command(format(ctx.author.id), credit_emoji_all, 4))
-                await channel.send(assets.store_command(format(ctx.author.id), credit_emoji_all, 5))
-                await channel.send(assets.store_command(format(ctx.author.id), credit_emoji_all, 6))
-                await channel.send(assets.store_command(format(ctx.author.id), credit_emoji_all, 7))
-                await channel.send(assets.store_command(format(ctx.author.id), credit_emoji_all, 8))
+                await channel.send(assets.store_command(credit_emoji_all, 0))
+                await channel.send(assets.store_command(credit_emoji_all, 1))
+                await channel.send(assets.store_command(credit_emoji_all, 2))
+                await channel.send(assets.store_command(credit_emoji_all, 3))
+                await channel.send(assets.store_command(credit_emoji_all, 4))
+                await channel.send(assets.store_command(credit_emoji_all, 5))
+                await channel.send(assets.store_command(credit_emoji_all, 6))
+                await channel.send(assets.store_command(credit_emoji_all, 7))
+                await channel.send(assets.store_command(credit_emoji_all, 8))
 
 
 @store.error
