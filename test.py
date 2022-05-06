@@ -122,6 +122,13 @@ async def create_suggestion(ctx):
 
     async def suggestion_post():
         suggestion_channel = bot.get_channel(972120571619975248)
+        embed = discord.Embed(
+            title=suggestion_title,
+            description=f"Suggestion:\n```{suggestion_body}```\n\nSuggestion Number: `{new_ticket_number}\nTags: `{select.values}`",
+            color=embed_color)
+        embed.set_author(
+            name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
+        await suggestion_channel.send(embed=embed)
 
         with open(f"{parent_folder}/{subfolder}/{new_ticket_number}_1.txt", "r") as new_ticket_file_1:
             new_ticket_file_1.read()

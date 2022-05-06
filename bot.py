@@ -314,12 +314,10 @@ async def register(ctx):
         if database_check == "00" or "07":
             await ctx.send(register_command.channel_reply(database_check, mention))
         else:
-            report_message = \
-                register_command.report_message(database_check, str(ctx.author.id),
-                                                ctx.author.display_name, ctx.channel.id)
-            report_log = \
-                register_command.report_log(database_check, str(ctx.author.id),
-                                            ctx.author.display_name, ctx.channel.id)
+            report_message = register_command.report_message(
+                database_check, str(ctx.author.id), ctx.author.display_name, ctx.channel.id)
+            report_log = register_command.report_log(
+                database_check, str(ctx.author.id), ctx.author.display_name, ctx.channel.id)
 
             embed = discord.Embed(
                 description=register_command.channel_reply(database_check, mention), color=embed_color)
@@ -472,7 +470,11 @@ async def github(ctx):
                         "If you are interested in helping out with the bot, be sure to DM Kyoda!", color=embed_color)
         embed.set_author(
             name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
-        await ctx.send(embed=embed)
+        button = discord.ui.Button(label="Open Link", style=discord.ButtonStyle.grey,
+                                   url='https://github.com/G41st/41st-utility-bot')
+        view = discord.ui.View()
+        view.add_item(button)
+        await ctx.send(embed=embed, view=view)
 
 
 @bot.command(name='dev-server')
