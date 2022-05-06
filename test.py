@@ -67,6 +67,9 @@ async def on_ready():
 
 @bot.command(name='test')
 async def suggestion_command(ctx):
+    global select_message
+
+
     button1 = discord.ui.Button(label="hello", style=discord.ButtonStyle.green)
     button2 = discord.ui.Button(label="goodbye", style=discord.ButtonStyle.danger)
 
@@ -119,26 +122,26 @@ async def create_suggestion(ctx):
     channel = await ctx.author.create_dm()
     await ctx.send("dms lmao")
 
-
     async def button1_callback(interaction):
+        await select_message.delete()
         await button_message.delete()
-        await interaction.response.send_message("Ok. Thank you for your suggestion.")
+        await channel.send("Ok. Thank you for your suggestion.")
 
     async def button2_callback(interaction):
-        await ctx.message.delete()
-        await interaction.response.send_message("Ok. Canceled. Please rerun the command to try again.")
+        await select_message.delete()
+        await button_message.delete()
+        await channel.send("Ok. Canceled. Please rerun the command to try again.")
 
     async def select_callback(interaction):
-        select.disabled = True
         await interaction.response.send_message("enter your suggestion:")
         suggestion_body_raw = await bot.wait_for('message')
         suggestion_body = suggestion_body_raw.content
         await channel.send("here is a summary of your suggestion:\n\n"
                            "Title: **{suggestion_title}**\n"
                            f"Tags: {select.values}\n"
-                           f"Description: \n```\n{suggestion_body}```\n"
-                           f"are you sure you want to post it?")
-        button_message = await channel.send(view=view2)
+                           f"Description: \n```\n{suggestion_body}```")
+        global button_message
+        button_message = await channel.send("Are you sure you would like to upload your suggestion?", view=view2)
 
     button1 = discord.ui.Button(label="Upload", style=discord.ButtonStyle.green)
     button2 = discord.ui.Button(label="Cancel", style=discord.ButtonStyle.danger)
@@ -169,7 +172,8 @@ async def create_suggestion(ctx):
     suggestion_title_raw = await bot.wait_for('message')
     suggestion_title = suggestion_title_raw.content
     await channel.send("Please enter the tags for this suggestion")
-    await channel.send(view=view1)
+    global select_message
+    select_message = await channel.send(view=view1)
 
     select.callback = select_callback
     button1.callback = button1_callback
@@ -177,9 +181,6 @@ async def create_suggestion(ctx):
 
     parent_folder = os.getcwd()
     subfolder = 'suggestions'
-
-    await channel.send(suggestion_title)
-    print(suggestion_title)
 
     with open(f"{parent_folder}/{subfolder}/suggestion_number.txt", "r") as suggestion_number_file:
         old_ticket_number = int(suggestion_number_file.read())
