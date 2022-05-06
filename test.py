@@ -69,7 +69,6 @@ async def on_ready():
 async def suggestion_command(ctx):
     global select_message
 
-
     button1 = discord.ui.Button(label="hello", style=discord.ButtonStyle.green)
     button2 = discord.ui.Button(label="goodbye", style=discord.ButtonStyle.danger)
 
@@ -113,7 +112,6 @@ async def suggestion_command(ctx):
     button1.callback = button1_callback
     button2.callback = button2_callback
 
-
     await ctx.send("hello", view=view1)
 
 
@@ -122,10 +120,32 @@ async def create_suggestion(ctx):
     channel = await ctx.author.create_dm()
     await ctx.send("dms lmao")
 
+    async def suggestion_post():
+        suggestion_channel = bot.get_channel(972120571619975248)
+
+        with open(f"{parent_folder}/{subfolder}/{new_ticket_number}_1.txt", "r") as new_ticket_file_1:
+            new_ticket_file_1.read()
+
+        with open(f"{parent_folder}/{subfolder}/{new_ticket_number}_2.txt", "w") as new_ticket_file_2:
+            new_ticket_file_2.read()
+
     async def button1_callback(interaction):
         await select_message.delete()
         await button_message.delete()
         await channel.send("Ok. Thank you for your suggestion.")
+
+        ticket_file_1_text = f"{new_ticket_number}\n{ctx.author.id}\n{ctx.author.display_name}\n{suggestion_title}\n0\n0"
+
+        with open(f"{parent_folder}/{subfolder}/{new_ticket_number}_1.txt", "w") as new_ticket_file_1:
+            new_ticket_file_1.write(ticket_file_1_text)
+
+        with open(f"{parent_folder}/{subfolder}/{new_ticket_number}_2.txt", "w") as new_ticket_file_2:
+            new_ticket_file_2.write(suggestion_body)
+
+        with open(f"{parent_folder}/{subfolder}/suggestion_number.txt", "r") as suggestion_number_file_reprint:
+            suggestion_number_file_reprint.write(str(new_ticket_number))
+
+        await suggestion_post()
 
     async def button2_callback(interaction):
         await select_message.delete()
@@ -133,8 +153,9 @@ async def create_suggestion(ctx):
         await channel.send("Ok. Canceled. Please rerun the command to try again.")
 
     async def select_callback(interaction):
-        await interaction.response.send_message("enter your suggestion:")
+        await ctx.send("enter your suggestion:")
         suggestion_body_raw = await bot.wait_for('message')
+        global suggestion_body
         suggestion_body = suggestion_body_raw.content
         await channel.send("here is a summary of your suggestion:\n\n"
                            "Title: **{suggestion_title}**\n"
@@ -185,11 +206,6 @@ async def create_suggestion(ctx):
     with open(f"{parent_folder}/{subfolder}/suggestion_number.txt", "r") as suggestion_number_file:
         old_ticket_number = int(suggestion_number_file.read())
         new_ticket_number = old_ticket_number + 1
-        print(new_ticket_number)
-
-#    with open(f"{parent_folder}/{subfolder}/{new_ticket_number}.txt", "w") as new_ticket_file:
- #       pass
-
 
 
 def main():
