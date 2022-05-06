@@ -1,18 +1,17 @@
-def store_command(mention, credit_emoji,  str_n):
-    description = (f"<@!{mention}>\n\n"
-                   f"Please use the extended command `.store-#` to view all the items in each price category. "
-                   f"Here is a key:\n"
-                   f"{credit_emoji} `7,500` - `.store-1` \n"
-                   f"{credit_emoji} `10,000` - `.store-2` \n"
-                   f"{credit_emoji} `15,000` - `.store-3` \n"
-                   f"{credit_emoji} `20,000` - `.store-4` \n"
-                   f"{credit_emoji} `25,000` - `.store-5` \n"
-                   f"{credit_emoji} `30,000` - `.store-6` \n"
-                   f"{credit_emoji} `40,000` - `.store-7` \n"
-                   f"{credit_emoji} `45,000` - `.store-8` \n"
-                   f"{credit_emoji} `ALL` - `.store-all`")
+def store_command(credit_emoji, str_n):
+    description = (f"Please use the extended command `.store #` to view all the items in each price category. "
+                   f"Here is a key:\n\n"
+                   f"{credit_emoji} `07,500` - `.store 1` \n"
+                   f"{credit_emoji} `10,000` - `.store 2` \n"
+                   f"{credit_emoji} `15,000` - `.store 3` \n"
+                   f"{credit_emoji} `20,000` - `.store 4` \n"
+                   f"{credit_emoji} `25,000` - `.store 5` \n"
+                   f"{credit_emoji} `30,000` - `.store 6` \n"
+                   f"{credit_emoji} `40,000` - `.store 7` \n"
+                   f"{credit_emoji} `45,000` - `.store 8` \n"
+                   f"{credit_emoji} `ALL` - `.store 0`")
 
-    store = f"**41st Elite Corps store:** <@!{mention}> \n"
+    store = f"**41st Elite Corps store:**\n"
 
     store1 = (f"\n- - - {credit_emoji} `7,500` - - -\n"
               f"{credit_emoji} `7,500` - 'Helmet Attachments' \n- Choose from one of our pre-existing helmet attachment"
@@ -89,11 +88,10 @@ def store_command(mention, credit_emoji,  str_n):
         return description
 
 
-def shop_command(mention):
+def shop_command():
     credit_emoji = '<:credits:937788738950545464>'
 
-    shop = (f"**41st Elite Corps Store:** <@!{mention}> \n"
-            f"{credit_emoji} `7,500` - 'Helmet Attachments' \n"
+    shop = (f"{credit_emoji} `7,500` - 'Helmet Attachments' \n"
             f"{credit_emoji} `7,500` - 'Rangefinder Down' \n"
             f"{credit_emoji} `7,500` - 'Helmet Tubes/Pipes' \n"
             f"{credit_emoji} `10,000` - '*Build-Your-Own* Attachment' \n"
@@ -149,16 +147,15 @@ def rage():
     return rage_paragraph
 
 
-def commands_command(mention):
-    commands = (f"COMMANDS: - - - <@!{mention}>\n\n"
-                f"`.register` - Register yourself in the bots systems. You must use .register before you can use the "
+def commands_command():
+    commands = (f"`.register` - Register yourself in the bots systems. You must use .register before you can use the "
                 f"majority of the bots functions. \n"
                 f"`.store` - Displays the current store information with categories and item descriptions. \n"
                 f"`.shop` - Displays a condensed version of the store. \n"
                 f"`.ggn-store` - Displays the current GGN store price approximations, as well as specific items. \n"
                 f"`.credits` - Calculates your current credit value. \n"
                 f"`.whoami` - Sends a list of information about your user to your DM's. \n"
-                f"`.directory` - DM's the user a list of names for various important divisions of the 41st. \n"
+                f"`.credit-info` - Sends a list of your roles and how much credits each one awards you with. \n"
                 f"`.version` - Displays current bot dev info. \n"
                 f"`.github` - Sends the link to the bot's git repository. \n"
                 f"`.report` - Sends a user-created error report to the bot dev team.")
@@ -167,8 +164,7 @@ def commands_command(mention):
 
 
 def report_command(mention):
-    report_instructions = (f"<@!{mention}>\n\n"
-                           f"To report a bug, please use the `.report-send` command. Please specify anything you think"
+    report_instructions = (f"To report a bug, please use the `.report-send` command. Please specify anything you think"
                            f"would be useful to help the Dev Team fix this problem.\n"
                            f"(Please do not worry about including your name or using a format, as the bot automaticly "
                            f"collects this data for us.) \nHere is an example report:\n"
@@ -183,8 +179,7 @@ def ggn_store_command(mention):
     credit_emoji = '<:credits:937788738950545464>'
     store_channel = '<#909593785409896538>'
 
-    ggn_store = (f"**Geetsly's Gaming Network Store Conversions:** <@!{mention}> \n"
-                 f"(Please note that these are not prices for credit values. These are credit value conversions, "
+    ggn_store = (f"(Please note that these are not prices for credit values. These are credit value conversions, "
                  f"meaning that a store item which is 15,000 credits is purchasable with $10.00 USD.) \n\n"
                  f"{credit_emoji} `7,500` - $`5.00` USD \n"
                  f"{credit_emoji} `10,000` - $`7.50` USD \n"
@@ -205,67 +200,13 @@ def ggn_store_command(mention):
     return ggn_store
 
 
-def commands_directory(mention):
-    directory = (f"DIRECTORY: - - - <@!{mention}>\n\n\n"
-                 f"Owner: `CMDR Forceps CC-3432` \n\n"
-                 f"Head of Army: `CMDR Forceps CC-3432` \n\n"
-                 f"Head of Navy: `CODR Kyoda CC-4221` \n\n"
-                 f"SOF Lead(s): [\n`RSGT Bored RC-7690`, \n`RCPT Florence RC-6424` \n]\n\n"
-                 f"Regiment CO's: [\n`MJR Adko CC-1258 - Diamond`, \n`MJR Rancor CC-2599 - Krayt`, \n"
-                 f"`CPT AlphaDog CC-4676 - Titan` \n]\n\n"
-                 f"Heads of Training: [\n`CMDR Forceps CC-3432 - Army`, \n`FCDR Thor CT-3312 - Navy` \n]\n\n"
-                 f"Art Team Lead(s): [\n`QTR Marr CT-4154`, \n`QTR Idaho CT-2289`, \n`RLT Numbers RC-1903` \n]\n\n"
-                 f"Logistics Lead(s): [\n`MJR Adko CC-1258`, \n`CPT AlphaDog CC-4676` \n]\n\n"
-                 f"Media Team Lead(s): `CPT AlphaDog CC-4676` \n\n"
-                 f"Development Team Lead(s): `CODR Kyoda CC-4221` \n\n"
-                 f"For any remaining questions, please notify `CMDR Forceps CC-3432` or `CODR Kyoda CC-4221`.")
-
-    return directory
-
-
 def pings():
     role_mentions = "<@&960610324963291166> <@&922002555192631356> <@&851041781978365962> <@&850843079417659402>"
 
     return role_mentions
 
-def merit_checker(user_id):
-    with open("merit.txt", 'r') as f:
-        for number, line in enumerate(f):
-            if str(user_id) not in line:
-                merit_total = 0
-            if str(user_id) in line:
-                line_number = number
 
-                with open("merit.txt", 'r') as f:
-                    file_read = f.readlines()
-                    file_int1_read = int(line_number)
-                    file_int2_read = (file_int1_read + 1)
-                    file_to_read = file_read[file_int2_read]
-                    file_to_read_stripped = file_to_read.strip()
-                    merit_total = int(file_to_read_stripped)
-
-                    return merit_total
-
-
-def demerit_checker(user_id):
-    with open("demerit.txt", 'r') as f:
-        for number, line in enumerate(f):
-            if str(user_id) not in line:
-                demerit_total = 0
-            if str(user_id) in line:
-                line_number = number
-
-                with open("demerit.txt", 'r') as f:
-                    file_read = f.readlines()
-                    file_int1_read = int(line_number)
-                    file_int2_read = (file_int1_read + 1)
-                    file_to_read = file_read[file_int2_read]
-                    file_to_read_stripped = file_to_read.strip()
-                    demerit_total = int(file_to_read_stripped)
-
-                    return demerit_total
-
-def cert(tag, role_names):
+def certifications(tag, role_names):
     global string
     string = ""
 
@@ -292,3 +233,13 @@ def cert(tag, role_names):
             string = "Medal of Valor Recipient"
 
     return string
+
+def credit_diag_command():
+    description = (f"Please use the extended command `.credit-info #` to view your credit details. "
+                   f"Here is a key:\n\n"
+                   f"`.credit-info 1` - Rank Salaries\n"
+                   f"`.credit-info 2` - Medal Rewards\n"
+                   f"`.credit-info 3` - Qualification Rewards\n"
+                   f"`.credit-info 0` - All")
+
+    return description

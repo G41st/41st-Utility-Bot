@@ -7,7 +7,9 @@ import discord
 from discord.ext.commands import Bot
 from discord import Intents
 import assets
-import credit_counter
+import register_command
+import role_analyze
+import role_counter
 from discord.ext import commands
 import discord.ext.commands
 from dotenv import load_dotenv
@@ -22,6 +24,7 @@ GUILD = os.getenv('DISCORD_GUILD')
 KYODA_ID = 583386313466708035
 FORCEPS_ID = 173202312762884096
 BOT_OPERATOR_ROLE = "Technical Commander"
+embed_color = 0x144202
 
 
 def startup(START):
@@ -41,9 +44,9 @@ def startup(START):
         LAUNCH = TOKEN_TEST
 
 
-startup(TOKEN)
-bot_version = '1.10.0'
-bot_version_date = '4/27/2022 (US EST)'
+startup(TOKEN_TEST)
+bot_version = '2.0.0'
+bot_version_date = '5/06/2022 (US EST)'
 
 
 @bot.event
@@ -61,10 +64,444 @@ async def on_ready():
     await bot_command_channel.send(message)
 
 
-@bot.command(name='troll')
-async def troll(ctx):
+def credit_counter(role_names, discord_id):
+    role_total = role_counter.credit_counter(role_names)
+    merit_total = merit_config.merit_reader(discord_id)
+    demerit_total = merit_config.demerit_reader(discord_id)
+
+    merit_sum = role_total + merit_total
+    total = merit_sum - demerit_total
+
+    if role_total == False:
+        return False
+    else:
+        return total
+
+
+@bot.command(name='add')
+@commands.has_role('Economy Admin')
+async def add(ctx, user: discord.Member, message):
+    role_names = [str(r) for r in user.roles]
+
+    credit_emoji = '<:credits:937788738950545464>'
+    var_credit_value = merit_config.add_credits(user.id, int(message))
+    role_credit_value = credit_counter(role_names, user.id)
+    mention = format(f"<@!{user.id}>")
+
+    embed = discord.Embed(
+        description=f"Transferred {credit_emoji}`{var_credit_value}` to `user-id: {user.id}`.\n\n"
+                    f"{mention} now has {credit_emoji}`{role_credit_value}`.", color=embed_color)
+    embed.set_author(
+        name=user.display_name, icon_url=user.avatar.url)
+    await ctx.send(embed=embed)
+
+
+@bot.command(name='sub-merits')
+@commands.has_role('Technical Commander')
+async def sub_merits(ctx, user: discord.Member, message):
+    if ctx.author.id == KYODA_ID or FORCEPS_ID:
+        role_names = [str(r) for r in user.roles]
+
+        credit_emoji = '<:credits:937788738950545464>'
+        var_credit_value = merit_config.subtract_merits(user.id, int(message))
+        role_credit_value = credit_counter(role_names, user.id)
+        mention = format(f"<@!{user.id}>")
+
+        embed = discord.Embed(
+            description=f"Removed {credit_emoji}`{var_credit_value}` from [ MERITS.TXT ] for `user-id: {user.id}`.\n\n"
+                        f"{mention} now has {credit_emoji}`{role_credit_value}`.", color=embed_color)
+        embed.set_author(
+            name=user.display_name, icon_url=user.avatar.url)
+        await ctx.send(embed=embed)
+
+
+@bot.command(name='remove')
+@commands.has_role('Economy Admin')
+async def remove(ctx, user: discord.Member, message):
+    role_names = [str(r) for r in user.roles]
+
+    credit_emoji = '<:credits:937788738950545464>'
+    var_credit_value = merit_config.remove_credits(user.id, int(message))
+    role_credit_value = credit_counter(role_names, user.id)
+    mention = format(f"<@!{user.id}>")
+
+    embed = discord.Embed(
+        description=f"Transferred {credit_emoji}`{var_credit_value}` from `user-id: {user.id}`.\n\n"
+                    f"{mention} now has {credit_emoji}`{role_credit_value}`.", color=embed_color)
+    embed.set_author(
+        name=user.display_name, icon_url=user.avatar.url)
+    await ctx.send(embed=embed)
+
+
+@bot.command(name='sub-demerits')
+@commands.has_role('Technical Commander')
+async def sub_demerits(ctx, user: discord.Member, message):
+    if ctx.author.id == KYODA_ID or FORCEPS_ID:
+        role_names = [str(r) for r in user.roles]
+
+        credit_emoji = '<:credits:937788738950545464>'
+        var_credit_value = merit_config.subtract_demerits(user.id, int(message))
+        role_credit_value = credit_counter(role_names, user.id)
+        mention = format(f"<@!{user.id}>")
+
+        embed = discord.Embed(
+            description=f"Removed {credit_emoji}`{var_credit_value}` from [ DEMERITS.TXT ] for `user-id: {user.id}`.\n\n"
+                        f"{mention} now has {credit_emoji}`{role_credit_value}`.", color=embed_color)
+        embed.set_author(
+            name=user.display_name, icon_url=user.avatar.url)
+        await ctx.send(embed=embed)
+
+
+@bot.command(name='credits')
+async def thing_for_roles(ctx):
     if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        await ctx.send(f"```{assets.troll_command()}```")
+        role_names = [str(r) for r in ctx.author.roles]
+        user_id = str(ctx.author.id)
+        mention = format(f"<@!{ctx.author.id}>")
+
+        credit_emoji = '<:credits:937788738950545464>'
+        credit_value = credit_counter(role_names, user_id)
+
+        if credit_value == False:
+            embed = discord.Embed(
+                description=f"You were not detected in the credit logs, or you have no credits. Please run `.register` "
+                            f"to add yourself to the registry or to check integrity of your user.", color=embed_color)
+            embed.set_author(
+                name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
+            await ctx.send(embed=embed)
+        else:
+            if 'Medal of Valor' in role_names:
+                embed = discord.Embed(
+                    description=f"{mention}, You have {credit_emoji}`{credit_value}`.", color=embed_color)
+                embed.set_author(
+                    name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
+                await ctx.send(embed=embed)
+            else:
+                embed = discord.Embed(
+                    description=f"{mention}, You have {credit_emoji}`{credit_value}`.", color=embed_color)
+                embed.set_author(
+                    name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
+                await ctx.send(embed=embed)
+
+
+@bot.command(name='check-credits')
+@commands.has_role('Economy Admin')
+async def remove(ctx, user: discord.Member):
+    role_names = [str(r) for r in user.roles]
+    mention = format(f"<@!{user.id}>")
+
+    credit_emoji = '<:credits:937788738950545464>'
+    credit_value = credit_counter(role_names, user.id)
+
+    if credit_value == False:
+        embed = discord.Embed(
+            description=f"User was not detected in the credit logs, or has no credits. Please have them run `.register`"
+                        f" to add yourself to the registry or to check integrity of your user. ", color=embed_color)
+        embed.set_author(
+            name=user.display_name, icon_url=user.avatar.url)
+        await ctx.send(embed=embed)
+    else:
+        embed = discord.Embed(
+            description=f"{mention} has {credit_emoji}`{credit_value}`.", color=embed_color)
+        embed.set_author(
+            name=user.display_name, icon_url=user.avatar.url)
+        await ctx.send(embed=embed)
+
+
+@bot.command(name='id')
+@commands.has_role('Economy Admin')
+async def identify(ctx, user: discord.Member):
+    role_names = [str(r) for r in user.roles]
+    mention = format(f"<@!{user.id}>")
+
+    credit_emoji = '<:credits:937788738950545464>'
+    credit_value = credit_counter(role_names, user.id)
+    credit_value_raw = role_counter.credit_counter(role_names)
+
+    merit_checker = merit_config.merit_reader(user.id)
+    demerit_checker = merit_config.demerit_reader(user.id)
+    join_date = user.joined_at.strftime("%b %d, %Y")
+
+    text = (f"Name: `{ctx.author.display_name}`\n"
+            f"ID:`{ctx.author.id}`\n"
+            f"Join Date: `{join_date}`\n"
+            f"Credits: {credit_emoji}`{credit_value}`\n"
+            f"Raw Credits: `{credit_value_raw}`\n"
+            f"Merits: `{merit_checker}`\n"
+            f"Demerits: `{demerit_checker}`\n"
+            f"Certifications: \n```\n"
+            f"{assets.certifications('command', role_names)}"
+            f"{assets.certifications('sof1', role_names)}"
+            f"{assets.certifications('sof2', role_names)}"
+            f"{assets.certifications('trooper', role_names)}"
+            f"{assets.certifications('pilot', role_names)}"
+            f"{assets.certifications('veteran', role_names)}"
+            f"{assets.certifications('valor', role_names)}```\n"
+            f"<@!{user.id}>")
+
+    if credit_value == False:
+        embed = discord.Embed(
+            description=f"User was not detected in the credit logs, or has no credits. Please have them run `.register`"
+                        f" to add yourself to the registry or to check integrity of your user. ", color=embed_color)
+        embed.set_author(
+            name=user.display_name, icon_url=user.avatar.url)
+        await ctx.send(embed=embed)
+    else:
+        embed = discord.Embed(
+            description=text, color=embed_color)
+        embed.set_author(
+            name=user.display_name, icon_url=user.avatar.url)
+        await ctx.send(embed=embed)
+
+
+@bot.command(name='whoami')
+async def who_am_i(ctx):
+    if ctx.channel.id == '936902313589764146' or '939028644175699968':
+        channel = await ctx.author.create_dm()
+        role_names = [str(r) for r in ctx.author.roles]
+        credit_emoji = '<:credits:937788738950545464>'
+        credit_value = credit_counter(role_names, ctx.author.id)
+        credit_value_raw = role_counter.credit_counter(role_names)
+
+        merit_checker = merit_config.merit_reader(ctx.author.id)
+        demerit_checker = merit_config.demerit_reader(ctx.author.id)
+        join_date = ctx.author.joined_at.strftime("%b %d, %Y")
+
+        text = (f"**USER INFO:**\n\n"
+                f"Name: `{ctx.author.display_name}`\n"
+                f"ID:`{ctx.author.id}`\n"
+                f"Join Date: `{join_date}`\n"
+                f"Credits: {credit_emoji}`{credit_value}`\n"
+                f"Raw Credits: `{credit_value_raw}`\n"
+                f"Merits: `{merit_checker}`\n"
+                f"Demerits: `{demerit_checker}`\n"
+                f"Certifications: \n```\n"
+                f"{assets.certifications('command', role_names)}"
+                f"{assets.certifications('sof1', role_names)}"
+                f"{assets.certifications('sof2', role_names)}"
+                f"{assets.certifications('trooper', role_names)}"
+                f"{assets.certifications('pilot', role_names)}"
+                f"{assets.certifications('veteran', role_names)}"
+                f"{assets.certifications('valor', role_names)}```")
+
+        if credit_value == False:
+            await ctx.send(f"User was not detected in the credit logs, or has no credits. Please have them run "
+                           f"`.register` to add yourself to the registry or to check integrity of your user. ")
+        else:
+            await ctx.send(f"<@!{ctx.author.id}> - User Diagnostic sent in DM's.")
+            await channel.send(text)
+
+
+# register command order:
+# in all three
+# in registry, in merit, not demerit
+# in registry, not merit, in demerit
+# in registry, not merit, not demerit
+# not registry, in merit, in demerit
+# not registry, not merit, in demerit
+# not registry, in merit, not demerit
+# not all three
+
+
+@bot.command(name='register')
+async def register(ctx):
+    if ctx.channel.id == '936902313589764146' or '939028644175699968':
+        mention = f"<@!{ctx.author.id}>"
+        channel = bot.get_channel(939028644175699968)
+
+        database_check = register_command.register(str(ctx.author.id), ctx.author.display_name)
+
+        if database_check == "00" or "07":
+            await ctx.send(register_command.channel_reply(database_check, mention))
+        else:
+            report_message = register_command.report_message(
+                database_check, str(ctx.author.id), ctx.author.display_name, ctx.channel.id)
+            report_log = register_command.report_log(
+                database_check, str(ctx.author.id), ctx.author.display_name, ctx.channel.id)
+
+            embed = discord.Embed(
+                description=register_command.channel_reply(database_check, mention), color=embed_color)
+            embed.set_author(
+                name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
+            await ctx.send(embed=embed)
+
+            await channel.send(report_message)
+            with open("reports.txt", "a") as report_file:
+                report_file.write(f"{report_log}\n---------------\n")
+
+
+@bot.command(name='store')
+async def store(ctx, message):
+    if ctx.channel.id == '936902313589764146' or '939028644175699968':
+        store_key_list = ["1", "2", "3", "4", "5", "6", "7", "8"]
+        store_key_list_all = ["0"]
+        credit_emoji = '<:credits:937788738950545464>'
+        credit_emoji_all = '["7]'
+
+        if message in store_key_list or store_key_list_all:
+            if message in store_key_list:
+                embed = discord.Embed(
+                    title=assets.store_command(credit_emoji, 0),
+                    description=assets.store_command(credit_emoji, int(message)),
+                    color=embed_color)
+                embed.set_author(
+                    name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
+                await ctx.send(embed=embed)
+
+                await ctx.send()
+                await ctx.send()
+            if message in store_key_list_all:
+                channel = await ctx.author.create_dm()
+                await ctx.send(f"<@!{ctx.author.id}> - Store sent in DM's.")
+
+                await channel.send(assets.store_command(credit_emoji_all, 0))
+                await channel.send(assets.store_command(credit_emoji_all, 1))
+                await channel.send(assets.store_command(credit_emoji_all, 2))
+                await channel.send(assets.store_command(credit_emoji_all, 3))
+                await channel.send(assets.store_command(credit_emoji_all, 4))
+                await channel.send(assets.store_command(credit_emoji_all, 5))
+                await channel.send(assets.store_command(credit_emoji_all, 6))
+                await channel.send(assets.store_command(credit_emoji_all, 7))
+                await channel.send(assets.store_command(credit_emoji_all, 8))
+
+
+@store.error
+async def store_error(ctx, error):
+    credit_emoji = '<:credits:937788738950545464>'
+
+    if isinstance(error, discord.ext.commands.errors.MissingRequiredArgument):
+        embed = discord.Embed(
+            description=assets.store_command(credit_emoji, 69), color=embed_color)
+        embed.set_author(
+            name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
+        await ctx.send(embed=embed)
+
+
+@bot.command(name='shop')
+async def shop(ctx):
+    if ctx.channel.id == '936902313589764146' or '939028644175699968':
+        embed = discord.Embed(
+            title="41st Elite Corps Store:",
+            description=assets.shop_command(), color=embed_color)
+        embed.set_author(
+            name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
+        await ctx.send(embed=embed)
+
+
+@bot.command(name='ggn-store')
+async def ggn_store(ctx):
+    if ctx.channel.id == '936902313589764146' or '939028644175699968':
+        embed = discord.Embed(
+            title="Geetsly's Gaming Network Store Conversions:",
+            description=assets.ggn_store_command(format(ctx.author.id)), color=embed_color)
+        embed.set_author(
+            name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
+        await ctx.send(embed=embed)
+
+
+@bot.command(name='credit-info')
+async def credit_diag(ctx, message):
+    if ctx.channel.id == '936902313589764146' or '939028644175699968':
+        role_names = [str(r) for r in ctx.author.roles]
+        credit_diag_key_list = ["1", "2", "3"]
+        credit_diag_key_list_all = ["0"]
+        credit_emoji = '<:credits:937788738950545464>'
+        credit_emoji_all = '["7]'
+
+        if message in credit_diag_key_list or credit_diag_key_list_all:
+            if message == "1":
+                embed = discord.Embed(
+                    title="Rank Credit Details:",
+                    description=(role_analyze.rank_diag(role_names, credit_emoji) + f"\n\n"
+                                 f"Total Role Credits: {credit_emoji} `{role_counter.credit_counter(role_names)}`\n"
+                                 f"Total Credits: {credit_emoji} `{credit_counter(role_names, ctx.author.id)}`"),
+                    color=embed_color)
+                embed.set_author(
+                    name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
+                await ctx.send(embed=embed)
+            if message == "2":
+                embed = discord.Embed(
+                    title="Medal Credit Details:",
+                    description=(role_analyze.medal_diag(role_names, credit_emoji) + f"\n\n"
+                                 f"Total Role Credits: {credit_emoji} `{role_counter.credit_counter(role_names)}`\n"
+                                 f"Total Credits: {credit_emoji} `{credit_counter(role_names, ctx.author.id)}`"),
+                    color=embed_color)
+                embed.set_author(
+                    name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
+                await ctx.send(embed=embed)
+            if message == "3":
+                embed = discord.Embed(
+                    title="Qual Credit Details:",
+                    description=(role_analyze.qual_diag(role_names, credit_emoji) + f"\n\n"
+                                 f"Total Role Credits: {credit_emoji} `{role_counter.credit_counter(role_names)}`\n"
+                                 f"Total Credits: {credit_emoji} `{credit_counter(role_names, ctx.author.id)}`"),
+                    color=embed_color)
+                embed.set_author(
+                    name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
+                await ctx.send(embed=embed)
+            if message == "0":
+                channel = await ctx.author.create_dm()
+                await ctx.send(f"<@!{ctx.author.id}> - Credit details sent in DM's.")
+                await channel.send(f"**Rank Credit Details**\n\n"
+                                   f"{role_analyze.rank_diag(role_names, credit_emoji_all)}")
+                await channel.send(f"**Medal Credit Details:**\n\n"
+                                   f"{role_analyze.medal_diag(role_names, credit_emoji_all)}")
+                await channel.send(f"**Qual Credit Details:**\n\n"
+                                   f"{role_analyze.qual_diag(role_names, credit_emoji_all)}")
+                await channel.send(f"Total Role Credits: {credit_emoji} `{role_counter.credit_counter(role_names)}`\n"
+                                   f"Total Credits: {credit_emoji} `{credit_counter(role_names, ctx.author.id)}`")
+
+
+@credit_diag.error
+async def credit_diag_error(ctx, error):
+    if isinstance(error, discord.ext.commands.errors.MissingRequiredArgument):
+        embed = discord.Embed(
+            description=assets.credit_diag_command(), color=embed_color)
+        embed.set_author(
+            name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
+        await ctx.send(embed=embed)
+
+
+@bot.command(name='github')
+async def github(ctx):
+    if ctx.channel.id == '936902313589764146' or '939028644175699968':
+        embed = discord.Embed(
+            description="https://github.com/G41st/41st-utility-bot \n"
+                        "If you are interested in helping out with the bot, be sure to DM Kyoda!", color=embed_color)
+        embed.set_author(
+            name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
+        button = discord.ui.Button(label="Open Link", style=discord.ButtonStyle.grey,
+                                   url='https://github.com/G41st/41st-utility-bot')
+        view = discord.ui.View()
+        view.add_item(button)
+        await ctx.send(embed=embed, view=view)
+
+
+@bot.command(name='dev-server')
+async def dev_server_inv(ctx):
+    if ctx.channel.id == '936902313589764146' or '939028644175699968':
+        channel = await ctx.author.create_dm()
+        await ctx.send(f"<@!{ctx.author.id}> - Dev Team Server invite sent in DM's.")
+        await channel.send("https://discord.gg/H2KArTCj5a")
+
+
+@bot.command(name='help')
+async def command_help(ctx):
+    if ctx.channel.id == '936902313589764146' or '939028644175699968':
+        embed = discord.Embed(
+            title="Commands:",
+            description=assets.commands_command(), color=embed_color)
+        embed.set_author(
+            name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
+        await ctx.send(embed=embed)
+
+
+# start troll commands
+
+@bot.command(name='fuck')
+async def fuck(ctx):
+    if ctx.channel.id == '936902313589764146' or '939028644175699968':
+        await ctx.send("you")
 
 
 @bot.command(name='bitches')
@@ -109,6 +546,12 @@ async def no_u(ctx):
     await ctx.send(assets.rage())
 
 
+@bot.command(name='troll')
+async def troll(ctx):
+    if ctx.channel.id == '936902313589764146' or '939028644175699968':
+        await ctx.send(f"```{assets.troll_command()}```")
+
+
 @bot.command(name='adko')
 async def adko(ctx):
     salute_emoji = '<:GreenSalute:906047649982083113>'
@@ -134,544 +577,7 @@ async def adko(ctx):
                    f"{salute_emoji}")
 
 
-@bot.command(name='add')
-@commands.has_role('Economy Admin')
-async def add(ctx, user: discord.Member, message):
-    role_names = [str(r) for r in user.roles]
-
-    credit_emoji = '<:credits:937788738950545464>'
-    var_credit_value = merit_config.add_credits(user.id, int(message))
-    role_credit_value = credit_counter.credit_counter(role_names, user.id)
-    mention = format(f"<@!{user.id}>")
-
-    await ctx.send(f"Transferred {credit_emoji}`{var_credit_value}` to `user-id: {user.id}`.\n\n"
-                   f"{mention} now has {credit_emoji}`{role_credit_value}`.")
-
-
-@bot.command(name='sub-merits')
-@commands.has_role('Technical Commander')
-async def sub_merits(ctx, user: discord.Member, message):
-    if ctx.author.id == KYODA_ID or FORCEPS_ID:
-        role_names = [str(r) for r in user.roles]
-
-        credit_emoji = '<:credits:937788738950545464>'
-        var_credit_value = merit_config.subtract_merits(user.id, int(message))
-        role_credit_value = credit_counter.credit_counter(role_names, user.id)
-        mention = format(f"<@!{user.id}>")
-
-        await ctx.send(f"Removed {credit_emoji}`{var_credit_value}` from [ MERITS.TXT ] for `user-id: {user.id}`.\n\n"
-                       f"{mention} now has {credit_emoji}`{role_credit_value}`.")
-    else:
-        await ctx.send("`Not Authorised`")
-
-
-@bot.command(name='remove')
-@commands.has_role('Economy Admin')
-async def remove(ctx, user: discord.Member, message):
-    role_names = [str(r) for r in user.roles]
-
-    credit_emoji = '<:credits:937788738950545464>'
-    var_credit_value = merit_config.remove_credits(user.id, int(message))
-    role_credit_value = credit_counter.credit_counter(role_names, user.id)
-    mention = format(f"<@!{user.id}>")
-
-    await ctx.send(f"Transferred {credit_emoji}`{var_credit_value}` from `user-id: {user.id}`.\n\n"
-                   f"{mention} now has {credit_emoji}`{role_credit_value}`.")
-
-
-@bot.command(name='sub-demerits')
-@commands.has_role('Technical Commander')
-async def sub_demerits(ctx, user: discord.Member, message):
-    if ctx.author.id == KYODA_ID or FORCEPS_ID:
-        role_names = [str(r) for r in user.roles]
-
-        credit_emoji = '<:credits:937788738950545464>'
-        var_credit_value = merit_config.subtract_demerits(user.id, int(message))
-        role_credit_value = credit_counter.credit_counter(role_names, user.id)
-        mention = format(f"<@!{user.id}>")
-
-        await ctx.send(f"Removed {credit_emoji}`{var_credit_value}` from [ DEMERITS.TXT ] for `user-id: {user.id}`.\n\n"
-                       f"{mention} now has {credit_emoji}`{role_credit_value}`.")
-    else:
-        await ctx.send("`Not Authorised`")
-
-
-@bot.command(name='credits')
-async def thing_for_roles(ctx):
-    if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        role_names = [str(r) for r in ctx.author.roles]
-        user_id = str(ctx.author.id)
-
-        credit_emoji = '<:credits:937788738950545464>'
-        credit_value = credit_counter.credit_counter(role_names, user_id)
-        if credit_value == False:
-            await ctx.send("You were not detected in the credit logs, or you have no credits. "
-                           "Please run `.register` to add yourself to the registry or to check integrity of your user.")
-        else:
-            if 'Medal of Valor' in role_names:
-                salute_emoji = '<:GreenSalute:906047649982083113>'
-                mention = format(f"<@!{ctx.author.id}>")
-                await ctx.send(f"{mention}, You have {credit_emoji}`{credit_value}`.\n{salute_emoji}")
-            else:
-                mention = format(f"<@!{ctx.author.id}>")
-                await ctx.send(f"{mention}, You have {credit_emoji}`{credit_value}`.")
-
-
-@bot.command(name='check-credits')
-@commands.has_role('Economy Admin')
-async def remove(ctx, user: discord.Member):
-    role_names = [str(r) for r in user.roles]
-
-    credit_emoji = '<:credits:937788738950545464>'
-    credit_value = credit_counter.credit_counter(role_names, user.id)
-
-    if credit_value == False:
-        await ctx.send("User was not detected in the credit logs, or has no credits. Please have them run `.register`"
-                       " to add yourself to the registry or to check integrity of your user. ")
-    else:
-        await ctx.send(f"`{user.display_name}` has {credit_emoji}`{credit_value}`.")
-
-
-@bot.command(name='id')
-@commands.has_role('Economy Admin')
-async def identify(ctx, user: discord.Member):
-    role_names = [str(r) for r in user.roles]
-
-    credit_emoji = '<:credits:937788738950545464>'
-    credit_value = credit_counter.credit_counter(role_names, user.id)
-    credit_value_raw = credit_counter.credit_counter_raw(role_names)
-
-    merit_checker = assets.merit_checker(user.id)
-    demerit_checker = assets.demerit_checker(user.id)
-    join_date = user.joined_at.strftime("%b %d, %Y")
-
-    shadow_mention = discord.AllowedMentions(users=False)
-
-    if credit_value == False:
-        await ctx.send("User was not detected in the credit logs, or has no credits. Please have them run `.register`"
-                       " to add yourself to the registry or to check integrity of your user. ")
-    else:
-        await ctx.send(f"Name: `{user.display_name}`\n"
-                       f"ID:`{user.id}`\n"
-                       f"Join Date: `{join_date}`\n"
-                       f"Credits: {credit_emoji}`{credit_value}`\n"
-                       f"Raw Credits: `{credit_value_raw}`\n"
-                       f"Merits: `{merit_checker}`\n"
-                       f"Demerits: `{demerit_checker}`\n"
-                       f"Certifications: \n```\n"
-                       f"{assets.cert('command', role_names)}\n"
-                       f"{assets.cert('sof1', role_names)}\n"
-                       f"{assets.cert('sof2', role_names)}\n"
-                       f"{assets.cert('trooper', role_names)}\n"
-                       f"{assets.cert('pilot', role_names)}\n"
-                       f"{assets.cert('veteran', role_names)}"
-                       f"{assets.cert('valor', role_names)}```\n"
-                       f"Shadow Mention: <@!{user.id}>", allowed_mentions=shadow_mention)
-
-
-@bot.command(name='whoami')
-async def who_am_i(ctx):
-    if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        credit_emoji = '["7]'
-
-        channel = await ctx.author.create_dm()
-        role_names = [str(r) for r in ctx.author.roles]
-        credit_value = credit_counter.credit_counter(role_names, ctx.author.id)
-        credit_value_raw = credit_counter.credit_counter_raw(role_names)
-
-        merit_checker = assets.merit_checker(ctx.author.id)
-        demerit_checker = assets.demerit_checker(ctx.author.id)
-        join_date = ctx.author.joined_at.strftime("%b %d, %Y")
-
-        if credit_value == False:
-            await ctx.send("User was not detected in the credit logs, or has no credits. Please have them run "
-                           "`.register` to add yourself to the registry or to check integrity of your user. ")
-        else:
-            await ctx.send(f"<@!{ctx.author.id}> - User Info sent in DM's.")
-            await channel.send(f"Name: `{ctx.author.display_name}`\n"
-                           f"ID:`{ctx.author.id}`\n"
-                           f"Join Date: `{join_date}`\n"
-                           f"Credits: {credit_emoji}`{credit_value}`\n"
-                           f"Raw Credits: `{credit_value_raw}`\n"
-                           f"Merits: `{merit_checker}`\n"
-                           f"Demerits: `{demerit_checker}`\n"
-                           f"Certifications: \n```\n"
-                           f"{assets.cert('command', role_names)}"
-                           f"{assets.cert('sof1', role_names)}"
-                           f"{assets.cert('sof2', role_names)}"
-                           f"{assets.cert('trooper', role_names)}"
-                           f"{assets.cert('pilot', role_names)}"
-                           f"{assets.cert('veteran', role_names)}"
-                           f"{assets.cert('valor', role_names)}```\n")
-
-
-# register command order:
-# in all three
-# in registry, in merit, not demerit
-# in registry, not merit, in demerit
-# in registry, not merit, not demerit
-# not registry, in merit, in demerit
-# not registry, not merit, in demerit
-# not registry, in merit, not demerit
-# not all three
-
-
-@bot.command(name='register')
-async def register(ctx):
-    if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        user_id = str(ctx.author.id)
-        mention = f"<@!{user_id}>"
-        channel = bot.get_channel(939028644175699968)
-        now = datetime.datetime.now()
-
-        with open("registry.txt", 'r') as f:
-            line = f.read()
-            if user_id in line:
-                print(f"{ctx.author.display_name} - {ctx.author.id} \nis in registry.txt")
-                with open("merit.txt", 'r') as f:
-                    line = f.read()
-                    if user_id in line:
-                        print(f"{ctx.author.display_name} - {ctx.author.id} \nis in merit.txt")
-                        with open("demerit.txt", 'r') as f:
-                            line = f.read()
-                            if user_id in line:
-                                # in all three
-                                print(f"{ctx.author.display_name} - {ctx.author.id} \nis in demerit.txt")
-                                print(f"{ctx.author.display_name} - {ctx.author.id} \nis registered with 0 errors")
-                                await ctx.send(f"Registry integrity check for {mention} passed with `0` errors. \n"
-                                               f"(You are already in the registry)")
-                            if user_id not in line:
-                                # in registry, in merit, not demerit
-                                print(f"{ctx.author.display_name} - {ctx.author.id} \nis not in demerit.txt")
-                                print(f"{ctx.author.display_name} - {ctx.author.id} \nis registered with 1 error")
-                                await ctx.send(f"`ERROR` - - - {mention}\n"
-                                               f"Registry integrity check for {mention} failed with `1` error. "
-                                               f"[ MERIT.txt ]\nPlease do not use .report, an error report has been "
-                                               f"automatically generated.")
-
-                                report_message = (f"@here \n\n"
-                                                  f"`{ctx.author.display_name} - {ctx.author.id}`\n"
-                                                  f"`{now.month}/{now.day}/{now.year}` in channel "
-                                                  f"'#{ctx.message.channel}'\n{ctx.author.display_name} "
-                                                  f"reported a malfunction in the file: [ MERIT.TXT ].\n"
-                                                  f"Specifics: `The user id was detected in registry.txt as "
-                                                  f"well as demerit.txt but was not detected in merit.txt.`")
-                                report_log = (f"{ctx.author.display_name} - {ctx.author.id}\n"
-                                              f"{now.month}/{now.day}/{now.year} in channel "
-                                              f"'#{ctx.message.channel}' \n{ctx.author.display_name} "
-                                              f"reported a malfunction in the file: [ MERIT.TXT ].\n"
-                                              f"Specifics: The user id was detected in registry.txt as "
-                                              f"well as demerit.txt but was not detected in merit.txt.")
-                                await channel.send(report_message)
-                                print(report_log)
-                                with open("reports.txt", "a") as report_file:
-                                    report_file.write(f"{report_log}\n---------------\n")
-                    if user_id not in line:
-                        print(f"{ctx.author.display_name} - {ctx.author.id} \nis not in merit.txt")
-                        with open("demerit.txt", 'r') as f:
-                            line = f.read()
-                            if user_id in line:
-                                # in registry, not merit, in demerit
-                                print(f"{ctx.author.display_name} - {ctx.author.id} \nis in demerit.txt")
-                                print(f"{ctx.author.display_name} - {ctx.author.id} \nis registered with 1 error")
-                                await ctx.send(f"`ERROR` - - - {mention}\n"
-                                               f"Registry integrity check for {mention} failed with `1` error. "
-                                               f"[ DEMERIT.txt ]\nPlease do not use .report, an error report has been "
-                                               f"automatically generated.")
-
-                                report_message = (f"@here \n\n"
-                                                  f"`{ctx.author.display_name} - {ctx.author.id}`\n"
-                                                  f"`{now.month}/{now.day}/{now.year}` in channel "
-                                                  f"'#{ctx.message.channel}'\n{ctx.author.display_name} "
-                                                  f"reported a malfunction in the file: [ DEMERIT.TXT ].\n"
-                                                  f"Specifics: `The user id was detected in registry.txt as "
-                                                  f"well as demerit.txt but was not detected in merit.txt.`")
-                                report_log = (f"{ctx.author.display_name} - {ctx.author.id}\n"
-                                              f"{now.month}/{now.day}/{now.year} in channel "
-                                              f"'#{ctx.message.channel}' \n{ctx.author.display_name} "
-                                              f"reported a malfunction in the file: [ DEMERIT.TXT ].\n"
-                                              f"Specifics: The user id was detected in registry.txt as "
-                                              f"well as demerit.txt but was not detected in merit.txt.")
-                                await channel.send(report_message)
-                                print(report_log)
-                                with open("reports.txt", "a") as report_file:
-                                    report_file.write(f"{report_log}\n---------------\n")
-                            if user_id not in line:
-                                # in registry, not merit, not demerit
-                                print(f"{ctx.author.display_name} - {ctx.author.id} \nis not in demerit.txt")
-                                print(f"{ctx.author.display_name} - {ctx.author.id} \nis registered with 2 errors")
-                                await ctx.send(f"`ERROR` - - - {mention}\n"
-                                               f"Registry integrity check for {mention} failed with `2` errors. "
-                                               f"[ MERIT.txt ], [ DEMERIT.txt ]\nPlease do not use .report, an error "
-                                               f"report has been automatically generated.")
-
-                                report_message = (f"@here \n\n"
-                                                  f"`{ctx.author.display_name} - {ctx.author.id}`\n"
-                                                  f"`{now.month}/{now.day}/{now.year}` in channel "
-                                                  f"'#{ctx.message.channel}'\n{ctx.author.display_name} "
-                                                  f"reported a malfunction in the file: [ MERIT.TXT ], [ DEMERIT.TXT ].\n"
-                                                  f"Specifics: `The user id was detected in registry.txt, "
-                                                  f"but was not detected in merit.txt. or demerit.txt.`")
-                                report_log = (f"{ctx.author.display_name} - {ctx.author.id}\n"
-                                              f"{now.month}/{now.day}/{now.year} in channel "
-                                              f"'#{ctx.message.channel}' \n{ctx.author.display_name} "
-                                              f"reported a malfunction in the file: [ MERIT.TXT ].\n"
-                                              f"Specifics: The user id was detected in registry.txt, "
-                                              f"but was not detected in merit.txt. or demerit.txt.")
-                                await channel.send(report_message)
-                                print(report_log)
-                                with open("reports.txt", "a") as report_file:
-                                    report_file.write(f"{report_log}\n---------------\n")
-            if user_id not in line:
-                print(f"{ctx.author.display_name} - {ctx.author.id} \nis not in registry.txt")
-                with open("merit.txt", 'r') as f:
-                    line = f.read()
-                    if user_id in line:
-                        print(f"{ctx.author.display_name} - {ctx.author.id} \nis in merit.txt")
-                        with open("demerit.txt", 'r') as f:
-                            line = f.read()
-                            if user_id in line:
-                                # not registry, in merit, in demerit
-                                print(f"{ctx.author.display_name} - {ctx.author.id} \nis in in demerit.txt")
-                                print(f"{ctx.author.display_name} - {ctx.author.id} \nis registered with 2 errors")
-                                await ctx.send(f"`ERROR` - - - {mention}\n"
-                                               f"Registry integrity check for {mention} failed with `2` errors. "
-                                               f"[ MERIT.txt ], [ DEMERIT.txt ]\nPlease do not use .report, an error "
-                                               f"report has been automatically generated.")
-
-                                report_message = (f"@here \n\n"
-                                                  f"`{ctx.author.display_name} - {ctx.author.id}`\n"
-                                                  f"`{now.month}/{now.day}/{now.year}` in channel "
-                                                  f"'#{ctx.message.channel}'\n{ctx.author.display_name} "
-                                                  f"reported a malfunction in the file: [ MERIT.TXT ].\n"
-                                                  f"Specifics: `The user id was not detected in registry.txt, "
-                                                  f"but was detected in merit.txt. and demerit.txt.`")
-                                report_log = (f"{ctx.author.display_name} - {ctx.author.id}\n"
-                                              f"{now.month}/{now.day}/{now.year} in channel "
-                                              f"'#{ctx.message.channel}' \n{ctx.author.display_name} "
-                                              f"reported a malfunction in the file: [ MERIT.TXT ].\n"
-                                              f"Specifics: The user id was not detected in registry.txt, "
-                                              f"but was detected in merit.txt. and demerit.txt.")
-                                await channel.send(report_message)
-                                print(report_log)
-                                with open("reports.txt", "a") as report_file:
-                                    report_file.write(f"{report_log}\n---------------\n")
-                            if user_id not in line:
-                                print(f"{ctx.author.display_name} - {ctx.author.id} \nis not in demerit.txt")
-                                print(f"{ctx.author.display_name} - {ctx.author.id} \nis registered with 1 error")
-                                await ctx.send(f"`ERROR` - - - {mention}\n"
-                                               f"Registry integrity check for {mention} failed with `1` error. "
-                                               f"[ MERIT.txt ]\nPlease do not use .report, an error report has been "
-                                               f"automatically generated.")
-
-                                report_message = (f"@here \n\n"
-                                                  f"`{ctx.author.display_name} - {ctx.author.id}`\n"
-                                                  f"`{now.month}/{now.day}/{now.year}` in channel "
-                                                  f"'#{ctx.message.channel}'\n{ctx.author.display_name} "
-                                                  f"reported a malfunction in the file: [ MERIT.TXT ].\n"
-                                                  f"Specifics: `The user id was not detected in registry.txt as "
-                                                  f"well as demerit.txt but was detected in merit.txt.`")
-                                report_log = (f"{ctx.author.display_name} - {ctx.author.id}\n"
-                                              f"{now.month}/{now.day}/{now.year} in channel "
-                                              f"'#{ctx.message.channel}' \n{ctx.author.display_name} "
-                                              f"reported a malfunction in the file: [ MERIT.TXT ].\n"
-                                              f"Specifics: The user id was not detected in registry.txt as "
-                                              f"well as demerit.txt but was detected in merit.txt.")
-                                await channel.send(report_message)
-                                print(report_log)
-                                with open("reports.txt", "a") as report_file:
-                                    report_file.write(f"{report_log}\n---------------\n")
-                    if user_id not in line:
-                        print(f"{ctx.author.display_name} - {ctx.author.id} \nis not in merit.txt")
-                        with open("demerit.txt", 'r') as f:
-                            line = f.read()
-                            if user_id in line:
-                                print(f"{ctx.author.display_name} - {ctx.author.id} \nis in demerit.txt")
-                                print(f"{ctx.author.display_name} - {ctx.author.id} \nis registered with 1 error")
-                                await ctx.send(f"`ERROR` - - - {mention}\n"
-                                               f"Registry integrity check for {mention} failed with `1` error. "
-                                               f"[ DEMERIT.txt ]\nPlease do not use .report, an error report has been "
-                                               f"automatically generated.")
-
-                                report_message = (f"@here \n\n"
-                                                  f"`{ctx.author.display_name} - {ctx.author.id}`\n"
-                                                  f"`{now.month}/{now.day}/{now.year}` in channel "
-                                                  f"'#{ctx.message.channel}'\n{ctx.author.display_name} "
-                                                  f"reported a malfunction in the file: [ DEMERIT.TXT ].\n"
-                                                  f"Specifics: `The user id was not detected in registry.txt as "
-                                                  f"well as merit.txt but was detected in demerit.txt.`")
-                                report_log = (f"{ctx.author.display_name} - {ctx.author.id}\n"
-                                              f"{now.month}/{now.day}/{now.year} in channel "
-                                              f"'#{ctx.message.channel}' \n{ctx.author.display_name} "
-                                              f"reported a malfunction in the file: [ DEMERIT.TXT ].\n"
-                                              f"Specifics: The user id was not detected in registry.txt as "
-                                              f"well as merit.txt but was detected in demerit.txt.")
-                                await channel.send(report_message)
-                                print(report_log)
-                                with open("reports.txt", "a") as report_file:
-                                    report_file.write(f"{report_log}\n---------------\n")
-                            if user_id not in line:
-                                print(f"{ctx.author.display_name} - {ctx.author.id} \nis not in demerit.txt")
-                                print(f"{ctx.author.display_name} - {ctx.author.id} \nis not registered")
-
-                                with open("registry.txt", 'a') as f:
-                                    f.write(user_id + '\n')
-                                    print(
-                                        f"{ctx.author.display_name} - {ctx.author.id} \nhas been added to registry.txt")
-                                with open("merit.txt", 'a') as f:
-                                    f.write(user_id + '\n' + '0\n')
-                                    print(f"{ctx.author.display_name} - {ctx.author.id} \nhas been added to merit.txt")
-                                with open("demerit.txt", 'a') as f:
-                                    f.write(user_id + '\n' + '0\n')
-                                    print(f"{ctx.author.display_name} - {ctx.author.id} has been added to registry.txt")
-                                print(
-                                    f"{ctx.author.display_name} - {ctx.author.id} \nhas been  registered with 0 errors")
-                                await ctx.send(f"{mention} has been added to the registry with `0` errors.")
-    await bot.process_commands()
-
-
-@bot.command(name='store')
-async def store(ctx):
-    if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        credit_emoji = '<:credits:937788738950545464>'
-
-        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 69))
-
-
-@bot.command(name='store-1')
-async def store(ctx):
-    if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        credit_emoji = '<:credits:937788738950545464>'
-
-        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 0))
-        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 1))
-
-
-@bot.command(name='store-2')
-async def store(ctx):
-    if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        credit_emoji = '<:credits:937788738950545464>'
-
-        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 0))
-        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 2))
-
-
-@bot.command(name='store-3')
-async def store(ctx):
-    if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        credit_emoji = '<:credits:937788738950545464>'
-
-        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 0))
-        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 3))
-
-
-@bot.command(name='store-4')
-async def store(ctx):
-    if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        credit_emoji = '<:credits:937788738950545464>'
-
-        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 0))
-        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 4))
-
-
-@bot.command(name='store-5')
-async def store(ctx):
-    if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        credit_emoji = '<:credits:937788738950545464>'
-
-        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 0))
-        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 5))
-
-
-@bot.command(name='store-6')
-async def store(ctx):
-    if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        credit_emoji = '<:credits:937788738950545464>'
-
-        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 0))
-        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 6))
-
-
-@bot.command(name='store-7')
-async def store(ctx):
-    if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        credit_emoji = '<:credits:937788738950545464>'
-
-        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 0))
-        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 7))
-
-
-@bot.command(name='store-8')
-async def store(ctx):
-    if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        credit_emoji = '<:credits:937788738950545464>'
-
-        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 0))
-        await ctx.send(assets.store_command(format(ctx.author.id), credit_emoji, 8))
-
-
-@bot.command(name='store-all')
-async def store(ctx):
-    if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        credit_emoji = '["7]'
-
-        channel = await ctx.author.create_dm()
-        await ctx.send(f"<@!{ctx.author.id}> - Store sent in DM's.")
-
-        await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 0))
-        await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 1))
-        await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 2))
-        await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 3))
-        await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 4))
-        await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 5))
-        await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 6))
-        await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 7))
-        await channel.send(assets.store_command(format(ctx.author.id), credit_emoji, 8))
-
-
-@bot.command(name='shop')
-async def shop(ctx):
-    if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        await ctx.send(assets.shop_command(format(ctx.author.id)))
-
-
-@bot.command(name='ggn-store')
-async def ggn_store(ctx):
-    if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        await ctx.send(assets.ggn_store_command(format(ctx.author.id)))
-
-
-@bot.command(name='github')
-async def github(ctx):
-    if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        await ctx.send("https://github.com/G41st/41st-utility-bot \n"
-                       "If you are interested in helping out with the bot, be sure to DM Kyoda!")
-
-
-@bot.command(name='fuck')
-async def fuck(ctx):
-    if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        await ctx.send("you")
-
-
-@bot.command(name='help')
-async def command_help(ctx):
-    if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        await ctx.send(assets.commands_command(ctx.author.id))
-
-
-@bot.command(name='commands')
-async def command_commands(ctx):
-    if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        await ctx.send(assets.commands_command(ctx.author.id))
-
-
-@bot.command(name='directory')
-async def command_help(ctx):
-    channel = await ctx.author.create_dm()
-    await channel.send(assets.commands_directory(ctx.author.id))
-    await ctx.send(f"<@!{ctx.author.id}> - Directory sent in DM's.")
-
+# end troll commands
 
 @bot.command(name='version')
 async def version(ctx):
@@ -681,21 +587,23 @@ async def version(ctx):
         version = (f"`v{bot_version}` - From `{bot_version_date}` \n"
                    f"Release - `Alpha`")
 
-        if 'Medal of Valor' in role_names:
-            salute_emoji = '<:GreenSalute:906047649982083113>'
-            mention = format(f"<@!{ctx.author.id}>")
-            await ctx.send(f"{version}\n\n"
-                           f"{mention}\n{salute_emoji}")
-        else:
-            mention = format(f"<@!{ctx.author.id}>")
-            await ctx.send(f"{version}\n\n"
-                           f"{mention}")
+        embed = discord.Embed(
+            title="41st Utilities Version:",
+            description=f"{version}", color=embed_color)
+        embed.set_author(
+            name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
+        await ctx.send(embed=embed)
 
 
 @bot.command(name='report')
 async def report(ctx):
     if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        await ctx.send(assets.report_command(ctx.author.id))
+        embed = discord.Embed(
+            title="Reporting Instructions:",
+            description=assets.report_command(ctx.author.id), color=embed_color)
+        embed.set_author(
+            name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
+        await ctx.send(embed=embed)
 
 
 @bot.command(name='report-send')
@@ -773,19 +681,9 @@ async def shutdown(ctx):
         await ctx.send("`All databases have been pushed and are backed up.`")
 
         await ctx.send("`Shutdown in 5`")
-        time.sleep(1)
-        await ctx.send("`4`")
-        time.sleep(1)
-        await ctx.send("`3`")
-        time.sleep(1)
-        await ctx.send("`2`")
-        time.sleep(1)
-        await ctx.send("`1`")
-        time.sleep(1)
+        time.sleep(5)
         await ctx.send("https://www.youtube.com/watch?v=Gb2jGy76v0Y")
         sys.exit()
-    else:
-        await ctx.send("`Not Authorised`")
 
 
 @bot.command(name='kill')
@@ -795,8 +693,6 @@ async def shutdown(ctx):
         await ctx.send("```41st://<utilities> ~ $``` \n `HARD-SHUTDOWN`")
         time.sleep(1)
         sys.exit()
-    else:
-        await ctx.send("`Not Authorised`")
 
 
 def main():
