@@ -222,8 +222,8 @@ async def identify(ctx, user: discord.Member):
     demerit_checker = merit_config.demerit_reader(user.id)
     join_date = user.joined_at.strftime("%b %d, %Y")
 
-    text = (f"Name: `{ctx.author.display_name}`\n"
-            f"ID:`{ctx.author.id}`\n"
+    text = (f"Name: `{user.display_name}`\n"
+            f"ID:`{user.id}`\n"
             f"Join Date: `{join_date}`\n"
             f"Credits: {credit_emoji}`{credit_value}`\n"
             f"Raw Credits: `{credit_value_raw}`\n"
@@ -582,8 +582,6 @@ async def adko(ctx):
 @bot.command(name='version')
 async def version(ctx):
     if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        role_names = [str(r) for r in ctx.author.roles]
-
         version = (f"`v{bot_version}` - From `{bot_version_date}` \n"
                    f"Release - `Alpha`")
 
