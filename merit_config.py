@@ -12,7 +12,7 @@ def merit_reader(discord_id):
     with open(merit_path, encoding='utf8') as file:
         for i, line in enumerate(file):
             if line.strip() == d_id:
-                merit_total = (linecache.getline(merit_path, i + 2)).strip()
+                merit_total = int((linecache.getline(merit_path, i + 2)).strip())
                 print(i)
                 break
     return merit_total
@@ -24,7 +24,7 @@ def demerit_reader(discord_id):
     with open(demerit_path, encoding='utf8') as file:
         for i, line in enumerate(file):
             if line.strip() == d_id:
-                demerit_total = (linecache.getline(demerit_path, i + 2)).strip()
+                demerit_total = int((linecache.getline(demerit_path, i + 2)).strip())
                 break
     return demerit_total
 
@@ -41,43 +41,30 @@ def add_credits(discord_id, new_credit_value):
 
                 with open("merit.txt", "r") as f:
                     content = f.readlines()
-                    content[i] = str(new_credit_total) + "\n"
+                    content[i + 1] = str(new_credit_total) + "\n"
 
                     with open("merit.txt", "w") as f:
                         f.writelines(content)
 
-            return new_credit_total
+            return new_credit_value
 
 
 def remove_credits(discord_id, new_credit_value):
     d_id = str(discord_id)
 
-    with open("demerit.txt", 'r') as f:
-        current_demerit_total = 0
+    with open(demerit_path, encoding='utf8') as file:
+        for i, line in enumerate(file):
+            if line.strip() == d_id:
+                current_demerit_total = (linecache.getline(demerit_path, i + 2)).strip()
 
-        for number, line in enumerate(f):
-            if d_id in line:
-                line_number = number
+                new_credit_total = current_demerit_total + new_credit_value
 
-                with open("demerit.txt", 'r') as f:
-                    file_read = f.readlines()
-                    file_int1_read = int(line_number)
-                    file_int2_read = (file_int1_read + 1)
-                    file_to_read = file_read[file_int2_read]
-                    file_to_read_stripped = file_to_read.strip()
-                    current_demerit_total = int(file_to_read_stripped)
+                with open("demerit.txt", "r") as f:
+                    content = f.readlines()
+                    content[i + 1] = str(new_credit_total) + "\n"
 
-            if d_id not in line:
-                pass
-
-    new_credit_total = current_demerit_total + new_credit_value
-
-    with open("demerit.txt", "r") as f:
-        content = f.readlines()
-        content[file_int2_read] = str(new_credit_total) + "\n"
-
-        with open("demerit.txt", "w") as f:
-            f.writelines(content)
+                    with open("demerit.txt", "w") as f:
+                        f.writelines(content)
 
             return new_credit_value
 
