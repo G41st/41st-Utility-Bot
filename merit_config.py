@@ -13,6 +13,7 @@ def merit_reader(discord_id):
         for i, line in enumerate(file):
             if line.strip() == d_id:
                 merit_total = (linecache.getline(merit_path, i + 2)).strip()
+                print(i)
                 break
     return merit_total
 
@@ -35,18 +36,18 @@ def add_credits(discord_id, new_credit_value):
         for i, line in enumerate(file):
             if line.strip() == d_id:
                 current_merit_total = (linecache.getline(merit_path, i + 2)).strip()
-                break
 
-    new_credit_total = current_merit_total + new_credit_value
+                new_credit_total = current_merit_total + new_credit_value
 
-    with open("merit.txt", "r") as f:
-        content = f.readlines()
-        content[(linecache.getline(merit_path, i + 2)).strip()] = str(new_credit_total) + "\n"
+                with open("merit.txt", "r") as f:
+                    content = f.readlines()
+                    content[i] = str(new_credit_total) + "\n"
 
-        with open("merit.txt", "w") as f:
-            f.writelines(content)
+                    with open("merit.txt", "w") as f:
+                        f.writelines(content)
 
-            return new_credit_value
+            return new_credit_total
+
 
 def remove_credits(discord_id, new_credit_value):
     d_id = str(discord_id)
@@ -80,6 +81,7 @@ def remove_credits(discord_id, new_credit_value):
 
             return new_credit_value
 
+
 def subtract_merits(discord_id, new_credit_value):
     d_id = str(discord_id)
 
@@ -111,6 +113,7 @@ def subtract_merits(discord_id, new_credit_value):
             f.writelines(content)
 
             return new_credit_value
+
 
 def subtract_demerits(discord_id, new_credit_value):
     d_id = str(discord_id)
