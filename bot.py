@@ -45,7 +45,7 @@ def startup(START):
 
 
 startup(TOKEN_TEST)
-bot_version = '2.0.0'
+bot_version = '2.0.1'
 bot_version_date = '5/07/2022 (US EST)'
 
 
@@ -69,8 +69,8 @@ def credit_counter(role_names, discord_id):
     merit_total = merit_config.merit_reader(discord_id)
     demerit_total = merit_config.demerit_reader(discord_id)
 
-    merit_sum = role_total + merit_total
-    total = merit_sum - demerit_total
+    merit_sum = role_total + int(merit_total)
+    total = merit_sum - int(demerit_total)
 
     if role_total == False:
         return False
@@ -511,7 +511,7 @@ async def bitches(ctx):
     if 'Medal of Valor' in role_names:
         salute_emoji = '<:GreenSalute:906047649982083113>'
         mention = format(f"<@!{ctx.author.id}>")
-        await ctx.send(f"congradulations {mention}, you have bitches! {salute_emoji}")
+        await ctx.send(f"congratulations {mention}, you have bitches! {salute_emoji}")
     else:
         await ctx.send(f"you have no bitches")
 
@@ -656,8 +656,8 @@ async def shutdown(ctx):
     if ctx.author.id == KYODA_ID or FORCEPS_ID:
         channel = bot.get_channel(851284148915404831)
 
-        with open("announcement.txt", "r") as annoucement:
-            message = annoucement.read()
+        with open("announcement.txt", "r") as announcement:
+            message = announcement.read()
 
         pings = assets.pings()
 
