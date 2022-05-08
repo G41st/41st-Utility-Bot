@@ -13,8 +13,6 @@ def merit_reader(discord_id):
         for i, line in enumerate(file):
             if line.strip() == d_id:
                 merit_total = (linecache.getline(merit_path, i + 2)).strip()
-                print(i)
-                break
     return merit_total
 
 
@@ -25,7 +23,6 @@ def demerit_reader(discord_id):
         for i, line in enumerate(file):
             if line.strip() == d_id:
                 demerit_total = (linecache.getline(demerit_path, i + 2)).strip()
-                break
     return demerit_total
 
 
