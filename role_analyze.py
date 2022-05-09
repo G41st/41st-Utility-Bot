@@ -368,147 +368,147 @@ def medal_diag(role_names, credit_emoji):
     medal70 = 'First Try'
 
     if any(ext == medal_of_valor for ext in role_names):
-        valor = f"{medal_of_valor} - {credit_emoji} `20000`"
+        valor = f"{medal_of_valor} - {credit_emoji} `20000`\n"
     if any(ext == medal1 for ext in role_names):
-        count1 = f"{medal1} - {credit_emoji} `3000`"
+        count1 = f"{medal1} - {credit_emoji} `3000`\n"
     if any(ext == medal2 for ext in role_names):
-        count2 = f"{medal2} - {credit_emoji} `3000`"
+        count2 = f"{medal2} - {credit_emoji} `3000`\n"
     if any(ext == medal3 for ext in role_names):
-        count3 = f"{medal3} - {credit_emoji} `3000`"
+        count3 = f"{medal3} - {credit_emoji} `3000`\n"
     if any(ext == medal4 for ext in role_names):
-        count4 = f"{medal4} - {credit_emoji} `3000`"
+        count4 = f"{medal4} - {credit_emoji} `3000`\n"
     if any(ext == medal5 for ext in role_names):
-        count5 = f"{medal5} - {credit_emoji} `2500`"
+        count5 = f"{medal5} - {credit_emoji} `2500`\n"
     if any(ext == medal6 for ext in role_names):
-        count6 = f"{medal6} - {credit_emoji} `2000`"
+        count6 = f"{medal6} - {credit_emoji} `2000`\n"
     if any(ext == medal7 for ext in role_names):
-        count7 = f"{medal7} - {credit_emoji} `2000`"
+        count7 = f"{medal7} - {credit_emoji} `2000`\n"
     if any(ext == medal8 for ext in role_names):
-        count8 = f"{medal8} - {credit_emoji} `2000`"
+        count8 = f"{medal8} - {credit_emoji} `2000`\n"
     if any(ext == medal9 for ext in role_names):
-        count9 = f"{medal9} - {credit_emoji} `2000`"
+        count9 = f"{medal9} - {credit_emoji} `2000`\n"
     if any(ext == medal10 for ext in role_names):
-        count10 = f"{medal10} - {credit_emoji} `2000`"
+        count10 = f"{medal10} - {credit_emoji} `2000`\n"
     if any(ext == medal11 for ext in role_names):
-        count11 = f"{medal11} - {credit_emoji} `2000`"
+        count11 = f"{medal11} - {credit_emoji} `2000`\n"
     if any(ext == medal12 for ext in role_names):
-        count12 = f"{medal12} - {credit_emoji} `1500`"
+        count12 = f"{medal12} - {credit_emoji} `1500`\n"
     if any(ext == medal13 for ext in role_names):
-        count13 = f"{medal13} - {credit_emoji} `1500`"
+        count13 = f"{medal13} - {credit_emoji} `1500`\n"
     if any(ext == medal14 for ext in role_names):
-        count14 = f"{medal14} - {credit_emoji} `1500`"
+        count14 = f"{medal14} - {credit_emoji} `1500`\n"
     if any(ext == medal15 for ext in role_names):
-        count15 = f"{medal15} - {credit_emoji} `1500`"
+        count15 = f"{medal15} - {credit_emoji} `1500`\n"
     if any(ext == medal16 for ext in role_names):
-        count16 = f"{medal16} - {credit_emoji} `1000`"
+        count16 = f"{medal16} - {credit_emoji} `1000`\n"
     if any(ext == medal17 for ext in role_names):
-        count17 = f"{medal17} - {credit_emoji} `1000`"
+        count17 = f"{medal17} - {credit_emoji} `1000`\n"
     if any(ext == medal18 for ext in role_names):
-        count18 = f"{medal18} - {credit_emoji} `1000`"
+        count18 = f"{medal18} - {credit_emoji} `1000`\n"
     if any(ext == medal19 for ext in role_names):
-        count19 = f"{medal19} - {credit_emoji} `1000`"
+        count19 = f"{medal19} - {credit_emoji} `1000`\n"
     if any(ext == medal20 for ext in role_names):
-        count20 = f"{medal20} - {credit_emoji} `1000`"
+        count20 = f"{medal20} - {credit_emoji} `1000`\n"
     if any(ext == medal21 for ext in role_names):
-        count21 = f"{medal21} - {credit_emoji} `1000`"
+        count21 = f"{medal21} - {credit_emoji} `1000`\n"
     if any(ext == medal22 for ext in role_names):
-        count22 = f"{medal22} - {credit_emoji} `1000`"
+        count22 = f"{medal22} - {credit_emoji} `1000`\n"
     if any(ext == medal23 for ext in role_names):
-        count23 = f"{medal23} - {credit_emoji} `1000`"
+        count23 = f"{medal23} - {credit_emoji} `1000`\n"
     if any(ext == medal24 for ext in role_names):
-        count24 = f"{medal24} - {credit_emoji} `1000`"
+        count24 = f"{medal24} - {credit_emoji} `1000`\n"
     if any(ext == medal25 for ext in role_names):
-        count25 = f"{medal25} - {credit_emoji} `1000`"
+        count25 = f"{medal25} - {credit_emoji} `1000`\n"
     if any(ext == medal26 for ext in role_names):
-        count26 = f"{medal26} - {credit_emoji} `7500`"
+        count26 = f"{medal26} - {credit_emoji} `7500`\n"
     if any(ext == medal27 for ext in role_names):
-        count27 = f"{medal27} - {credit_emoji} `6000`"
+        count27 = f"{medal27} - {credit_emoji} `6000`\n"
     if any(ext == medal28 for ext in role_names):
-        count28 = f"{medal28} - {credit_emoji} `5000`"
+        count28 = f"{medal28} - {credit_emoji} `5000`\n"
     if any(ext == medal29 for ext in role_names):
-        count29 = f"{medal29} - {credit_emoji} `4500`"
+        count29 = f"{medal29} - {credit_emoji} `4500`\n"
     if any(ext == medal30 for ext in role_names):
-        count30 = f"{medal30} - {credit_emoji} `4000`"
+        count30 = f"{medal30} - {credit_emoji} `4000`\n"
     if any(ext == medal31 for ext in role_names):
-        count31 = f"{medal31} - {credit_emoji} `3000`"
+        count31 = f"{medal31} - {credit_emoji} `3000`\n"
     if any(ext == medal32 for ext in role_names):
-        count32 = f"{medal32} - {credit_emoji} `3000`"
+        count32 = f"{medal32} - {credit_emoji} `3000`\n"
     if any(ext == medal33 for ext in role_names):
-        count33 = f"{medal33} - {credit_emoji} `2500`"
+        count33 = f"{medal33} - {credit_emoji} `2500`\n"
     if any(ext == medal34 for ext in role_names):
-        count34 = f"{medal34} - {credit_emoji} `2500`"
+        count34 = f"{medal34} - {credit_emoji} `2500`\n"
     if any(ext == medal35 for ext in role_names):
-        count35 = f"{medal35} - {credit_emoji} `2500`"
+        count35 = f"{medal35} - {credit_emoji} `2500`\n"
     if any(ext == medal36 for ext in role_names):
-        count36 = f"{medal36} - {credit_emoji} `2500`"
+        count36 = f"{medal36} - {credit_emoji} `2500`\n"
     if any(ext == medal37 for ext in role_names):
-        count37 = f"{medal37} - {credit_emoji} `2500`"
+        count37 = f"{medal37} - {credit_emoji} `2500`\n"
     if any(ext == medal38 for ext in role_names):
-        count38 = f"{medal38} - {credit_emoji} `2500`"
+        count38 = f"{medal38} - {credit_emoji} `2500`\n"
     if any(ext == medal39 for ext in role_names):
-        count39 = f"{medal39} - {credit_emoji} `2500`"
+        count39 = f"{medal39} - {credit_emoji} `2500`\n"
     if any(ext == medal40 for ext in role_names):
-        count40 = f"{medal40} - {credit_emoji} `2000`"
+        count40 = f"{medal40} - {credit_emoji} `2000`\n"
     if any(ext == medal41 for ext in role_names):
-        count41 = f"{medal41} - {credit_emoji} `2000`"
+        count41 = f"{medal41} - {credit_emoji} `2000`\n"
     if any(ext == medal42 for ext in role_names):
-        count42 = f"{medal42} - {credit_emoji} `2000`"
+        count42 = f"{medal42} - {credit_emoji} `2000`\n"
     if any(ext == medal43 for ext in role_names):
-        count43 = f"{medal43} - {credit_emoji} `2000`"
+        count43 = f"{medal43} - {credit_emoji} `2000`\n"
     if any(ext == medal44 for ext in role_names):
-        count44 = f"{medal44} - {credit_emoji} `2000`"
+        count44 = f"{medal44} - {credit_emoji} `2000`\n"
     if any(ext == medal45 for ext in role_names):
-        count45 = f"{medal45} - {credit_emoji} `2000`"
+        count45 = f"{medal45} - {credit_emoji} `2000`\n"
     if any(ext == medal46 for ext in role_names):
-        count46 = f"{medal46} - {credit_emoji} `2000`"
+        count46 = f"{medal46} - {credit_emoji} `2000`\n"
     if any(ext == medal47 for ext in role_names):
-        count47 = f"{medal47} - {credit_emoji} `2000`"
+        count47 = f"{medal47} - {credit_emoji} `2000`\n"
     if any(ext == medal48 for ext in role_names):
-        count48 = f"{medal48} - {credit_emoji} `1500`"
+        count48 = f"{medal48} - {credit_emoji} `1500`\n"
     if any(ext == medal49 for ext in role_names):
-        count49 = f"{medal49} - {credit_emoji} `1500`"
+        count49 = f"{medal49} - {credit_emoji} `1500`\n"
     if any(ext == medal50 for ext in role_names):
-        count50 = f"{medal50} - {credit_emoji} `1500`"
+        count50 = f"{medal50} - {credit_emoji} `1500`\n"
     if any(ext == medal51 for ext in role_names):
-        count51 = f"{medal51} - {credit_emoji} `1500`"
+        count51 = f"{medal51} - {credit_emoji} `1500`\n"
     if any(ext == medal52 for ext in role_names):
-        count52 = f"{medal52} - {credit_emoji} `1500`"
+        count52 = f"{medal52} - {credit_emoji} `1500`\n"
     if any(ext == medal53 for ext in role_names):
-        count53 = f"{medal53} - {credit_emoji} `1500`"
+        count53 = f"{medal53} - {credit_emoji} `1500`\n"
     if any(ext == medal54 for ext in role_names):
-        count54 = f"{medal54} - {credit_emoji} `1500`"
+        count54 = f"{medal54} - {credit_emoji} `1500`\n"
     if any(ext == medal55 for ext in role_names):
-        count55 = f"{medal55} - {credit_emoji} `1000`"
+        count55 = f"{medal55} - {credit_emoji} `1000`\n"
     if any(ext == medal56 for ext in role_names):
-        count56 = f"{medal56} - {credit_emoji} `1000`"
+        count56 = f"{medal56} - {credit_emoji} `1000`\n"
     if any(ext == medal57 for ext in role_names):
-        count57 = f"{medal57} - {credit_emoji} `1000`"
+        count57 = f"{medal57} - {credit_emoji} `1000`\n"
     if any(ext == medal58 for ext in role_names):
-        count58 = f"{medal58} - {credit_emoji} `1000`"
+        count58 = f"{medal58} - {credit_emoji} `1000`\n"
     if any(ext == medal59 for ext in role_names):
-        count59 = f"{medal59} - {credit_emoji} `1000`"
+        count59 = f"{medal59} - {credit_emoji} `1000`\n"
     if any(ext == medal60 for ext in role_names):
-        count60 = f"{medal60} - {credit_emoji} `1000`"
+        count60 = f"{medal60} - {credit_emoji} `1000`\n"
     if any(ext == medal61 for ext in role_names):
-        count61 = f"{medal61} - {credit_emoji} `1000`"
+        count61 = f"{medal61} - {credit_emoji} `1000`\n"
     if any(ext == medal62 for ext in role_names):
-        count62 = f"{medal62} - {credit_emoji} `2000`"
+        count62 = f"{medal62} - {credit_emoji} `2000`\n"
     if any(ext == medal63 for ext in role_names):
-        count63 = f"{medal63} - {credit_emoji} `1000`"
+        count63 = f"{medal63} - {credit_emoji} `1000`\n"
     if any(ext == medal64 for ext in role_names):
-        count64 = f"{medal64} - {credit_emoji} `5000`"
+        count64 = f"{medal64} - {credit_emoji} `5000`\n"
     if any(ext == medal65 for ext in role_names):
-        count65 = f"{medal65} - {credit_emoji} `1500`"
+        count65 = f"{medal65} - {credit_emoji} `1500`\n"
     if any(ext == medal66 for ext in role_names):
-        count66 = f"{medal66} - {credit_emoji} `4000`"
+        count66 = f"{medal66} - {credit_emoji} `4000`\n"
     if any(ext == medal67 for ext in role_names):
-        count67 = f"{medal67} - {credit_emoji} `1500`"
+        count67 = f"{medal67} - {credit_emoji} `1500`\n"
     if any(ext == medal68 for ext in role_names):
-        count68 = f"{medal68} - {credit_emoji} `4000`"
+        count68 = f"{medal68} - {credit_emoji} `4000`\n"
     if any(ext == medal69 for ext in role_names):
-        count69 = f"{medal69} - {credit_emoji} `3000`"
+        count69 = f"{medal69} - {credit_emoji} `3000`\n"
     if any(ext == medal70 for ext in role_names):
-        count70 = f"{medal70} - {credit_emoji} `3000`"
+        count70 = f"{medal70} - {credit_emoji} `3000`\n"
 
     medal_total = (valor + count1 + count2 + count3 + count4 + count5 + count6 + count7 + count8 + count9 +
                    count10 + count11 + count12 + count13 + count14 + count15 + count16 + count17 + count18 +
@@ -616,65 +616,65 @@ def qual_diag(role_names, credit_emoji):
     qual30 = 'Galactic Marine'
 
     if any(ext == qual1 for ext in role_names):
-        reward1 = f"{qual1} - {credit_emoji} `3000`"
+        reward1 = f"{qual1} - {credit_emoji} `3000`\n"
     if any(ext == qual2 for ext in role_names):
-        reward2 = f"{qual2} - {credit_emoji} `2500`"
+        reward2 = f"{qual2} - {credit_emoji} `2500`\n"
     if any(ext == qual3 for ext in role_names):
-        reward3 = f"{qual3} - {credit_emoji} `2500`"
+        reward3 = f"{qual3} - {credit_emoji} `2500`\n"
     if any(ext == qual4 for ext in role_names):
-        reward4 = f"{qual4} - {credit_emoji} `3000`"
+        reward4 = f"{qual4} - {credit_emoji} `3000`\n"
     if any(ext == qual5 for ext in role_names):
-        reward5 = f"{qual5} - {credit_emoji} `2000`"
+        reward5 = f"{qual5} - {credit_emoji} `2000`\n"
     if any(ext == qual6 for ext in role_names):
-        reward6 = f"{qual6} - {credit_emoji} `2000`"
+        reward6 = f"{qual6} - {credit_emoji} `2000`\n"
     if any(ext == qual7 for ext in role_names):
-        reward7 = f"{qual7} - {credit_emoji} `2000`"
+        reward7 = f"{qual7} - {credit_emoji} `2000`\n"
     if any(ext == qual8 for ext in role_names):
-        reward8 = f"{qual8} - {credit_emoji} `2000`"
+        reward8 = f"{qual8} - {credit_emoji} `2000`\n"
     if any(ext == qual9 for ext in role_names):
-        reward9 = f"{qual9} - {credit_emoji} `3000`"
+        reward9 = f"{qual9} - {credit_emoji} `3000`\n"
     if any(ext == qual10 for ext in role_names):
-        reward10 = f"{qual10} - {credit_emoji} `3000`"
+        reward10 = f"{qual10} - {credit_emoji} `3000`\n"
     if any(ext == qual11 for ext in role_names):
-        reward11 = f"{qual11} - {credit_emoji} `3000`"
+        reward11 = f"{qual11} - {credit_emoji} `3000`\n"
     if any(ext == qual12 for ext in role_names):
-        reward12 = f"{qual12} - {credit_emoji} `7500`"
+        reward12 = f"{qual12} - {credit_emoji} `7500`\n"
     if any(ext == qual13 for ext in role_names):
-        reward13 = f"{qual13} - {credit_emoji} `2000`"
+        reward13 = f"{qual13} - {credit_emoji} `2000`\n"
     if any(ext == qual14 for ext in role_names):
-        reward14 = f"{qual14} - {credit_emoji} `1500`"
+        reward14 = f"{qual14} - {credit_emoji} `1500`\n"
     if any(ext == qual15 for ext in role_names):
-        reward15 = f"{qual15} - {credit_emoji} `1500`"
+        reward15 = f"{qual15} - {credit_emoji} `1500`\n"
     if any(ext == qual16 for ext in role_names):
-        reward16 = f"{qual16} - {credit_emoji} `1500`"
+        reward16 = f"{qual16} - {credit_emoji} `1500`\n"
     if any(ext == qual17 for ext in role_names):
-        reward17 = f"{qual17} - {credit_emoji} `1000`"
+        reward17 = f"{qual17} - {credit_emoji} `1000`\n"
     if any(ext == qual18 for ext in role_names):
-        reward18 = f"{qual18} - {credit_emoji} `1500`"
+        reward18 = f"{qual18} - {credit_emoji} `1500`\n"
     if any(ext == qual19 for ext in role_names):
-        reward19 = f"{qual19} - {credit_emoji} `2000`"
+        reward19 = f"{qual19} - {credit_emoji} `2000`\n"
     if any(ext == qual20 for ext in role_names):
-        reward20 = f"{qual20} - {credit_emoji} `1000`"
+        reward20 = f"{qual20} - {credit_emoji} `1000`\n"
     if any(ext == qual21 for ext in role_names):
-        reward21 = f"{qual21} - {credit_emoji} `1500`"
+        reward21 = f"{qual21} - {credit_emoji} `1500`\n"
     if any(ext == qual22 for ext in role_names):
-        reward22 = f"{qual22} - {credit_emoji} `2000`"
+        reward22 = f"{qual22} - {credit_emoji} `2000`\n"
     if any(ext == qual23 for ext in role_names):
-        reward23 = f"{qual23} - {credit_emoji} `1000`"
+        reward23 = f"{qual23} - {credit_emoji} `1000`\n"
     if any(ext == qual24 for ext in role_names):
-        reward24 = f"{qual24} - {credit_emoji} `1500`"
+        reward24 = f"{qual24} - {credit_emoji} `1500`\n"
     if any(ext == qual25 for ext in role_names):
-        reward25 = f"{qual25} - {credit_emoji} `1000`"
+        reward25 = f"{qual25} - {credit_emoji} `1000`\n"
     if any(ext == qual26 for ext in role_names):
-        reward26 = f"{qual26} - {credit_emoji} `1500`"
+        reward26 = f"{qual26} - {credit_emoji} `1500`\n"
     if any(ext == qual27 for ext in role_names):
-        reward27 = f"{qual27} - {credit_emoji} `1000`"
+        reward27 = f"{qual27} - {credit_emoji} `1000`\n"
     if any(ext == qual28 for ext in role_names):
-        reward28 = f"{qual28} - {credit_emoji} `8000`"
+        reward28 = f"{qual28} - {credit_emoji} `8000`\n"
     if any(ext == qual29 for ext in role_names):
-        reward29 = f"{qual29} - {credit_emoji} `4000`"
+        reward29 = f"{qual29} - {credit_emoji} `4000`\n"
     if any(ext == qual30 for ext in role_names):
-        reward30 = f"{qual30} - {credit_emoji} `3000`"
+        reward30 = f"{qual30} - {credit_emoji} `3000`\n"
 
     qual_total = (reward1 + reward2 + reward3 + reward4 + reward5 + reward6 + reward7 + reward8 + reward9 +
                   reward10 + reward11 + reward12 + reward13 + reward14 + reward15 + reward16 + reward17 +

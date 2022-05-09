@@ -3,4 +3,4 @@ __pycache__
 .idea
 .env
 git_key.txt
-.DS_Store
+*.DS_Store
