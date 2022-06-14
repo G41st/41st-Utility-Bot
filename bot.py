@@ -44,22 +44,25 @@ def startup(START):
         LAUNCH = TOKEN_TEST
 
 
-startup(TOKEN)
-bot_version = '2.0.3'
-bot_version_date = '5/09/2022 (US EST)'
+startup(TOKEN_TEST)
+bot_version = '2.1.0'
+bot_version_date = '5/`3/2022 (US EST)'
 
 
 @bot.event
 async def on_ready():
+    now = datetime.datetime.now()
     dev_team_channel = bot.get_channel(939028644175699968)
     bot_command_channel = bot.get_channel(936902313589764146)
 
     message = (f"{bot.user.name} is live:\n"
                f"`v{bot_version}` - From `{bot_version_date}` \n"
-               f"Release - `Alpha`")
+               f"Release - `Alpha` \n"
+               f"Launch time: `{now.month}/{now.day}/{now.year} - {now.hour}:{now.minute}`")
 
     print(f"{bot.user.name} is connected!")
     print('\n\n' + message)
+    print(discord.__version__)
     await dev_team_channel.send(message)
     await bot_command_channel.send(message)
 
@@ -69,12 +72,12 @@ def credit_counter(role_names, discord_id):
     merit_total = merit_config.merit_reader(discord_id)
     demerit_total = merit_config.demerit_reader(discord_id)
 
-    merit_sum = role_total + int(merit_total)
-    total = merit_sum - int(demerit_total)
-
     if role_total == False:
+        print("bruh")
         return False
     else:
+        merit_sum = role_total + int(merit_total)
+        total = merit_sum - int(demerit_total)
         return total
 
 
@@ -444,11 +447,11 @@ async def credit_diag(ctx, message):
                 await ctx.send(f"<@!{ctx.author.id}> - Credit details sent in DM's.")
                 await channel.send(f"**Rank Credit Details**\n\n"
                                    f"{role_analyze.rank_diag(role_names, credit_emoji_all)}")
-                await channel.send(f"**Medal Credit Details:**\n\n"
+                await channel.send(f"\n**Medal Credit Details:**\n\n"
                                    f"{role_analyze.medal_diag(role_names, credit_emoji_all)}")
-                await channel.send(f"**Qual Credit Details:**\n\n"
+                await channel.send(f"\n**Qual Credit Details:**\n\n"
                                    f"{role_analyze.qual_diag(role_names, credit_emoji_all)}")
-                await channel.send(f"Total Role Credits: {credit_emoji} `{role_counter.credit_counter(role_names)}`\n"
+                await channel.send(f"\nTotal Role Credits: {credit_emoji} `{role_counter.credit_counter(role_names)}`\n"
                                    f"Total Credits: {credit_emoji} `{credit_counter(role_names, ctx.author.id)}`")
 
 
@@ -536,11 +539,6 @@ async def your_mom(ctx):
     await ctx.send("is in my bed. your welcome.")
 
 
-@bot.command(name='not-scared')
-async def not_scared(ctx):
-    await ctx.send("`<@!391974737745805322>`")
-
-
 @bot.command(name='no-u')
 async def no_u(ctx):
     await ctx.send(assets.rage())
@@ -575,6 +573,11 @@ async def adko(ctx):
                    f"never got. (2LT Raven)' \n"
                    f"Godspeed brother.\n"
                    f"{salute_emoji}")
+
+
+@bot.command(name='bruh')
+async def your_mom(ctx):
+    await ctx.send("bruh")
 
 
 # end troll commands
