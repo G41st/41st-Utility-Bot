@@ -45,8 +45,8 @@ def startup(START):
 
 
 startup(TOKEN)
-bot_version = '2.1.1'
-bot_version_date = '6/13/2022 (US EST)'
+bot_version = '2.1.2'
+bot_version_date = '6/16/2022 (US EST)'
 
 
 @bot.event
@@ -578,6 +578,16 @@ async def adko(ctx):
 @bot.command(name='bruh')
 async def your_mom(ctx):
     await ctx.send("bruh")
+
+
+@bot.command(name='crash')
+async def your_mom(ctx):
+    await ctx.send("bruh")
+
+
+@bot.command(name='lean')
+async def lean(ctx):
+    await ctx.send("https://cdn.discordapp.com/attachments/875310536902979615/987065758985125928/IMG_4467.gif")
 
 
 # end troll commands
