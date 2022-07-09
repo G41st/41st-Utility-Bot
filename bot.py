@@ -45,8 +45,8 @@ def startup(START):
 
 
 startup(TOKEN)
-bot_version = '2.1.2'
-bot_version_date = '6/16/2022 (US EST)'
+bot_version = '2.2.1'
+bot_version_date = '7/09/2022 (US EST)'
 
 
 @bot.event
@@ -589,6 +589,10 @@ async def your_mom(ctx):
 async def lean(ctx):
     await ctx.send("https://cdn.discordapp.com/attachments/875310536902979615/987065758985125928/IMG_4467.gif")
 
+
+@bot.command(name='penis')
+async def penis(ctx):
+    ctx.send("aphra has a small penis")
 
 # end troll commands
 

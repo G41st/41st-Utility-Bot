@@ -60,6 +60,8 @@ def rank_diag(role_names, credit_emoji):
     salary26 = ""
     global salary27
     salary27 = ""
+    global salary28
+    salary28 = ""
 
     rank1 = 'Marshal Commander'
     rank2 = 'Commander'
@@ -88,6 +90,7 @@ def rank_diag(role_names, credit_emoji):
     rank25 = 'Clone Trooper'
     rank26 = 'Clone Pilot'
     rank27 = 'Technical Commander'
+    rank28 = 'Quartermaster'
 
     if any(ext == rank1 for ext in role_names):
         salary1 = f"{rank1} - {credit_emoji} `50000`\n"
@@ -143,8 +146,10 @@ def rank_diag(role_names, credit_emoji):
         salary26 = f"{rank26} - {credit_emoji} `1000`\n"
     if any(ext == rank27 for ext in role_names):
         salary27 = f"{rank27} - {credit_emoji} `20000`\n"
+    if any(ext == rank28 for ext in role_names):
+        salary27 = f"{rank28} - {credit_emoji} `15000`\n"
 
-    rank_total = (salary1 + salary2 + salary27 + salary3 + salary4 + salary5 + salary6 + salary7 + salary8 +
+    rank_total = (salary1 + salary2 + salary27 + salary3 + salary4 + salary5 + salary6 + salary7 + salary28 + salary8 +
                   salary9 + salary10 + salary11 + salary12 + salary13 + salary14 + salary15 + salary16 + salary17 +
                   salary18 + salary19 + salary20 + salary21 + salary22 + salary23 + salary24 + salary25 + salary26)
 
@@ -583,6 +588,8 @@ def qual_diag(role_names, credit_emoji):
     reward29 = ""
     global reward30
     reward30 = ""
+    global reward31
+    reward31 = ""
 
     qual1 = 'Scout Trooper'
     qual2 = 'Aerial Trooper'
@@ -614,6 +621,7 @@ def qual_diag(role_names, credit_emoji):
     qual28 = 'HERO Pilot - First Class'
     qual29 = 'HERO Pilot - Second Class'
     qual30 = 'Galactic Marine'
+    qual31 = 'Medic Cadre'
 
     if any(ext == qual1 for ext in role_names):
         reward1 = f"{qual1} - {credit_emoji} `3000`\n"
@@ -675,11 +683,13 @@ def qual_diag(role_names, credit_emoji):
         reward29 = f"{qual29} - {credit_emoji} `4000`\n"
     if any(ext == qual30 for ext in role_names):
         reward30 = f"{qual30} - {credit_emoji} `3000`\n"
+    if any(ext == qual31 for ext in role_names):
+        reward30 = f"{qual31} - {credit_emoji} `3000`\n"
 
     qual_total = (reward1 + reward2 + reward3 + reward4 + reward5 + reward6 + reward7 + reward8 + reward9 +
-                  reward10 + reward11 + reward12 + reward13 + reward14 + reward15 + reward16 + reward17 +
-                  reward18 + reward19 + reward20 + reward21 + reward22 + reward23 + reward24 + reward25 +
-                  reward26 + reward27 + reward28 + reward29 + reward30)
+                  reward10 + reward11 + reward31 + reward12 + reward13 + reward14 + reward15 + reward16 + reward17 +
+                  reward18 + reward19 + reward20 + reward21 + reward22 + reward23 + reward24 + reward25 + reward26 +
+                  reward27 + reward28 + reward29 + reward30)
 
     return qual_total
 
