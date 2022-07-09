@@ -592,7 +592,7 @@ async def lean(ctx):
 
 @bot.command(name='penis')
 async def penis(ctx):
-    ctx.send("aphra has a small penis")
+    await ctx.send("aphra has a small penis")
 
 # end troll commands
 
