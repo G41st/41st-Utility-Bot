@@ -59,6 +59,8 @@ def credit_counter(role_names):
     salary26 = 0
     global salary27
     salary27 = 0
+    global salary28
+    salary28 = 0
 
     rank1 = 'Marshal Commander'
     rank2 = 'Commander'
@@ -87,6 +89,7 @@ def credit_counter(role_names):
     rank25 = 'Clone Trooper'
     rank26 = 'Clone Pilot'
     rank27 = 'Technical Commander'
+    rank28 = 'Quartermaster'
 
     global valor
     valor = 0
@@ -363,6 +366,8 @@ def credit_counter(role_names):
     reward29 = 0
     global reward30
     reward30 = 0
+    global reward31
+    reward31 = 0
 
     qual1 = 'Scout Trooper'
     qual2 = 'Aerial Trooper'
@@ -394,6 +399,7 @@ def credit_counter(role_names):
     qual28 = 'HERO Pilot - First Class'
     qual29 = 'HERO Pilot - Second Class'
     qual30 = 'Galactic Marine'
+    qual31 = 'Medic Cadre'
 
     try:
         if any(ext == rank1 for ext in role_names):
@@ -454,11 +460,13 @@ def credit_counter(role_names):
             salary26 = 1000
         if any(ext == rank27 for ext in role_names):
             salary27 = 20000
+        if any(ext == rank28 for ext in role_names):
+            salary28 = 15000
 
         rank_total = (salary1 + salary2 + salary3 + salary4 + salary5 + salary6 + salary7 + salary8 + salary9 +
                       salary10 + salary11 + salary12 + salary13 + salary14 + salary15 + salary16 + salary17 + salary18
                       + salary19 + salary20 + salary21 + salary22 + salary23 + salary24 + salary25 + salary26 +
-                      salary27)
+                      salary27 + salary28)
 
         if any(ext == medal_of_valor for ext in role_names):
             valor = 20000
@@ -672,11 +680,13 @@ def credit_counter(role_names):
             reward29 = 4000
         if any(ext == qual30 for ext in role_names):
             reward30 = 3000
+        if any(ext == qual31 for ext in role_names):
+            reward31 = 3000
 
         qual_total = (reward1 + reward2 + reward3 + reward4 + reward5 + reward6 + reward7 + reward8 + reward9 +
                       reward10 + reward11 + reward12 + reward13 + reward14 + reward15 + reward16 + reward17 +
                       reward18 + reward19 + reward20 + reward21 + reward22 + reward23 + reward24 + reward25 +
-                      reward26 + reward27 + reward28 + reward29 + reward30)
+                      reward26 + reward27 + reward28 + reward29 + reward30 + reward31)
 
         trooper_sum = rank_total + qual_total
         medal_sum = trooper_sum + medal_total
