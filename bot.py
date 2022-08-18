@@ -45,8 +45,8 @@ def startup(START):
 
 
 startup(TOKEN)
-bot_version = '2.2.1'
-bot_version_date = '7/09/2022 (US EST)'
+bot_version = '2.3.0'
+bot_version_date = '8/17/2022 (US EST)'
 
 
 @bot.event
@@ -547,7 +547,7 @@ async def no_u(ctx):
 @bot.command(name='troll')
 async def troll(ctx):
     if ctx.channel.id == '936902313589764146' or '939028644175699968':
-        await ctx.send(f"```{assets.troll_command()}```")
+        await ctx.send(f"{assets.troll_command()}")
 
 
 @bot.command(name='adko')
