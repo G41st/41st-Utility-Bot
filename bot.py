@@ -45,8 +45,8 @@ def startup(START):
 
 
 startup(TOKEN)
-bot_version = '2.2.3'
-bot_version_date = '7/09/2022 (US EST)'
+bot_version = '2.3.0'
+bot_version_date = '8/17/2022 (US EST)'
 
 
 @bot.event
