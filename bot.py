@@ -45,8 +45,8 @@ def startup(START):
 
 
 startup(TOKEN)
-bot_version = '2.2.3'
-bot_version_date = '7/09/2022 (US EST)'
+bot_version = '2.2.4'
+bot_version_date = '7/29/2022 (US EST)'
 
 
 @bot.event
@@ -593,6 +593,11 @@ async def lean(ctx):
 @bot.command(name='penis')
 async def penis(ctx):
     await ctx.send("aphra has a small penis")
+
+
+@bot.command(name='midget-arms')
+async def penis(ctx):
+    await ctx.send("<@332587704598659072>")
 
 # end troll commands
 
