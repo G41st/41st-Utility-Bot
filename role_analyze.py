@@ -299,6 +299,8 @@ def medal_diag(role_names, credit_emoji):
     count69 = ""
     global count70
     count70 = ""
+    global count71
+    count71 = ""
 
     medal_of_valor = 'Medal of Valor'
     medal1 = '41st Service Medal'
@@ -371,6 +373,7 @@ def medal_diag(role_names, credit_emoji):
     medal68 = 'Outstanding Dedication'
     medal69 = 'Fireteam on Fire'
     medal70 = 'First Try'
+    medal71 = 'Experience Outranks Everything'
 
     if any(ext == medal_of_valor for ext in role_names):
         valor = f"{medal_of_valor} - {credit_emoji} `20000`\n"
@@ -514,6 +517,8 @@ def medal_diag(role_names, credit_emoji):
         count69 = f"{medal69} - {credit_emoji} `3000`\n"
     if any(ext == medal70 for ext in role_names):
         count70 = f"{medal70} - {credit_emoji} `3000`\n"
+    if any(ext == medal71 for ext in role_names):
+        count71 = f"{medal71} - {credit_emoji} `8000`\n"
 
     medal_total = (valor + count1 + count2 + count3 + count4 + count5 + count6 + count7 + count8 + count9 +
                    count10 + count11 + count12 + count13 + count14 + count15 + count16 + count17 + count18 +
@@ -522,7 +527,7 @@ def medal_diag(role_names, credit_emoji):
                    count37 + count38 + count39 + count40 + count41 + count42 + count43 + count44 + count45 +
                    count46 + count47 + count48 + count49 + count50 + count51 + count52 + count53 + count54 +
                    count55 + count56 + count57 + count58 + count59 + count60 + count61 + count62 + count63 +
-                   count64 + count65 + count66 + count67 + count68 + count69 + count70)
+                   count64 + count65 + count66 + count67 + count68 + count69 + count70 + count71)
 
     return medal_total
 
@@ -590,6 +595,10 @@ def qual_diag(role_names, credit_emoji):
     reward30 = ""
     global reward31
     reward31 = ""
+    global reward32
+    reward32 = ""
+    global reward33
+    reward33 = ""
 
     qual1 = 'Scout Trooper'
     qual2 = 'Aerial Trooper'
@@ -622,6 +631,8 @@ def qual_diag(role_names, credit_emoji):
     qual29 = 'HERO Pilot - Second Class'
     qual30 = 'Galactic Marine'
     qual31 = 'Medic Cadre'
+    qual32 = 'Shadow Pilot'
+    qual33 = 'Sapper'
 
     if any(ext == qual1 for ext in role_names):
         reward1 = f"{qual1} - {credit_emoji} `3000`\n"
@@ -684,12 +695,16 @@ def qual_diag(role_names, credit_emoji):
     if any(ext == qual30 for ext in role_names):
         reward30 = f"{qual30} - {credit_emoji} `3000`\n"
     if any(ext == qual31 for ext in role_names):
-        reward30 = f"{qual31} - {credit_emoji} `3000`\n"
+        reward31 = f"{qual31} - {credit_emoji} `3000`\n"
+    if any(ext == qual32 for ext in role_names):
+        reward32 = f"{qual32} - {credit_emoji} `8000`\n"
+    if any(ext == qual33 for ext in role_names):
+        reward33 = f"{qual33} - {credit_emoji} `2500`\n"
 
     qual_total = (reward1 + reward2 + reward3 + reward4 + reward5 + reward6 + reward7 + reward8 + reward9 +
                   reward10 + reward11 + reward31 + reward12 + reward13 + reward14 + reward15 + reward16 + reward17 +
                   reward18 + reward19 + reward20 + reward21 + reward22 + reward23 + reward24 + reward25 + reward26 +
-                  reward27 + reward28 + reward29 + reward30)
+                  reward27 + reward28 + reward29 + reward30 + reward31 + reward32 + reward33)
 
     return qual_total
 
