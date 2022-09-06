@@ -44,7 +44,7 @@ def startup(START):
         LAUNCH = TOKEN_TEST
 
 
-startup(TOKEN_TEST)
+startup(TOKEN)
 bot_version = '3.1.1'
 bot_version_date = '9/06/2022 (US EST)'
 
