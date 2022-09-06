@@ -24,7 +24,7 @@ GUILD = os.getenv('DISCORD_GUILD')
 KYODA_ID = 583386313466708035
 FORCEPS_ID = 173202312762884096
 BOT_OPERATOR_ROLE = "Technical Commander"
-embed_color = 0x1BF502E
+embed_color = 0xBF502E
 
 
 def startup(START):
