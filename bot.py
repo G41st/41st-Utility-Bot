@@ -45,7 +45,7 @@ def startup(START):
 
 
 startup(TOKEN)
-bot_version = '3.1.1'
+bot_version = '3.1.2'
 bot_version_date = '9/06/2022 (US EST)'
 
 
@@ -611,7 +611,7 @@ async def credit_card(ctx):
 
             troll_file.writelines(content)
 
-            ctx.send(f"Aphra is now {new_cc_number} credits in debt! Spam this command to support "
+            await ctx.send(f"Aphra is now {new_cc_number} credits in debt! Spam this command to support "
                      f"`.baldceps-survivor-project.com`! ")
 
 
@@ -631,7 +631,7 @@ async def credit_card_2(ctx):
 
             troll_file.writelines(content)
 
-            ctx.send(f"Kyoda is now {new_cc_number} credits in debt! Spam this command to support "
+            await ctx.send(f"Kyoda is now {new_cc_number} credits in debt! Spam this command to support "
                      f"`.baldceps-survivor-project.com`! ")
 
 
@@ -651,7 +651,7 @@ async def beauty_project(ctx):
 
             troll_file.writelines(content)
 
-            ctx.send(f"Thank you! Forceps will now regrow 1 (One) hair folicle. He now has {new_cc_number} "
+            await ctx.send(f"Thank you! Forceps will now regrow 1 (One) hair folicle. He now has {new_cc_number} "
                      f"hair folicles!\n\nVisit our site at https://www.baldceps-survivor-project.com")
 
 # end troll commands
