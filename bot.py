@@ -44,9 +44,9 @@ def startup(START):
         LAUNCH = TOKEN_TEST
 
 
-startup(TOKEN)
-bot_version = '3.0.3'
-bot_version_date = '9/05/2022 (US EST)'
+startup(TOKEN_TEST)
+bot_version = '3.1.1'
+bot_version_date = '9/06/2022 (US EST)'
 
 
 @bot.event
@@ -593,6 +593,66 @@ async def lean(ctx):
 @bot.command(name='penis')
 async def penis(ctx):
     await ctx.send("aphra has a small penis")
+
+
+@bot.command(name='bankruptaphra.com')
+async def credit_card(ctx):
+
+    with open("troll.txt", "r") as troll_file:
+        content = troll_file.readlines()
+
+        old_cc_number = content[0]
+
+        with open("troll.txt", "w") as troll_file:
+            int_cc_number = int(old_cc_number[0])
+            new_cc_number = int_cc_number + 1
+
+            content[0] = str(new_cc_number) + "\n"
+
+            troll_file.writelines(content)
+
+            ctx.send(f"Aphra is now {new_cc_number} credits in debt! Spam this command to support "
+                     f"`.baldceps-survivor-project.com`! ")
+
+
+@bot.command(name='bankruptkypda')
+async def credit_card_2(ctx):
+
+    with open("troll.txt", "r") as troll_file:
+        content = troll_file.readlines()
+
+        old_cc_number = content[1]
+
+        with open("troll.txt", "w") as troll_file:
+            int_cc_number = int(old_cc_number[1])
+            new_cc_number = int_cc_number + 1
+
+            content[1] = str(new_cc_number) + "\n"
+
+            troll_file.writelines(content)
+
+            ctx.send(f"Kyoda is now {new_cc_number} credits in debt! Spam this command to support "
+                     f"`.baldceps-survivor-project.com`! ")
+
+
+@bot.command(name='baldceps-survivor-project.com')
+async def beauty_project(ctx):
+
+    with open("troll.txt", "r") as troll_file:
+        content = troll_file.readlines()
+
+        old_cc_number = content[2]
+
+        with open("troll.txt", "w") as troll_file:
+            int_cc_number = int(old_cc_number[2])
+            new_cc_number = int_cc_number + 1
+
+            content[2] = str(new_cc_number) + "\n"
+
+            troll_file.writelines(content)
+
+            ctx.send(f"Thank you! Forceps will now regrow 1 (One) hair folicle. He now has {new_cc_number} "
+                     f"hair folicles!\n\nVisit our site at https://www.baldceps-survivor-project.com")
 
 # end troll commands
 
