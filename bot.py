@@ -615,7 +615,7 @@ async def credit_card(ctx):
                      f"`.baldceps-survivor-project.com`! ")
 
 
-@bot.command(name='bankruptkypda')
+@bot.command(name='bankruptkyoda.com')
 async def credit_card_2(ctx):
 
     with open("troll.txt", "r") as troll_file:
