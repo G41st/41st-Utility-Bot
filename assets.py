@@ -53,7 +53,7 @@ def store_command(credit_emoji, str_n):
               f"{credit_emoji} `30,000` - 'Phase 1 Helmet and Skin' \n- A Phase 1 helmet, along with clearence to wear "
               f"the corresponding skin in game.\n"
               f"{credit_emoji} `30,000` - 'Rendered Helmet' \n- Receive a 3D rendered helmet from our Dev Team.\n"
-              f"{credit_emoji} `30,000` - 'Full Body Art Piece' \n- Receive a sholders and torso in addition to your "
+              f"{credit_emoji} `30,000` - 'Half Body Art Piece' \n- Receive a sholders and torso in addition to your "
               f"clone helmet. (CTV+)\n")
 
     store7 = (f"\n- - - {credit_emoji} `40,000` - - -\n"
@@ -109,7 +109,7 @@ def shop_command():
             f"{credit_emoji} `30,000` - 'BARC Helmet and Skin' \n"
             f"{credit_emoji} `30,000` - 'Phase 1 Helmet and Skin' \n"
             f"{credit_emoji} `30,000` - 'Rendered Helmet' \n"
-            f"{credit_emoji} `30,000` - 'Full Body Art Piece' \n"
+            f"{credit_emoji} `30,000` - 'Half Body Art Piece' \n"
             f"{credit_emoji} `40,000` - '2003 Helmet Varients' \n"
             f"{credit_emoji} `45,000` - 'Blaze Trooper Helmet' \n"
             f"{credit_emoji} `45,000` - 'Desert Trooper Helmet (and Skin for PC)' \n"
