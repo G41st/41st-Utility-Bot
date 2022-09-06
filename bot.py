@@ -45,7 +45,7 @@ def startup(START):
 
 
 startup(TOKEN)
-bot_version = '3.1.2'
+bot_version = '3.1.3'
 bot_version_date = '9/06/2022 (US EST)'
 
 
@@ -598,12 +598,12 @@ async def penis(ctx):
 @bot.command(name='bankruptaphra.com')
 async def credit_card(ctx):
 
-    with open("troll.txt", "r") as troll_file:
+    with open("troll1.txt", "r") as troll_file:
         content = troll_file.readlines()
 
         old_cc_number = content[0]
 
-        with open("troll.txt", "w") as troll_file:
+        with open("troll1.txt", "w") as troll_file:
             int_cc_number = int(old_cc_number[0])
             new_cc_number = int_cc_number + 1
 
@@ -618,16 +618,16 @@ async def credit_card(ctx):
 @bot.command(name='bankruptkyoda.com')
 async def credit_card_2(ctx):
 
-    with open("troll.txt", "r") as troll_file:
+    with open("troll2.txt", "r") as troll_file:
         content = troll_file.readlines()
 
-        old_cc_number = content[1]
+        old_cc_number = content[0]
 
-        with open("troll.txt", "w") as troll_file:
-            int_cc_number = int(old_cc_number[1])
+        with open("troll2.txt", "w") as troll_file:
+            int_cc_number = int(old_cc_number[0])
             new_cc_number = int_cc_number + 1
 
-            content[1] = str(new_cc_number) + "\n"
+            content[0] = str(new_cc_number) + "\n"
 
             troll_file.writelines(content)
 
@@ -638,16 +638,16 @@ async def credit_card_2(ctx):
 @bot.command(name='baldceps-survivor-project.com')
 async def beauty_project(ctx):
 
-    with open("troll.txt", "r") as troll_file:
+    with open("troll3.txt", "r") as troll_file:
         content = troll_file.readlines()
 
-        old_cc_number = content[2]
+        old_cc_number = content[0]
 
-        with open("troll.txt", "w") as troll_file:
-            int_cc_number = int(old_cc_number[2])
+        with open("troll3.txt", "w") as troll_file:
+            int_cc_number = int(old_cc_number[0])
             new_cc_number = int_cc_number + 1
 
-            content[2] = str(new_cc_number) + "\n"
+            content[0] = str(new_cc_number) + "\n"
 
             troll_file.writelines(content)
 
