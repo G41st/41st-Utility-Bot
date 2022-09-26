@@ -500,7 +500,7 @@ def credit_counter(role_names):
         if any(ext == medal10 for ext in role_names):
             count10 = 2000
         if any(ext == medal11 for ext in role_names):
-            count11 = 2000
+            count11 = 4000
         if any(ext == medal12 for ext in role_names):
             count12 = 1500
         if any(ext == medal13 for ext in role_names):
@@ -602,7 +602,7 @@ def credit_counter(role_names):
         if any(ext == medal61 for ext in role_names):
             count61 = 1000
         if any(ext == medal62 for ext in role_names):
-            count62 = 2000
+            count62 = 5000
         if any(ext == medal63 for ext in role_names):
             count63 = 1000
         if any(ext == medal64 for ext in role_names):

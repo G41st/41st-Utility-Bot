@@ -398,7 +398,7 @@ def medal_diag(role_names, credit_emoji):
     if any(ext == medal10 for ext in role_names):
         count10 = f"{medal10} - {credit_emoji} `2000`\n"
     if any(ext == medal11 for ext in role_names):
-        count11 = f"{medal11} - {credit_emoji} `2000`\n"
+        count11 = f"{medal11} - {credit_emoji} `4000`\n"
     if any(ext == medal12 for ext in role_names):
         count12 = f"{medal12} - {credit_emoji} `1500`\n"
     if any(ext == medal13 for ext in role_names):
@@ -500,7 +500,7 @@ def medal_diag(role_names, credit_emoji):
     if any(ext == medal61 for ext in role_names):
         count61 = f"{medal61} - {credit_emoji} `1000`\n"
     if any(ext == medal62 for ext in role_names):
-        count62 = f"{medal62} - {credit_emoji} `2000`\n"
+        count62 = f"{medal62} - {credit_emoji} `5000`\n"
     if any(ext == medal63 for ext in role_names):
         count63 = f"{medal63} - {credit_emoji} `1000`\n"
     if any(ext == medal64 for ext in role_names):
