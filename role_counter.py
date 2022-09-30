@@ -375,6 +375,8 @@ def credit_counter(role_names):
     reward32 = 0
     global reward33
     reward33 = 0
+    global reward34
+    reward34 = 0
 
     qual1 = 'Scout Trooper'
     qual2 = 'Aerial Trooper'
@@ -409,6 +411,7 @@ def credit_counter(role_names):
     qual31 = 'Medic Cadre'
     qual32 = 'Shadow Pilot'
     qual33 = 'Sapper'
+    qual34 = 'Sky Trooper'
 
     try:
         if any(ext == rank1 for ext in role_names):
@@ -634,7 +637,7 @@ def credit_counter(role_names):
         if any(ext == qual1 for ext in role_names):
             reward1 = 3000
         if any(ext == qual2 for ext in role_names):
-            reward2 = 2000
+            reward2 = 2500
         if any(ext == qual3 for ext in role_names):
             reward3 = 2500
         if any(ext == qual4 for ext in role_names):
@@ -697,11 +700,14 @@ def credit_counter(role_names):
             reward32 = 8000
         if any(ext == qual33 for ext in role_names):
             reward33 = 2500
+        if any(ext == qual34 for ext in role_names):
+            reward34 = 5000
 
         qual_total = (reward1 + reward2 + reward3 + reward4 + reward5 + reward6 + reward7 + reward8 + reward9 +
                       reward10 + reward11 + reward12 + reward13 + reward14 + reward15 + reward16 + reward17 +
                       reward18 + reward19 + reward20 + reward21 + reward22 + reward23 + reward24 + reward25 +
-                      reward26 + reward27 + reward28 + reward29 + reward30 + reward31 + reward32 + reward33)
+                      reward26 + reward27 + reward28 + reward29 + reward30 + reward31 + reward32 + reward33 +
+                      reward34)
 
         trooper_sum = rank_total + qual_total
         medal_sum = trooper_sum + medal_total

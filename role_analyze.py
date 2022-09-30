@@ -599,6 +599,8 @@ def qual_diag(role_names, credit_emoji):
     reward32 = ""
     global reward33
     reward33 = ""
+    global reward34
+    reward34 = ""
 
     qual1 = 'Scout Trooper'
     qual2 = 'Aerial Trooper'
@@ -633,6 +635,7 @@ def qual_diag(role_names, credit_emoji):
     qual31 = 'Medic Cadre'
     qual32 = 'Shadow Pilot'
     qual33 = 'Sapper'
+    qual34 = 'Sky Trooper'
 
     if any(ext == qual1 for ext in role_names):
         reward1 = f"{qual1} - {credit_emoji} `3000`\n"
@@ -700,6 +703,8 @@ def qual_diag(role_names, credit_emoji):
         reward32 = f"{qual32} - {credit_emoji} `8000`\n"
     if any(ext == qual33 for ext in role_names):
         reward33 = f"{qual33} - {credit_emoji} `2500`\n"
+    if any(ext == qual34 for ext in role_names):
+        reward34 = f"{qual34} - {credit_emoji} `5000`\n"
 
     qual_total = (reward1 + reward2 + reward3 + reward4 + reward5 + reward6 + reward7 + reward8 + reward9 +
                   reward10 + reward11 + reward31 + reward12 + reward13 + reward14 + reward15 + reward16 + reward17 +
