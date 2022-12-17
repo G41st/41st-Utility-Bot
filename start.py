@@ -5,7 +5,7 @@ import git_pull
 sys.path.insert(0, f'{os.getcwd()}/41st-bot')
 
 import launcher
-
+print("starting server")
 git_pull.download1("merit.txt")
 print("downloaded merit.txt")
 git_pull.download2("demerit.txt")
