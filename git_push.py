@@ -13,11 +13,11 @@ def upload():
     g = Github(user, password)
     repo = g.get_user().get_repo('41st-Utility-Bot')
     file_list = [
-        f"/server/merit.txt",
-        f"/server/demerit.txt",
-        f"/server/registry.txt",
-        f"/server/reports.txt",
-        f"/server/announcement.txt"
+        f"server/merit.txt",
+        f"server/demerit.txt",
+        f"server/registry.txt",
+        f"server/reports.txt",
+        f"server/announcement.txt"
     ]
     file_names = [
         'merit.txt',

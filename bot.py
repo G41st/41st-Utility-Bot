@@ -45,7 +45,7 @@ def startup(START):
 
 
 startup(TOKEN)
-bot_version = '4.0.1'
+bot_version = '4.0.2'
 bot_version_date = '12/16/2022 (US EST)'
 
 
@@ -671,12 +671,10 @@ async def beauty_project(ctx):
             await ctx.send(f"Thank you! Forceps will now regrow 1 (One) hair folicle. He now has {new_cc_number} "
                      f"hair folicles!\n\nVisit our site at https://www.baldceps-survivor-project.com")
 
-@bot.command(name='')
-
 # end troll commands
 
 @bot.command(name='version')
-async def version_send(ctx):
+async def version(ctx):
     if ctx.channel.id == '936902313589764146' or '939028644175699968':
         version = (f"`v{bot_version}` - From `{bot_version_date}` \n"
                    f"Release - `Alpha`")
