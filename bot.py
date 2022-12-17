@@ -45,8 +45,8 @@ def startup(START):
 
 
 startup(TOKEN)
-bot_version = '3.2.1'
-bot_version_date = '9/30/2022 (US EST)'
+bot_version = '4.0.0'
+bot_version_date = '12/16/2022 (US EST)'
 
 
 @bot.event
@@ -97,6 +97,7 @@ async def add(ctx, user: discord.Member, message):
     embed.set_author(
         name=user.display_name, icon_url=user.avatar.url)
     await ctx.send(embed=embed)
+    print(f"LOG ~ '{ctx.author.id}' used [ .add ] on '{user.id}'")
 
 
 @bot.command(name='sub-merits')
@@ -116,6 +117,7 @@ async def sub_merits(ctx, user: discord.Member, message):
         embed.set_author(
             name=user.display_name, icon_url=user.avatar.url)
         await ctx.send(embed=embed)
+        print(f"LOG ~ '{ctx.author.id}' used [ .sub-merits ] on '{user.id}'")
 
 
 @bot.command(name='remove')
@@ -134,6 +136,7 @@ async def remove(ctx, user: discord.Member, message):
     embed.set_author(
         name=user.display_name, icon_url=user.avatar.url)
     await ctx.send(embed=embed)
+    print(f"LOG ~ '{ctx.author.id}' used [ .remove ] on '{user.id}'")
 
 
 @bot.command(name='sub-demerits')
@@ -153,6 +156,7 @@ async def sub_demerits(ctx, user: discord.Member, message):
         embed.set_author(
             name=user.display_name, icon_url=user.avatar.url)
         await ctx.send(embed=embed)
+        print(f"LOG ~ '{ctx.author.id}' used [ .sub-demerits ] on '{user.id}'")
 
 
 @bot.command(name='credits')
@@ -185,6 +189,7 @@ async def thing_for_roles(ctx):
                 embed.set_author(
                     name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
                 await ctx.send(embed=embed)
+                print(f"LOG ~ '{ctx.author.id}' used [ .credits ]")
 
 
 @bot.command(name='check-credits')
@@ -209,6 +214,7 @@ async def remove(ctx, user: discord.Member):
         embed.set_author(
             name=user.display_name, icon_url=user.avatar.url)
         await ctx.send(embed=embed)
+        print(f"LOG ~ '{ctx.author.id}' used [ .add ] on '{user.id}'")
 
 
 @bot.command(name='id')
@@ -255,6 +261,7 @@ async def identify(ctx, user: discord.Member):
         embed.set_author(
             name=user.display_name, icon_url=user.avatar.url)
         await ctx.send(embed=embed)
+        print(f"LOG ~ '{ctx.author.id}' used [ .id ] on '{user.id}'")
 
 
 @bot.command(name='whoami')
@@ -293,6 +300,7 @@ async def who_am_i(ctx):
         else:
             await ctx.send(f"<@!{ctx.author.id}> - User Diagnostic sent in DM's.")
             await channel.send(text)
+            print(f"LOG ~ '{ctx.author.id}' used [ .whoami ]")
 
 
 # register command order:
@@ -313,6 +321,7 @@ async def register(ctx):
         channel = bot.get_channel(939028644175699968)
 
         database_check = register_command.register(str(ctx.author.id), ctx.author.display_name)
+        print(f"LOG ~ '{ctx.author.id}' used [ .register ]")
 
         if database_check == "00" or "07":
             await ctx.send(register_command.channel_reply(database_check, mention))
@@ -366,6 +375,7 @@ async def store(ctx, message):
                 await channel.send(assets.store_command(credit_emoji_all, 6))
                 await channel.send(assets.store_command(credit_emoji_all, 7))
                 await channel.send(assets.store_command(credit_emoji_all, 8))
+                print(f"LOG ~ '{ctx.author.id}' used [ .store ]")
 
 
 @store.error
@@ -378,6 +388,7 @@ async def store_error(ctx, error):
         embed.set_author(
             name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
         await ctx.send(embed=embed)
+        print(f"LOG ~ '{ctx.author.id}' used [ .store ]")
 
 
 @bot.command(name='shop')
@@ -389,6 +400,7 @@ async def shop(ctx):
         embed.set_author(
             name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
         await ctx.send(embed=embed)
+        print(f"LOG ~ '{ctx.author.id}' used [ .shop ]")
 
 
 @bot.command(name='ggn-store')
@@ -400,6 +412,7 @@ async def ggn_store(ctx):
         embed.set_author(
             name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
         await ctx.send(embed=embed)
+        print(f"LOG ~ '{ctx.author.id}' used [ .ggn-store ]")
 
 
 @bot.command(name='credit-info')
@@ -412,6 +425,7 @@ async def credit_diag(ctx, message):
         credit_emoji_all = '["7]'
 
         if message in credit_diag_key_list or credit_diag_key_list_all:
+            print(f"LOG ~ '{ctx.author.id}' used [ .credit-info ]")
             if message == "1":
                 embed = discord.Embed(
                     title="Rank Credit Details:",
@@ -478,6 +492,7 @@ async def github(ctx):
         view = discord.ui.View()
         view.add_item(button)
         await ctx.send(embed=embed, view=view)
+        print(f"LOG ~ '{ctx.author.id}' used [ .github ]")
 
 
 @bot.command(name='dev-server')
@@ -486,6 +501,7 @@ async def dev_server_inv(ctx):
         channel = await ctx.author.create_dm()
         await ctx.send(f"<@!{ctx.author.id}> - Dev Team Server invite sent in DM's.")
         await channel.send("https://discord.gg/H2KArTCj5a")
+        print(f"LOG ~ '{ctx.author.id}' used [ .dev-server ]")
 
 
 @bot.command(name='help')
@@ -497,6 +513,7 @@ async def command_help(ctx):
         embed.set_author(
             name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
         await ctx.send(embed=embed)
+        print(f"LOG ~ '{ctx.author.id}' used [ .help ]")
 
 
 # start troll commands
@@ -654,6 +671,8 @@ async def beauty_project(ctx):
             await ctx.send(f"Thank you! Forceps will now regrow 1 (One) hair folicle. He now has {new_cc_number} "
                      f"hair folicles!\n\nVisit our site at https://www.baldceps-survivor-project.com")
 
+@bot.command(name='')
+
 # end troll commands
 
 @bot.command(name='version')
@@ -668,6 +687,7 @@ async def version(ctx):
         embed.set_author(
             name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
         await ctx.send(embed=embed)
+        print(f"LOG ~ '{ctx.author.id}' used [ .version ]")
 
 
 @bot.command(name='report')
@@ -679,6 +699,7 @@ async def report(ctx):
         embed.set_author(
             name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
         await ctx.send(embed=embed)
+        print(f"LOG ~ '{ctx.author.id}' used [ .report ]")
 
 
 @bot.command(name='report-send')
@@ -701,6 +722,7 @@ async def report_send(ctx, message):
             report_file.write(f"{report_log}\n---------------\n")
 
         await channel.send(report_message)
+        print(f"LOG ~ '{ctx.author.id}' used [ .report-send ]")
 
 
 @bot.command(name='git-push')
@@ -714,6 +736,7 @@ async def shutdown(ctx):
         git_push.upload()
 
         ctx.send("all databases have been pushed and are backed up.")
+        print(f"LOG ~ '{ctx.author.id}' used [ .git-push ]")
     else:
         await ctx.send("`Not Authorised`")
 
@@ -725,22 +748,7 @@ async def ban(ctx, user: discord.Member, *, reason=None):
         await ctx.send("```41st://<utilities> ~ $```")
         await ctx.send(f"<@!{user.id}> has been reduced to atoms.")
         await user.ban(reason=reason)
-
-
-@bot.command(name='announcement')
-@commands.has_role('Technical Commander')
-async def shutdown(ctx):
-    if ctx.author.id == KYODA_ID or FORCEPS_ID:
-        channel = bot.get_channel(851284148915404831)
-
-        with open("announcement.txt", "r") as announcement:
-            message = announcement.read()
-
-        pings = assets.pings()
-
-        await channel.send(pings + "\n\n" + message)
-    else:
-        await ctx.send("`Not Authorised`")
+        print(f"LOG ~ '{ctx.author.id}' used [ .ban ] on {user.id}")
 
 
 @bot.command(name='restart')
@@ -758,6 +766,7 @@ async def shutdown(ctx):
         await ctx.send("`Shutdown in 5`")
         time.sleep(5)
         await ctx.send("https://www.youtube.com/watch?v=Gb2jGy76v0Y")
+        print("```41st://<utilities> ~ $``` \n `RESTART`")
         sys.exit()
 
 
@@ -766,6 +775,7 @@ async def shutdown(ctx):
 async def shutdown(ctx):
     if ctx.author.id == KYODA_ID or FORCEPS_ID:
         await ctx.send("```41st://<utilities> ~ $``` \n `HARD-SHUTDOWN`")
+        print("```41st://<utilities> ~ $``` \n `HARD-SHUTDOWN`")
         time.sleep(1)
         sys.exit()
 
