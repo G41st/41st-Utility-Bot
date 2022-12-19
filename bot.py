@@ -45,7 +45,7 @@ def startup(START):
 
 
 startup(TOKEN)
-bot_version = '4.0.3'
+bot_version = '4.0.4'
 bot_version_date = '12/16/2022 (US EST)'
 
 
@@ -733,7 +733,7 @@ async def shutdown(ctx):
 
         git_push.upload()
 
-        ctx.send("all databases have been pushed and are backed up.")
+        await ctx.send("all databases have been pushed and are backed up.")
         print(f"LOG ~ '{ctx.author.id}' used [ .git-push ]")
     else:
         await ctx.send("`Not Authorised`")
