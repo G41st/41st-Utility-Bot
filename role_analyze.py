@@ -660,7 +660,7 @@ def qual_diag(role_names, credit_emoji):
     if any(ext == qual11 for ext in role_names):
         reward11 = f"{qual11} - {credit_emoji} `3000`\n"
     if any(ext == qual12 for ext in role_names):
-        reward12 = f"{qual12} - {credit_emoji} `7500`\n"
+        reward12 = f"{qual12} - {credit_emoji} `20000`\n"
     if any(ext == qual13 for ext in role_names):
         reward13 = f"{qual13} - {credit_emoji} `2000`\n"
     if any(ext == qual14 for ext in role_names):

@@ -657,7 +657,7 @@ def credit_counter(role_names):
         if any(ext == qual11 for ext in role_names):
             reward11 = 3000
         if any(ext == qual12 for ext in role_names):
-            reward12 = 7500
+            reward12 = 20000
         if any(ext == qual13 for ext in role_names):
             reward13 = 2000
         if any(ext == qual14 for ext in role_names):
