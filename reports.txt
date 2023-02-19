@@ -19,3 +19,8 @@ CT Gunner CT-4327 - 200415599799566336
      CT Gunner CT-4327 said:
 '.report-send I had 5,500 credits as if 2/06. but I got the veteran heavy medal today and went to check the balance and now I only have 3000 credits'
 ---------------
+general kenobi - 762029297408933949
+2/1/2023 in channel '#Direct Message with Unknown User' 
+     general kenobi said:
+'.report-send I've used the register command and .credits .whoami .creditinfo and .store # havent worked'
+---------------
