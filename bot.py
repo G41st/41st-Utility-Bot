@@ -101,7 +101,7 @@ async def add(ctx, user: discord.Member, message):
 
 
 @bot.command(name='sub-merits')
-@commands.has_role('Technical Commander')
+@commands.has_role('Economy Lead')
 async def sub_merits(ctx, user: discord.Member, message):
     if ctx.author.id == KYODA_ID or FORCEPS_ID:
         role_names = [str(r) for r in user.roles]
@@ -140,7 +140,7 @@ async def remove(ctx, user: discord.Member, message):
 
 
 @bot.command(name='sub-demerits')
-@commands.has_role('Technical Commander')
+@commands.has_role('Economy Lead')
 async def sub_demerits(ctx, user: discord.Member, message):
     if ctx.author.id == KYODA_ID or FORCEPS_ID:
         role_names = [str(r) for r in user.roles]
